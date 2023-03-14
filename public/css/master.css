@@ -86,7 +86,7 @@ body {
     color: #888;
     background: #f1f1f1;
     font-size:15px;
-	  font-family: 'Hind', sans-serif;
+	font-family: 'Hind', sans-serif;
 }
 
 .wrapper {
@@ -133,6 +133,7 @@ h3 a,
 h4 a,
 h5 a,
 h6 a { color: #fff;}
+p a {}
 p a:hover {color: #1a237e;}
 p {
     letter-spacing: normal;
@@ -148,13 +149,6 @@ a:hover, a:focus, a:active {
     outline: none;
     text-decoration: none;
     color: #e91e63;
-}
-.product-link{
-  color: #212121;
-  margin: 10px 0;
-  font-size: 18px;
-  font-weight: bold;
-  font-family: 'Jost', sans-serif;
 }
 ul {
   list-style: disc;
@@ -207,7 +201,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 
-
 section {
 	padding-top:120px;
 	padding-bottom:120px;
@@ -252,18 +245,6 @@ section {
 /*=============================================
               		Header
 =============================================*/
-
-.active {
-  /* border-bottom: 2px solid red; */
-  color: red !important;
-  font-weight: bold !important;
-}
-
-.active1 {
-  border-bottom: 2px solid red;
-  color: red !important;
-  font-weight: bold !important;
-}
 
 .navbar-nav {
     float: right;
@@ -436,7 +417,7 @@ nav.bootsnav.navbar-sidebar ul.nav {
 }
 
 .parallax-bg-10 {
-    background: url(https://raw.githubusercontent.com/jhin1m/jhin1m.github.io/master/img/banner.jpg) center 0 no-repeat;
+    background: url(../images/background/parallax-bg-10.jpg) center 0 no-repeat;
     background-size: cover;
 }
 
@@ -471,7 +452,7 @@ nav.bootsnav.navbar-sidebar ul.nav {
 }
 
 .parallax-bg-18 {
-    background: url(/img/post/post-08.jpg) center 0 no-repeat;
+    background: url(../images/background/parallax-bg-20.jpg) center 0 no-repeat;
     background-size: cover;
 }
 
@@ -765,12 +746,6 @@ input.search-bar-top:-moz-placeholder { color: #fff!important; }
 }
 .mt-50 {
 	margin-top: 50px;
-}
-.mt-51 {
-	margin-top: 50px;
-  max-height: 350px;
-  display: inline-flex;
-  justify-content: center;
 }
 .mt-60 {
 	margin-top: 60px;
@@ -1117,7 +1092,7 @@ input.search-bar-top:-moz-placeholder { color: #fff!important; }
 .border-radius-25 {border-radius:25px;}
 .remove-padding {padding: 0!important;}
 .remove-margin {margin: 0!important;}
-.img-responsive, .full-width{max-height: 100%; width:auto;}
+.img-responsive, .full-width{width:100%;}
 
 .btn,
 .form-control,
@@ -3164,41 +3139,6 @@ a.readmore > span {
 /*=============================================
                         Footer
 =============================================*/
-.ticker {
-  display: flex;
-}
-.ticker__list {
-  display: flex;
-  animation: ticker 7s infinite linear;
-}
-.ticker:hover .ticker__list {
-  animation-play-state: paused;
-}
-.ticker__item {
-  display: flex;
-  margin-right: 10px;
-}
-@-moz-keyframes ticker {
-  100% {
-    transform: translateX(-100%);
-  }
-}
-@-webkit-keyframes ticker {
-  100% {
-    transform: translateX(-100%);
-  }
-}
-@-o-keyframes ticker {
-  100% {
-    transform: translateX(-100%);
-  }
-}
-@keyframes ticker {
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 @media only screen and (min-width: 992px) {
   #footer-fixed {
     position: fixed;
@@ -3226,6 +3166,7 @@ a.readmore > span {
     right: 0;
     bottom: 0;
     top: 0;
+    background-image: url(../images/map-bg.png);
     background-size: contain;
     opacity: .8;
 }
@@ -3678,13 +3619,11 @@ ul.footer-gallery li img {
 }
 
 .slider-bg {
-  display:flex;
 	border: 0;
     margin: 0;
     height: 100vh;
     background-color: #222225;
 }
-
 .slider-bg .slides {
     height: 100%;
 }
@@ -4601,7 +4540,7 @@ ul.footer-gallery li img {
 }
 
 .blog-cover-bg {
-	background-image: url(/img/event-bg.jpg);
+	background-image: url(../images/title-bg/title-hero-2.jpg);
 }
 
 .about-cover-bg {
@@ -4621,7 +4560,7 @@ ul.footer-gallery li img {
 }
 
 .login-cover-bg {
-	background-color: grey;
+	background-image: url(../images/title-bg/title-hero-7.jpg);
 	height:100vh;
 }
 
@@ -4635,7 +4574,7 @@ ul.footer-gallery li img {
 }
 
 .shop-cover-bg {
-	background-image: url(https://raw.githubusercontent.com/jhin1m/jhin1m.github.io/master/img/banner.jpg);
+	background-image: url(../images/title-bg/title-hero-10.jpg);
 }
 
 .page-title {
@@ -4652,7 +4591,6 @@ ul.footer-gallery li img {
 }
 
 .page-title h1 {
-    text-transform: uppercase;
     font-size: 50px;
     line-height: 50px;
     font-weight: 700;
@@ -5346,17 +5284,11 @@ font-family: 'Jost', sans-serif;
     padding: 0;
 }
 .product-wrap {
-    width: auto;
-    height: 350px;
-    display: flex;
-    box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    justify-content: left;
 }
 .product-img img {
-    width: auto;
-    max-height: 100%;
+    width: 100%;
 }
 .product-wrap .product-caption {
     width: 100%;
@@ -5695,22 +5627,16 @@ form.register {
     left: 0;
 }
 
-.birthday-bg {
-	background:url(/img/birthday-banner.jpg) no-repeat center center;
+.man-bg {
+	background:url(../images/man-img.jpg) no-repeat center center;
 	background-size:cover;
 }
-.anniversary-bg {
-	background:url(/img/anniversary-banner.jpg) no-repeat center center;
+
+.woman-bg {
+	background:url(../images/woman-img.jpg) no-repeat center center;
 	background-size:cover;
 }
-.friendship-bg {
-	background:url(/img/friendship-banner.jpg) no-repeat center center;
-	background-size:cover;
-}
-.motherday-bg {
-	background:url(/img/motherday-banner.jpg) no-repeat center center;
-	background-size:cover;
-}
+
 .help-bg {
 	background:url(../images/help-img.jpg) no-repeat center center;
 	background-size:cover;

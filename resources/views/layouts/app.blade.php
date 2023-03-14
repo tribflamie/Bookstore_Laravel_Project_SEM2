@@ -5,16 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Papyrus Limited - The Best Expression Card Shop</title>
+    <title>Scoda. - Multipurpose One Page HTML5 Template</title>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 </head>
 
-<body ng-app="myApp" ng-controller="addCart">
+<body>
+    <!--=== Loader Start ======-->
+    <div id="loader-overlay">
+        <div class="loader-wrapper">
+            <div class="scoda-pulse"></div>
+        </div>
+    </div>
+    <!--=== Loader End ======-->
 
     <!--=== Wrapper Start ======-->
     <div class="wrapper">
-
         <!--=== Header Start ======-->
         <nav class="navbar navbar-default navbar-fixed white bootsnav on no-full navbar-transparent">
 
@@ -34,19 +41,30 @@
             <!--=== End Top Search ===-->
 
             <div class="container">
-
                 <!--=== Start Atribute Navigation ===-->
                 <div class="attr-nav">
                     <ul>
-                        <li class="dropdown">
-                            <a href="#!shop-cart" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icofont icofont-cart"></i>
-                                <span class="badge">@{{ total2 }}</span>
-                            </a>
-                        </li>
-                        <li class="search"><a href="#"><i class="icofont icofont-users"></i></a>
-                        </li>
-                        <li class="search"><a href="#" id="visits"></a>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
+                                    class="icofont icofont-cart"></i> <span class="badge">3</span> </a>
+                            <ul class="dropdown-menu cart-list">
+                                <li> <a href="#" class="photo"><img src="{{ asset('images/thumb01.jpg') }}"
+                                            class="cart-thumb" alt="" /></a>
+                                    <h6><a href="#">Delica omtantur </a></h6>
+                                    <p>2x - <span class="price">$99.99</span></p>
+                                </li>
+                                <li> <a href="#" class="photo"><img src="{{ asset('images/thumb02.jpg') }}"
+                                            class="cart-thumb" alt="" /></a>
+                                    <h6><a href="#">Omnes ocurreret</a></h6>
+                                    <p>1x - <span class="price">$33.33</span></p>
+                                </li>
+                                <li> <a href="#" class="photo"><img src="{{ asset('images/thumb03.jpg') }}"
+                                            class="cart-thumb" alt="" /></a>
+                                    <h6><a href="#">Agam facilisis</a></h6>
+                                    <p>2x - <span class="price">$99.99</span></p>
+                                </li>
+                                <li class="total"> <span class="pull-right"><strong>Total</strong>: $0.00</span> <a
+                                        href="#" class="btn btn-default btn-cart">Cart</a> </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -55,77 +73,73 @@
                 <!--=== Start Header Navigation ===-->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"> <i
-                            class="icofont icofont-navigation-menu"></i></button>
-                    <div class="logo">
-                        <a href="#">
-                            <img class="logo logo-display" src="img/logo/white-logo.png">
-                            <img class="logo logo-scrolled" src="img/logo/black-logo.png">
-                        </a>
-                    </div>
+                            class="icofont icofont-navigation-menu"></i> </button>
+                    <div class="logo"> <a href="home"> <img class="logo logo-display"
+                                src="{{ asset('images/logo-white.png') }}" alt=""> <img
+                                class="logo logo-scrolled" src="{{ asset('images/logo-black.png') }}" alt="">
+                        </a> </div>
                 </div>
                 <!--=== End Header Navigation ===-->
 
                 <!--=== Collect the nav links, forms, and other content for toggling ===-->
-                <div ng-controller="MainCtrl" class="collapse navbar-collapse" id="navbar-menu">
+                <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav" data-in="fadeIn" data-out="fadeOut">
                         <li>
-                            <a href="#/!" class="dropdown-toggle" data-toggle="dropdown"
+                            <a class="dropdown-toggle" data-toggle="dropdown"
                                 ng-class="{ active1: activePath=='/' }">Home</a>
                         </li>
-                        <li class="dropdown megamenu-fw"><a ng-class="{ active1: activePath=='/shop-standard' }"
-                                href="#!shop-standard" class="dropdown-toggle" data-toggle="dropdown">Product</a>
+                        <li class="dropdown megamenu-fw"> <a href="index.html" class="dropdown-toggle"
+                                data-toggle="dropdown">Shop</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
                                 <li>
                                     <div class="row">
-                                        <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Shop</h6>
+                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a ng-class="{ active: activePath=='/shop-standard' }"
-                                                            href="#!shop-standard">Shop General</a></li>
+                                                    <li><a href="index.html">Creative Agency</a></li>
+                                                    <li><a href="small-business.html">Small Business</a></li>
+                                                    <li><a href="corporate-business.html">Corporate Business</a></li>
+                                                    <li><a href="startup-business.html">Startup Business</a></li>
+                                                    <li><a href="minimal.html">Minimal Design</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Category</h6>
+                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a ng-class="{ active: activePath=='/greetingcard' }"
-                                                            href="#!/greetingcard">Greeting Card</a></li>
-                                                    <li><a ng-class="{ active: activePath=='/wrappaper' }"
-                                                            href="#!/wrappaper">Wrapping Paper</a></li>
-                                                    <li><a ng-class="{ active: activePath=='/giftbag' }"
-                                                            href="#!/giftbag">Gift Bags</a></li>
+                                                    <li><a href="creative-onepage.html">Creative One page</a></li>
+                                                    <li><a href="creative-portfolio.html">Creative Portfolio</a></li>
+                                                    <li><a href="personal-resume.html">Personal Resume</a></li>
+                                                    <li><a href="seo-agency.html">SEO Agency</a></li>
+                                                    <li><a href="digital-agency.html">Digital Agency</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Occasion</h6>
+                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a ng-class="{ active: activePath=='/anniversary' }"
-                                                            href="#!/anniversary">Anniversary</a></li>
-                                                    <li><a ng-class="{ active: activePath=='/birthday' }"
-                                                            href="#!/birthday">Birthday</a></li>
-                                                    <li><a ng-class="{ active: activePath=='/congratulation' }"
-                                                            href="#!/congratulation">Congratulation</a></li>
-                                                    <li><a ng-class="{ active: activePath=='/friendship' }"
-                                                            href="#!/friendship">Friendship</a></li>
+                                                    <li><a href="architecture.html">Architecture</a></li>
+                                                    <li><a href="restaurant.html">Restaurant</a></li>
+                                                    <li><a href="online-shop.html">Online Shop</a></li>
+                                                    <li><a href="photography.html">Photography</a></li>
+                                                    <li><a href="gym-fitness.html">Gym / Fitness</a></li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Holiday</h6>
+                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a ng-class="{ active: activePath=='/mothersday' }"
-                                                            href="#!/mothersday">Mother's Day</a></li>
-                                                    <li><a ng-class="{ active: activePath=='/newyear' }"
-                                                            href="#!/newyear">New Year</a></li>
+                                                    <li><a href="app-style.html">App Style</a></li>
+                                                    <li><a href="travel-agency.html">Travel Agency</a></li>
+                                                    <li><a href="construction.html">Construction</a></li>
+                                                    <li><a href="music.html">Music</a></li>
+                                                    <li><a href="weddings.html">Weddings</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -149,23 +163,24 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <li class="dropdown">
+                                <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            {{ __('Logout') }}
+                                        </a></li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
-                                </div>
+                                </ul>
                             </li>
                         @endguest
                     </ul>
@@ -187,9 +202,10 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
                             <div class="widget widget-text">
-                                <div class="logo logo-footer"><a href="#/!"> <img class="logo logo-display"
-                                            src="img/logo/white-logo.png" alt=""></a></div>
-                                <p>Papyrus Limited captures meaningful moments, honor special relationships, express who
+                                <div class="logo logo-footer"><a href="index.html"> <img class="logo logo-display"
+                                            src="{{ asset('images/logo-footer.png') }}" alt=""></a> </div>
+                                <p>Papyrus Limited captures meaningful moments, honor special relationships, express
+                                    who
                                     you are and help you relive timeless memories, year after year.</p>
                                 <p>© All rights reserved.</p>
                             </div>
@@ -218,7 +234,8 @@
                             <div class="widget widget-text widget-links">
                                 <h5 class="widget-title">Contact Us</h5>
                                 <ul>
-                                    <li> <i class="icofont icofont-google-map"></i> <a>275 Nguyen Van Dau, Binh Thanh
+                                    <li> <i class="icofont icofont-google-map"></i> <a>275 Nguyen Van Dau, Binh
+                                            Thanh
                                             District, Ho Chi Minh City, Viet Nam</a> </li>
                                     <li> <i class="icofont icofont-iphone"></i> <a>+44 1632 960290</a> </li>
                                     <li> <i class="icofont icofont-mail"></i> <a>papyrus@gmail.com</a> </li>
@@ -241,14 +258,10 @@
 
     <!--=== Javascript Plugins ======-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/validator.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/master.js') }}"></script>
     <script src="{{ asset('js/bootsnav.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"></script>
-    <script src="{{ asset('js/ui-bootstrap-tpls-2.5.0.min.js') }}"></script>
-    <script src="{{ asset('js/myApp.js') }}"></script>
     <!--=== Javascript Plugins End ======-->
 
 </body>
