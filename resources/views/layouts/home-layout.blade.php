@@ -71,8 +71,8 @@
 
                 <!--=== Start Header Navigation ===-->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"> <i
-                            class="icofont icofont-navigation-menu"></i> </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="icofont icofont-navigation-menu"></i> </button>
                     <div class="logo"> <a href="home"> <img class="logo logo-display"
                                 src="{{ asset('images/logo-white.png') }}" alt=""> <img
                                 class="logo logo-scrolled" src="{{ asset('images/logo-black.png') }}" alt="">
@@ -97,7 +97,8 @@
                                                 <ul class="menu-col">
                                                     <li><a href="index.html">Creative Agency</a></li>
                                                     <li><a href="small-business.html">Small Business</a></li>
-                                                    <li><a href="corporate-business.html">Corporate Business</a></li>
+                                                    <li><a href="corporate-business.html">Corporate Business</a>
+                                                    </li>
                                                     <li><a href="startup-business.html">Startup Business</a></li>
                                                     <li><a href="minimal.html">Minimal Design</a></li>
                                                 </ul>
@@ -109,7 +110,8 @@
                                             <div class="content">
                                                 <ul class="menu-col">
                                                     <li><a href="creative-onepage.html">Creative One page</a></li>
-                                                    <li><a href="creative-portfolio.html">Creative Portfolio</a></li>
+                                                    <li><a href="creative-portfolio.html">Creative Portfolio</a>
+                                                    </li>
                                                     <li><a href="personal-resume.html">Personal Resume</a></li>
                                                     <li><a href="seo-agency.html">SEO Agency</a></li>
                                                     <li><a href="digital-agency.html">Digital Agency</a></li>

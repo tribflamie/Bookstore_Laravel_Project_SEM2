@@ -1,5 +1,5 @@
 @extends('layouts.home-layout')
-
+@section('title', 'Products')
 @section('content')
     <!--=== Flex Slider Start ======-->
     <section class="pt-0 pb-0">
@@ -72,7 +72,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -167,7 +167,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -205,7 +205,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -243,7 +243,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -262,7 +262,7 @@
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
                                             <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
                                                             class="mdi mdi-cart"></i></span></a> </div>
                                         </div>
                                     </div>
@@ -303,250 +303,30 @@
                     <li data-group="design">Top Selling</li>
                     <li data-group="web">Most Commented</li>
                 </ul>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-01.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
+                @foreach ($products as $product)
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product">
+                            <div class="product-wrap"> <img height="400px" width="500px"
+                                    src="{{ asset($product->photo) }}" class="img-responsive" alt="team-01">
+                                <div class="product-caption">
+                                    <div class="product-description text-center">
+                                        <div class="product-description-wrap">
+                                            <div class="product-title"> <a href="#"
+                                                    class="btn btn-color btn-circle">ADD
+                                                    TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Short Sleeve Print T-Shirt</h4>
-                            <p>11.61 <span class="old-price">$18.48</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-02.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="product-detail">
+                                <h4>{{ $product->book }}</h4>
+                                <p>${{ $product->price - $product->price * $product->discount }} <span
+                                        class="old-price">${{ $product->price }}</span></p>
                             </div>
                         </div>
-                        <div class="product-detail">
-                            <h4>Short Sleeve Print T-Shirt</h4>
-                            <p>$12.90 <span class="old-price">$18.48</span></p>
-                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-03.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Short Sleeve Round Neck T-Shirt</h4>
-                            <p>$12.99 <span class="old-price">$16.46</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-04.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Long Sleeve Fox Print Cardigan</h4>
-                            <p>$12.99 <span class="old-price">$32.26</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-05.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Navy Linen Short Sleeve Casual </h4>
-                            <p>$30.00 <span class="old-price">$50.95</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-06.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Short Sleeve Print T-Shirt</h4>
-                            <p>$12.75 <span class="old-price">$18.75</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-07.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Charcoal Wool Jacket</h4>
-                            <p>$99.95 <span class="old-price">$80.95</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-08.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Sweater with Vented Design</h4>
-                            <p>$10.32 <span class="old-price">$20.00</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-09.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Short Sleeve Print T-Shirt</h4>
-                            <p>$12.65</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-10.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Short Sleeve Print T-Shirt</h4>
-                            <p>$16.00 <span class="old-price">$18.00</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-11.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Casual Shirt</h4>
-                            <p>$65.65</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-12.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Half Sleeve T-shirt</h4>
-                            <p>$19.00</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="row">
                 <div class="col-md-12">
