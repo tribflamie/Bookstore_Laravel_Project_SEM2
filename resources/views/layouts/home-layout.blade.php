@@ -24,7 +24,6 @@
     <div class="wrapper">
         <!--=== Header Start ======-->
         <nav class="navbar navbar-default navbar-fixed white bootsnav on no-full navbar-transparent">
-
             <!--=== Start Top Search ===-->
             <div class="fullscreen-search-overlay" id="search-overlay"><a href="#" class="fullscreen-close"
                     id="fullscreen-close-button"><i class="icofont icofont-close"></i></a>
@@ -85,11 +84,10 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav" data-in="fadeIn" data-out="fadeOut">
                         <li>
-                            <a class="dropdown-toggle" data-toggle="dropdown"
-                                ng-class="{ active1: activePath=='/' }">Home</a>
+                            <a class="dropdown-toggle" data-toggle="dropdown">Home</a>
                         </li>
                         <li class="dropdown megamenu-fw"> <a href="index.html" class="dropdown-toggle"
-                                data-toggle="dropdown">Shop</a>
+                                data-toggle="dropdown">Genre</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
                                 <li>
                                     <div class="row">
@@ -148,6 +146,12 @@
                                     <!--=== end row ===-->
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown">Language</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown">Published</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest
