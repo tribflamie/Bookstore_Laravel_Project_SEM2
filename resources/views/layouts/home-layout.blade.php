@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Scoda. - Multipurpose One Page HTML5 Template</title>
+    <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
@@ -24,45 +24,33 @@
     <div class="wrapper">
         <!--=== Header Start ======-->
         <nav class="navbar navbar-default navbar-fixed white bootsnav on no-full navbar-transparent">
-            <!--=== Start Top Search ===-->
-            <div class="fullscreen-search-overlay" id="search-overlay"><a href="#" class="fullscreen-close"
-                    id="fullscreen-close-button"><i class="icofont icofont-close"></i></a>
-                <div id="fullscreen-search-wrapper">
-                    <form method="get" id="fullscreen-searchform">
-                        <input type="text" value="" placeholder="Type and hit Enter..."
-                            id="fullscreen-search-input" class="search-bar-top">
-                        <i class="icofont icofont-search-1 fullscreen-search-icon">
-                            <input value="" type="submit">
-                        </i>
-                    </form>
-                </div>
-            </div>
-            <!--=== End Top Search ===-->
 
             <div class="container">
                 <!--=== Start Atribute Navigation ===-->
                 <div class="attr-nav">
                     <ul>
-                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
-                                    class="icofont icofont-cart"></i> <span class="badge">3</span> </a>
+                        <li class="dropdown"> <a href="{{ route('cart') }}" class="dropdown-toggle"
+                                data-toggle="dropdown"> <i class="icofont icofont-cart"></i> <span
+                                    class="badge">{{ count((array) session('cart')) }}</span> </a>
                             <ul class="dropdown-menu cart-list">
-                                <li> <a href="#" class="photo"><img src="{{ asset('images/thumb01.jpg') }}"
-                                            class="cart-thumb" alt="" /></a>
-                                    <h6><a href="#">Delica omtantur </a></h6>
-                                    <p>2x - <span class="price">$99.99</span></p>
-                                </li>
-                                <li> <a href="#" class="photo"><img src="{{ asset('images/thumb02.jpg') }}"
-                                            class="cart-thumb" alt="" /></a>
-                                    <h6><a href="#">Omnes ocurreret</a></h6>
-                                    <p>1x - <span class="price">$33.33</span></p>
-                                </li>
-                                <li> <a href="#" class="photo"><img src="{{ asset('images/thumb03.jpg') }}"
-                                            class="cart-thumb" alt="" /></a>
-                                    <h6><a href="#">Agam facilisis</a></h6>
-                                    <p>2x - <span class="price">$99.99</span></p>
-                                </li>
-                                <li class="total"> <span class="pull-right"><strong>Total</strong>: $0.00</span> <a
-                                        href="#" class="btn btn-default btn-cart">Cart</a> </li>
+                                @if (session('cart'))
+                                    @foreach (session('cart') as $id => $details)
+                                        <li> <a href="#" class="photo"><img src="{{ asset($details['photo']) }}"
+                                                    class="cart-thumb" alt="" /></a>
+                                            <h6><a href="#"></a></h6>
+                                            <p>{{ $details['quantity'] }}x - <span
+                                                    class="price">${{ $details['price'] }}</span></p>
+                                            </span></p>
+                                        </li>
+                                    @endforeach
+                                @endif
+                                <?php $total = 0; ?>
+                                @foreach ((array) session('cart') as $id => $details)
+                                    <?php $total += $details['price'] * $details['quantity']; ?>
+                                @endforeach
+                                <li class="total"> <span class="pull-right"><strong>Total</strong>:
+                                        ${{ $total }}</span> <a href="{{ route('cart') }}"
+                                        class="btn btn-default btn-cart">Cart</a> </li>
                             </ul>
                         </li>
                     </ul>
@@ -73,7 +61,7 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="icofont icofont-navigation-menu"></i> </button>
-                    <div class="logo"> <a href="home"> <img class="logo logo-display"
+                    <div class="logo"> <a href="{{ route('home') }}"> <img class="logo logo-display"
                                 src="{{ asset('images/logo-white.png') }}" alt=""> <img
                                 class="logo logo-scrolled" src="{{ asset('images/logo-black.png') }}" alt="">
                         </a> </div>
@@ -84,7 +72,7 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav" data-in="fadeIn" data-out="fadeOut">
                         <li>
-                            <a class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                            <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                         </li>
                         <li class="dropdown megamenu-fw"> <a href="index.html" class="dropdown-toggle"
                                 data-toggle="dropdown">Genre</a>
@@ -92,54 +80,48 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="index.html">Creative Agency</a></li>
-                                                    <li><a href="small-business.html">Small Business</a></li>
-                                                    <li><a href="corporate-business.html">Corporate Business</a>
-                                                    </li>
-                                                    <li><a href="startup-business.html">Startup Business</a></li>
-                                                    <li><a href="minimal.html">Minimal Design</a></li>
+                                                    <li><a href="#">Adventure Fiction</a></li>
+                                                    <li><a href="#">Family saga</a></li>
+                                                    <li><a href="#">Historical fiction</a></li>
+                                                    <li><a href="#">Fantasy</a></li>
+                                                    <li><a href="#">Mystery</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="creative-onepage.html">Creative One page</a></li>
-                                                    <li><a href="creative-portfolio.html">Creative Portfolio</a>
-                                                    </li>
-                                                    <li><a href="personal-resume.html">Personal Resume</a></li>
-                                                    <li><a href="seo-agency.html">SEO Agency</a></li>
-                                                    <li><a href="digital-agency.html">Digital Agency</a></li>
+                                                    <li><a href="#">Novella</a></li>
+                                                    <li><a href="#">Children's fiction</a></li>
+                                                    <li><a href="#">Detective</a></li>
+                                                    <li><a href="#">Coming-of-age</a></li>
+                                                    <li><a href="#">Romance</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="architecture.html">Architecture</a></li>
-                                                    <li><a href="restaurant.html">Restaurant</a></li>
-                                                    <li><a href="online-shop.html">Online Shop</a></li>
-                                                    <li><a href="photography.html">Photography</a></li>
-                                                    <li><a href="gym-fitness.html">Gym / Fitness</a></li>
+                                                    <li><a href="#">Self-help</a></li>
+                                                    <li><a href="#">Magic realism</a></li>
+                                                    <li><a href="#">Novel</a></li>
+                                                    <li><a href="#">Children's novel</a></li>
+                                                    <li><a href="#">Historical novel</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Home Layouts</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="app-style.html">App Style</a></li>
-                                                    <li><a href="travel-agency.html">Travel Agency</a></li>
-                                                    <li><a href="construction.html">Construction</a></li>
-                                                    <li><a href="music.html">Music</a></li>
-                                                    <li><a href="weddings.html">Weddings</a></li>
+                                                    <li><a href="#">Sexology</a></li>
+                                                    <li><a href="#">Young adult</a></li>
+                                                    <li><a href="#">Science fiction</a></li>
+                                                    <li><a href="#">Anthropology</a></li>
+                                                    <li><a href="#">Psychology</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -149,11 +131,36 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="dropdown-toggle" data-toggle="dropdown">Language</a>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown">Language</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">English</a></li>
+                                <li><a href="#">Spanish</a></li>
+                                <li><a href="#">Chinese</a></li>
+                                <li><a href="#">French</a></li>
+                                <li><a href="#">Hindi</a></li>
+                                <li><a href="#">Portuguese</a></li>
+                                <li><a href="#">German</a></li>
+                                <li><a href="#">Italian</a></li>
+                                <li><a href="#">Norwegian</a></li>
+                                <li><a href="#">Russian</a></li>
+                                <li><a href="#">Swedish</a></li>
+                                <li><a href="#">Japanese</a></li>
+                                <li><a href="#">Czech</a></li>
+                                <li><a href="#">Yiddish</a></li>
+                                <li><a href="#">Gujarati</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a class="dropdown-toggle" data-toggle="dropdown">Published</a>
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown">Published</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">1791</a></li>
+                                <li><a href="#">1859</a></li>
+                                <li><a href="#">1937</a></li>
+                                <li><a href="#">1939</a></li>
+                                <li><a href="#">1943</a></li>
+                                <li><a href="#">1997</a></li>
+                            </ul>
                         </li>
                         <!-- Authentication Links -->
                         @guest

@@ -1,5 +1,5 @@
 @extends('layouts.home-layout')
-@section('title', 'Products')
+@section('title', 'Home - The best selling individual books')
 @section('content')
     <!--=== Flex Slider Start ======-->
     <section class="pt-0 pb-0">
@@ -311,7 +311,8 @@
                                 <div class="product-caption">
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
+                                            <div class="product-title"> <a
+                                                    href="{{ url('add-to-cart/' . $product->id) }}"
                                                     class="btn btn-color btn-circle">ADD
                                                     TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
                                             </div>

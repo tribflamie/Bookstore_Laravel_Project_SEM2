@@ -17,4 +17,6 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('cart', [App\Http\Controllers\HomeController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [App\Http\Controllers\HomeController::class, 'addToCart']);
