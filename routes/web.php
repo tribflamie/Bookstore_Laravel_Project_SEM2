@@ -19,4 +19,6 @@ Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('cart', [App\Http\Controllers\HomeController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [App\Http\Controllers\HomeController::class, 'addToCart']);
+Route::get('add-to-cart/{id}', [App\Http\Controllers\HomeController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [App\Http\Controllers\HomeController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [App\Http\Controllers\HomeController::class, 'remove'])->name('remove.from.cart');

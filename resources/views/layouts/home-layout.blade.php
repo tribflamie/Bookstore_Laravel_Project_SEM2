@@ -24,7 +24,6 @@
     <div class="wrapper">
         <!--=== Header Start ======-->
         <nav class="navbar navbar-default navbar-fixed white bootsnav on no-full navbar-transparent">
-
             <div class="container">
                 <!--=== Start Atribute Navigation ===-->
                 <div class="attr-nav">
@@ -199,7 +198,6 @@
                     </ul>
                 </div>
                 <!--=== /.navbar-collapse ===-->
-
             </div>
         </nav>
         <!--=== Header End ======-->

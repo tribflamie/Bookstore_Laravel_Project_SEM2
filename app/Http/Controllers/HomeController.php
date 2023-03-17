@@ -27,44 +27,67 @@ class HomeController extends Controller
         $products = Product::all();
         return view('home', compact('products'));
     }
+
     public function cart()
     {
         return view('cart');
     }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
     public function addToCart($id)
     {
-        $product = Product::find($id);
-        if (!$product) {
-            abort(404);
-        }
+        $product = Product::findOrFail($id);
+
         $cart = session()->get('cart', []);
-        // if cart is empty then this the first product
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    "name" => $product->book,
-                    "quantity" => 1,
-                    "price" => $product->price,
-                    "photo" => $product->photo
-                ]
-            ];
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
-        // if cart not empty then check if this product exist then increment quantity
+
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        } else {
+            $cart[$id] = [
+                "book" => $product->book,
+                "quantity" => 1,
+                "price" => $product->price,
+                "photo" => $product->photo
+            ];
         }
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "name" => $product->book,
-            "quantity" => 1,
-            "price" => $product->price,
-            "photo" => $product->photo
-        ];
+
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function update(Request $request)
+    {
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function remove(Request $request)
+    {
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
     }
 }
