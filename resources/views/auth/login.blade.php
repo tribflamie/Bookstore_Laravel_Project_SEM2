@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.no-footer')
 
 @section('content')
     <!--=== page-title-section start ===-->
@@ -14,7 +14,8 @@
                             <!--=== Form ===-->
                             <form method="post" action="{{ route('login') }}" class="form login_type text-center">
                                 @csrf
-                                <!--=== Username ===-->
+
+                                <!--=== Username (Email) ===-->
                                 <input id="email" type="email" placeholder="Email" name="email"
                                     class="form-control mb-20 @error('email') is-invalid @enderror"
                                     value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -40,8 +41,8 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="mt-20 gray-light" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a href="{{ route('password.request') }}">
+                                        <h6 class="mt-20 gray-light">{{ __('FORGOT YOUR PASSWORD?') }}</h6>
                                     </a>
                                 @endif
                             </form>
