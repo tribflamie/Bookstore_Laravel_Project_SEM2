@@ -321,7 +321,7 @@
                                 </div>
                             </div>
                             <div class="product-detail">
-                                <h4>{{ $product->book }}</h4>
+                                <h4><a href="#">{{ $product->book }}</a></h4>
                                 <p>${{ $product->price - $product->price * $product->discount }} <span
                                         class="old-price">${{ $product->price }}</span></p>
                             </div>
