@@ -49,9 +49,11 @@ class HomeController extends Controller
         if (!$cart) {
             $cart = [
                 $id => [
-                    "name" => $product->book,
+                    "book" => $product->book,
                     "quantity" => 1,
                     "price" => $product->price,
+                    "discount"=>$product->discount,
+                    "author"=>$product->author,
                     "photo" => $product->photo
                 ]
             ];
@@ -66,9 +68,11 @@ class HomeController extends Controller
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
-            "name" => $product->book,
+            "book" => $product->book,
             "quantity" => 1,
             "price" => $product->price,
+            "discount"=>$product->discount,
+            "author"=>$product->author,
             "photo" => $product->photo
         ];
         session()->put('cart', $cart);

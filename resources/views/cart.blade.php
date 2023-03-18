@@ -13,6 +13,7 @@
                                     <th>&nbsp;</th>
                                     <th>Item</th>
                                     <th>Book</th>
+                                    <th>Author</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
@@ -22,20 +23,21 @@
                                 <?php $total = 0; ?>
                                 @if (session('cart'))
                                     @foreach (session('cart') as $id => $details)
-                                        <?php $total += $details['price'] * $details['quantity']; ?>
+                                        <?php $total += $details['price']*(1-$details['discount']) * $details['quantity']; ?>
                                         <tr data-id="{{ $id }}" class="cart_item">
                                             <td><a class="remove-from-cart"><i class="icofont-close-circled"></i></a>
                                             </td>
                                             <td><a href="#"> <img src="{{ asset($details['photo']) }}" alt="">
                                                 </a> </td>
-                                            <td><a href="#">{{ $details['name'] }}</a> </td>
-                                            <td><span>${{ $details['price'] }}</span> </td>
+                                            <td><a href="#">{{ $details['book'] }}</a> </td>
+                                            <td><a href="#">{{ $details['author'] }}</a> </td>
+                                            <td><span>${{ $details['price']*(1-$details['discount']) }}</span> </td>
                                             <td data-th="Quantity"><input class="form-control quantity update-cart"
                                                     type="number" step="1" min="0"
                                                     value="{{ $details['quantity'] }}" title="Qty" placeholder="Qty">
                                             </td>
                                             <td data-th="Subtotal" class="product-subtotal">
-                                                <span>${{ $details['price'] * $details['quantity'] }}</span>
+                                                <span>${{ $details['price']*(1-$details['discount']) * $details['quantity'] }}</span>
                                             </td>
                                         </tr>
                                     @endforeach
