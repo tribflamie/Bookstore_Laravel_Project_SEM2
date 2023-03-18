@@ -40,30 +40,41 @@ class HomeController extends Controller
      */
     public function addToCart($id)
     {
-        $product = Product::findOrFail($id);
-
-        $cart = session()->get('cart', []);
-
+        $product = Product::find($id);
+        if (!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    "name" => $product->book,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "photo" => $product->photo
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        // if cart not empty then check if this product exist then increment quantity
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "book" => $product->book,
-                "quantity" => 1,
-                "price" => $product->price,
-                "photo" => $product->photo
-            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
-
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "name" => $product->book,
+            "quantity" => 1,
+            "price" => $product->price,
+            "photo" => $product->photo
+        ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function update(Request $request)
     {
         if ($request->id && $request->quantity) {
@@ -73,12 +84,6 @@ class HomeController extends Controller
             session()->flash('success', 'Cart updated successfully');
         }
     }
-
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function remove(Request $request)
     {
         if ($request->id) {

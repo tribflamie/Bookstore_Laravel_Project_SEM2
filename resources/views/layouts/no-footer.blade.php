@@ -216,13 +216,11 @@
 
     <!--=== Javascript Plugins ======-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/smoothscroll.js') }}"></script>
     <script src="{{ asset('js/validator.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/master.js') }}"></script>
     <script src="{{ asset('js/bootsnav.js') }}"></script>
     <!--=== Javascript Plugins End ======-->
-
 </body>
 
 </html>

@@ -269,6 +269,7 @@
 
     <!--=== Javascript Plugins ======-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    @yield('scripts')
     <script src="{{ asset('js/validator.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/master.js') }}"></script>

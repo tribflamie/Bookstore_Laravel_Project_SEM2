@@ -23,18 +23,18 @@
                                 @if (session('cart'))
                                     @foreach (session('cart') as $id => $details)
                                         <?php $total += $details['price'] * $details['quantity']; ?>
-                                        <tr class="cart_item">
-                                            <td><a href="#" title="Remove this item"><i
-                                                        class="icofont-close-circled"></i></a>
+                                        <tr data-id="{{ $id }}" class="cart_item">
+                                            <td><a class="remove-from-cart"><i class="icofont-close-circled"></i></a>
                                             </td>
                                             <td><a href="#"> <img src="{{ asset($details['photo']) }}" alt="">
                                                 </a> </td>
-                                            <td><a href="#"></a> </td>
+                                            <td><a href="#">{{ $details['name'] }}</a> </td>
                                             <td><span>${{ $details['price'] }}</span> </td>
-                                            <td><input class="form-control" type="number" step="1" min="0"
+                                            <td data-th="Quantity"><input class="form-control quantity update-cart"
+                                                    type="number" step="1" min="0"
                                                     value="{{ $details['quantity'] }}" title="Qty" placeholder="Qty">
                                             </td>
-                                            <td class="product-subtotal">
+                                            <td data-th="Subtotal" class="product-subtotal">
                                                 <span>${{ $details['price'] * $details['quantity'] }}</span>
                                             </td>
                                         </tr>
@@ -54,7 +54,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <th>Subtotal</th>
-                                                        <td><span>$59.99</span> </td>
+                                                        <td><span>${{ $total }}</span> </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Total</th>
@@ -65,9 +65,10 @@
                                                 </tbody>
                                             </table>
                                             <div class="check-btns">
-                                                <button class="btn btn-green btn-animate" type="button"><span>Update Cart
+                                                <button class="btn btn-green btn-animate" type="button"><span>Continue
+                                                        Shopping
                                                         <i class="icofont icofont-refresh"></i></span></button>
-                                                <button class="btn btn-color btn-animate" href="#"><span>Proceed to
+                                                <button class="btn btn-color btn-animate" href="#"><span>
                                                         Checkout <i class="icofont icofont-check"></i></span></button>
                                             </div>
                                         </div>
@@ -110,66 +111,51 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-02.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#" class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Jet Black/ T-shirt</h4>
-                            <p>$59.99 <span class="old-price">$79.99</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-03.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#" class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Navy Blue Plain</h4>
-                            <p>$59.99 <span class="old-price">$79.99</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-04.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
-                                                        class="mdi mdi-cart"></i></span></a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Just Let Me Sleep</h4>
-                            <p>$195.99 <span class="old-price">$230.99</span></p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
     <!--=== Products End ======-->
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $(".update-cart").change(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            $.ajax({
+                url: '{{ route('update.cart') }}',
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("data-id"),
+                    quantity: ele.parents("tr").find(".quantity").val()
+                },
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".remove-from-cart").click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            if (confirm("Are you sure want to remove?")) {
+                $.ajax({
+                    url: '{{ route('remove.from.cart') }}',
+                    method: "DELETE",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: ele.parents("tr").attr("data-id")
+                    },
+                    success: function(response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
