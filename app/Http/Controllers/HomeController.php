@@ -28,16 +28,16 @@ class HomeController extends Controller
         return view('home', compact('products'));
     }
 
-    public function productDetail()
+    public function productDetail($id)
     {
-        return view('product-detail');
+        $product = Product::find($id);
+        return view('product-detail', compact('product'));
     }
 
     public function cart()
     {
         return view('cart');
     }
-
     /**
      * Write code on Method
      *
@@ -57,8 +57,8 @@ class HomeController extends Controller
                     "book" => $product->book,
                     "quantity" => 1,
                     "price" => $product->price,
-                    "discount"=>$product->discount,
-                    "author"=>$product->author,
+                    "discount" => $product->discount,
+                    "author" => $product->author,
                     "photo" => $product->photo
                 ]
             ];
@@ -76,8 +76,8 @@ class HomeController extends Controller
             "book" => $product->book,
             "quantity" => 1,
             "price" => $product->price,
-            "discount"=>$product->discount,
-            "author"=>$product->author,
+            "discount" => $product->discount,
+            "author" => $product->author,
             "photo" => $product->photo
         ];
         session()->put('cart', $cart);

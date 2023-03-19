@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="product-slider flexslider">
                         <ul class="slides">
-                            <li data-thumb="{{ asset('images/shop/single-product-01.jpg') }}"> <img
+                            <li data-thumb="{{ asset($product->photo) }}"> <img
                                     src="{{ asset('images/shop/single-product-01.jpg') }}" class="img-responsive"
                                     alt="single-product" /> </li>
                             <li data-thumb="{{ asset('images/shop/single-product-02.jpg') }}"> <img
@@ -24,8 +24,9 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h2>Black Half Sleeve T-Shirt</h2>
-                    <h3 class="grey">$59.99 <span class="old-price font-18px">$79.99</span></h3>
+                    <h2>{{ $product->book }}</h2>
+                    <h3 class="grey">{{ $product->price * (1 - $product->discount) }} <span
+                            class="old-price font-18px">{{ $product->price }}</span></h3>
                     <div class="single-product-des">
                         <h5>Product Desription</h5>
                         <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit. Praesent vitae odio

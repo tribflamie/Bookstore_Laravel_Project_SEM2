@@ -321,7 +321,9 @@
                                 </div>
                             </div>
                             <div class="product-detail">
-                                <h4>{{ $product->book }}</h4>
+                                <a href="{{ route('productDetail', $product->id) }}">
+                                    <h4>{{ $product->book }}</h4>
+                                </a>
                                 <p>${{ $product->price - $product->price * $product->discount }} <span
                                         class="old-price">${{ $product->price }}</span></p>
                             </div>
