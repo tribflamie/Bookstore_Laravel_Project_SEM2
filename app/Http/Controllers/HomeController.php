@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductDetails;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,8 @@ class HomeController extends Controller
     public function productDetail($id)
     {
         $product = Product::find($id);
-        return view('product-detail', compact('product'));
+        $productDetails=ProductDetails::find($id);
+        return view('product-detail', compact('product'),compact('productDetails'));
     }
 
     public function cart()

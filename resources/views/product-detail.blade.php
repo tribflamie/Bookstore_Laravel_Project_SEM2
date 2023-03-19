@@ -29,10 +29,7 @@
                             class="old-price font-18px">{{ $product->price }}</span></h3>
                     <div class="single-product-des">
                         <h5>Product Desription</h5>
-                        <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit. Praesent vitae odio
-                            ullamcorper, accumsan felis vitae, commodo diam. Proin facilisis iaculis ipsum, non consectetur
-                            urna egestas nec. Nulla facilisi. Aliquam erat volutpat. Nam aliquet tellus nec augue auctor
-                            maximus. </p>
+                        <p>{{$productDetails->description}}</p>
                     </div>
                     <div class="single-product-qty">
                         <form>
