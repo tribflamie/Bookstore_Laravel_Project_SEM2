@@ -28,6 +28,11 @@ class HomeController extends Controller
         return view('home', compact('products'));
     }
 
+    public function productDetail()
+    {
+        return view('product-detail');
+    }
+
     public function cart()
     {
         return view('cart');
