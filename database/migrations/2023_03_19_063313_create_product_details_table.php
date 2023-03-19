@@ -11,17 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+        Schema::create('product_details', function (Blueprint $table) {
+            $table->integer('id');
+            $table->foreign('id')->references('id')->on('Products');
+            
             $table->string("book", 255)->nullable(false);
             $table->string("author", 255)->nullable(false);
-            $table->string("language", 30)->nullable(false);
-            $table->integer("published")->nullable(false);
-            $table->integer("sales")->nullable(false);
-            $table->string("genre", 255)->nullable();
+            $table->string("originalTitle",255)->nullable(true);
+            $table->string("country",255)->nullable(false);
             $table->decimal("price", 4, 2)->nullable(false);
             $table->decimal("discount", 3, 2)->default(1);
             $table->string("photo", 255)->nullable(false);
+            $table->string("genre",50)->nullable(false);
+            $table->string("language", 30)->nullable(false);
+            $table->date('publishedDate')->nullable(false);
+            $table->string("mediaType",30)->nullable(false);
+            $table->string("description",255)->nullable(false);
             $table->timestamps();
         });
     }
@@ -31,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_details');
     }
 };
