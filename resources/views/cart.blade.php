@@ -3,11 +3,11 @@
 @section('content')
     <!--=== Products Start ======-->
     <section>
-    <div id="modalOne" class="modal">
+    <div id="modalOne" class="modal form-login">
       <div class="modal-content">
         <div class="contact-form">
           <a class="close">&times;</a>
-          <form action="/orderControl.php">
+          <form action="/orderControl">
             <h2>Confirm your purchase</h2>
             <div>
               <input class="fname" type="text" name="name" placeholder="Full name" />
@@ -19,7 +19,7 @@
             <div>
               <textarea rows="4"></textarea>
             </div>
-            <button type="submit" href="/">Submit</button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>

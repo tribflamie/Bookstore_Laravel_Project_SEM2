@@ -6012,12 +6012,6 @@ p {
   font-weight: 400;
   color: #999;
 }
-form {
-  padding: 25px;
-  margin: 25px;
-  box-shadow: 0 2px 5px #f5f5f5;
-  background: #eee;
-}
 input,
 textarea {
   width: 90%;
