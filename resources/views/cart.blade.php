@@ -70,10 +70,24 @@
                                                 <button class="btn btn-green btn-animate" type="button"><span>Continue
                                                         Shopping
                                                         <i class="icofont icofont-refresh"></i></span></button>
-                                                <button class="btn btn-color btn-animate" href="#"><span>
+                                                <button class="btn btn-color btn-animate" onclick=openForm()><span>
                                                         Checkout <i class="icofont icofont-check"></i></span></button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div id="myForm">
+                                        <form action="/orderProcess.php" class="form-container">
+                                            <h1>Login</h1>
+
+                                            <label for="email"><b>Email</b></label>
+                                            <input type="text" placeholder="Enter Email" name="email" required>
+
+                                            <label for="psw"><b>Password</b></label>
+                                            <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                            <button type="submit" class="btn">Login</button>
+                                            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                        </form>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-coupon">
@@ -121,6 +135,13 @@
 
 @section('scripts')
     <script type="text/javascript">
+        function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+        }
         $(".update-cart").change(function(e) {
             e.preventDefault();
 
