@@ -36,7 +36,7 @@
                                     @foreach (session('cart') as $id => $details)
                                         <li> <a href="#" class="photo"><img src="{{ asset($details['photo']) }}"
                                                     class="cart-thumb" alt="" /></a>
-                                            <h6><a href="#">{{$details['book']}}</a></h6>
+                                            <h6><a href="#">{{$details['name']}}</a></h6>
                                             <p>{{ $details['quantity'] }}x - <span
                                                     class="price">${{ $details['price'] }}</span></p>
                                             </span></p>

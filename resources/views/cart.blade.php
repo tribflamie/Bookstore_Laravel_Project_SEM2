@@ -29,7 +29,7 @@
                                             </td>
                                             <td><a href="#"> <img src="{{ asset($details['photo']) }}" alt="">
                                                 </a> </td>
-                                            <td><a href="#">{{ $details['book'] }}</a> </td>
+                                            <td><a href="#">{{ $details['name'] }}</a> </td>
                                             <td><a href="#">{{ $details['author'] }}</a> </td>
                                             <td><span>${{ $details['price']*(1-$details['discount']) }}</span> </td>
                                             <td data-th="Quantity"><input class="form-control quantity update-cart"
