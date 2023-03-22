@@ -12,16 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->string("book", 255)->nullable(false);
-            $table->string("author", 255)->nullable(false);
-            $table->string("language", 30)->nullable(false);
+            $table->bigIncrements('id');
+            $table->foreignId('categories_id')->references('id')->on('categories');
+
+            $table->string("name", 150)->nullable(false);
+            $table->string("author", 150)->nullable(false);
+            $table->string("country", 45)->nullable(false);
             $table->integer("published")->nullable(false);
             $table->integer("sales")->nullable(false);
-            $table->string("genre", 255)->nullable();
             $table->decimal("price", 4, 2)->nullable(false);
-            $table->decimal("discount", 3, 2)->default(1);
-            $table->string("photo", 255)->nullable(false);
+            $table->decimal("discount", 3, 2)->nullable(false)->default(1);
+            $table->string("photo", 150)->nullable(false);
+            $table->text("description")->nullable(false);
             $table->timestamps();
         });
     }
