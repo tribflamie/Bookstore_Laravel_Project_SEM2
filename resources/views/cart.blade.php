@@ -3,6 +3,27 @@
 @section('content')
     <!--=== Products Start ======-->
     <section>
+    <div id="modalOne" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          <a class="close">&times;</a>
+          <form action="/orderControl.php">
+            <h2>Confirm your purchase</h2>
+            <div>
+              <input class="fname" type="text" name="name" placeholder="Full name" />
+              <input type="text" name="name" placeholder="Email" />
+              <input type="text" name="name" placeholder="Phone number" />
+              <input type="text" name="name" placeholder="Website" />
+            </div>
+            <span>Message</span>
+            <div>
+              <textarea rows="4"></textarea>
+            </div>
+            <button type="submit" href="/">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -70,25 +91,12 @@
                                                 <button class="btn btn-green btn-animate" type="button"><span>Continue
                                                         Shopping
                                                         <i class="icofont icofont-refresh"></i></span></button>
-                                                <button class="btn btn-color btn-animate" onclick=openForm()><span>
+                                                <button class="btn btn-color btn-animate button" data-modal="modalOne"><span>
                                                         Checkout <i class="icofont icofont-check"></i></span></button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="myForm">
-                                        <form action="/orderProcess.php" class="form-container">
-                                            <h1>Login</h1>
-
-                                            <label for="email"><b>Email</b></label>
-                                            <input type="text" placeholder="Enter Email" name="email" required>
-
-                                            <label for="psw"><b>Password</b></label>
-                                            <input type="password" placeholder="Enter Password" name="psw" required>
-
-                                            <button type="submit" class="btn">Login</button>
-                                            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                        </form>
-                                    </div>
+                                    
                                     <div class="col-md-6">
                                         <div class="form-coupon">
                                             <h6 class="upper-case">Have a Coupon?</h6>
@@ -135,13 +143,26 @@
 
 @section('scripts')
     <script type="text/javascript">
-        function openForm() {
-        document.getElementById("myForm").style.display = "block";
+        let modalBtns = [...document.querySelectorAll(".button")];
+      modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("data-modal");
+          document.getElementById(modal).style.display = "block";
+        };
+      });
+      let closeBtns = [...document.querySelectorAll(".close")];
+      closeBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.closest(".modal");
+          modal.style.display = "none";
+        };
+      });
+      window.onclick = function (event) {
+        if (event.target.className === "modal") {
+          event.target.style.display = "none";
         }
-
-        function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-        }
+      };
+        
         $(".update-cart").change(function(e) {
             e.preventDefault();
 
