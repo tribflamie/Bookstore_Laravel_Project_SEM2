@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\ProductDetails;
+use App\Models\Category;
 
 class visitorController extends Controller
 {
@@ -25,8 +25,9 @@ class visitorController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $products = Product::all();
-        return view('home', compact('products'));
+        return view('home', compact('products'), compact('categories'));
     }
 
     public function productDetail($id)
