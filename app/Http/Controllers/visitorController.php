@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class visitorController extends Controller
 {
     /**
      * Create a new controller instance.
-     * test branch
+     *
      * @return void
      */
     public function __construct()
@@ -24,15 +25,21 @@ class visitorController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $products = Product::all();
-        return view('home', compact('products'));
+        return view('home', compact('products'), compact('categories'));
+    }
+
+    public function productDetail($id)
+    {
+        $product = Product::find($id);
+        return view('product-detail', compact('product'));
     }
 
     public function cart()
     {
         return view('cart');
     }
-
     /**
      * Write code on Method
      *
@@ -49,11 +56,11 @@ class visitorController extends Controller
         if (!$cart) {
             $cart = [
                 $id => [
-                    "book" => $product->book,
+                    "name" => $product->name,
                     "quantity" => 1,
                     "price" => $product->price,
-                    "discount"=>$product->discount,
-                    "author"=>$product->author,
+                    "discount" => $product->discount,
+                    "author" => $product->author,
                     "photo" => $product->photo
                 ]
             ];
@@ -68,11 +75,11 @@ class visitorController extends Controller
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
-            "book" => $product->book,
+            "name" => $product->name,
             "quantity" => 1,
             "price" => $product->price,
-            "discount"=>$product->discount,
-            "author"=>$product->author,
+            "discount" => $product->discount,
+            "author" => $product->author,
             "photo" => $product->photo
         ];
         session()->put('cart', $cart);
