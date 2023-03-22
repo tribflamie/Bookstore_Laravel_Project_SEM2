@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductDetails;
 
-class HomeController extends Controller
+class visitorController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -32,8 +32,7 @@ class HomeController extends Controller
     public function productDetail($id)
     {
         $product = Product::find($id);
-        $productDetails=ProductDetails::find($id);
-        return view('product-detail', compact('product'),compact('productDetails'));
+        return view('product-detail', compact('product'));
     }
 
     public function cart()
@@ -56,7 +55,7 @@ class HomeController extends Controller
         if (!$cart) {
             $cart = [
                 $id => [
-                    "book" => $product->book,
+                    "name" => $product->name,
                     "quantity" => 1,
                     "price" => $product->price,
                     "discount" => $product->discount,
@@ -75,7 +74,7 @@ class HomeController extends Controller
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
-            "book" => $product->book,
+            "name" => $product->name,
             "quantity" => 1,
             "price" => $product->price,
             "discount" => $product->discount,

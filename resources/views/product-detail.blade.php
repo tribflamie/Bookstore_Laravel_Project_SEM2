@@ -9,7 +9,7 @@
                     <div class="product-slider flexslider">
                         <ul class="slides">
                             <li data-thumb="{{ asset($product->photo) }}"> <img
-                                    src="{{ asset('images/shop/single-product-01.jpg') }}" class="img-responsive"
+                                    src="{{ asset($product->photo) }}" class="img-responsive"
                                     alt="single-product" /> </li>
                             <li data-thumb="{{ asset('images/shop/single-product-02.jpg') }}"> <img
                                     src="{{ asset('images/shop/single-product-02.jpg') }}" class="img-responsive"
@@ -24,12 +24,12 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h2>{{ $product->book }}</h2>
+                    <h2>{{ $product->name }}</h2>
                     <h3 class="grey">{{ $product->price * (1 - $product->discount) }} <span
                             class="old-price font-18px">{{ $product->price }}</span></h3>
                     <div class="single-product-des">
                         <h5>Product Desription</h5>
-                        <p>{{$productDetails->description}}</p>
+                        <p>{{$product->description}}</p>
                     </div>
                     <div class="single-product-qty">
                         <form>
