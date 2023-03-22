@@ -36,7 +36,7 @@
                                     @foreach (session('cart') as $id => $details)
                                         <li> <a href="#" class="photo"><img src="{{ asset($details['photo']) }}"
                                                     class="cart-thumb" alt="" /></a>
-                                            <h6><a href="#">{{ $details['book'] }}</a></h6>
+                                            <h6><a href="#">{{ $details['name'] }}</a></h6>
                                             <p>{{ $details['quantity'] }}x - <span
                                                     class="price">${{ $details['price'] }}</span></p>
                                             </span></p>
@@ -74,18 +74,19 @@
                             <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                         </li>
                         <li class="dropdown megamenu-fw"> <a href="index.html" class="dropdown-toggle"
-                                data-toggle="dropdown">Genre</a>
+                                data-toggle="dropdown">Categories</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
                                 <li>
                                     <div class="row">
                                         <div class="col-menu col-md-3">
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="#">Adventure Fiction</a></li>
-                                                    <li><a href="#">Family saga</a></li>
-                                                    <li><a href="#">Historical fiction</a></li>
-                                                    <li><a href="#">Fantasy</a></li>
-                                                    <li><a href="#">Mystery</a></li>
+                                                    @foreach ($categories as $category)
+                                                        @if($category->id == 6)@break;
+                                                        @else
+                                                        <li><a href="#">{{ $category->categories }}</a></li>
+                                                        @endif
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -93,11 +94,12 @@
                                         <div class="col-menu col-md-3">
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="#">Novella</a></li>
-                                                    <li><a href="#">Children's fiction</a></li>
-                                                    <li><a href="#">Detective</a></li>
-                                                    <li><a href="#">Coming-of-age</a></li>
-                                                    <li><a href="#">Romance</a></li>
+                                                    @foreach ($categories as $category)
+                                                        @if($category->id >= 6)
+                                                        <li><a href="#">{{ $category->categories }}</a></li>
+                                                        @elseif($category->id == 11) @break;
+                                                        @endif
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
