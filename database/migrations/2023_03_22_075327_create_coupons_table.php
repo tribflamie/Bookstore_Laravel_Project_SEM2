@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('orders_id')->references('id')->on('orders');
+            $table->bigInteger('orders_id')->nullable(true);
 
             $table->string('code', 150)->nullable(false);
+            $table->unique('code');
             $table->decimal('value', 3, 2)->nullable(false);
             $table->text('description')->nullable(false);
-            $table->date('exp-date')->nullable(false);
+            $table->date('exp_date')->nullable(false);
             $table->string('status', 45)->default('available');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
