@@ -22,7 +22,7 @@ class FeedbacksSeeder extends Seeder
         ]);
         DB::table('feedbacks')->insert([
             'user_id' => 2,
-            'products_id' => 1,
+            'products_id' => 2,
             'rating' => 4,
             'comment' => 'This is not good in my expectations'
         ]);
