@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Feedbacks;
+use App\Models\User;
 
 class visitorController extends Controller
 {
@@ -29,12 +31,14 @@ class visitorController extends Controller
         $products = Product::all();
         return view('home', compact('products'), compact('categories'));
     }
-
+    //show product information and user-comments on product-detail
     public function productDetail($id)
     {
         $product = Product::find($id);
-        return view('product-detail', compact('product'));
+        $users = User::with('feedbacks')->get();
+        return view('product-detail', compact('users'), compact('product'));
     }
+    //show user-comments history
 
     public function cart()
     {

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('total_quantity')->nullable(false);
             $table->decimal('total_price', 6, 2)->nullable(false);
             $table->string('status')->default('Pending');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('phone', 45)->nullable();
             $table->string('gender', 45)->nullable();
             $table->date('yob')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

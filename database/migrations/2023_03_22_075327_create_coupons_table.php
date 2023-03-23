@@ -20,7 +20,8 @@ return new class extends Migration
             $table->text('description')->nullable(false);
             $table->date('exp-date')->nullable(false);
             $table->string('status', 45)->default('available');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
