@@ -39,7 +39,7 @@
         </div>
     </section>
     <!--=== Flex Slider End ======-->
-
+    
     <!--=== Categories Start ======-->
     <section>
         <div class="container-fluid">
