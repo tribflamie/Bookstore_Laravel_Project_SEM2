@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('exp_date')->nullable(false);
             $table->string('status', 45)->default('available');
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
