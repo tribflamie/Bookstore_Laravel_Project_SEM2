@@ -24,6 +24,6 @@ class Product extends Model
      */
     public function feedbacks(): HasMany
     {
-        return $this->hasMany(Feedback::class, 'product_id');
+        return $this->hasMany(Feedback::class, 'products_id');
     }
 }

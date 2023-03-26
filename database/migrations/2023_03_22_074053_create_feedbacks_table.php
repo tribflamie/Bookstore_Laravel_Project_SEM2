@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('products_id')->references('id')->on('products');
             $table->foreignId('users_id')->references('id')->on('users');
             $table->integer('rating')->default(0);
             $table->text('description')->nullable(false);

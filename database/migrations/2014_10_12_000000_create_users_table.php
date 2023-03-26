@@ -18,9 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 150)->nullable(false);
             $table->rememberToken()->nullable();
-            $table->string('phone', 45)->nullable();
             $table->string('gender', 45)->nullable();
             $table->date('yob')->nullable();
+            $table->string('phone', 45)->nullable();
+            $table->string('location', 150)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
