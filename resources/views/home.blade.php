@@ -87,13 +87,16 @@
                                 <p>
                                     <?php
                                     $count = 0;
+                                    //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
                                     for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
                                         echo '<span class="fa fa-star checked"></span>';
                                     endfor;
+                                    //xuất số sao đen còn lại
                                     for (; $count <= 5; $count++):
                                         echo '<span class="fa fa-star"></span>';
                                     endfor;
                                     ?>
+                                    <!--đếm số lượng feedbacks trong product-->
                                     ({{ count($product->feedbacks) }})
                                 </p>
                                 <p>${{ $product->price - $product->price * $product->discount }} <span

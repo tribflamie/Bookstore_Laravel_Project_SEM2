@@ -24,6 +24,21 @@
                 </div>
                 <div class="col-md-6">
                     <h2>{{ $product->name }}</h2>
+                    <h3 class="grey">
+                        <?php
+                        $count = 0;
+                        //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                        for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
+                            echo '<span class="fa fa-star checked"></span>';
+                        endfor;
+                        //xuất số sao đen còn lại
+                        for (; $count <= 5; $count++):
+                            echo '<span class="fa fa-star"></span>';
+                        endfor;
+                        ?>
+                        <!--đếm số lượng feedbacks trong product-->
+                        ({{ count($product->feedbacks) }})
+                    </h3>
                     <h3 class="grey">{{ $product->price * (1 - $product->discount) }} <span
                             class="old-price font-18px">{{ $product->price }}</span></h3>
                     <div class="single-product-des">
@@ -89,7 +104,7 @@
                             <div class="tab-pane active" id="comments">
                                 <ul class="media-list">
                                     @foreach ($feedbacks as $feedbacks)
-                                        @if ($feedbacks->product_id == $product->id)
+                                        @if ($feedbacks->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
@@ -157,7 +172,7 @@
                             <div class="tab-pane" id="lastest">
                                 <ul class="media-list">
                                     @foreach ($lastest as $feedback)
-                                        @if ($feedback->product_id == $product->id)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
@@ -225,7 +240,7 @@
                             <div class="tab-pane" id="5">
                                 <ul class="media-list">
                                     @foreach ($stars5 as $feedback)
-                                        @if ($feedback->product_id == $product->id)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
@@ -293,7 +308,7 @@
                             <div class="tab-pane" id="4">
                                 <ul class="media-list">
                                     @foreach ($stars4 as $feedback)
-                                        @if ($feedback->product_id == $product->id)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
@@ -361,7 +376,7 @@
                             <div class="tab-pane" id="3">
                                 <ul class="media-list">
                                     @foreach ($stars3 as $feedback)
-                                        @if ($feedback->product_id == $product->id)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
@@ -429,7 +444,7 @@
                             <div class="tab-pane" id="2">
                                 <ul class="media-list">
                                     @foreach ($stars2 as $feedback)
-                                        @if ($feedback->product_id == $product->id)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
@@ -497,7 +512,7 @@
                             <div class="tab-pane" id="1">
                                 <ul class="media-list">
                                     @foreach ($stars1 as $feedback)
-                                        @if ($feedback->product_id == $product->id)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"

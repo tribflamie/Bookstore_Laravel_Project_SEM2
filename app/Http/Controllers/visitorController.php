@@ -167,10 +167,10 @@ class visitorController extends Controller
         $query = "select * from coupons where code='{$coupon}'";
         $rs = DB::select($query);
         if (!$rs) :
-            return redirect('/cart')->with('msgFail', 'Coupon not exists!');
+            return redirect('/cart')->with('msgFail', 'Coupon does not exist!');
         endif;
         if ($rs[0]->status == 'used') :
-            return redirect('/cart')->with('msgFail', 'Coupon is used!');
+            return redirect('/cart')->with('msgFail', 'Coupon is already used!');
         endif;
         if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
             return redirect('/cart')->with('msgFail', 'Coupon expired!');
@@ -178,7 +178,7 @@ class visitorController extends Controller
         if ($rs) :
             session()->put('couponValue', $rs[0]->value);
             session()->put('coupon', $rs[0]->code);
-            return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
+            return redirect('/cart')->with('msgSuccess', 'Coupon is avaible!');
         endif;
     }
 }
