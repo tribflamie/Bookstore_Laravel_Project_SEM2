@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Feedbacks;
-use App\Models\User;
+use App\Models\Feedback;
+use App\Models\Reply;
 use Illuminate\Support\Facades\DB;
 
 class visitorController extends Controller
