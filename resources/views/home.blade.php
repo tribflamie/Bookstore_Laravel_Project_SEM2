@@ -40,245 +40,6 @@
     </section>
     <!--=== Flex Slider End ======-->
 
-    <!--=== Categories Start ======-->
-    <section>
-        <div class="container-fluid">
-            <div id="portfolioMasonry">
-                <div class="row">
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-13.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Grey T-Shirt</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-14.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Black Check Shirt</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-03.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Navy Blue Plain</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-15.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Just Let Me Sleep</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-18.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Indigo Denim Shirt</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-06.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Stone Grey Melange Plain</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-28.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Bomber Jacket</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-08.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Red Half Sleeve T-shirt</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-19.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Boston Blue Plain Vest</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-17.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Blue Shirt</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-11.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>T-Shirt Black Fair</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12 col-sm-6 portfolio-masonry-item">
-                        <div class="product">
-                            <div class="product-wrap"> <img src="{{ asset('images/shop/product-12.jpg') }}"
-                                    class="img-responsive" alt="team-01">
-                                <div class="product-caption">
-                                    <div class="product-description text-center">
-                                        <div class="product-description-wrap">
-                                            <div class="product-title"> <a href="#"
-                                                    class="btn btn-color btn-circle">SHOP NOW <span class="icon"><i
-                                                            class="mdi mdi-cart"></i></span></a> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-detail">
-                                <h4>Half Sleeve Purple T-shirt</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--=== Categories End ======-->
-
     <!--=== Proposal Banner Start ======-->
     <section class="parallax-bg-10 fixed-bg fashion-section" data-stellar-background-ratio="0.2">
         <div class="overlay-bg"></div>
@@ -306,13 +67,12 @@
                 @foreach ($products as $product)
                     <div class="col-md-3 col-sm-6">
                         <div class="product">
-                            <div class="product-wrap"> <img height="400px" width="500px"
-                                    src="{{ asset($product->photo) }}" class="img-responsive" alt="team-01">
+                            <div class="product-wrap"> <img height="400px" width="500px" src="{{ asset($product->photo) }}"
+                                    class="img-responsive" alt="team-01">
                                 <div class="product-caption">
                                     <div class="product-description text-center">
                                         <div class="product-description-wrap">
-                                            <div class="product-title"> <a
-                                                    href="{{ route('add.to.cart', $product->id) }}"
+                                            <div class="product-title"> <a href="{{ route('add.to.cart', $product->id) }}"
                                                     class="btn btn-color btn-circle">ADD
                                                     TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
                                             </div>
@@ -324,6 +84,18 @@
                                 <a href="{{ route('productDetail', $product->id) }}">
                                     <h4>{{ $product->name }}</h4>
                                 </a>
+                                <p>
+                                    <?php
+                                    $count = 0;
+                                    for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
+                                        echo '<span class="fa fa-star checked"></span>';
+                                    endfor;
+                                    for (; $count <= 5; $count++):
+                                        echo '<span class="fa fa-star"></span>';
+                                    endfor;
+                                    ?>
+                                    ({{ count($product->feedbacks) }})
+                                </p>
                                 <p>${{ $product->price - $product->price * $product->discount }} <span
                                         class="old-price">${{ $product->price }}</span></p>
                             </div>

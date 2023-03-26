@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Feedbacks;
-use App\Models\User;
+use App\Models\Reply;
+use App\Models\Feedback;
 
 class visitorController extends Controller
 {
@@ -29,21 +30,32 @@ class visitorController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('home', compact('products'), compact('categories'));
+        $feedbacks = Feedback::all();
+        return view('home', compact('products', 'categories', 'feedbacks'));
     }
+
     //show product information and user-comments on product-detail
     public function productDetail($id)
     {
         $product = Product::find($id);
-        $users = User::with('feedbacks')->get();
-        return view('product-detail', compact('users'), compact('product'));
+        $replies = Reply::all();
+        $feedbacks = Feedback::all();
+        $lastest = Feedback::orderBy('created_at', 'DESC')->get();
+        $stars5 = Feedback::where('rating', 5)->get();
+        $stars4 = Feedback::where('rating', 4)->get();
+        $stars3 = Feedback::where('rating', 3)->get();
+        $stars2 = Feedback::where('rating', 2)->get();
+        $stars1 = Feedback::where('rating', 1)->get();
+        return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest', 'stars5', 'stars4', 'stars3', 'stars2', 'stars1'));
     }
     //show user-comments history
 
+    //cart add, update and remove
     public function cart()
     {
         return view('cart');
     }
+
     /**
      * Write code on Method
      *

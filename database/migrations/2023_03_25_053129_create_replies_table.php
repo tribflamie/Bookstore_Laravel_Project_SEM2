@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedbacks', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('feedbacks_id')->references('id')->on('feedbacks');
             $table->foreignId('users_id')->references('id')->on('users');
-            $table->integer('rating')->default(0);
             $table->text('description')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedbacks');
+        Schema::dropIfExists('replies');
     }
 };

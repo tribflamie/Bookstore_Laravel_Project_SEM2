@@ -26,5 +26,17 @@ class FeedbacksSeeder extends Seeder
             'rating' => 4,
             'comment' => 'This is not good in my expectations'
         ]);
+        DB::table('feedbacks')->insert([
+            'user_id' => 1,
+            'products_id' => 2,
+            'rating' => 5,
+            'comment' => 'This is so cool! i love it'
+        ]);
+        DB::table('feedbacks')->insert([
+            'user_id' => 2,
+            'products_id' => 1,
+            'rating' => 4,
+            'comment' => 'This is not good in my expectations'
+        ]);
     }
 }
