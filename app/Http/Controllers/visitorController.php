@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\Feedbacks;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class visitorController extends Controller
 {
@@ -30,6 +31,10 @@ class visitorController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
+        if(Auth::check()):
+        $user=Auth::getUser();
+        session()->put('user',$user);
+        endif;
         return view('home', compact('products'), compact('categories'));
     }
     //show product information and user-comments on product-detail
@@ -43,10 +48,12 @@ class visitorController extends Controller
 
     public function cart()
     {
+        //$user=User::find($id)
+        //session()->put('user',$user)
         return view('cart');
     }
     /**
-     * Write code on Method
+     * Write code on Methods
      *
      * @return response()
      */
@@ -116,8 +123,25 @@ class visitorController extends Controller
     }
     public function orderControl(Request $request)
     {
-        //chưa lấy userID được
-        //$user=session()->get('user');
+        $user=session()->get('user');
+        if($user->phone==null)
+        {
+            $user->phone=$request->input('getPhone');
+            session()->put('user',$user);
+            DB::table('users')
+            ->where('id', $user->id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('phone' => $user->phone));  // update the record in the DB. 
+        }
+        if($user->address==null)
+        {
+            $user->address=$request->input('getAddress');
+            session()->put('user',$user);
+            DB::table('users')
+            ->where('id', $user->id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('address' => $user->address));  // update the record in the DB. 
+        }
         $cart =session()->get('cart');
         if($cart):
         $count=0;$total=0;
@@ -127,7 +151,8 @@ class visitorController extends Controller
             $total+=$details['price']*$details['quantity'];
         endforeach;
         $total*=(1-$discount);
-        $query="insert into orders (users_id,total_quantity,total_price,status) values (1,{$count},{$total},'Processing')";
+        $id=Auth::id();
+        $query="insert into orders (users_id,total_quantity,total_price,status) values ({$id},{$count},{$total},'Processing')";
         DB::insert($query);
         
         unset($details);
@@ -154,18 +179,21 @@ class visitorController extends Controller
         $query="select * from coupons where code='{$coupon}'";
         $rs=DB::select($query);
         if(!$rs):
-            return redirect('/cart')->with('msgFail','Coupon not exists!');
+            return redirect('/cart')->with('msgFail','Coupon does not exists!');
         endif;
         if($rs[0]->status=='used'):
             return redirect('/cart')->with('msgFail', 'Coupon is used!');
         endif;
         if(strtotime(date("Y/m/d"))>strtotime($rs[0]->exp_date)):
-            return redirect('/cart')->with('msgFail', 'Coupon expired!');
+            return redirect('/cart')->with('msgFail', 'Coupon is expired!');
         endif;
         if($rs):
         session()->put('couponValue',$rs[0]->value);
-        session()->put('coupon',$rs[0]->code);
         return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
+    }
+    public function getUserInfo(Request $request)
+    {
+
     }
 }

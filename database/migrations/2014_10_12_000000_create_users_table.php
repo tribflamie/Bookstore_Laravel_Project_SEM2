@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password', 150)->nullable(false);
             $table->rememberToken()->nullable();
             $table->string('phone', 45)->nullable();
+            $table->string('address', 150)->nullable();
             $table->string('gender', 45)->nullable();
             $table->date('yob')->nullable();
             $table->timestamp('created_at')->useCurrent();

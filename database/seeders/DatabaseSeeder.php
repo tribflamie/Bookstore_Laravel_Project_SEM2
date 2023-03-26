@@ -62,5 +62,17 @@ class DatabaseSeeder extends Seeder
             'rating' => 4,
             'comment' => 'This is not good in my expectations'
         ]);
+        DB::table('coupons')->insert([
+            'code'=>'newyear2023',
+            'value'=>0.25,
+            'description'=>'new year code',
+            'exp_date'=>'2023/3/3',
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'christmas2022',
+            'value'=>0.4,
+            'description'=>'christmas 2022 code',
+            'exp_date'=>'2022/12/30',
+        ]);
     }
 }
