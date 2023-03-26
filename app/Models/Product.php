@@ -13,6 +13,10 @@ class Product extends Model
 
     protected $date = ['detelete_at'];
 
+    protected $fillable = [
+        'categories_id', 'name', 'author', 'country', 'published', 'sales', 'price', 'discount', 'photo', 'description', 'created_at', 'updated_at'
+    ];
+
     /**
      * The has Many Relationship
      *
