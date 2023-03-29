@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('products_id')->references('id')->on('products');
 
             $table->integer('unit_quantity')->nullable(false);
-            $table->decimal('unit_total', 6, 2)->nullable(false);
+            $table->decimal('unit_sold_price', 6, 2)->nullable(false);
         });
     }
 

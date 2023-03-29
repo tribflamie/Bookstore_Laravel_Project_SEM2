@@ -25,3 +25,6 @@ Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
 Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
+Route::get('orderHistory',[App\Http\Controllers\visitorController::class, 'orderHistory'])->name('orderHistory');
+Route::get('orderDetail',[App\Http\Controllers\visitorController::class, 'orderDetail'])->name('orderDetail');
+Route::get('orderCancel',[App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');

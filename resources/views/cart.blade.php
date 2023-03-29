@@ -140,8 +140,8 @@
               <input type="text" name="getPhone"/>
               <?php endif;?>
               <h3>Address (You can change your address in your information page)</h3>
-              <?php if($user->address!=null):?>
-              <input type="text" value="{{$user->address}}" readonly />
+              <?php if($user->location!=null):?>
+              <input type="text" value="{{$user->location}}" readonly />
               <?php else:?>
               <input type="text" name="getAddress"/>
               <?php endif;?>

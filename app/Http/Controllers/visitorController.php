@@ -140,26 +140,20 @@ class visitorController extends Controller
             DB::table('users')
             ->where('id', $user->id)  // find coupon code
             ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('address' => $user->address));  // update the record in the DB. 
+            ->update(array('location' => $user->address));  // update the record in the DB. 
         }
         $cart =session()->get('cart');
         if($cart):
-        $count=0;$total=0;
-        $discount=session()->get('discount');
-        foreach($cart as $id=>$details):
-            $count++;
-            $total+=$details['price']*$details['quantity'];
-        endforeach;
         $total*=(1-$discount);
         $id=Auth::id();
-        $query="insert into orders (users_id,total_quantity,total_price,status) values ({$id},{$count},{$total},'Processing')";
+        $query="insert into orders (users_id,status) values ({$id},'Processing')";
         DB::insert($query);
         
         unset($details);
         $rs=DB::select('select id from orders where id=(select max(id) from orders)');
         //insert into orderDetails
             foreach($cart as $id=>$details):
-                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_total) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']}*{$details['quantity']})";
+                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
                 DB::insert($query2);
             endforeach;
             session()->put('cart', null);
@@ -192,8 +186,28 @@ class visitorController extends Controller
         return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
-    public function getUserInfo(Request $request)
+    public function orderHistory(Request $request)
     {
-
+        $user=session()->get('user');
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderHistory');
+    }
+    public function orderDetail(Request $request)
+    {
+        $user=session()->get('user');
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderDetail');
+    }
+    public function orderCancel(Request $request)
+    {
+        $user=session()->get('user');
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderHistory');
     }
 }
