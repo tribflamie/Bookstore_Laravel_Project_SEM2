@@ -1,4 +1,4 @@
-@extends('layouts.layout-no-banner')
+@extends('layouts.cart-layout')
 @section('title', 'Cart - The best-selling individual books')
 @section('content')
     <!--=== Products Start ======-->
