@@ -10,19 +10,18 @@
                         <table class="table table-bordered shop-cart">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Preview</th>
-                                    <th>Number of Products</th>
-                                    <th>Discount</th>
-                                    <th>Total Price</th>
-                                    <th>Status</th>
-                                    <th colspan="2">Option</th>
+                                    <th>#</th>
+                                    <th>Book</th>
+                                    <th>Name</th>
+                                    <th>Author</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $sum=0;$quantity=0;$couponVal=0;?>
+                                <?php $sum=0;$quantity=0;?>
                                 <?php use Illuminate\Support\Facades\DB; ?>
-                                @if (session('orders'))
+                                @if (session('orderDetail'))
                                     <?php $orders=session()->get('orders');?>
                                     @foreach ($orders as $id => $order)
                                     <?php
@@ -42,8 +41,7 @@
                                             <td>{{$quantity}} </td>
                                             <td>-${{$sum*$couponVal}}</td>
                                             <td><span>${{ $sum }}</span> </td>
-                                            <td>{{$order->status}}</td>
-                                            <td><a href="{{ route('orderDetail',$order->id) }}">Details</a></td>
+                                            <td><a href="{{ route('orderDetail') }}">Details</a></td>
                                             <td><a href="{{ route('orderCancel') }}">Cancel</a></td>
                                         </tr>
                                     @endforeach

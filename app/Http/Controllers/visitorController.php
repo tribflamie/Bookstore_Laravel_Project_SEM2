@@ -144,7 +144,6 @@ class visitorController extends Controller
         }
         $cart =session()->get('cart');
         if($cart):
-        $total*=(1-$discount);
         $id=Auth::id();
         $query="insert into orders (users_id,status) values ({$id},'Processing')";
         DB::insert($query);
@@ -194,11 +193,11 @@ class visitorController extends Controller
         if($orders) session()->put('orders',$orders);
         return view('orderHistory');
     }
-    public function orderDetail(Request $request)
+    public function orderDetail(Request $request,$id)
     {
         $user=session()->get('user');
-        session()->put('orders',null);
-        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        session()->put('orderDetail',null);
+        $orders=DB::table('orderDetail')->where('users_id',$user->id)->get();
         if($orders) session()->put('orders',$orders);
         return view('orderDetail');
     }

@@ -5,11 +5,12 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * using php artisan db:seed --class=DatabaseSeeder
      */
     public function run(): void
     {
@@ -49,18 +50,28 @@ class DatabaseSeeder extends Seeder
             'photo' => "images/shop/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg",
             'description' => "Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, Ron Weasley and Hermione Granger, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old.",
         ]);
+        DB::table('users')->insert([
+            'name'=>'user1',
+            'email'=>'user1@gmail.com',
+            'password'=>Hash::make('12345678')
+        ]);
+        DB::table('users')->insert([
+            'name'=>'user2',
+            'email'=>'user2@gmail.com',
+            'password'=>Hash::make('12345678')
+        ]);
         //insert feedbacks table
         DB::table('feedbacks')->insert([
             'user_id' => 1,
             'products_id' => 1,
             'rating' => 5,
-            'comment' => 'This is so cool! i love it'
+            'description' => 'This is so cool! i love it'
         ]);
         DB::table('feedbacks')->insert([
             'user_id' => 2,
             'products_id' => 1,
             'rating' => 4,
-            'comment' => 'This is not good in my expectations'
+            'description' => 'This is not good in my expectations'
         ]);
         DB::table('coupons')->insert([
             'code'=>'newyear2023',
