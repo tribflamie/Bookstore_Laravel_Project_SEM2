@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,14 +12,6 @@
 </head>
 
 <body>
-    <!--=== Loader Start ======-->
-    <div id="loader-overlay">
-        <div class="loader-wrapper">
-            <div class="scoda-pulse"></div>
-        </div>
-    </div>
-    <!--=== Loader End ======-->
-
     <!--=== Wrapper Start ======-->
     <div class="wrapper">
         <!--=== Header Start ======-->
@@ -181,6 +174,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li><a>Account Setting</a></li>
+                                    <li><a>Order History</a></li>
+                                    <li><a href="{{ route('feedbacks') }}">My Reviews</a></li>
                                     <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">

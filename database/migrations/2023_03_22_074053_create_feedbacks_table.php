@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('products_id')->references('id')->on('products');
-            
-            $table->integer('rating')->nullable(false);
-            $table->text('comment')->nullable(false);
+            $table->foreignId('users_id')->references('id')->on('users');
+            $table->integer('rating')->default(0);
+            $table->text('description')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
         });
     }

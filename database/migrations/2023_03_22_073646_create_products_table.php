@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string("photo", 150)->nullable(false);
             $table->text("description")->nullable(false);
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->softDeletes();
         });
     }
 

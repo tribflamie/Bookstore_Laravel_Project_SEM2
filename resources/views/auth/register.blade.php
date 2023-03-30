@@ -1,4 +1,4 @@
-@extends('layouts.no-footer')
+@extends('layouts.layout-no-footer')
 
 @section('content')
     <!--=== page-title-section start ===-->

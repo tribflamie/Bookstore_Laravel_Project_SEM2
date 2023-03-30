@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('feedbacks_id')->references('id')->on('feedbacks');
             $table->foreignId('users_id')->references('id')->on('users');
-
-            $table->string('street', 150)->nullable();
-            $table->string('ward', 45)->nullable();
-            $table->string('district', 45)->nullable();
-            $table->string('city', 45)->nullable();
+            $table->text('description')->nullable(false);
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('replies');
     }
 };

@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
-
 Route::get('home', [App\Http\Controllers\visitorController::class, 'index'])->name('home');
 Route::get('cart', [App\Http\Controllers\visitorController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, 'addToCart'])->name('add.to.cart');
@@ -27,3 +26,4 @@ Route::get('products', [App\Http\Controllers\visitorController::class, 'products
 Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
 Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
+Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');

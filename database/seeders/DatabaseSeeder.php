@@ -51,16 +51,28 @@ class DatabaseSeeder extends Seeder
         ]);
         //insert feedbacks table
         DB::table('feedbacks')->insert([
-            'user_id' => 1,
+            'users_id' => 1,
             'products_id' => 1,
             'rating' => 5,
-            'comment' => 'This is so cool! i love it'
+            'description' => 'This is so cool! i love it'
         ]);
         DB::table('feedbacks')->insert([
-            'user_id' => 2,
+            'users_id' => 2,
             'products_id' => 1,
             'rating' => 4,
-            'comment' => 'This is not good in my expectations'
+            'description' => 'This is not good in my expectations'
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'newyear2023',
+            'value'=>0.25,
+            'description'=>'new year code',
+            'exp_date'=>'2023/3/3',
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'christmas2022',
+            'value'=>0.4,
+            'description'=>'christmas 2022 code',
+            'exp_date'=>'2022/12/30',
         ]);
     }
 }
