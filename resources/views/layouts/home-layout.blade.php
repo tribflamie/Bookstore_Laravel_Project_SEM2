@@ -187,6 +187,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li><a href={{ route('feedbacks') }}>My Feedbacks</a></li>
                                     <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
