@@ -64,6 +64,7 @@
 @import url("../css/swiper.min.css");
 @import url("../css/comment-section.css");
 @import url("../css/rating.css");
+@import url("../css/datatables.css");
 ::selection {
     background-color: #212121;
     color: #fff;
@@ -84,10 +85,9 @@ body {
     height: 100%;
 }
 body {
-    color: #888;
-    background: #f1f1f1;
-    font-size:15px;
-	font-family: 'Hind', sans-serif;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
 }
 
 .wrapper {

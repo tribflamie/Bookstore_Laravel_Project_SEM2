@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Feedback;
 use App\Models\Reply;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class visitorController extends Controller
 {
@@ -51,6 +52,15 @@ class visitorController extends Controller
     }
     //show user-comments history
 
+    //user-feedbacks
+    public function feedbacks()
+    {
+        $user = Auth::user()->id;
+        $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
+            ->where('users_id', $user)
+            ->get();
+        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks'));
+    }
     //cart add, update and remove
     public function cart()
     {
