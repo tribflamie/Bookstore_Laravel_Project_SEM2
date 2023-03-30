@@ -1,4 +1,4 @@
-@extends('layouts.layout-banner')
+@extends('layouts.home-layout')
 @section('title', 'Home - The best selling individual books')
 @section('content')
     <!--=== Flex Slider Start ======-->
