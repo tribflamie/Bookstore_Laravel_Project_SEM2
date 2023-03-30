@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +35,7 @@
                                     @foreach (session('cart') as $id => $details)
                                         <li> <a href="#" class="photo"><img src="{{ asset($details['photo']) }}"
                                                     class="cart-thumb" alt="" /></a>
-                                            <h6><a href="#">{{$details['name']}}</a></h6>
+                                            <h6><a href="#">{{ $details['name'] }}</a></h6>
                                             <p>{{ $details['quantity'] }}x - <span
                                                     class="price">${{ $details['price'] }}</span></p>
                                             </span></p>

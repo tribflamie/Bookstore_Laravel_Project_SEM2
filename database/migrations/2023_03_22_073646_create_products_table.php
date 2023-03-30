@@ -23,7 +23,8 @@ return new class extends Migration
             $table->decimal("discount", 3, 2)->nullable(false)->default(1);
             $table->string("photo", 150)->nullable(false);
             $table->text("description")->nullable(false);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
