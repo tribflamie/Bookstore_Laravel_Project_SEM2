@@ -23,5 +23,7 @@ Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, '
 Route::patch('update-cart', [App\Http\Controllers\visitorController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class, 'remove'])->name('remove.from.cart');
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
+Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
+Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
 Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');

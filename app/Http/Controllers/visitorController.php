@@ -28,9 +28,23 @@ class visitorController extends Controller
      */
     public function index()
     {
+        $topDiscount = Product::orderBy('discount','desc')->get();
         $categories = Category::all();
         $products = Product::all();
-        return view('home', compact('products'), compact('categories'));
+        return view('home', compact('products','categories','topDiscount'));
+    }
+    public function products()
+    {
+        $categories = Category::all();
+        $products = Product::all();
+        return view('products', compact('products','categories'));
+    }
+    public function product($id)
+    {
+        $categories = category::all();
+        $category = Category::where ('id',$id)->get();
+        $products = Product::where ('categories_id',$id)->get();
+        return view('product', compact('products','categories','category'));
     }
     //show product information and user-comments on product-detail
     public function productDetail($id)

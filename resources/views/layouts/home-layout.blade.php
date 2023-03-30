@@ -61,8 +61,8 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="icofont icofont-navigation-menu"></i> </button>
                     <div class="logo"> <a href="{{ route('home') }}"> <img class="logo logo-display"
-                                src="{{ asset('images/logo-white.png') }}" alt=""> <img
-                                class="logo logo-scrolled" src="{{ asset('images/logo-black.png') }}" alt="">
+                                src="{{ asset('images/white-logo.png') }}" alt=""> <img
+                                class="logo logo-scrolled" src="{{ asset('images/black-logo.png') }}" alt="">
                         </a> </div>
                 </div>
                 <!--=== End Header Navigation ===-->
@@ -72,6 +72,9 @@
                     <ul class="nav navbar-nav" data-in="fadeIn" data-out="fadeOut">
                         <li>
                             <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('products') }}" class="dropdown-toggle" data-toggle="dropdown">Products</a>
                         </li>
                         <li class="dropdown megamenu-fw"> <a href="index.html" class="dropdown-toggle"
                                 data-toggle="dropdown">Categories</a>
@@ -84,25 +87,25 @@
                                                     @foreach ($categories as $category)
                                                         @if($category->id == 6)@break;
                                                         @else
-                                                        <li><a href="#">{{ $category->categories }}</a></li>
+                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
                                             </div>
                                         </div>
                                         <!--=== end col-3 ===-->
-                                        <div class="col-menu col-md-3">
+                                        {{-- <div class="col-menu col-md-3">
                                             <div class="content">
                                                 <ul class="menu-col">
                                                     @foreach ($categories as $category)
                                                         @if($category->id >= 6)
-                                                        <li><a href="#">{{ $category->categories }}</a></li>
+                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a></li>
                                                         @elseif($category->id == 11) @break;
                                                         @endif
                                                     @endforeach
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
                                             <div class="content">
@@ -216,7 +219,7 @@
                         <div class="col-sm-6 col-md-4">
                             <div class="widget widget-text">
                                 <div class="logo logo-footer"><a href="index.html"> <img class="logo logo-display"
-                                            src="{{ asset('images/logo-footer.png') }}" alt=""></a> </div>
+                                            src="{{ asset('images/white-logo.png') }}" alt=""></a> </div>
                                 <p>Papyrus Limited captures meaningful moments, honor special relationships, express
                                     who
                                     you are and help you relive timeless memories, year after year.</p>
