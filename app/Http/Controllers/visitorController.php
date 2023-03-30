@@ -72,11 +72,12 @@ class visitorController extends Controller
     //user-feedbacks
     public function feedbacks()
     {
+        $categories = category::all();
         $user = Auth::user()->id;
         $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
             ->where('users_id', $user)
             ->get();
-        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks'));
+        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks','categories'));
     }
     //cart add, update and remove
     public function cart()
