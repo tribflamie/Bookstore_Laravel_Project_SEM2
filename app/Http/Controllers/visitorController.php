@@ -140,7 +140,7 @@ class visitorController extends Controller
             DB::table('users')
             ->where('id', $user->id)  // find coupon code
             ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('location' => $user->address));  // update the record in the DB. 
+            ->update(array('location' => $user->location));  // update the record in the DB. 
         }
         $cart =session()->get('cart');
         if($cart):
