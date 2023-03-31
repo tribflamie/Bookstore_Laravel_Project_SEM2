@@ -133,9 +133,9 @@ class visitorController extends Controller
             ->limit(1)  // optional - to ensure only one record is updated.
             ->update(array('phone' => $user->phone));  // update the record in the DB. 
         }
-        if($user->address==null)
+        if($user->location==null)
         {
-            $user->address=$request->input('getAddress');
+            $user->location=$request->input('getAddress');
             session()->put('user',$user);
             DB::table('users')
             ->where('id', $user->id)  // find coupon code
