@@ -227,8 +227,31 @@ class visitorController extends Controller
         return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
-    public function getUserInfo(Request $request)
+    public function orderHistory(Request $request)
     {
-
+        $user=session()->get('user');
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderHistory');
+    }
+    public function orderDetail(Request $request,$id)
+    {
+        session()->put('orderDetails',null);
+        $orderDetail=DB::table('order_details')->where('orders_id',$id)->get();
+        if($orderDetail) session()->put('orderDetails',$orderDetail);
+        return view('orderDetail');
+    }
+    public function orderCancel(Request $request,$id)
+    {
+        $user=session()->get('user');
+        DB::table('orders')
+            ->where('id', $id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('status' => 'Cancelled'));  // update the record in the DB. 
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderHistory');
     }
 }
