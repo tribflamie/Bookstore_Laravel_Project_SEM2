@@ -27,3 +27,6 @@ Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'prod
 Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');
+Route::get('orderHistory',[App\Http\Controllers\visitorController::class, 'orderHistory'])->name('orderHistory');
+Route::get('orderDetail/{id}',[App\Http\Controllers\visitorController::class, 'orderDetail'])->name('orderDetail');
+Route::get('orderCancel/{id}',[App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
