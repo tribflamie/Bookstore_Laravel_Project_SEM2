@@ -44,7 +44,11 @@
                                             <td><span>${{ $sum }}</span> </td>
                                             <td>{{$order->status}}</td>
                                             <td><a href="{{ route('orderDetail',$order->id) }}">Details</a></td>
-                                            <td><a href="{{ route('orderCancel') }}">Cancel</a></td>
+                                            @if($order->status!='Cancelled')
+                                            <td><a href="{{ route('orderCancel',$order->id) }}">Cancel</a></td>
+                                            @else
+                                            <td>Cancel</td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 @endif

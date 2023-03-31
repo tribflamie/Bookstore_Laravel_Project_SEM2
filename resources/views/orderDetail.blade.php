@@ -16,33 +16,26 @@
                                     <th>Author</th>
                                     <th>Unit Price</th>
                                     <th>Quantity</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $sum=0;$quantity=0;?>
-                                <?php use Illuminate\Support\Facades\DB; ?>
-                                @if (session('orderDetail'))
-                                    <?php $orders=session()->get('orders');?>
-                                    @foreach ($orders as $id => $order)
+                                <?php use App\Models\Product; ?>
+                                @if (session('orderDetails'))
+                                    <?php $orderDetails=session()->get('orderDetails');?>
+                                    @foreach ($orderDetails as $id => $order)
                                     <?php
-                                        $sum=0;
-                                        $orderDetail=DB::table('order_details')->where('orders_id',$order->id)->get();
-                                        $firstProduct=DB::table('products')->where('id',$orderDetail[0]->products_id)->first();
-                                        $quantity=DB::table('order_details')->where('orders_id',$order->id)->count();
-                                        $couponVal=DB::table('coupons')->where('orders_id',$order->id)->first();
-                                        foreach($orderDetail as $product):
-                                            $sum+=$product->unit_quantity*$product->unit_sold_price;
-                                        endforeach;
-                                        if($couponVal>0) $sum*=(1-$couponVal);
+                                        $product = Product::find($order->products_id);
                                     ?>
                                         <tr data-id="{{ $id }}" class="order">
                                             <td>{{ $id+1 }}</td>
-                                            <td><img src="{{ asset($firstProduct->photo) }}"></td>
-                                            <td>{{$quantity}} </td>
-                                            <td>-${{$sum*$couponVal}}</td>
-                                            <td><span>${{ $sum }}</span> </td>
-                                            <td><a href="{{ route('orderDetail') }}">Details</a></td>
-                                            <td><a href="{{ route('orderCancel') }}">Cancel</a></td>
+                                            <td><img src="{{ asset($product->photo) }}"></td>
+                                            <td>{{$product->name}} </td>
+                                            <td>{{$product->author}}</td>
+                                            <td>${{ $product->price }}</td>
+                                            <td>{{ $order->unit_quantity }}</td>
+                                            <td><a href="#">Review</a></td>
                                         </tr>
                                     @endforeach
                                 @endif

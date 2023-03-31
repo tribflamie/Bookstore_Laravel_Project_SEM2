@@ -5991,6 +5991,7 @@ background: linear-gradient(45deg, rgba(201,75,75) 0%, rgba(75,19,79) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e91e63', endColorstr='#ce1500', GradientType=1 );border-radius: 4px;color: #fff;text-transform: uppercase;z-index: 99;}
 .modal {
   display: none;
+  padding:10px;
   position: fixed;
   z-index: 8;
   left: 0;

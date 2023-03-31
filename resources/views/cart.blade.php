@@ -168,7 +168,6 @@
               </table>
             </div>
             <button type="submit">Order</button>
-            <a href="{{ route('cart') }}">Cancel</a>
           </form>
         </div>
       </div>
