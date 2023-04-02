@@ -34,10 +34,8 @@ class visitorController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $feedbacks = Feedback::all();
-        if (Auth::check()) :
-            $user = Auth::getUser();
-            session()->put('user', $user);
-        endif;
+        $user = Auth::getUser();
+        session()->put('user', $user);
         return view('home', compact('products', 'categories', 'feedbacks', 'topDiscount'));
     }
     //every products
@@ -222,10 +220,10 @@ class visitorController extends Controller
             ->limit(1)  // optional - to ensure only one record is updated.
             ->update(array('location' => $user->location,'updated_at'=>now()));  // update the record in the DB. 
         }
-        $validated = $request->validate([
-            'getPhone' => 'required',
-            'getAddress' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'getPhone' => 'required',
+        //     'getAddress' => 'required',
+        // ]);
         $cart =session()->get('cart');
         if($cart):
         $id=Auth::id();
@@ -321,7 +319,7 @@ class visitorController extends Controller
         $content=$request->input('reviewContent');
         $rating=$request->input('reviewRating');
         DB::table('feedbacks')->insert([
-            'user_id' => $userID,
+            'users_id' => $userID,
             'products_id' => $productID,
             'rating'=>$rating,
             'description'=>$content

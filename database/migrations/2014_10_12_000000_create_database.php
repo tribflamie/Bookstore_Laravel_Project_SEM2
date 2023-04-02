@@ -19,10 +19,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 150)->nullable(false);
             $table->rememberToken()->nullable();
-            $table->string('phone', 45)->nullable();
-            $table->string('location', 150)->nullable();
             $table->string('gender', 45)->nullable();
             $table->date('yob')->nullable();
+            $table->string('phone', 45)->nullable();
+            $table->string('location', 150)->nullable();
+            $table->text('bio')->nullable();
+            $table->string('photo', 150)->nullable()->default('avatar-1.jpg');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -77,7 +79,7 @@ return new class extends Migration
         });
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('users_id')->references('id')->on('users');
             $table->foreignId('products_id')->references('id')->on('products');
             $table->integer('rating')->nullable(false);
             $table->text('description')->nullable(false);
@@ -110,6 +112,14 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
+        Schema::create('replies', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('feedbacks_id')->references('id')->on('feedbacks');
+            $table->foreignId('users_id')->references('id')->on('users');
+            $table->text('description')->nullable(false);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+        });
     }
 
     /**
@@ -117,6 +127,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('replies');
         Schema::dropIfExists('feedbacks');
         Schema::dropIfExists('coupons');
         Schema::dropIfExists('order_details');

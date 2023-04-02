@@ -5,6 +5,7 @@
 @endsection
 @section('content')
     <!--=== Products Start ======-->
+    
     <section>
         <div class="container">
             <div class="row">
@@ -112,6 +113,7 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="comments">
                                 <ul class="media-list">
+                                    
                                     @foreach ($feedbacks as $feedback)
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
@@ -146,13 +148,14 @@
                                                     <ul class="media-list">
                                                         <li class="media media-replied">
                                                             <a class="pull-left" href="#">
+                                                               
                                                                 @if (Auth::user()->photo == null)
                                                                     <img class="media-object img-circle"
                                                                         src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                         alt="profile">
                                                                 @else
                                                                     <img class="media-object img-circle"
-                                                                        src="{{ asset('images/team/' . $Auth::user()->photo) }}"
+                                                                        src="{{ asset('images/team/' . Auth::user()->photo) }}"
                                                                         alt="profile">
                                                                 @endif
                                                             </a>

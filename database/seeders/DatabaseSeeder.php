@@ -139,13 +139,13 @@ class DatabaseSeeder extends Seeder
         ]);
         //insert feedbacks table
         DB::table('feedbacks')->insert([
-            'user_id' => 1,
+            'users_id' => 1,
             'products_id' => 1,
             'rating' => 5,
             'description' => 'This is so cool! i love it'
         ]);
         DB::table('feedbacks')->insert([
-            'user_id' => 2,
+            'users_id' => 2,
             'products_id' => 1,
             'rating' => 4,
             'description' => 'This is not good in my expectations'
