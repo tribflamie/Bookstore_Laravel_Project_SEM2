@@ -24,7 +24,7 @@
                                     <tr class="cart_item">
                                         <td><a href="#">{{ $name = Auth::user()->name }}</a></td>
                                         <td><a href="#" class="grey">
-                                                <?php
+                                                {{-- <?php
                                                 $count = 0;
                                                 //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
                                                 for ($count = 1; $count <= $feedback->rating; $count++):
@@ -34,7 +34,8 @@
                                                 for (; $count <= 5; $count++):
                                                     echo '<span class="fa fa-star"></span>';
                                                 endfor;
-                                                ?></a></td>
+                                                ?></a></td> --}}
+                                                {{ $feedback->ratings }}</a></td>
                                         <td><a href="#">{{ $feedback->description }}</a></td>
                                         <td><a href="#">{{ $feedback->created_at }}</a></td>
                                         <td><a href="{{ route('productDetail', $feedback->id) }}"> <img

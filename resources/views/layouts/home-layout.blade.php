@@ -94,7 +94,7 @@
                                             </div>
                                         </div>
                                         <!--=== end col-3 ===-->
-                                        {{-- <div class="col-menu col-md-3">
+                                        <div class="col-menu col-md-3">
                                             <div class="content">
                                                 <ul class="menu-col">
                                                     @foreach ($categories as $category)
@@ -105,7 +105,7 @@
                                                     @endforeach
                                                 </ul>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <!--=== end col-3 ===-->
                                         <div class="col-menu col-md-3">
                                             <div class="content">

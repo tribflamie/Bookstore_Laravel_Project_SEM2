@@ -61,8 +61,10 @@
         <!--=== Left Side End===-->
         <div class="col-md-3 col-md-offset-1">
           <div class="widget widget_about">
-            <h4 class="widget-title">About</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat.</p>
+            @foreach ($category as $cate)
+            <h4 class="widget-title" style="margin-bottom: 10px">About {{ $cate->categories }}</h4>
+            <p>{{ $cate->description }}</p>
+            @endforeach
           </div>
           <div class="widget sidebar_widget">
             <form class="search-form" method="get">
