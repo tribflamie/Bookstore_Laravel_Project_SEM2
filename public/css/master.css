@@ -62,9 +62,7 @@
 @import url("../css/slick.css");
 @import url("../css/animate.css");
 @import url("../css/swiper.min.css");
-@import url("../css/comment-section.css");
 @import url("../css/rating.css");
-@import url("../css/datatables.css");
 ::selection {
     background-color: #212121;
     color: #fff;
@@ -85,8 +83,8 @@ body {
     height: 100%;
 }
 body {
-    font-size: 14px;
-    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-family: 'Hind', sans-serif;;
     font-weight: 400;
 }
 

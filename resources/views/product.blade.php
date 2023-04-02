@@ -1,4 +1,4 @@
-@extends('layouts.home-layout')
+@extends('layouts.layout-banner')
 @section('title', 'Product - The best selling individual books')
 @section('content')
     <!--=== page-title-section start ===-->

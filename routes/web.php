@@ -22,8 +22,11 @@ Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, '
 Route::patch('update-cart', [App\Http\Controllers\visitorController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class, 'remove'])->name('remove.from.cart');
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
+Route::post('reply/{id}', [App\Http\Controllers\visitorController::class, 'storeReplies']);
 Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
 Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
-Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
-Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
+Route::get('orderControl', [App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
+Route::get('checkCoupon', [App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');
+Route::get('edit-profile', [App\Http\Controllers\VisitorController::class, 'editProfile'])->name('edit.profile');
+Route::post('edit-profile', [App\Http\Controllers\VisitorController::class, 'updateProfile']);

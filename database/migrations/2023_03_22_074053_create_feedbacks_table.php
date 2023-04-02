@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('rating')->default(0);
             $table->text('description')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

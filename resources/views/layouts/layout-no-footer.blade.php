@@ -12,15 +12,6 @@
 </head>
 
 <body>
-
-    <!--=== Loader Start ======-->
-    <div id="loader-overlay">
-        <div class="loader-wrapper">
-            <div class="scoda-pulse"></div>
-        </div>
-    </div>
-    <!--=== Loader End ======-->
-
     <!--=== Wrapper Start ======-->
     <div class="wrapper">
         <!--=== Header Start ======-->

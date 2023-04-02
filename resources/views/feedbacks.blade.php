@@ -1,5 +1,8 @@
-@extends('layouts.home-layout')
+@extends('layouts.layout-no-banner')
 @section('title', 'Cart - The best-selling individual books')
+@section('links')
+    <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+@endsection
 @section('content')
     <!--=== Products Start ======-->
     <section>
@@ -10,18 +13,26 @@
                         <table id="datatables" class="table table-striped table-bordered table-sm shop-cart">
                             <thead>
                                 <tr>
+                                    <th class="th-sm">Item</th>
+                                    <th class="th-sm">Book</th>
+                                    <th class="th-sm">Author</th>
                                     <th class="th-sm">Account</th>
                                     <th class="th-sm">Rating</th>
                                     <th class="th-sm">Feedback</th>
                                     <th class="th-sm">Time</th>
-                                    <th class="th-sm">Item</th>
-                                    <th class="th-sm">Book</th>
-                                    <th class="th-sm">Author</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($feedbacks as $feedback)
                                     <tr class="cart_item">
+                                        <td><a href="{{ route('productDetail', $feedback->id) }}"> <img
+                                                    src="{{ asset($feedback->photo) }}" alt="">
+                                            </a> </td>
+                                        <td><a href="{{ route('productDetail', $feedback->id) }}">{{ $feedback->name }}</a>
+                                        </td>
+                                        <td><a
+                                                href="{{ route('productDetail', $feedback->id) }}">{{ $feedback->author }}</a>
+                                        </td>
                                         <td><a href="#">{{ $name = Auth::user()->name }}</a></td>
                                         <td><a href="#" class="grey">
                                                 <?php
@@ -37,14 +48,6 @@
                                                 ?></a></td>
                                         <td><a href="#">{{ $feedback->description }}</a></td>
                                         <td><a href="#">{{ $feedback->created_at }}</a></td>
-                                        <td><a href="{{ route('productDetail', $feedback->id) }}"> <img
-                                                    src="{{ asset($feedback->photo) }}" alt="">
-                                            </a> </td>
-                                        <td><a href="{{ route('productDetail', $feedback->id) }}">{{ $feedback->name }}</a>
-                                        </td>
-                                        <td><a
-                                                href="{{ route('productDetail', $feedback->id) }}">{{ $feedback->author }}</a>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
