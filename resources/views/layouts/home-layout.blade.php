@@ -189,7 +189,8 @@
                                                              document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a></li>
-                                    <li><a href="{{ route('orderHistory') }}">
+                                        <?php $filter='a';?>
+                                    <li><a href="{{ route('orderHistory',$filter) }}">
                                         {{ __('Your orders') }}
                                     </a></li>
 

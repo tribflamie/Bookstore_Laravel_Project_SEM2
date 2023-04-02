@@ -85,5 +85,17 @@ class DatabaseSeeder extends Seeder
             'description'=>'christmas 2022 code',
             'exp_date'=>'2022/12/30',
         ]);
+        DB::table('coupons')->insert([
+            'code'=>'abc',
+            'value'=>0.4,
+            'description'=>'test code',
+            'exp_date'=>'2023/12/30',
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'lmao',
+            'value'=>0.24,
+            'description'=>'test code 2',
+            'exp_date'=>'2023/4/30',
+        ]);
     }
 }

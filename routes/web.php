@@ -25,6 +25,8 @@ Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
 Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
-Route::get('orderHistory',[App\Http\Controllers\visitorController::class, 'orderHistory'])->name('orderHistory');
+Route::get('orderHistory/{filter}',[App\Http\Controllers\visitorController::class, 'orderHistory'])->name('orderHistory');
 Route::get('orderDetail/{id}',[App\Http\Controllers\visitorController::class, 'orderDetail'])->name('orderDetail');
-Route::get('orderCancel/{id}',[App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
+Route::get('orderCancel/{id}/{filter}',[App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
+Route::get('review/{id}', [App\Http\Controllers\visitorController::class, 'reviewProduct'])->name('reviewProduct');
+Route::get('submitReview', [App\Http\Controllers\visitorController::class, 'submitReview'])->name('submitReview');

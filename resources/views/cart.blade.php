@@ -4,6 +4,17 @@
     <!--=== Products Start ======-->
     <section>
         <div class="container">
+        @if(count($errors))
+            <div class="form-group">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -127,19 +138,20 @@
           <a class="close">&times;</a>
           <form action="/orderControl">
             <?php
+                
                 $user=session('user');
                 $cart=session('cart');
             ?>
             <h2>Confirm your purchase</h2>
             <div>
               <h3>Name</h3><input type="text" value="{{$user->name}}" readonly/>
-              <h3>Phone (You can change your phone number in your information page)</h3>
+              <h3>Phone (Required)</h3>
               <?php if($user->phone!=null):?>
               <input type="text" value="{{$user->phone}}" readonly />
               <?php else:?>
               <input type="text" name="getPhone"/>
               <?php endif;?>
-              <h3>Address (You can change your address in your information page)</h3>
+              <h3>Address (Required)</h3>
               <?php if($user->location!=null):?>
               <input type="text" value="{{$user->location}}" readonly />
               <?php else:?>
