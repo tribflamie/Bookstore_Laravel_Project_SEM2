@@ -212,43 +212,36 @@ class visitorController extends Controller
                 ->limit(1)  // optional - to ensure only one record is updated.
                 ->update(array('phone' => $user->phone));  // update the record in the DB. 
         }
-        if ($user->address == null) {
-            $user->address = $request->input('getAddress');
-            session()->put('user', $user);
+        if($user->location==null)
+        {
+            $user->location=$request->input('getAddress');
+            session()->put('user',$user);
             DB::table('users')
-                ->where('id', $user->id)  // find coupon code
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('address' => $user->address));  // update the record in the DB. 
+            ->where('id', $user->id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('location' => $user->location));  // update the record in the DB. 
         }
-        $cart = session()->get('cart');
-        if ($cart) :
-            $count = 0;
-            $total = 0;
-            $discount = session()->get('discount');
-            foreach ($cart as $id => $details) :
-                $count++;
-                $total += $details['price'] * $details['quantity'];
-            endforeach;
-            $total *= (1 - $discount);
-            $id = Auth::id();
-            $query = "insert into orders (users_id,total_quantity,total_price,status) values ({$id},{$count},{$total},'Processing')";
-            DB::insert($query);
-
-            unset($details);
-            $rs = DB::select('select id from orders where id=(select max(id) from orders)');
-            //insert into orderDetails
-            foreach ($cart as $id => $details) :
-                $query2 = "insert into order_details (orders_id,products_id,unit_quantity,unit_total) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']}*{$details['quantity']})";
+        $cart =session()->get('cart');
+        if($cart):
+        $id=Auth::id();
+        $query="insert into orders (users_id,status) values ({$id},'Processing')";
+        DB::insert($query);
+        
+        unset($details);
+        $rs=DB::select('select id from orders where id=(select max(id) from orders)');
+        //insert into orderDetails
+            foreach($cart as $id=>$details):
+                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
                 DB::insert($query2);
             endforeach;
             session()->put('cart', null);
         endif;
-        if ($request->session()->get('couponValue') > 0) :
-            $coupon = $request->session()->get('coupon');
+        if($request->session()->get('couponValue')>0):
+            $coupon=$request->session()->get('coupon');
             DB::table('coupons')
-                ->where('code', $coupon)  // find coupon code
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('status' => 'used', 'orders_id' => $rs[0]->id));  // update the record in the DB. 
+            ->where('code', $coupon)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('status' => 'used','orders_id'=>$rs[0]->id));  // update the record in the DB. 
         endif;
         return redirect('/home')->with('orderSuccess', 'Order confirmed, Please wait for us to check.');
     }
@@ -260,8 +253,8 @@ class visitorController extends Controller
         if (!$rs) :
             return redirect('/cart')->with('msgFail', 'Coupon does not exists!');
         endif;
-        if ($rs[0]->status == 'used') :
-            return redirect('/cart')->with('msgFail', 'Coupon is already used!');
+        if($rs[0]->status=='used'):
+            return redirect('/cart')->with('msgFail', 'Coupon is used!');
         endif;
         if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
             return redirect('/cart')->with('msgFail', 'Coupon is expired!');
@@ -271,7 +264,31 @@ class visitorController extends Controller
             return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
-    public function getUserInfo(Request $request)
+    public function orderHistory(Request $request)
     {
+        $user=session()->get('user');
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderHistory');
+    }
+    public function orderDetail(Request $request,$id)
+    {
+        session()->put('orderDetails',null);
+        $orderDetail=DB::table('order_details')->where('orders_id',$id)->get();
+        if($orderDetail) session()->put('orderDetails',$orderDetail);
+        return view('orderDetail');
+    }
+    public function orderCancel(Request $request,$id)
+    {
+        $user=session()->get('user');
+        DB::table('orders')
+            ->where('id', $id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('status' => 'Cancelled'));  // update the record in the DB. 
+        session()->put('orders',null);
+        $orders=DB::table('orders')->where('users_id',$user->id)->get();
+        if($orders) session()->put('orders',$orders);
+        return view('orderHistory');
     }
 }

@@ -30,3 +30,6 @@ Route::get('checkCoupon', [App\Http\Controllers\visitorController::class, 'check
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');
 Route::get('edit-profile', [App\Http\Controllers\VisitorController::class, 'editProfile'])->name('edit.profile');
 Route::post('edit-profile', [App\Http\Controllers\VisitorController::class, 'updateProfile']);
+Route::get('orderHistory',[App\Http\Controllers\visitorController::class, 'orderHistory'])->name('orderHistory');
+Route::get('orderDetail/{id}',[App\Http\Controllers\visitorController::class, 'orderDetail'])->name('orderDetail');
+Route::get('orderCancel/{id}',[App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
