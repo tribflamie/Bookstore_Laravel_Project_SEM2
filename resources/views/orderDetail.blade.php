@@ -35,8 +35,8 @@
                                             <td>{{$product->author}}</td>
                                             <td>${{ $product->price }}</td>
                                             <td>{{ $order->unit_quantity }}</td>
-                                            <td><a href="#">Review</a></td>
-                                        </tr>
+                                            <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');">Review</a></td>
+                                                            </tr>
                                     @endforeach
                                 @endif
                             </tbody>
@@ -55,3 +55,4 @@
     <script type="text/javascript">
     </script>
 @endsection
+
