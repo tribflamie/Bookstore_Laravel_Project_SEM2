@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    @yield('links')
 </head>
 
 <body>

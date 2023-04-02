@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('users_id')->references('id')->on('users');
             $table->text('description')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

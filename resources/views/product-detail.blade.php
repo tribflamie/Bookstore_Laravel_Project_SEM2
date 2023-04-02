@@ -1,5 +1,8 @@
 @extends('layouts.layout-no-banner')
 @section('title', 'Product Detail - The best-selling individual books')
+@section('links')
+    <link rel="stylesheet" href="{{ asset('css/comment-section.css') }}">
+@endsection
 @section('content')
     <!--=== Products Start ======-->
     <section>
@@ -39,8 +42,12 @@
                         <!--đếm số lượng feedbacks trong product-->
                         ({{ count($product->feedbacks) }})
                     </h3>
-                    <h3 class="grey">{{ $product->price * (1 - $product->discount) }} <span
-                            class="old-price font-18px">{{ $product->price }}</span></h3>
+                    <h4 class="grey"><span class="old-price font-18px">${{ $product->price }} </span>
+                        {{ $product->discount * 100 }}%
+                    </h4>
+                    <h3>
+                        ${{ $product->price * (1 - $product->discount) }}
+                    </h3>
                     <div class="single-product-des">
                         <h5>Product Desription</h5>
                         <p>{{ $product->description }}</p>
@@ -58,9 +65,11 @@
                         <p>100% Cotton Single jersey
                             Prewashed to impart a softer texture</p>
                         <h5>WashCare Instructions</h5>
-                        <p>Machine wash cold Do not bleach or wash with chlorine based detergent or water Wash/dry inside
+                        <p>Machine wash cold Do not bleach or wash with chlorine based detergent or water Wash/dry
+                            inside
                             out Do not iron directly on prints Dry promptly in shade
-                            Dry on a flat surface as hanging may cause measurement variations Product color may vary little
+                            Dry on a flat surface as hanging may cause measurement variations Product color may vary
+                            little
                             due to photography Wash with similar clothes.</p>
                     </div>
                 </div>
@@ -103,43 +112,71 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="comments">
                                 <ul class="media-list">
-                                    @foreach ($feedbacks as $feedbacks)
-                                        @if ($feedbacks->products_id == $product->id)
+                                    @foreach ($feedbacks as $feedback)
+                                        @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
                                                     <img class="media-object img-circle"
-                                                        src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
+                                                        src="{{ asset('images/team/' . $feedback->user->photo) }}"
+                                                        alt="profile">
                                                 </a>
                                                 <div class="media-body">
                                                     <div class="well well-lg">
                                                         <h4 class="media-heading text-uppercase reviews">
-                                                            {{ $feedbacks->user->name }}
+                                                            {{ $feedback->user->name }}
                                                         </h4>
                                                         <p class="media-date text-uppercase reviews list-inline">
-                                                            {{ $feedbacks->created_at }}
+                                                            {{ $feedback->created_at }}
                                                         </p>
                                                         <p class="media-comment">
-                                                            {{ $feedbacks->description }}
+                                                            {{ $feedback->description }}
                                                         </p>
 
-                                                        <a class="btn btn-info btn-circle text-uppercase" href="#"
-                                                            id="reply"><span
+                                                        <a class="btn btn-info btn-circle text-uppercase"
+                                                            data-toggle="collapse" href="#reply"><span
                                                                 class="glyphicon glyphicon-share-alt"></span>
                                                             Reply</a>
                                                         <a class="btn btn-warning btn-circle text-uppercase"
-                                                            data-toggle="collapse" href="#{{ $feedbacks->id }}"><span
+                                                            data-toggle="collapse" href="#{{ $feedback->id }}"><span
                                                                 class="glyphicon glyphicon-comment"></span>
-                                                            {{ count($feedbacks->replies) }} comments</a>
+                                                            {{ count($feedback->replies) }} comments</a>
                                                     </div>
                                                 </div>
-                                                <div class="collapse" id="{{ $feedbacks->id }}">
+                                                <div class="collapse" id="reply">
+                                                    <ul class="media-list">
+                                                        <li class="media media-replied">
+                                                            <a class="pull-left" href="#">
+                                                                @if (Auth::user()->photo == null)
+                                                                    <img class="media-object img-circle"
+                                                                        src="{{ asset('images/team/avatar-1.jpg') }}"
+                                                                        alt="profile">
+                                                                @else
+                                                                    <img class="media-object img-circle"
+                                                                        src="{{ asset('images/team/' . $Auth::user()->photo) }}"
+                                                                        alt="profile">
+                                                                @endif
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <form action="/reply/{{ $feedback->id }}" method="POST">
+                                                                    @csrf
+
+                                                                    <input type="text" class="well well-lg full-width"
+                                                                        name="reply">
+                                                                    <button
+                                                                        class="btn btn-warning btn-circle text-uppercase">Send</button>
+                                                                </form>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="collapse" id="{{ $feedback->id }}">
                                                     <ul class="media-list">
                                                         @foreach ($replies as $reply)
-                                                            @if ($reply->feedbacks_id == $feedbacks->id)
+                                                            @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
                                                                         <img class="media-object img-circle"
-                                                                            src="{{ asset('images/team/avatar-1.jpg') }}"
+                                                                            src="{{ asset('images/team/' . $reply->user->photo) }}"
                                                                             alt="profile">
                                                                     </a>
                                                                     <div class="media-body">

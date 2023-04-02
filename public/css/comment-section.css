@@ -1,3 +1,15 @@
+/*
+    Image credits:
+    uifaces.com (http://uifaces.com/authorized)
+*/
+
+#login { display: none; }
+.login,
+.logout { 
+    position: absolute; 
+    top: -3px;
+    right: 0;
+}
 .page-header { position: relative; }
 .reviews {
     color: #555;    
@@ -29,7 +41,6 @@
 .btn-circle {
     font-weight: bold;
     font-size: 12px;
-    padding: 6px 15px;
     border-radius: 20px;
 }
 .btn-circle span { padding-right: 6px; }

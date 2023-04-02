@@ -1,4 +1,4 @@
-@extends('layouts.cart-layout')
+@extends('layouts.layout-no-banner')
 @section('title', 'Cart - The best-selling individual books')
 @section('content')
     <!--=== Products Start ======-->
@@ -20,7 +20,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $subTotal=0;?>
+                                <?php $subTotal = 0; ?>
                                 @if (session('cart'))
                                     @foreach (session('cart') as $id => $details)
                                         <?php $subTotal += $details['price'] * (1 - $details['discount']) * $details['quantity']; ?>
@@ -37,7 +37,7 @@
                                                     value="{{ $details['quantity'] }}" title="Qty" placeholder="Qty">
                                             </td>
                                             <td data-th="Subtotal" class="product-subtotal">
-                                                <span>${{ $details['price']* (1-$details['discount']) * $details['quantity'] }}</span>
+                                                <span>${{ $details['price'] * (1 - $details['discount']) * $details['quantity'] }}</span>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -125,62 +125,68 @@
                 </div>
             </div>
         </div>
-        @if(session('cart'))
-        <div id="modalOne" class="modal form-login">
-      <div class="modal-content">
-        <div class="contact-form">
-          <a class="close">&times;</a>
-          <form action="/orderControl">
-            <?php
-                $user=session('user');
-                $cart=session('cart');
-            ?>
-            <h2>Confirm your purchase</h2>
-            <div>
-              <h3>Name</h3><input type="text" value="{{$user->name}}" readonly/>
-              <h3>Phone (You can change your phone number in your information page)</h3>
-              <?php if($user->phone!=null):?>
-              <input type="text" value="{{$user->phone}}" readonly />
-              <?php else:?>
-              <input type="text" name="getPhone"/>
-              <?php endif;?>
-              <h3>Address (You can change your address in your information page)</h3>
-              <?php if($user->address!=null):?>
-              <input type="text" value="{{$user->address}}" readonly />
-              <?php else:?>
-              <input type="text" name="getAddress"/>
-              <?php endif;?>
-              <h3>Order summary:</h3>
-              <table class="table table-bordered shop-cart">
-            
-             @foreach($cart as $item)
-              <tr>
-              <td rowspan="2"><img src="{{ asset($item['photo']) }}" class="cart-thumb" alt="" /></td>
-              <td >Name: {{$item['name']}} </td>
-              <td rowspan="2">Quantity: {{$item['quantity']}}</td>
-              <td rowspan="2">Unit price: {{$item['price']}}</td>
-              </tr>
-              <tr>
-              <td>Author: {{$item['author']}}</td>
-              </tr>
-              @endforeach
-              <table class="table shop-cart" style="border=0px">
-              <tr>
-                <td><h3>Total:</h3></td>
-                <td colspan="3"><span  style="text-decoration: line-through;">${{$subTotal}}</span>   ({{$discount*100}}% discount)<br><br><span style="color:red; font-weight:bold"> ${{$total}}</span></td>
-              </tr>
-              </table>
-              </table>
-            </div>
-            <button type="submit">Order</button>
-            <a href="{{ route('cart') }}">Cancel</a>
-          </form>
+        @if (session('cart'))
+            <div id="modalOne" class="modal form-login">
+                <div class="modal-content">
+                    <div class="contact-form">
+                        <a class="close">&times;</a>
+                        <form action="/orderControl">
+                            <?php
+                            $user = session('user');
+                            $cart = session('cart');
+                            ?>
+                            <h2>Confirm your purchase</h2>
+                            <div>
+                                <h3>Name</h3><input type="text" value="{{ $user->name }}" readonly />
+                                <h3>Phone (You can change your phone number in your information page)</h3>
+                                <?php if($user->phone!=null):?>
+                                <input type="text" value="{{ $user->phone }}" readonly />
+                                <?php else:?>
+                                <input type="text" name="getPhone" />
+                                <?php endif;?>
+                                <h3>Address (You can change your address in your information page)</h3>
+                                <?php if($user->address!=null):?>
+                                <input type="text" value="{{ $user->address }}" readonly />
+                                <?php else:?>
+                                <input type="text" name="getAddress" />
+                                <?php endif;?>
+                                <h3>Order summary:</h3>
+                                <table class="table table-bordered shop-cart">
+
+                                    @foreach ($cart as $item)
+                                        <tr>
+                                            <td rowspan="2"><img src="{{ asset($item['photo']) }}" class="cart-thumb"
+                                                    alt="" /></td>
+                                            <td>Name: {{ $item['name'] }} </td>
+                                            <td rowspan="2">Quantity: {{ $item['quantity'] }}</td>
+                                            <td rowspan="2">Unit price: {{ $item['price'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Author: {{ $item['author'] }}</td>
+                                        </tr>
+                                    @endforeach
+                                    <table class="table shop-cart" style="border=0px">
+                                        <tr>
+                                            <td>
+                                                <h3>Total:</h3>
+                                            </td>
+                                            <td colspan="3"><span
+                                                    style="text-decoration: line-through;">${{ $subTotal }}</span>
+                                                ({{ $discount * 100 }}% discount)<br><br><span
+                                                    style="color:red; font-weight:bold"> ${{ $total }}</span></td>
+                                        </tr>
+                                    </table>
+                                </table>
+                            </div>
+                            <button type="submit">Order</button>
+                            <a href="{{ route('cart') }}">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+        @endif
         </div>
-      </div>
-      @endif
-    </div>
     </section>
-    
+
     <!--=== Products End ======-->
 @endsection
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Feedback;
@@ -30,35 +30,37 @@ class visitorController extends Controller
      */
     public function index()
     {
-        $topDiscount = Product::orderBy('discount','desc')->get();
+        $topDiscount = Product::orderBy('discount', 'desc')->get();
         $categories = Category::all();
         $products = Product::all();
         $feedbacks = Feedback::all();
-        if(Auth::check()):
-            $user=Auth::getUser();
-            session()->put('user',$user);
-            endif;
-            return view('home', compact('products', 'categories', 'feedbacks','topDiscount'));
+        if (Auth::check()) :
+            $user = Auth::getUser();
+            session()->put('user', $user);
+        endif;
+        return view('home', compact('products', 'categories', 'feedbacks', 'topDiscount'));
     }
+    //every products
     public function products()
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('products', compact('products','categories'));
+        return view('products', compact('products', 'categories'));
     }
+    //products from a category
     public function product($id)
     {
         $categories = category::all();
-        $category = Category::where ('id',$id)->get();
-        $products = Product::where ('categories_id',$id)->get();
-        return view('product', compact('products','categories','category'));
+        $category = Category::where('id', $id)->get();
+        $products = Product::where('categories_id', $id)->get();
+        return view('product', compact('products', 'categories', 'category'));
     }
-    //show product information and user-comments on product-detail
+    //show product details, feedbacks and replies on product-detail
     public function productDetail($id)
     {
         $product = Product::find($id);
-        $replies = Reply::all();
         $feedbacks = Feedback::all();
+        $replies = Reply::all();
         $lastest = Feedback::orderBy('created_at', 'DESC')->get();
         $stars5 = Feedback::where('rating', 5)->get();
         $stars4 = Feedback::where('rating', 4)->get();
@@ -67,9 +69,52 @@ class visitorController extends Controller
         $stars1 = Feedback::where('rating', 1)->get();
         return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest', 'stars5', 'stars4', 'stars3', 'stars2', 'stars1'));
     }
+    //insert and store in DATABASE
+    public function storeReplies($id, Request $request)
+    {
+        $replies = new Reply;
+        /* Store $replies in DATABASE */
+        $replies->feedbacks_id = $id;
+        $replies->users_id = Auth::user()->id;
+        $replies->description = $request->input('reply');
+        $replies->save();
+        return redirect()->back();
+    }
+
+    //show edit-profile
+    public function editProfile()
+    {
+        $data = User::find(Auth::user()->id);
+        return view('edit-profile', compact('data'));
+    }
+
+    //insert and store Profile in DATABASE
+    public function updateProfile(Request $request)
+    {
+        $data = User::find(Auth::user()->id);
+
+        /* Store $data in DATABASE*/
+        $data->name = $request->input('username');
+        $data->gender = $request->input('gender');
+        $data->yob = $request->input('yob');
+        $data->phone = $request->input('phone');
+        $data->location = $request->input('location');
+        $data->bio = $request->input('bio');
+        if ($request->hasfile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('images/team/'), $filename);
+            $data->photo = $filename;
+        }
+        $data->save();
+
+        return redirect()->back()->with('success', 'Your profile has been updated successfully.');
+    }
+
     //show user-comments history
 
-    //user-feedbacks
+    //user feedbacks and products
     public function feedbacks()
     {
         $categories = category::all();
@@ -77,7 +122,7 @@ class visitorController extends Controller
         $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
             ->where('users_id', $user)
             ->get();
-        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks','categories'));
+        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks', 'categories'));
     }
     //cart add, update and remove
     public function cart()
@@ -158,15 +203,14 @@ class visitorController extends Controller
     }
     public function orderControl(Request $request)
     {
-        $user=session()->get('user');
-        if($user->phone==null)
-        {
-            $user->phone=$request->input('getPhone');
-            session()->put('user',$user);
+        $user = session()->get('user');
+        if ($user->phone == null) {
+            $user->phone = $request->input('getPhone');
+            session()->put('user', $user);
             DB::table('users')
-            ->where('id', $user->id)  // find coupon code
-            ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('phone' => $user->phone));  // update the record in the DB. 
+                ->where('id', $user->id)  // find coupon code
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update(array('phone' => $user->phone));  // update the record in the DB. 
         }
         if($user->location==null)
         {
@@ -203,21 +247,21 @@ class visitorController extends Controller
     }
     public function checkCoupon(Request $request)
     {
-        $coupon=$request->input('checkCoupon');
-        $query="select * from coupons where code='{$coupon}'";
-        $rs=DB::select($query);
-        if(!$rs):
-            return redirect('/cart')->with('msgFail','Coupon does not exists!');
+        $coupon = $request->input('checkCoupon');
+        $query = "select * from coupons where code='{$coupon}'";
+        $rs = DB::select($query);
+        if (!$rs) :
+            return redirect('/cart')->with('msgFail', 'Coupon does not exists!');
         endif;
         if($rs[0]->status=='used'):
             return redirect('/cart')->with('msgFail', 'Coupon is used!');
         endif;
-        if(strtotime(date("Y/m/d"))>strtotime($rs[0]->exp_date)):
+        if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
             return redirect('/cart')->with('msgFail', 'Coupon is expired!');
         endif;
-        if($rs):
-        session()->put('couponValue',$rs[0]->value);
-        return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
+        if ($rs) :
+            session()->put('couponValue', $rs[0]->value);
+            return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
     public function orderHistory(Request $request)

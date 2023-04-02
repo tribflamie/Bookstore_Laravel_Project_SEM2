@@ -11,12 +11,8 @@ class Reply extends Model
 
     use HasFactory;
 
-    public $table = "replies";
-
-    protected $fillable = [
-        'user_id', 'feedbacks_id', 'description'
-    ];
-
+    protected $fillable = ['description'];
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'users_id');
