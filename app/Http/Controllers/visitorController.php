@@ -10,6 +10,7 @@ use App\Models\Feedback;
 use App\Models\Reply;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class visitorController extends Controller
 {
@@ -18,8 +19,9 @@ class visitorController extends Controller
      *
      * @return void
      */
+
     public function __construct()
-    {
+    {   
         $this->middleware('auth');
     }
 
@@ -31,27 +33,24 @@ class visitorController extends Controller
     public function index()
     {
         $topDiscount = Product::orderBy('discount', 'desc')->get();
-        $categories = Category::all();
         $products = Product::all();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
-        return view('home', compact('products', 'categories', 'feedbacks', 'topDiscount'));
+        return view('home', compact('products', 'feedbacks', 'topDiscount'));
     }
     //every products
     public function products()
     {
-        $categories = Category::all();
         $products = Product::all();
-        return view('products', compact('products', 'categories'));
+        return view('products', compact('products'));
     }
     //products from a category
     public function product($id)
     {
-        $categories = category::all();
         $category = Category::where('id', $id)->get();
         $products = Product::where('categories_id', $id)->get();
-        return view('product', compact('products', 'categories', 'category'));
+        return view('product', compact('products', 'category'));
     }
     //show product details, feedbacks and replies on product-detail
     public function productDetail($id)
@@ -201,128 +200,122 @@ class visitorController extends Controller
     }
     public function orderControl(Request $request)
     {
-        $user=Auth::getUser();
-        if($user->phone==null)
-        {
-            $user->phone=$request->input('getPhone');
-            session()->put('user',$user);
+        $user = Auth::getUser();
+        if ($user->phone == null) {
+            $user->phone = $request->input('getPhone');
+            session()->put('user', $user);
             DB::table('users')
-            ->where('id', $user->id)  // find coupon code
-            ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('phone' => $user->phone,'updated_at'=>now()));  // update the record in the DB. 
+                ->where('id', $user->id)  // find coupon code
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update(array('phone' => $user->phone, 'updated_at' => now()));  // update the record in the DB. 
         }
-        if($user->location==null)
-        {
-            $user->location=$request->input('getAddress');
-            session()->put('user',$user);
+        if ($user->location == null) {
+            $user->location = $request->input('getAddress');
+            session()->put('user', $user);
             DB::table('users')
-            ->where('id', $user->id)  // find coupon code
-            ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('location' => $user->location,'updated_at'=>now()));  // update the record in the DB. 
+                ->where('id', $user->id)  // find coupon code
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update(array('location' => $user->location, 'updated_at' => now()));  // update the record in the DB. 
         }
         // $validated = $request->validate([
         //     'getPhone' => 'required',
         //     'getAddress' => 'required',
         // ]);
-        $cart =session()->get('cart');
-        if($cart):
-        $id=Auth::id();
-        $query="insert into orders (users_id,status) values ({$id},'Processing')";
-        DB::insert($query);
-        
-        unset($details);
-        $rs=DB::select('select id from orders where id=(select max(id) from orders)');
-        //insert into orderDetails
-            foreach($cart as $id=>$details):
-                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
+        $cart = session()->get('cart');
+        if ($cart) :
+            $id = Auth::id();
+            $query = "insert into orders (users_id,status) values ({$id},'Processing')";
+            DB::insert($query);
+
+            unset($details);
+            $rs = DB::select('select id from orders where id=(select max(id) from orders)');
+            //insert into orderDetails
+            foreach ($cart as $id => $details) :
+                $query2 = "insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
                 DB::insert($query2);
             endforeach;
             session()->put('cart', null);
         endif;
-        if($request->session()->get('couponValue')>0):
-            $coupon=$request->session()->get('coupon');
+        if ($request->session()->get('couponValue') > 0) :
+            $coupon = $request->session()->get('coupon');
             DB::table('coupons')
-            ->where('code', $coupon)  // find coupon code
-            ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('status' => 'used','orders_id'=>$rs[0]->id,'updated_at'=>now()));  // update the record in the DB. 
+                ->where('code', $coupon)  // find coupon code
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update(array('status' => 'used', 'orders_id' => $rs[0]->id, 'updated_at' => now()));  // update the record in the DB. 
         endif;
         return redirect('/home')->with('orderSuccess', 'Order confirmed, Please wait for us to check.');
     }
     public function checkCoupon(Request $request)
     {
-        $coupon=$request->input('checkCoupon');
-        $query="select * from coupons where code='{$coupon}'";
-        $rs=DB::select($query);
-        if(!$rs):
-            return redirect('/cart')->with('msgFail','Coupon does not exists!');
+        $coupon = $request->input('checkCoupon');
+        $query = "select * from coupons where code='{$coupon}'";
+        $rs = DB::select($query);
+        if (!$rs) :
+            return redirect('/cart')->with('msgFail', 'Coupon does not exists!');
         endif;
-        if($rs[0]->status=='used'):
+        if ($rs[0]->status == 'used') :
             return redirect('/cart')->with('msgFail', 'Coupon is used!');
         endif;
-        if(strtotime(date("Y/m/d"))>strtotime($rs[0]->exp_date)):
+        if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
             return redirect('/cart')->with('msgFail', 'Coupon is expired!');
         endif;
-        if($rs):
-        session()->put('couponValue',$rs[0]->value);
-        return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
+        if ($rs) :
+            session()->put('couponValue', $rs[0]->value);
+            return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
-    public function orderHistory(Request $request,$filter)
+    public function orderHistory(Request $request, $filter)
     {
-        $userID=Auth::id();
-        session()->put('orders',null);
-        $sort=array("a","a");
-        if($filter!="a")
-        {
-            $sort=explode('+',$filter,2);
-            $orders=DB::table('orders')->where('users_id',$userID)->orderBy($sort[0],$sort[1])->get();
-        }
-        else $orders=DB::table('orders')->where('users_id',$userID)->get();
-        return view('orderHistory')->with('filter',$filter)->with('orders',$orders);
+        $userID = Auth::id();
+        session()->put('orders', null);
+        $sort = array("a", "a");
+        if ($filter != "a") {
+            $sort = explode('+', $filter, 2);
+            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
+        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
+        return view('orderHistory')->with('filter', $filter)->with('orders', $orders);
     }
-    public function orderDetail(Request $request,$id)
+    public function orderDetail(Request $request, $id)
     {
-        session()->put('orderDetails',null);
-        $orderDetail=DB::table('order_details')->where('orders_id',$id)->get();
-        if($orderDetail) session()->put('orderDetails',$orderDetail);
+        session()->put('orderDetails', null);
+        $orderDetail = DB::table('order_details')->where('orders_id', $id)->get();
+        if ($orderDetail) session()->put('orderDetails', $orderDetail);
         return view('orderDetail');
     }
-    public function orderCancel(Request $request,$id,$filter)
+    public function orderCancel(Request $request, $id, $filter)
     {
-        $userID=Auth::id();
+        $userID = Auth::id();
         DB::table('orders')
             ->where('id', $id)  // find coupon code
             ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('status' => 'Cancelled','updated_at'=>now()));  // update the record in the DB. 
-        session()->put('orders',null);
-        if($filter!="a")
-        {
-            $sort=explode('+',$filter,2);
-            $orders=DB::table('orders')->where('users_id',$userID)->orderBy($sort[0],$sort[1])->get();
-        }
-        else $orders=DB::table('orders')->where('users_id',$userID)->get();
-        return redirect("/orderHistory/$filter")->with('filter',$filter)->with('orders',$orders);
+            ->update(array('status' => 'Cancelled', 'updated_at' => now()));  // update the record in the DB. 
+        session()->put('orders', null);
+        if ($filter != "a") {
+            $sort = explode('+', $filter, 2);
+            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
+        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
+        return redirect("/orderHistory/$filter")->with('filter', $filter)->with('orders', $orders);
     }
-    public function reviewProduct(Request $request,$id)
+    public function reviewProduct(Request $request, $id)
     {
-        $reviewedProduct=Product::find($id);
-        session()->put('reviewedProduct',$reviewedProduct);
+        $reviewedProduct = Product::find($id);
+        session()->put('reviewedProduct', $reviewedProduct);
         return view('reviewProduct');
     }
     public function submitReview(Request $request)
     {
-        $userID=Auth::id();
+        $userID = Auth::id();
         $validated = $request->validate([
             'reviewRating' => 'required'
         ]);
-        $productID=session()->get('reviewedProduct')->id;
-        $content=$request->input('reviewContent');
-        $rating=$request->input('reviewRating');
+        $productID = session()->get('reviewedProduct')->id;
+        $content = $request->input('reviewContent');
+        $rating = $request->input('reviewRating');
         DB::table('feedbacks')->insert([
             'users_id' => $userID,
             'products_id' => $productID,
-            'rating'=>$rating,
-            'description'=>$content
+            'rating' => $rating,
+            'description' => $content
         ]);
         echo "<script>window.close();</script>";
     }
