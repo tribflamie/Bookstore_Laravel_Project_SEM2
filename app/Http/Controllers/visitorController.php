@@ -65,7 +65,8 @@ class visitorController extends Controller
     {
         $products = product::all();
         $categories = category::all();
-        return view('products', compact('products','categories'));
+        $paginate = new \Illuminate\Pagination\Paginator($products, 5);
+        return view('products', compact('products','categories','paginate'));
     }
 
     public function product($id)

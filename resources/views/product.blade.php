@@ -74,17 +74,11 @@
           </div>
           <div class="widget sidebar_widget widget_categories">
             <h4 class="widget-title">Categories</h4>
+            @foreach($categories as $cate)
             <ul>
-              <li> <a href="#">Men</a> </li>
-              <li> <a href="#">Women</a> </li>
-              <li> <a href="#">Accessories</a> </li>
-              <li> <a href="#">Clothing</a> </li>
-              <li> <a href="#">T-shirts</a> </li>
+              <li> <a href="{{ route('product', $cate->id) }}">{{ $cate->categories }}</a> </li>
             </ul>
-          </div>
-          <div class="widget sidebar_widget widget_tag_cloud">
-            <h4 class="widget-title">Tags</h4>
-            <div class="post-tags"> <a href="#">Dress</a> <a href="#">Fashion</a> <a href="#">T-Shirts</a> <a href="#">Pants</a> <a href="#">Suits</a> <a href="#">Casual</a> </div>
+            @endforeach
           </div>
         </div>
         <!--=== Right Side End ===-->
