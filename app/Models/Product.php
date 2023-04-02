@@ -9,13 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
-
-    protected $date = ['detelete_at'];
-
-    protected $fillable = [
-        'categories_id', 'name', 'author', 'country', 'published', 'sales', 'price', 'discount', 'photo', 'description', 'created_at', 'updated_at'
-    ];
+    use HasFactory;
 
     /**
      * The has Many Relationship

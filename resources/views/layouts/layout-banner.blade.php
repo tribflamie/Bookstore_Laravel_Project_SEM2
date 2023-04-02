@@ -160,7 +160,8 @@
 
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('edit.profile') }}">Edit Profile</a></li>
-                                <li><a href="#">Order History</a></li>
+                                <?php $filter='a';?>
+                                <li><a href="{{ route('orderHistory',$filter)}}">Order History</a></li>
                                 <li><a href="{{ route('feedbacks') }}">Feedbacks</a></li>
                                 <li><a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

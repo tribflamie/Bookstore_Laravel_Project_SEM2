@@ -68,7 +68,6 @@ return new class extends Migration
             $table->string("author", 150)->nullable(false);
             $table->string("country", 45)->nullable(false);
             $table->integer("published")->nullable(false);
-            $table->integer("sales")->nullable(false);
             $table->decimal("price", 4, 2)->nullable(false);
             $table->decimal("discount", 3, 2)->nullable(false)->default(1);
             $table->string("photo", 150)->nullable(false);
