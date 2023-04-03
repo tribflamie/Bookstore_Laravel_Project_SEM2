@@ -47,12 +47,7 @@
             <div class="col-md-12">
               <div class="clearfix">
                 <ul class="pagination">
-                  <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li class="active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                  {{ $products->links() }}
                 </ul>
               </div>
             </div>
@@ -61,28 +56,24 @@
         <!--=== Left Side End===-->
         <div class="col-md-3 col-md-offset-1">
           <div class="widget widget_about">
-            <h4 class="widget-title">About</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat.</p>
+            @foreach ($category as $cate)
+            <h4 class="widget-title" style="margin-bottom: 10px">About {{ $cate->categories }}</h4>
+            <p>{{ $cate->description }}</p>
+            @endforeach
           </div>
           <div class="widget sidebar_widget">
             <form class="search-form" method="get">
-              <input type="text" name="name" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
+              <input type="text" name="search" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
               <button type="submit" class="icofont icofont-search-1 search-submit"></button>
             </form>
           </div>
           <div class="widget sidebar_widget widget_categories">
             <h4 class="widget-title">Categories</h4>
+            @foreach($categories as $cate)
             <ul>
-              <li> <a href="#">Men</a> </li>
-              <li> <a href="#">Women</a> </li>
-              <li> <a href="#">Accessories</a> </li>
-              <li> <a href="#">Clothing</a> </li>
-              <li> <a href="#">T-shirts</a> </li>
+              <li> <a href="{{ route('product', $cate->id) }}">{{ $cate->categories }}</a> </li>
             </ul>
-          </div>
-          <div class="widget sidebar_widget widget_tag_cloud">
-            <h4 class="widget-title">Tags</h4>
-            <div class="post-tags"> <a href="#">Dress</a> <a href="#">Fashion</a> <a href="#">T-Shirts</a> <a href="#">Pants</a> <a href="#">Suits</a> <a href="#">Casual</a> </div>
+            @endforeach
           </div>
         </div>
         <!--=== Right Side End ===-->

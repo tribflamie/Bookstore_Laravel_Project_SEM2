@@ -34,23 +34,32 @@ class visitorController extends Controller
     {
         $topDiscount = Product::orderBy('discount', 'desc')->get();
         $products = Product::all();
+        $categories = category::all();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
         return view('home', compact('products', 'feedbacks', 'topDiscount'));
     }
     //every products
-    public function products()
-    {
-        $products = Product::all();
-        return view('products', compact('products'));
+    public function products(Request $request){
+        //Get the search value from the request
+        $search = $request->input('search');
+        //Search in the title and body columns from the posts table
+        $products = Product::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('author', 'LIKE', "%{$search}%")
+            ->paginate(8);
+        // Return the search view with the resluts compacted
+        $categories = category::all();
+        return view('products', compact('products','categories'));
     }
-    //products from a category
+
     public function product($id)
     {
-        $category = Category::where('id', $id)->get();
-        $products = Product::where('categories_id', $id)->get();
-        return view('product', compact('products', 'category'));
+        $products = Product::where('categories_id', $id)->paginate(8);
+        $category = category::where('id', $id)->get();
+        $categories = category::all();
+        return view('product', compact('products','category', 'categories'));
     }
     //show product details, feedbacks and replies on product-detail
     public function productDetail($id)

@@ -81,8 +81,7 @@
                                                         @if ($category->id == 6)
                                                         @break;
                                                     @else
-                                                        <li><a
-                                                                href="{{ route('product', $category->id) }}">{{ $category->categories }}</a>
+                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a>
                                                         </li>
                                                     @endif
                                                 @endforeach
@@ -93,22 +92,26 @@
                                     <div class="col-menu col-md-3">
                                         <div class="content">
                                             <ul class="menu-col">
-                                                <li><a href="#">Self-help</a></li>
-                                                <li><a href="#">Magic realism</a></li>
-                                                <li><a href="#">Novel</a></li>
-                                                <li><a href="#">Children's novel</a></li>
-                                                <li><a href="#">Historical novel</a></li>
+                                                @foreach ($categories as $category)
+                                                        @if($category->id >= 6)
+                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a></li>
+                                                        @if($category->id == 10) @break;
+                                                        @endif
+                                                        @endif
+                                                    @endforeach
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-menu col-md-3">
                                         <div class="content">
                                             <ul class="menu-col">
-                                                <li><a href="#">Sexology</a></li>
-                                                <li><a href="#">Young adult</a></li>
-                                                <li><a href="#">Science fiction</a></li>
-                                                <li><a href="#">Anthropology</a></li>
-                                                <li><a href="#">Psychology</a></li>
+                                                @foreach ($categories as $category)
+                                                        @if($category->id > 10)
+                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a></li>
+                                                        @if($category->id == 14) @break;
+                                                        @endif
+                                                        @endif
+                                                    @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -196,9 +199,7 @@
                         <div class="widget widget-text">
                             <div class="logo logo-footer"><a href="index.html"> <img class="logo logo-display"
                                         src="{{ asset('images/white-logo.png') }}" alt=""></a> </div>
-                            <p>Papyrus Limited captures meaningful moments, honor special relationships, express
-                                who
-                                you are and help you relive timeless memories, year after year.</p>
+                            <p>Papyrus works to connect readers with independent booksellers all over the world. We believe local bookstores are essential community hubs that foster culture, curiosity, and a love of reading, and we're committed to helping them thrive.</p>
                             <p>© All rights reserved.</p>
                         </div>
                     </div>
