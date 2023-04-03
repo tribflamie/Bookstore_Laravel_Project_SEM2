@@ -68,7 +68,7 @@
           </div>
           <div class="widget sidebar_widget">
             <form class="search-form" method="get">
-              <input type="text" name="name" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
+              <input type="text" name="search" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
               <button type="submit" class="icofont icofont-search-1 search-submit"></button>
             </form>
           </div>

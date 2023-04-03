@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $date = ['detelete_at'];
+    protected $date = ['delete_at'];
 
     protected $fillable = [
         'categories_id', 'name', 'author', 'country', 'published', 'sales', 'price', 'discount', 'photo', 'description', 'created_at', 'updated_at'

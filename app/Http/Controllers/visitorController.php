@@ -61,12 +61,17 @@ class visitorController extends Controller
         return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest', 'stars5', 'stars4', 'stars3', 'stars2', 'stars1'));
     }
     //show user-comments history
-    public function products()
-    {
-        $products = product::all();
+    public function products(Request $request){
+        //Get the search value from the request
+        $search = $request->input('search');
+        //Search in the title and body columns from the posts table
+        $products = Product::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('author', 'LIKE', "%{$search}%")
+            ->paginate(8);
+        // Return the search view with the resluts compacted
         $categories = category::all();
-        $paginate = new \Illuminate\Pagination\Paginator($products, 5);
-        return view('products', compact('products','categories','paginate'));
+        return view('products', compact('products','categories'));
     }
 
     public function product($id)

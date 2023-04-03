@@ -45,12 +45,7 @@
             <div class="col-md-12">
               <div class="clearfix">
                 <ul class="pagination">
-                  <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li class="active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                  {{ $products->links() }}
                 </ul>
               </div>
             </div>
@@ -63,8 +58,8 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat.</p>
           </div>
           <div class="widget sidebar_widget">
-            <form class="search-form" method="get">
-              <input type="text" name="name" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
+            <form class="search-form" action="{{ route('products') }}" method="get">
+              <input type="text" name="search" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
               <button type="submit" class="icofont icofont-search-1 search-submit"></button>
             </form>
           </div>
