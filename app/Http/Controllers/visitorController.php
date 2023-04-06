@@ -310,7 +310,7 @@ class visitorController extends Controller
     }
     public function orderControl(Request $request)
     {
-        $user=session()->get('user');
+        $user=Auth::getUser();
         if($user->phone==null)
         {
             $user->phone=$request->input('getPhone');
@@ -318,45 +318,42 @@ class visitorController extends Controller
             DB::table('users')
             ->where('id', $user->id)  // find coupon code
             ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('phone' => $user->phone));  // update the record in the DB. 
+            ->update(array('phone' => $user->phone,'updated_at'=>now()));  // update the record in the DB. 
         }
-        if($user->address==null)
+        if($user->location==null)
         {
-            $user->address=$request->input('getAddress');
+            $user->location=$request->input('getAddress');
             session()->put('user',$user);
             DB::table('users')
             ->where('id', $user->id)  // find coupon code
             ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('address' => $user->address));  // update the record in the DB. 
+            ->update(array('location' => $user->location,'updated_at'=>now()));  // update the record in the DB. 
         }
+        $validated = $request->validate([
+            'getPhone' => 'required',
+            'getAddress' => 'required',
+        ]);
         $cart =session()->get('cart');
         if($cart):
-        $count=0;$total=0;
-        $discount=session()->get('discount');
-        foreach($cart as $id=>$details):
-            $count++;
-            $total+=$details['price']*$details['quantity'];
-        endforeach;
-        $total*=(1-$discount);
         $id=Auth::id();
-        $query="insert into orders (users_id,total_quantity,total_price,status) values ({$id},{$count},{$total},'Processing')";
+        $query="insert into orders (users_id,status) values ({$id},'Processing')";
         DB::insert($query);
         
         unset($details);
         $rs=DB::select('select id from orders where id=(select max(id) from orders)');
         //insert into orderDetails
             foreach($cart as $id=>$details):
-                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_total) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']}*{$details['quantity']})";
+                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
                 DB::insert($query2);
             endforeach;
             session()->put('cart', null);
         endif;
-        if ($request->session()->get('couponValue') > 0) :
-            $coupon = $request->session()->get('coupon');
+        if($request->session()->get('couponValue')>0):
+            $coupon=$request->session()->get('coupon');
             DB::table('coupons')
-                ->where('code', $coupon)  // find coupon code
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('status' => 'used', 'orders_id' => $rs[0]->id, 'updated_at' => now()));  // update the record in the DB. 
+            ->where('code', $coupon)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('status' => 'used','orders_id'=>$rs[0]->id,'updated_at'=>now()));  // update the record in the DB. 
         endif;
         return redirect('/home')->with('orderSuccess', 'Order confirmed, Please wait for us to check.');
     }

@@ -139,77 +139,73 @@
             <div id="modalOne" class="modal form-login">
                 <div class="row">
                     <div class="col-sm-12 col-md-offset-2 col-md-8" style="padding-top: 20px">
-                        
-                        <form name="contact-form" class="contact-me" id="contact-form" action="/orderControl">
+                        <form class="contact-me" action="/orderControl" method="GET">
                             <?php
                             $user = session('user');
                             $cart = session('cart');
                             ?>
-                                        <div class="form-group">
-                                            <a class="close">&times;</a>
-                                            <h2>Confirm your purchase</h2>
-                                            <h3>Name</h3>
-                                            <input type="text" class="form-control" value="{{ $user->name }}"
-                                                readonly />
-                                            <div class="help-block with-errors mt-20">
-                                            </div>
-                                        </div>
-                                            <div class="form-group">
-                                                <h3>Phone (Required)</h3>
-                                                <?php if($user->phone!=null):?>
-                                                <input class="form-control" type="text" value="{{ $user->phone }}"
-                                                    readonly />
-                                                <div class="help-block with-errors mt-20"></div>
-                                                <?php else:?>
-                                                <input class="form-control" type="text" name="getPhone" />
-                                                <?php endif;?>
-                                            </div>
-                                            <div class="form-group">
-                                                <h3>Address (Required)</h3>
-                                                <?php if($user->location!=null):?>
-                                                <input class="form-control" type="text" value="{{ $user->location }}"
-                                                    readonly />
-                                                <div class="help-block with-errors mt-20"></div>
-                                                <?php else:?>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control" type="text" name="getAddress" />
-                                                <div class="help-block with-errors mt-20"></div>
-                                                <?php endif;?>
-                                            </div>
-                                            <h3 class="upper-case">Order summary:</h3>
-                                            <table class="table table-bordered shop-cart">
-                                        
-                                        @foreach ($cart as $item)
-                                            <tr>
-                                                <td rowspan="2"><img src="{{ asset($item['photo']) }}"
-                                                        class="cart-thumb" alt="" /></td>
-                                                <td>Name: {{ $item['name'] }} </td>
-                                                <td rowspan="2">Quantity: {{ $item['quantity'] }}</td>
-                                                <td rowspan="2">Unit price: {{ $item['price'] }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Author: {{ $item['author'] }}</td>
-                                            </tr>
-                                        @endforeach
-                                        </table>
-                                        <table class="table shop-cart" style="border=0px">
-                                            <tr>
-                                                <td>
-                                                    <h3>Total:</h3>
-                                                </td>
-                                                <td colspan="3"><span
-                                                        style="text-decoration: line-through;">${{ $subTotal }}</span>
-                                                    ({{ $discount * 100 }}% discount)<br><br><span
-                                                        style="color:red; font-weight:bold">
-                                                        ${{ $total }}</span></td>
-                                            </tr>
-                                        </table>
-                                        <button class="btn btn-color btn-block btn-animate" type="submit">Order</button>
-                                    </form>
+                            <div class="form-group">
+                                <a class="close">&times;</a>
+                                <h2>Confirm your purchase</h2>
+                                <h3>Name</h3>
+                                <input type="text" class="form-control" value="{{ $user->name }}" readonly />
+                                <div class="help-block with-errors mt-20">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <h3>Phone (Required)</h3>
+                                <?php if($user->phone!=null):?>
+                                <input class="form-control" type="text" value="{{ $user->phone }}" readonly />
+                                <div class="help-block with-errors mt-20"></div>
+                                <?php else:?>
+                                <input class="form-control" type="text" name="getPhone" />
+                                <?php endif;?>
+                            </div>
+                            <div class="form-group">
+                                <h3>Address (Required)</h3>
+                                <?php if($user->location!=null):?>
+                                <input class="form-control" type="text" value="{{ $user->location }}" readonly />
+                                <div class="help-block with-errors mt-20"></div>
+                                <?php else:?>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="getAddress" />
+                                <div class="help-block with-errors mt-20"></div>
+                                <?php endif;?>
+                            </div>
+                            <h3 class="upper-case">Order summary:</h3>
+                            <table class="table table-bordered shop-cart">
+
+                                @foreach ($cart as $item)
+                                    <tr>
+                                        <td rowspan="2"><img src="{{ asset($item['photo']) }}" class="cart-thumb"
+                                                alt="" /></td>
+                                        <td>Name: {{ $item['name'] }} </td>
+                                        <td rowspan="2">Quantity: {{ $item['quantity'] }}</td>
+                                        <td rowspan="2">Unit price: {{ $item['price'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Author: {{ $item['author'] }}</td>
+                                    </tr>
+                                @endforeach
+                                <table class="table shop-cart" style="border=0px">
+                                    <tr>
+                                        <td>
+                                            <h3>Total:</h3>
+                                        </td>
+                                        <td colspan="3"><span
+                                                style="text-decoration: line-through;">${{ $subTotal }}</span>
+                                            ({{ $discount * 100 }}% discount)<br><br><span
+                                                style="color:red; font-weight:bold">
+                                                ${{ $total }}</span></td>
+                                    </tr>
+                                </table>
+                            </table>
+                            <button type="submit" class="btn btn-color btn-block btn-animate">Order</button>
+                        </form>
+                    </div>
                 </div>
+            </div>
         @endif
         </div>
     </section>
