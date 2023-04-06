@@ -40,8 +40,10 @@ Route::get('review/{id}', [App\Http\Controllers\visitorController::class, 'revie
 Route::get('submitReview', [App\Http\Controllers\visitorController::class, 'submitReview'])->name('submitReview');
 
 //Routes Admin
-Route::get('admin/overview', [App\Http\Controllers\adminController::class, 'overview'])->name('admin.overview');
-Route::get('admin/user-tables', [App\Http\Controllers\adminController::class, 'userTables'])->name('admin.user-tables');
-Route::get('admin/product-tables', [App\Http\Controllers\adminController::class, 'productTables'])->name('admin.product-tables');
-Route::get('admin/oder-tables', [App\Http\Controllers\adminController::class, 'oderTables'])->name('admin.oder-tables');
-Route::get('admin/feedback-tables', [App\Http\Controllers\adminController::class, 'feedbackTables'])->name('admin.feedback-tables');
+Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function(){
+    Route::get('overview', [App\Http\Controllers\adminController::class, 'overview'])->name('admin.overview');
+    Route::get('user-tables', [App\Http\Controllers\adminController::class, 'userTables'])->name('admin.user-tables');
+    Route::get('product-tables', [App\Http\Controllers\adminController::class, 'productTables'])->name('admin.product-tables');
+    Route::get('oder-tables', [App\Http\Controllers\adminController::class, 'oderTables'])->name('admin.oder-tables');
+    Route::get('feedback-tables', [App\Http\Controllers\adminController::class, 'feedbackTables'])->name('admin.feedback-tables');
+});
