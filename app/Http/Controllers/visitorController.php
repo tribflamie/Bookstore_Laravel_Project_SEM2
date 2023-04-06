@@ -49,7 +49,7 @@ class visitorController extends Controller
             endif;
             return view('home', compact('products', 'categories', 'feedbacks','topDiscount','topRating','topNewest'));
     }
-    
+    //every products
     public function filter(Request $request,$search){
         // //Get the search value from the request
         // $search = $request->input('search');
