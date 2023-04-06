@@ -224,11 +224,12 @@ class visitorController extends Controller
     //user-feedbacks
     public function feedbacks()
     {
+        $categories = category::all();
         $user = Auth::user()->id;
         $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
             ->where('users_id', $user)
             ->get();
-        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks','categories'));
+        return view('feedbacks', compact('user', 'feedbacks','categories'));
     }
     //cart add, update and remove
     public function cart()
@@ -378,8 +379,59 @@ class visitorController extends Controller
             return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
-    public function getUserInfo(Request $request)
+    public function orderHistory(Request $request, $filter)
     {
-
+        $userID = Auth::id();
+        session()->put('orders', null);
+        $sort = array("a", "a");
+        if ($filter != "a") {
+            $sort = explode('+', $filter, 2);
+            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
+        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
+        return view('orderHistory')->with('filter', $filter)->with('orders', $orders);
+    }
+    public function orderDetail(Request $request, $id)
+    {
+        session()->put('orderDetails', null);
+        $orderDetail = DB::table('order_details')->where('orders_id', $id)->get();
+        if ($orderDetail) session()->put('orderDetails', $orderDetail);
+        return view('orderDetail');
+    }
+    public function orderCancel(Request $request, $id, $filter)
+    {
+        $userID = Auth::id();
+        DB::table('orders')
+            ->where('id', $id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('status' => 'Cancelled', 'updated_at' => now()));  // update the record in the DB. 
+        session()->put('orders', null);
+        if ($filter != "a") {
+            $sort = explode('+', $filter, 2);
+            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
+        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
+        return redirect("/orderHistory/$filter")->with('filter', $filter)->with('orders', $orders);
+    }
+    public function reviewProduct(Request $request, $id)
+    {
+        $reviewedProduct = Product::find($id);
+        session()->put('reviewedProduct', $reviewedProduct);
+        return view('reviewProduct');
+    }
+    public function submitReview(Request $request)
+    {
+        $userID = Auth::id();
+        $validated = $request->validate([
+            'reviewRating' => 'required'
+        ]);
+        $productID = session()->get('reviewedProduct')->id;
+        $content = $request->input('reviewContent');
+        $rating = $request->input('reviewRating');
+        DB::table('feedbacks')->insert([
+            'users_id' => $userID,
+            'products_id' => $productID,
+            'rating' => $rating,
+            'description' => $content
+        ]);
+        echo "<script>window.close();</script>";
     }
 }
