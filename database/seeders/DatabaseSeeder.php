@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Popular science',//13
             'description' => 'Popular science (also called pop-science or popsci) is an interpretation of science intended for a general audience. While science journalism focuses on recent scientific developments, popular science is more broad-ranging. It may be written by professional science journalists or by scientists themselves. It is presented in many forms, including books, film and television documentaries, magazine articles, and web pages.',
-            'photo'=>'images/categories/Popular science.jpg'
+            'photo'=>'images/categories/Popular_science.jpg'
         ]);
         DB::table('categories')->insert([
             'categories' => 'Detective fiction',//14
@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1859,
             'price' => 23,
             'discount' => 0.10,
-            'photo' => 'images/shop/A Tale of Two Cities.jpg',
+            'photo' => 'images/shop/A-Tale-of-Two-Cities.jpg',
             'description' => 'A Tale of Two Cities is a historical novel published in 1859 by Charles Dickens, set in London and Paris before and during the French Revolution. The novel tells the story of the French Doctor Manette, his 18-year-long imprisonment in the Bastille in Paris, and his release to live in London with his daughter Lucie whom he had never met. The story is set against the conditions that led up to the French Revolution and the Reign of Terror. In the Introduction to the Encyclopedia of Adventure Fiction, critic Don DAmmassa argues that it is an adventure novel because the protagonists are in constant danger of being imprisoned or killed.'
         ]);
         DB::table('products')->insert([
@@ -134,7 +134,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1937,
             'price' => 22,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Hobbit.jpg',
+            'photo' => 'images/shop/The-Hobbit.jpg',
             'description' => "The Hobbit, or There and Back Again is a children's fantasy novel by English author J. R. R. Tolkien. It was published in 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction. The book is recognized as a classic in children's literature, and is one of the best-selling books of all time with over 100 million copies sold."
         ]);
         DB::table('products')->insert([
@@ -145,7 +145,7 @@ class DatabaseSeeder extends Seeder
             'published' => 2003,
             'price' => 23,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Da Vinci Code.jpg',
+            'photo' => 'images/shop/The-Da-Vinci-Code.jpg',
             'description' => "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown. It is Brown's second novel to include the character Robert Langdon: the first was his 2000 novel Angels & Demons. The Da Vinci Code follows symbologist Robert Langdon and cryptologist Sophie Neveu after a murder in the Louvre Museum in Paris causes them to become involved in a battle between the Priory of Sion and Opus Dei over the possibility of Jesus Christ and Mary Magdalene having had a child together."
         ]);
         DB::table('products')->insert([
@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1951,
             'price' => 33,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Catcher in the Rye.jpg',
+            'photo' => 'images/shop/The-Catcher-in-the-Rye.jpg',
             'description' => "The Catcher in the Rye is an American novel by J. D. Salinger that was partially published in serial form 1945 to 1946 before being novelized in 1951. Originally intended for adults, it is often read by adolescents for its themes of angst and alienation, and as a critique of superficiality in society. The novel also deals with complex issues of innocence, identity, belonging, loss, connection, sex, and depression. The main character, Holden Caulfield, has become an icon for teenage rebellion. Caulfield, nearly of age, gives his opinion on a wide variety of topics as he narrates his recent life events."
         ]);
         DB::table('products')->insert([
@@ -167,7 +167,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1970,
             'price' => 27,
             'discount' => 0.10,
-            'photo' => 'images/shop/One Hundred Years of Solitude.jpg',
+            'photo' => 'images/shop/One-Hundred-Years-of-Solitude.jpg',
             'description' => "One Hundred Years of Solitude (Spanish: Cien años de soledad, American Spanish: [sjen 'aɲoz ðe sole'ðað]) is a 1967 novel by Colombian author Gabriel García Márquez that tells the multi-generational story of the Buendía family, whose patriarch, José Arcadio Buendía, founded the fictitious town of Macondo. The novel is often cited as one of the supreme achievements in world literature."
         ]);
         DB::table('products')->insert([
@@ -178,7 +178,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1960,
             'price' => 23,
             'discount' => 0.10,
-            'photo' => 'images/shop/To Kill a Mockingbird.jpg',
+            'photo' => 'images/shop/To-Kill-a-Mockingbird.jpg',
             'description' => "To Kill a Mockingbird is a novel by the American author Harper Lee. It was published in 1960 and was instantly successful. In the United States, it is widely read in high schools and middle schools. To Kill a Mockingbird has become a classic of modern American literature, winning the Pulitzer Prize. The plot and characters are loosely based on Lee's observations of her family, her neighbors and an event that occurred near her hometown of Monroeville, Alabama, in 1936, when she was ten."
         ]);
         DB::table('products')->insert([
@@ -200,7 +200,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1813,
             'price' => 25,
             'discount' => 0.10,
-            'photo' => 'images/shop/Pride and Prejudice.jpg',
+            'photo' => 'images/shop/Pride-and-Prejudice.jpg',
             'description' => "Pride and Prejudice is an 1813 novel of manners by Jane Austen. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness."
         ]);
         DB::table('products')->insert([
@@ -211,7 +211,7 @@ class DatabaseSeeder extends Seeder
             'published' => 2015,
             'price' => 55,
             'discount' => 0.10,
-            'photo' => 'images/shop/Excellent Sheep.jpg',
+            'photo' => 'images/shop/Excellent-Sheep.jpg',
             'description' => "Excellent Sheep: The Miseducation of the American Elite and the Way to a Meaningful Life is a 2015 book of social criticism on the role of elite colleges in American society written by William Deresiewicz and published by Free Press.Deresiewicz addresses the pressure of succeeding under which students are put by their parents and by society, considering more particularly the ones that are planning to attend Ivy League universities."
         ]);
         DB::table('products')->insert([
@@ -222,7 +222,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1994,
             'price' => 33,
             'discount' => 0.10,
-            'photo' => 'images/shop/The War of the Jewels.jpg',
+            'photo' => 'images/shop/The-War-of-the-Jewels.jpg',
             'description' => "The War of the Jewels (1994) is the 11th volume of Christopher Tolkien's series The History of Middle-earth, analysing the unpublished manuscripts of his father J. R. R. Tolkien. It is the second of two volumes—Morgoth's Ring being the first—to explore the later 1951 Silmarillion drafts (those written after the completion of The Lord of the Rings)."
         ]);
         DB::table('products')->insert([
@@ -233,7 +233,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1945,
             'price' => 39,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Little Prince.jpg',
+            'photo' => 'images/shop/The-Little-Prince.jpg',
             'description' => "The Little Prince (French: Le Petit Prince, pronounced [lə p(ə)ti pʁɛ̃s]) is a novella written and illustrated by French aristocrat, writer, and military pilot Antoine de Saint-Exupéry. It was first published in English and French in the United States by Reynal & Hitchcock in April 1943 and was published posthumously in France following liberation; Saint-Exupéry's works had been banned by the Vichy Regime. The story follows a young prince who visits various planets in space, including Earth, and addresses themes of loneliness, friendship, love, and loss. Despite its style as a children's book, The Little Prince makes observations about life, adults, and human nature."
         ]);
         DB::table('products')->insert([
@@ -244,7 +244,7 @@ class DatabaseSeeder extends Seeder
             'published' => 2019,
             'price' => 19,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Priory of the Orange Tree.jpg',
+            'photo' => 'images/shop/The-Priory-of-the-Orange-Tree.jpg',
             'description' => "The Priory of the Orange Tree is a 2019 fantasy novel by writer Samantha Shannon. The novel was published on 26 February 2019 by Bloomsbury Publishing. Shannon describes the novel as a 'feminist retelling of Saint George and the Dragon.'
 
             In April 2022, Shannon announced A Day of Fallen Night, a 'standalone prequel,' to The Priory of the Orange Tree. The novel was published on February 28, 2023 by Bloomsbury Publishing."
@@ -257,7 +257,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1925,
             'price' => 36,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Great Gatsby.jpg',
+            'photo' => 'images/shop/The-Great-Gatsby.jpg',
             'description' => "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.
 
             The novel was inspired by a youthful romance Fitzgerald had with socialite Ginevra King, and the riotous parties he attended on Long Island's North Shore in 1922. Following a move to the French Riviera, Fitzgerald completed a rough draft of the novel in 1924. He submitted it to editor Maxwell Perkins, who persuaded Fitzgerald to revise the work over the following winter. After making revisions, Fitzgerald was satisfied with the text, but remained ambivalent about the book's title and considered several alternatives. Painter Francis Cugat's cover art greatly impressed Fitzgerald, and he incorporated its imagery into the novel."
@@ -270,7 +270,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1996,
             'price' => 29,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Peoples of Middle-earth.jpg',
+            'photo' => 'images/shop/The-Peoples-of-Middle-earth.jpg',
             'description' => "The Peoples of Middle-earth (1996) is the 12th and final volume of The History of Middle-earth, edited by Christopher Tolkien from the unpublished manuscripts of his father J. R. R. Tolkien. Some characters (including Anairë, the wife of Fingolfin) only appear here, as do a few other works that did not fit anywhere else."
         ]);
         DB::table('products')->insert([
@@ -281,7 +281,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1996,
             'price' => 29,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Future of the Mind.jpg',
+            'photo' => 'images/shop/The-Future-of-the-Mind.jpg',
             'description' => "The Future of the Mind: The Scientific Quest to Understand, Enhance, and Empower the Mind is a popular science book by the futurist and physicist Michio Kaku. The book was initially published on February 25, 2014 by Doubleday.
 
             In 2015 the book was translated into Hebrew."
@@ -294,7 +294,7 @@ class DatabaseSeeder extends Seeder
             'published' => 2018,
             'price' => 35,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Fall Of Gondolin.jpg',
+            'photo' => 'images/shop/The-Fall-Of-Gondolin.jpg',
             'description' => "J. R. R. Tolkien's The Fall of Gondolin is one of the stories which formed the basis for a section in his posthumously-published work, The Silmarillion, with a version later appearing in The Book of Lost Tales. In the narrative, Gondolin was founded by King Turgon in the First Age; the city was carefully hidden, enduring for centuries before being betrayed and destroyed.
 
             A stand-alone, book-length version of the story edited by Christopher Tolkien was published in 2018. The Fall of Gondolin is one of three stories from the First Age of Middle-earth that was published as a stand-alone book: the other two are Beren and Lúthien and The Children of Húrin."
@@ -307,7 +307,7 @@ class DatabaseSeeder extends Seeder
             'published' => 1902,
             'price' => 45,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Hound of the Baskervilles.jpg',
+            'photo' => 'images/shop/The-Hound-of-the-Baskervilles.jpg',
             'description' => "The Hound of the Baskervilles is the third of the four crime novels by British writer Arthur Conan Doyle featuring the detective Sherlock Holmes. Originally serialised in The Strand Magazine from August 1901 to April 1902, it is set in 1889 largely on Dartmoor in Devon in England's West Country and tells the story of an attempted murder inspired by the legend of a fearsome, diabolical hound of supernatural origin. Holmes and Watson investigate the case. This was the first appearance of Holmes since his apparent death in 'The Final Problem', and the success of The Hound of the Baskervilles led to the character's eventual revival."
         ]);
         DB::table('products')->insert([
@@ -318,7 +318,7 @@ class DatabaseSeeder extends Seeder
             'published' => 2010,
             'price' => 57,
             'discount' => 0.10,
-            'photo' => 'images/shop/The Heroes of Olympus.jpg',
+            'photo' => 'images/shop/The-Heroes-of-Olympus.jpg',
             'description' => "The Heroes of Olympus is a pentalogy of fantasy-adventure novels written by American author Rick Riordan. The novels detail a conflict between Greek demigods, Roman demigods, and Gaia (Roman name Terra). In the fourth book of the series, there is also a semi-large fight against Tartarus, which, in Greek mythology, was the darkest and deepest point of the Underworld."
         ]);
         DB::table('users')->insert([
