@@ -15,5 +15,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
+Route::get('home', [App\Http\Controllers\visitorController::class, 'index'])->name('home');
+Route::get('cart', [App\Http\Controllers\visitorController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [App\Http\Controllers\visitorController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class, 'remove'])->name('remove.from.cart');
+Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
+Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
+Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
+Route::get('orderControl',[App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
+Route::get('checkCoupon',[App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
+Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');

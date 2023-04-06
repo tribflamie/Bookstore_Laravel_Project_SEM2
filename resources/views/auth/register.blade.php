@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout-no-footer')
 
 @section('content')
     <!--=== page-title-section start ===-->
@@ -7,10 +7,10 @@
             <div class="login v-align text-center">
                 <div class="signup-box">
                     <ul id="signup-tabs" class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#account">Create Account</a></li>
+                        <li class="active"><a data-toggle="tab" href="#account">Register</a></li>
                     </ul>
-                    <div id="account" class="tab-content">
-                        <div id="login" class="tab-pane fade in active">
+                    <div id="signup-content" class="tab-content">
+                        <div id="account" class="tab-pane fade in active">
                             <!--=== Form ===-->
                             <form method="post" action="{{ route('register') }}" class="form login_type text-center">
                                 @csrf
