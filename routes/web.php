@@ -27,7 +27,6 @@ Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
 Route::post('reply/{id}', [App\Http\Controllers\visitorController::class, 'storeReplies']);
 Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
-Route::get('products/{search}', [App\Http\Controllers\visitorController::class, 'filter'])->name('filter');
 Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
 Route::get('products/{search}', [App\Http\Controllers\visitorController::class, 'filter'])->name('filter');
 Route::get('orderControl', [App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');

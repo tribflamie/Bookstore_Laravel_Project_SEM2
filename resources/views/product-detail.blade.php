@@ -14,15 +14,6 @@
                         <ul class="slides">
                             <li data-thumb="{{ asset($product->photo) }}"> <img src="{{ asset($product->photo) }}"
                                     class="img-responsive" alt="single-product" /> </li>
-                            <li data-thumb="{{ asset('images/shop/single-product-02.jpg') }}"> <img
-                                    src="{{ asset('images/shop/single-product-02.jpg') }}" class="img-responsive"
-                                    alt="single-product" /> </li>
-                            <li data-thumb="{{ asset('images/shop/single-product-03.jpg') }}"> <img
-                                    src="{{ asset('images/shop/single-product-03.jpg') }}" class="img-responsive"
-                                    alt="single-product" /> </li>
-                            <li data-thumb="{{ asset('images/shop/single-product-04.jpg') }}"> <img
-                                    src="{{ asset('images/shop/single-product-04.jpg') }}" class="img-responsive"
-                                    alt="single-product" /> </li>
                         </ul>
                     </div>
                 </div>
@@ -57,21 +48,9 @@
                         <form>
                             <input type="number" step="1" min="1" name="quantity" value="1"
                                 title="Qty" class="input-text qty text" size="4">
-                            <span class="input-group-btn"><a href="#" class="btn btn-dark">ADD TO CART <i
+                            <span class="input-group-btn"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-dark">ADD TO CART <i
                                         class="icofont icofont-cart"></i></a></span>
                         </form>
-                    </div>
-                    <div class="product-fabric-detail">
-                        <h5>Product Fabric</h5>
-                        <p>100% Cotton Single jersey
-                            Prewashed to impart a softer texture</p>
-                        <h5>WashCare Instructions</h5>
-                        <p>Machine wash cold Do not bleach or wash with chlorine based detergent or water Wash/dry
-                            inside
-                            out Do not iron directly on prints Dry promptly in shade
-                            Dry on a flat surface as hanging may cause measurement variations Product color may vary
-                            little
-                            due to photography Wash with similar clothes.</p>
                     </div>
                 </div>
             </div>
@@ -622,14 +601,15 @@
                 </div>
             </div>
             <div class="row mt-50">
+                @foreach ($topNewest as $top)
                 <div class="col-md-3 col-sm-6">
                     <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-01.jpg') }}"
+                        <div class="product-wrap"> <img src="{{ asset($top->photo) }}"
                                 class="img-responsive" alt="team-01">
                             <div class="product-caption">
                                 <div class="product-description text-center">
                                     <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
+                                        <div class="product-title"> <a href="{{ route('add.to.cart', $top->id) }}"
                                                 class="btn btn-color btn-circle">ADD
                                                 TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
                                         </div>
@@ -638,75 +618,30 @@
                             </div>
                         </div>
                         <div class="product-detail">
-                            <h4>Jet Black/White Sports Trim</h4>
-                            <p>$85.99 <span class="old-price">$104.99</span></p>
+                            <a href="{{ route('productDetail', $top->id) }}">
+                                <h4>{{ $top->name }}</h4>
+                            </a>
+                            <h4 class="grey">
+                                <?php
+                                $count = 0;
+                                //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                                for ($count = 1; $count <= round($top->feedbacks->avg('rating')); $count++):
+                                    echo '<span class="fa fa-star checked"></span>';
+                                endfor;
+                                //xuất số sao đen còn lại
+                                for (; $count <= 5; $count++):
+                                    echo '<span class="fa fa-star"></span>';
+                                endfor;
+                                ?>
+                                <!--đếm số lượng feedbacks trong top-->
+                                ({{ count($top->feedbacks) }})
+                            </h4>
+                            <p>${{ $top->price - $top->price * $top->discount }} <span
+                                    class="old-price">${{ $top->price }}</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-02.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Jet Black/ T-shirt</h4>
-                            <p>$59.99 <span class="old-price">$79.99</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-03.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Navy Blue Plain</h4>
-                            <p>$59.99 <span class="old-price">$79.99</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img src="{{ asset('images/shop/product-04.jpg') }}"
-                                class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a href="#"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <h4>Just Let Me Sleep</h4>
-                            <p>$195.99 <span class="old-price">$230.99</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <!--=== Products End ======-->

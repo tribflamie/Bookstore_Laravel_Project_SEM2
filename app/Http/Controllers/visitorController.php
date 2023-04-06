@@ -39,7 +39,7 @@ class visitorController extends Controller
             ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
             ->take(10)
             ->get();
-        $topNewest = product::orderBy('created_at', 'desc')->take(8)->get();
+        $topNewest = product::orderBy('id', 'desc')->take(8)->get();
         $categories = Category::all();
         $products = Product::all();
         $feedbacks = Feedback::all();
@@ -168,12 +168,13 @@ class visitorController extends Controller
         $feedbacks = Feedback::all();
         $replies = Reply::all();
         $lastest = Feedback::orderBy('created_at', 'DESC')->get();
+        $topNewest = Product::where('products.categories_id', $product->categories_id)->take(4)->get();
         $stars5 = Feedback::where('rating', 5)->get();
         $stars4 = Feedback::where('rating', 4)->get();
         $stars3 = Feedback::where('rating', 3)->get();
         $stars2 = Feedback::where('rating', 2)->get();
         $stars1 = Feedback::where('rating', 1)->get();
-        return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest', 'stars5', 'stars4', 'stars3', 'stars2', 'stars1'));
+        return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest','topNewest', 'stars5', 'stars4', 'stars3', 'stars2', 'stars1'));
     }
     //insert and store in DATABASE
     public function storeReplies($id, Request $request)
