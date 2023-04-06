@@ -19,6 +19,18 @@
   <!--=== Products Start ======-->
   <section>
     <div class="container">
+      <form action="" method="GET">
+        <div class="toolbar-sorter">
+            <span>Sort By</span>
+            <select name="sorter" class="sorter-options" style="width:150px; " data-role="sorter">
+                <option selected="selected" value='date_asc'>Date: Old-New</option>
+                <option value='date_desc'> Date: New-Old</option>
+                <option value='price_asc'> Price: Low-High</option>
+                <option value='price_desc'> Price: High-Low</option>
+            </select>
+        </div>
+        <button type="submit">Filter</button>
+    </form>
       <div class="row">
         <div class="col-md-8">
         @foreach ($products as $product)
@@ -36,6 +48,21 @@
               <div class="product-detail">
                 <a href="{{ route('productDetail', $product->id) }}">
                     <h4>{{ $product->name }}</h4>
+                    <h5 class="grey">
+                      <?php
+                      $count = 0;
+                      //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                      for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
+                          echo '<span class="fa fa-star checked"></span>';
+                      endfor;
+                      //xuất số sao đen còn lại
+                      for (; $count <= 5; $count++):
+                          echo '<span class="fa fa-star"></span>';
+                      endfor;
+                      ?>
+                      <!--đếm số lượng feedbacks trong product-->
+                      ({{ count($product->feedbacks) }})
+                  </h5>
                 </a>
                 <p>${{ $product->price - $product->price * $product->discount }} <span
                         class="old-price">${{ $product->price }}</span></p>
@@ -62,7 +89,7 @@
             @endforeach
           </div>
           <div class="widget sidebar_widget">
-            <form class="search-form" method="get">
+            <form class="search-form" action="" method="get">
               <input type="text" name="search" class="form-control search-field" id="search" placeholder="Type what it's your mind...">
               <button type="submit" class="icofont icofont-search-1 search-submit"></button>
             </form>

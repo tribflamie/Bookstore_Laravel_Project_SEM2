@@ -13,7 +13,7 @@
                     <div class="hero-text-wrap">
                         <div class="hero-text white-color text-left">
                             <div class="container">
-                                <h3 class="white-color font-400 cardo-font">Celebrate Their Love</h3>
+                                <h3 class="white-color font-400 cardo-font">Explore The World</h3>
                                 <h2 class="white-color text-uppercase font-700">Flash Sale Of 80%</h1>
                                     <p class="text-left mt-30"><a class="btn btn-dark btn-circle">Shop Now</a></p>
                             </div>
@@ -23,7 +23,7 @@
                 <!--=== SLIDE 2 ===-->
                 <li>
                     <div class="slide-img"
-                        style="background:url({{ asset('images/background/home-banner.jpg') }}) center center / cover scroll no-repeat;">
+                        style="background:url({{ asset('images/background/home-banner0.jpg') }}) center center / cover scroll no-repeat;">
                     </div>
                     <div class="hero-text-wrap">
                         <div class="hero-text white-color text-left">
