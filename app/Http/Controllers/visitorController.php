@@ -32,33 +32,133 @@ class visitorController extends Controller
      */
     public function index()
     {
-        $topDiscount = Product::orderBy('discount', 'desc')->get();
+        $topDiscount = Product::orderBy('discount','desc')->get();
+        $topRating = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount', DB::raw("AVG(feedbacks.rating) AS ratings"))
+            ->join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
+            ->orderByRaw('AVG(feedbacks.rating) desc')
+            ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
+            ->take(10)
+            ->get();
+        $topNewest = product::orderBy('created_at', 'desc')->take(8)->get();
+        $categories = Category::all();
         $products = Product::all();
-        $categories = category::all();
         $feedbacks = Feedback::all();
-        $user = Auth::getUser();
-        session()->put('user', $user);
-        return view('home', compact('products', 'feedbacks', 'topDiscount'));
+        if(Auth::check()):
+            $user=Auth::getUser();
+            session()->put('user',$user);
+            endif;
+            return view('home', compact('products', 'categories', 'feedbacks','topDiscount','topRating','topNewest'));
     }
-    //every products
+    
+    public function filter(Request $request,$search){
+        // //Get the search value from the request
+        // $search = $request->input('search');
+        // //Search in the title and body columns from the posts table
+        // $products = Product::query()
+        //     ->where('name', 'LIKE', "%{$search}%")
+        //     ->orWhere('author', 'LIKE', "%{$search}%")
+        //     ->paginate(8);
+        // // Return the search view with the resluts compacted
+        $categories = category::all();
+        if ($request->has('sorter')){
+            switch($request->get('sorter')){
+                case 'date_asc':
+                    $products = Product::query()
+                    ->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('author', 'LIKE', "%{$search}%")
+                    ->orderBy('created_at', 'asc')
+                    ->paginate(8);
+                    break;
+                case 'date_desc':
+                    $products = Product::query()
+                    ->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('author', 'LIKE', "%{$search}%")
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(8);
+                    break;
+                case 'price_asc':
+                    $products = Product::query()
+                    ->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('author', 'LIKE', "%{$search}%")
+                    ->orderByRaw('price*discount asc')
+                    ->paginate(8);
+                    break;
+                case 'price_desc':
+                    $products = Product::query()
+                    ->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('author', 'LIKE', "%{$search}%")
+                    ->orderByRaw('price*discount desc')
+                    ->paginate(8);
+                    break;
+            }
+        } else {
+            $products = Product::query()
+             ->where('name', 'LIKE', "%{$search}%")
+             ->orWhere('author', 'LIKE', "%{$search}%")
+             ->paginate(8);
+        }
+        return view('products', compact('products','categories','search'));
+    }
     public function products(Request $request){
+        $categories = category::all();
         //Get the search value from the request
         $search = $request->input('search');
         //Search in the title and body columns from the posts table
-        $products = Product::query()
-            ->where('name', 'LIKE', "%{$search}%")
-            ->orWhere('author', 'LIKE', "%{$search}%")
-            ->paginate(8);
+        if ($request->has('sorter')){
+            switch($request->get('sorter')){
+                case 'date_asc':
+                    $products = Product::query()
+                    ->orderBy('created_at', 'asc')
+                    ->paginate(8);
+                    break;
+                case 'date_desc':
+                    $products = Product::query()
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(8);
+                    break;
+                case 'price_asc':
+                    $products = Product::query()
+                    ->orderByRaw('price*discount asc')
+                    ->paginate(8);
+                    break;
+                case 'price_desc':
+                    $products = Product::query()
+                    ->orderByRaw('price*discount desc')
+                    ->paginate(8);
+                    break;
+            }
+        } else {
+            $products = Product::query()
+             ->where('name', 'LIKE', "%{$search}%")
+             ->orWhere('author', 'LIKE', "%{$search}%")
+             ->paginate(8);
+        }
         // Return the search view with the resluts compacted
-        $categories = category::all();
-        return view('products', compact('products','categories'));
+        return view('products', compact('products','categories'))->with('search',$search);
     }
 
-    public function product($id)
+    public function product($id,Request $request)
     {
-        $products = Product::where('categories_id', $id)->paginate(8);
         $category = category::where('id', $id)->get();
         $categories = category::all();
+        if ($request->has('sorter')){
+            switch($request->get('sorter')){
+                case 'date_asc':
+                    $products = Product::where('categories_id', $id)->orderBy('created_at', 'asc')->paginate(8);
+                    break;
+                case 'date_desc':
+                    $products = Product::where('categories_id', $id)->orderBy('created_at', 'desc')->paginate(8);
+                    break;
+                case 'price_asc':
+                    $products = Product::where('categories_id', $id)->orderByRaw('price*discount asc')->paginate(8);
+                    break;
+                case 'price_desc':
+                    $products = Product::where('categories_id', $id)->orderBy('price*discount desc')->paginate(8);
+                    break;
+            }
+        } else {
+            $products = Product::where('categories_id', $id)->paginate(8);
+        }
         return view('product', compact('products','category', 'categories'));
     }
     //show product details, feedbacks and replies on product-detail
@@ -120,15 +220,14 @@ class visitorController extends Controller
 
     //show user-comments history
 
-    //user feedbacks and products
+    //user-feedbacks
     public function feedbacks()
     {
-        $categories = category::all();
         $user = Auth::user()->id;
         $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
             ->where('users_id', $user)
             ->get();
-        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks', 'categories'));
+        return view('feedbacks', compact('feedbacks', 'user', 'feedbacks','categories'));
     }
     //cart add, update and remove
     public function cart()
@@ -209,38 +308,43 @@ class visitorController extends Controller
     }
     public function orderControl(Request $request)
     {
-        $user = Auth::getUser();
-        if ($user->phone == null) {
-            $user->phone = $request->input('getPhone');
-            session()->put('user', $user);
+        $user=session()->get('user');
+        if($user->phone==null)
+        {
+            $user->phone=$request->input('getPhone');
+            session()->put('user',$user);
             DB::table('users')
-                ->where('id', $user->id)  // find coupon code
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('phone' => $user->phone, 'updated_at' => now()));  // update the record in the DB. 
+            ->where('id', $user->id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('phone' => $user->phone));  // update the record in the DB. 
         }
-        if ($user->location == null) {
-            $user->location = $request->input('getAddress');
-            session()->put('user', $user);
+        if($user->address==null)
+        {
+            $user->address=$request->input('getAddress');
+            session()->put('user',$user);
             DB::table('users')
-                ->where('id', $user->id)  // find coupon code
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('location' => $user->location, 'updated_at' => now()));  // update the record in the DB. 
+            ->where('id', $user->id)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('address' => $user->address));  // update the record in the DB. 
         }
-        // $validated = $request->validate([
-        //     'getPhone' => 'required',
-        //     'getAddress' => 'required',
-        // ]);
-        $cart = session()->get('cart');
-        if ($cart) :
-            $id = Auth::id();
-            $query = "insert into orders (users_id,status) values ({$id},'Processing')";
-            DB::insert($query);
-
-            unset($details);
-            $rs = DB::select('select id from orders where id=(select max(id) from orders)');
-            //insert into orderDetails
-            foreach ($cart as $id => $details) :
-                $query2 = "insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
+        $cart =session()->get('cart');
+        if($cart):
+        $count=0;$total=0;
+        $discount=session()->get('discount');
+        foreach($cart as $id=>$details):
+            $count++;
+            $total+=$details['price']*$details['quantity'];
+        endforeach;
+        $total*=(1-$discount);
+        $id=Auth::id();
+        $query="insert into orders (users_id,total_quantity,total_price,status) values ({$id},{$count},{$total},'Processing')";
+        DB::insert($query);
+        
+        unset($details);
+        $rs=DB::select('select id from orders where id=(select max(id) from orders)');
+        //insert into orderDetails
+            foreach($cart as $id=>$details):
+                $query2="insert into order_details (orders_id,products_id,unit_quantity,unit_total) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']}*{$details['quantity']})";
                 DB::insert($query2);
             endforeach;
             session()->put('cart', null);
@@ -273,59 +377,8 @@ class visitorController extends Controller
             return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
         endif;
     }
-    public function orderHistory(Request $request, $filter)
+    public function getUserInfo(Request $request)
     {
-        $userID = Auth::id();
-        session()->put('orders', null);
-        $sort = array("a", "a");
-        if ($filter != "a") {
-            $sort = explode('+', $filter, 2);
-            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
-        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
-        return view('orderHistory')->with('filter', $filter)->with('orders', $orders);
-    }
-    public function orderDetail(Request $request, $id)
-    {
-        session()->put('orderDetails', null);
-        $orderDetail = DB::table('order_details')->where('orders_id', $id)->get();
-        if ($orderDetail) session()->put('orderDetails', $orderDetail);
-        return view('orderDetail');
-    }
-    public function orderCancel(Request $request, $id, $filter)
-    {
-        $userID = Auth::id();
-        DB::table('orders')
-            ->where('id', $id)  // find coupon code
-            ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('status' => 'Cancelled', 'updated_at' => now()));  // update the record in the DB. 
-        session()->put('orders', null);
-        if ($filter != "a") {
-            $sort = explode('+', $filter, 2);
-            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
-        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
-        return redirect("/orderHistory/$filter")->with('filter', $filter)->with('orders', $orders);
-    }
-    public function reviewProduct(Request $request, $id)
-    {
-        $reviewedProduct = Product::find($id);
-        session()->put('reviewedProduct', $reviewedProduct);
-        return view('reviewProduct');
-    }
-    public function submitReview(Request $request)
-    {
-        $userID = Auth::id();
-        $validated = $request->validate([
-            'reviewRating' => 'required'
-        ]);
-        $productID = session()->get('reviewedProduct')->id;
-        $content = $request->input('reviewContent');
-        $rating = $request->input('reviewRating');
-        DB::table('feedbacks')->insert([
-            'users_id' => $userID,
-            'products_id' => $productID,
-            'rating' => $rating,
-            'description' => $content
-        ]);
-        echo "<script>window.close();</script>";
+
     }
 }

@@ -28,6 +28,7 @@ Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class
 Route::post('reply/{id}', [App\Http\Controllers\visitorController::class, 'storeReplies']);
 Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
 Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
+Route::get('products/{search}', [App\Http\Controllers\visitorController::class, 'filter'])->name('filter');
 Route::get('orderControl', [App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon', [App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');

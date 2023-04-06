@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Popular science',//13
             'description' => 'Popular science (also called pop-science or popsci) is an interpretation of science intended for a general audience. While science journalism focuses on recent scientific developments, popular science is more broad-ranging. It may be written by professional science journalists or by scientists themselves. It is presented in many forms, including books, film and television documentaries, magazine articles, and web pages.',
-            'photo'=>'images/categories/Popular science.jpg'
+            'photo'=>'images/categories/Popular_science.jpg'
         ]);
         DB::table('categories')->insert([
             'categories' => 'Detective fiction',//14
