@@ -3375,10 +3375,6 @@ ul.footer-gallery li img {
 /*=============================================
                 Contact Us Page
 =============================================*/
-
-.form-group {
-    margin-bottom: 30px;
-}
 .form-control {
     height: 60px;
     padding: 20px 30px;
@@ -4560,7 +4556,7 @@ ul.footer-gallery li img {
 
 .login-cover-bg {
 	background-image: url(../images/title-bg/title-hero-7.jpg);
-	height:100vh;
+	height:auto;
 }
 
 .coming-cover-bg {
@@ -6011,14 +6007,11 @@ p {
   font-weight: 400;
   color: #999;
 }
-input,
-textarea {
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #1c87c9;
-  outline: none;
+.remember-forgot{
+  display:flex;
+  justify-content: space-between;
 }
+
 .contact-form button {
   width: 100%;
   padding: 10px;

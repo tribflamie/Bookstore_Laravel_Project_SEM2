@@ -1,4 +1,4 @@
-@extends('layouts.layout-no-footer')
+@extends('layouts.layout-login')
 
 @section('content')
     <div class="container">

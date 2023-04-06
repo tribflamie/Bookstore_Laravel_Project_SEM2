@@ -1,4 +1,4 @@
-@extends('layouts.layout-no-footer')
+@extends('layouts.layout-login')
 
 @section('content')
     <!--=== page-title-section start ===-->
@@ -35,16 +35,25 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <!--=== Submit===-->
+                                <div class="remember-forgot mb-20">
+                                    <!--Remember Me Checkbox-->
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                    <!--Forgot Password-->
+                                    <a href="{{ route('password.request') }}">
+                                        {{ __('Forgot Password?') }}
+                                    </a>
+                                </div>
+                                <!-- Submit Form-->
                                 <button type="submit" class="btn btn-color btn-circle full-width">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}">
-                                        <h6 class="mt-20 gray-light">{{ __('FORGOT YOUR PASSWORD?') }}</h6>
-                                    </a>
-                                @endif
+                                <!--Register-->
+                                <a href="{{ route('register') }}">
+                                    <h5 class="mt-20 gray-light">Don't have an account? <strong>Register</strong></h5>
+                                </a>
                             </form>
                             <!--=== End Form ===-->
                         </div>

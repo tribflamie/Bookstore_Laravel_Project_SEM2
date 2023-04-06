@@ -2614,7 +2614,7 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-    margin: 4px 0 0;
+    margin: 3px 0 0;
     margin-top: 1px \9;
     line-height: normal;
 }
@@ -2744,7 +2744,7 @@ input[type="search"] {
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
     position: absolute;
-    margin-left: -20px;
+    margin-left: -40px;
     margin-top: 4px \9;
 }
 .radio + .radio,

@@ -1,4 +1,4 @@
-@extends('layouts.layout-no-footer')
+@extends('layouts.layout-login')
 
 @section('content')
     <!--=== page-title-section start ===-->
@@ -55,6 +55,9 @@
                                 </button>
                             </form>
                             <!--=== End Form ===-->
+                            <a href="{{ route('login') }}">
+                                <h5 class="mt-20 gray-light">You have an account? <strong>Login</strong></h5>
+                            </a>
                         </div>
                     </div>
                 </div>

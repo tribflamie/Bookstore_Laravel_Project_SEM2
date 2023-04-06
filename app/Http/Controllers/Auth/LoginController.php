@@ -30,6 +30,17 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected function authenticated()
+    {
+        if (Auth::check()) {
+            if (Auth::user()->id == 3) {
+                return redirect()->route('admin.overview');
+            } else {
+                return redirect()->route('home');
+            }
+        }
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -45,6 +56,6 @@ class LoginController extends Controller
         //logout and destroy session
         Auth::logout();
         $request->session()->flush();
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }
