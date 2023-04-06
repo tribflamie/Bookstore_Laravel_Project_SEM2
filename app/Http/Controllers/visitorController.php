@@ -21,7 +21,7 @@ class visitorController extends Controller
      */
 
     public function __construct()
-    {   
+    {
         $this->middleware('auth');
     }
 
@@ -34,21 +34,24 @@ class visitorController extends Controller
     {
         $topDiscount = Product::orderBy('discount', 'desc')->get();
         $products = Product::all();
-        $categories = category::all();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
-        $topRating = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount', DB::raw("AVG(feedbacks.rating) AS ratings"))
-            ->join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
-            ->orderByRaw('AVG(feedbacks.rating) desc')
-            ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
-            ->take(10)
-            ->get();
+        // $topRating = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount', DB::raw("AVG(feedbacks.rating) AS ratings"))
+        //     ->join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
+        //     ->orderByRaw('AVG(feedbacks.rating) desc')
+        //     ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
+        //     ->take(10)
+        //     ->get();
+        $topRating = Product::join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
+            $join->on('products.id', '=', 'r.products_id');
+        })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
         $topNewest = product::orderBy('created_at', 'desc')->take(8)->get();
-        return view('home', compact('products', 'categories', 'feedbacks', 'topDiscount', 'topRating','topNewest'));
+        return view('home', compact('products', 'feedbacks', 'topDiscount', 'topRating', 'topNewest'));
     }
     //every products
-    public function filter(Request $request,$search){
+    public function filter(Request $request, $search)
+    {
         // //Get the search value from the request
         // $search = $request->input('search');
         // //Search in the title and body columns from the posts table
@@ -58,89 +61,90 @@ class visitorController extends Controller
         //     ->paginate(8);
         // // Return the search view with the resluts compacted
         $categories = category::all();
-        if ($request->has('sorter')){
-            switch($request->get('sorter')){
+        if ($request->has('sorter')) {
+            switch ($request->get('sorter')) {
                 case 'date_asc':
                     $products = Product::query()
-                    ->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('author', 'LIKE', "%{$search}%")
-                    ->orderBy('created_at', 'asc')
-                    ->paginate(8);
+                        ->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('author', 'LIKE', "%{$search}%")
+                        ->orderBy('created_at', 'asc')
+                        ->paginate(8);
                     break;
                 case 'date_desc':
                     $products = Product::query()
-                    ->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('author', 'LIKE', "%{$search}%")
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(8);
+                        ->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('author', 'LIKE', "%{$search}%")
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(8);
                     break;
                 case 'price_asc':
                     $products = Product::query()
-                    ->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('author', 'LIKE', "%{$search}%")
-                    ->orderByRaw('price*discount asc')
-                    ->paginate(8);
+                        ->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('author', 'LIKE', "%{$search}%")
+                        ->orderByRaw('price*discount asc')
+                        ->paginate(8);
                     break;
                 case 'price_desc':
                     $products = Product::query()
-                    ->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('author', 'LIKE', "%{$search}%")
-                    ->orderByRaw('price*discount desc')
-                    ->paginate(8);
+                        ->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('author', 'LIKE', "%{$search}%")
+                        ->orderByRaw('price*discount desc')
+                        ->paginate(8);
                     break;
             }
         } else {
             $products = Product::query()
-             ->where('name', 'LIKE', "%{$search}%")
-             ->orWhere('author', 'LIKE', "%{$search}%")
-             ->paginate(8);
+                ->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('author', 'LIKE', "%{$search}%")
+                ->paginate(8);
         }
-        return view('products', compact('products','categories','search'));
+        return view('products', compact('products', 'categories', 'search'));
     }
-    public function products(Request $request){
+    public function products(Request $request)
+    {
         $categories = category::all();
         //Get the search value from the request
         $search = $request->input('search');
         //Search in the title and body columns from the posts table
-        if ($request->has('sorter')){
-            switch($request->get('sorter')){
+        if ($request->has('sorter')) {
+            switch ($request->get('sorter')) {
                 case 'date_asc':
                     $products = Product::query()
-                    ->orderBy('created_at', 'asc')
-                    ->paginate(8);
+                        ->orderBy('created_at', 'asc')
+                        ->paginate(8);
                     break;
                 case 'date_desc':
                     $products = Product::query()
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(8);
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(8);
                     break;
                 case 'price_asc':
                     $products = Product::query()
-                    ->orderByRaw('price*discount asc')
-                    ->paginate(8);
+                        ->orderByRaw('price*discount asc')
+                        ->paginate(8);
                     break;
                 case 'price_desc':
                     $products = Product::query()
-                    ->orderByRaw('price*discount desc')
-                    ->paginate(8);
+                        ->orderByRaw('price*discount desc')
+                        ->paginate(8);
                     break;
             }
         } else {
             $products = Product::query()
-             ->where('name', 'LIKE', "%{$search}%")
-             ->orWhere('author', 'LIKE', "%{$search}%")
-             ->paginate(8);
+                ->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('author', 'LIKE', "%{$search}%")
+                ->paginate(8);
         }
         // Return the search view with the resluts compacted
-        return view('products', compact('products','categories'))->with('search',$search);
+        return view('products', compact('products', 'categories'))->with('search', $search);
     }
 
-    public function product($id,Request $request)
+    public function product($id, Request $request)
     {
         $category = category::where('id', $id)->get();
         $categories = category::all();
-        if ($request->has('sorter')){
-            switch($request->get('sorter')){
+        if ($request->has('sorter')) {
+            switch ($request->get('sorter')) {
                 case 'date_asc':
                     $products = Product::where('categories_id', $id)->orderBy('created_at', 'asc')->paginate(8);
                     break;
@@ -157,7 +161,7 @@ class visitorController extends Controller
         } else {
             $products = Product::where('categories_id', $id)->paginate(8);
         }
-        return view('product', compact('products','category', 'categories'));
+        return view('product', compact('products', 'category', 'categories'));
     }
     //show product details, feedbacks and replies on product-detail
     public function productDetail($id)

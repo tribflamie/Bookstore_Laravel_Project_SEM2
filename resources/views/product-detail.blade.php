@@ -113,7 +113,6 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="comments">
                                 <ul class="media-list">
-                                    
                                     @foreach ($feedbacks as $feedback)
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
