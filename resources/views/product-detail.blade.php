@@ -96,7 +96,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/' . $feedback->user->photo) }}"
                                                         alt="profile">
                                                 </a>
@@ -128,11 +128,11 @@
                                                             <a class="pull-left" href="#">
                                                                
                                                                 @if (Auth::user()->photo == null)
-                                                                    <img class="media-object img-circle"
+                                                                    <img class="profile img-circle"
                                                                         src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                         alt="profile">
                                                                 @else
-                                                                    <img class="media-object img-circle"
+                                                                    <img class="profile img-circle"
                                                                         src="{{ asset('images/team/' . Auth::user()->photo) }}"
                                                                         alt="profile">
                                                                 @endif
@@ -156,7 +156,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/' . $reply->user->photo) }}"
                                                                             alt="profile">
                                                                     </a>
@@ -193,7 +193,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
                                                 </a>
                                                 <div class="media-body">
@@ -224,7 +224,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                             alt="profile">
                                                                     </a>
@@ -261,7 +261,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
                                                 </a>
                                                 <div class="media-body">
@@ -292,7 +292,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                             alt="profile">
                                                                     </a>
@@ -329,7 +329,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
                                                 </a>
                                                 <div class="media-body">
@@ -360,7 +360,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                             alt="profile">
                                                                     </a>
@@ -397,7 +397,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
                                                 </a>
                                                 <div class="media-body">
@@ -428,7 +428,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                             alt="profile">
                                                                     </a>
@@ -465,7 +465,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
                                                 </a>
                                                 <div class="media-body">
@@ -496,7 +496,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                             alt="profile">
                                                                     </a>
@@ -533,7 +533,7 @@
                                         @if ($feedback->products_id == $product->id)
                                             <li class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
+                                                    <img class="profile img-circle"
                                                         src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
                                                 </a>
                                                 <div class="media-body">
@@ -564,7 +564,7 @@
                                                             @if ($reply->feedbacks_id == $feedback->id)
                                                                 <li class="media media-replied">
                                                                     <a class="pull-left" href="#">
-                                                                        <img class="media-object img-circle"
+                                                                        <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
                                                                             alt="profile">
                                                                     </a>
