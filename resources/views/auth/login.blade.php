@@ -16,46 +16,46 @@
                                 @csrf
 
                                 <!--=== Username (Email) ===-->
-                                <input id="email" type="email" placeholder="Email" name="email"
-                                    class="form-control mb-20 @error('email') is-invalid @enderror"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="form-group">
+                                    <input id="email" type="email" placeholder="Email" name="email"
+                                        class="form-control mb-20 @error('email') is-invalid @enderror"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                                 <!--=== Password ===-->
-                                <input id="password" type="password" placeholder="Password"
-                                    class="form-control mb-20 @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="form-group">
+                                    <input id="password" type="password" placeholder="Password"
+                                        class="form-control mb-20 @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <!--=== Remember-Forgot ===-->
                                 <div class="remember-forgot mb-20">
-                                    <!--Remember Me Checkbox-->
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                         {{ __('Remember Me') }}
                                     </label>
-                                    <!--Forgot Password-->
                                     <a href="{{ route('password.request') }}">
-                                        {{ __('Forgot Password?') }}
+                                        <strong>{{ __('Forgot Password?') }}</strong>
                                     </a>
                                 </div>
-                                <!-- Submit Form-->
+                                <!--=== Submit ===-->
                                 <button type="submit" class="btn btn-color btn-circle full-width">
                                     {{ __('Login') }}
                                 </button>
-                                <!--Register-->
-                                <a href="{{ route('register') }}">
-                                    <h5 class="mt-20 gray-light">Don't have an account? <strong>Register</strong></h5>
-                                </a>
                             </form>
                             <!--=== End Form ===-->
+                            <a href="{{ route('register') }}">
+                                <h5 class="mt-20 gray-light">Don't have an account? <strong>Register</strong></h5>
+                            </a>
                         </div>
                     </div>
                 </div>

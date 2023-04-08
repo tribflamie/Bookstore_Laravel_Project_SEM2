@@ -16,40 +16,45 @@
                                 @csrf
 
                                 <!--=== Username ===-->
-                                <input id="name" type="text" placeholder="Username"
-                                    class="form-control mb-20 @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="form-group">
+                                    <input id="name" type="text" placeholder="Username"
+                                        class="form-control mb-20 @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                                 <!--=== Email ===-->
-                                <input id="email" type="email" placeholder="Email"
-                                    class="form-control mb-20 @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email">
+                                <div class="form-group">
+                                    <input id="email" type="email" placeholder="Email"
+                                        class="form-control mb-20 @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                                 <!--=== Password ===-->
-                                <input id="password" type="password" placeholder="Password"
-                                    class="form-control mb-20 @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
+                                <div class="form-group">
+                                    <input id="password" type="password" placeholder="Password"
+                                        class="form-control mb-20 @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                                 <!--=== Confirm Password ===-->
                                 <input id="password-confirm" type="password" class="form-control mb-20"
                                     placeholder="Confirm Password" name="password_confirmation" required
                                     autocomplete="new-password">
-                                <!--=== Submit===-->
+                                <!--=== Submit ===-->
                                 <button type="submit" class="btn btn-color btn-circle full-width">
                                     {{ __('Register') }}
                                 </button>
