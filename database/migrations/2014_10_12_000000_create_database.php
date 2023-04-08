@@ -83,7 +83,7 @@ return new class extends Migration
             $table->foreignId('users_id')->references('id')->on('users');
             $table->foreignId('products_id')->references('id')->on('products');
             $table->integer('rating')->nullable(false);
-            $table->text('description')->nullable(false);
+            $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
         });
         Schema::create('orders', function (Blueprint $table) {

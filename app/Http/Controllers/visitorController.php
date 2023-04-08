@@ -331,10 +331,6 @@ class visitorController extends Controller
             ->limit(1)  // optional - to ensure only one record is updated.
             ->update(array('location' => $user->location,'updated_at'=>now()));  // update the record in the DB. 
         }
-        $validated = $request->validate([
-            'getPhone' => 'required',
-            'getAddress' => 'required',
-        ]);
         $cart =session()->get('cart');
         if($cart):
         $id=Auth::id();
@@ -412,16 +408,14 @@ class visitorController extends Controller
     }
     public function reviewProduct(Request $request, $id)
     {
+        $userID = Auth::id();
         $reviewedProduct = Product::find($id);
         session()->put('reviewedProduct', $reviewedProduct);
-        return view('reviewProduct');
+        return view('reviewProduct')->with('userID',$userID);
     }
     public function submitReview(Request $request)
     {
-        $userID = Auth::id();
-        $validated = $request->validate([
-            'reviewRating' => 'required'
-        ]);
+        $userID = $request->session()->get('userID');
         $productID = session()->get('reviewedProduct')->id;
         $content = $request->input('reviewContent');
         $rating = $request->input('reviewRating');

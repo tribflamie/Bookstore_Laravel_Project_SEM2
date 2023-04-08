@@ -139,7 +139,7 @@
             <div id="modalOne" class="modal form-login">
                 <div class="row">
                     <div class="col-sm-12 col-md-offset-2 col-md-8" style="padding-top: 20px">
-                        <form class="contact-me" action="/orderControl" method="GET">
+                        <form name="checkout" class="contact-me" action="/orderControl" onsubmit="return validateForm()" method="GET">
                             <?php
                             $user = session('user');
                             $cart = session('cart');
@@ -153,18 +153,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h3>Phone (Required)</h3>
+                                <h3>Phone (Required)</h3><p id="textP"></p>
                                 <?php if($user->phone!=null):?>
-                                <input class="form-control" type="text" value="{{ $user->phone }}" readonly />
+                                <input class="form-control" type="text" value="{{ $user->phone }}" name="getPhone" readonly />
                                 <div class="help-block with-errors mt-20"></div>
                                 <?php else:?>
                                 <input class="form-control" type="text" name="getPhone" />
                                 <?php endif;?>
                             </div>
                             <div class="form-group">
-                                <h3>Address (Required)</h3>
+                                <h3>Address (Required)</h3><p id="textA"></p>
                                 <?php if($user->location!=null):?>
-                                <input class="form-control" type="text" value="{{ $user->location }}" readonly />
+                                <input class="form-control" type="text" value="{{ $user->location }}" name="getAddress" readonly />
                                 <div class="help-block with-errors mt-20"></div>
                                 <?php else:?>
                             </div>
@@ -234,7 +234,25 @@
                 event.target.style.display = "none";
             }
         };
-
+        function validateForm() {
+        let textPhone="";textAddress="";
+        let x = document.forms["checkout"]["getPhone"].value;
+        let y = document.forms["checkout"]["getAddress"].value;
+        let filter = /^(84|0[3|5|7|8|9])+([0-9]{8})$/;
+        if (!x.match(filter)) {
+            textPhone="Invalid phone number";
+        }
+        if (x == "") {
+            textPhone="Phone must be filled out";
+        }
+        if (y == "") {
+           textAddress ="Address must be filled out";
+        }
+        if(textPhone==""&&textAddress=="") return true;
+        document.getElementById("textP").innerHTML = textPhone;
+        document.getElementById("textA").innerHTML = textAddress;
+        return false;
+        }
         $(".update-cart").change(function(e) {
             e.preventDefault();
 
