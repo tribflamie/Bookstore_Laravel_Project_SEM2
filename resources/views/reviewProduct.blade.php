@@ -18,11 +18,12 @@
         <h1 style="text-align:center">Product review</h1>
             <div class="row">
                 <div class="col-md-12">
-                    <form action="/submitReview">
+                    <form name="rating" action="/submitReview" onsubmit="return validateForm()">
                     <div class="table-responsive">
                         <table class="table table-bordered shop-cart">
                             <tbody>
-                                <?php $product=session()->get('reviewedProduct');?>
+                                <?php $product=session()->get('reviewedProduct');
+                                        session()->put('userID',$userID);?>
                                 <tr>
                                     <td><img src="{{ asset($product->photo) }}"></td>
                                     <td colspan="2">Name: {{$product->name}}<br>Author:{{$product->author}}
@@ -32,6 +33,7 @@
                                     <td>Your rating:
                                     </td>
                                     <td name="rating">
+                                    <p id="ratingCheck"></p>
                                     <input class="star star-5" id="star-5" type="radio" name="reviewRating" value="5"/>
                                     <label class="star star-5" for="star-5"></label>
                                     <input class="star star-4" id="star-4" type="radio" name="reviewRating" value="4"/>
@@ -43,11 +45,11 @@
                                     <input class="star star-1" id="star-1" type="radio" name="reviewRating" value="1"/>
                                     <label class="star star-1" for="star-1"></label>
                                     </td>
-                                    <td><span class="ratingTxt"></span></td>
+                                    <td style="width:300px; border-left:none"><span class="ratingTxt"></span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Your comment<br>
-                                    <textarea rows="7" cols="3" name="reviewContent"></textarea>
+                                    <textarea rows="7" cols="100" name="reviewContent"></textarea>
                                 </td>
                                 </tr>
                                 <tr><td colspan="3"><button type="submit">Post your review</button></td></tr>
@@ -77,5 +79,16 @@
             $(".ratingTxt").text(result);
             });
         });
+        function validateForm() {
+        let textRating="";
+        let x=0;
+        x = document.forms["rating"]["reviewRating"].value;
+        if (x == 0) {
+            textRating="Please rate the product!";
+            document.getElementById("ratingCheck").innerHTML = textRating;
+            return false;
+        }
+        return true;
+        }
     </script>
 @endsection

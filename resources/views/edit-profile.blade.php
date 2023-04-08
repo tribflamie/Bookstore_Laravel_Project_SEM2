@@ -9,29 +9,37 @@
 
                     <!-- left column -->
                     <div class="col-md-3">
-                        <div class="text-center">
+                        <div class="form-group text-center">
                             @if ($data->photo == null)
-                                <img src="{{ asset('images/team/avatar-1.jpg') }}" class="avatar img-circle" alt="avatar">
+                                <img src="{{ asset('images/team/avatar-1.jpg') }}" class="profile img-circle" alt="profile">
                             @else
-                                <img src="{{ asset('images/team/' . $data->photo) }}" class="avatar img-circle"
-                                    alt="avatar">
+                                <img src="{{ asset('images/team/' . $data->photo) }}" class="profile img-circle"
+                                    alt="profile">
                             @endif
-                            <h6>Upload a different photo...</h6>
+                            <h5>Upload a different photo</h5>
 
                             <input type="file" class="form-control" name="photo">
                         </div>
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" name="current_password" placeholder="••••••••" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" name="password" placeholder="••••••••" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" name="password_confirmation" placeholder="••••••••" class="form-control">
+                        </div>
                     </div>
-
                     <!-- edit form column -->
                     <div class="col-md-9 personal-info">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-info alert-dismissable">
-                                <a class="panel-close close" data-dismiss="alert">×</a>
-                                <i class="fa fa-coffee"></i>
-                                {{ $message }}
-                            </div>
-                        @endif
-                        <h3>Edit Profile</h3>
+                        <div class="alert alert-info alert-dismissable">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <i class="fa fa-coffee"></i>
+                            {{ session('message') }}
+                        </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Username:</label>
                             <div class="col-lg-8">
