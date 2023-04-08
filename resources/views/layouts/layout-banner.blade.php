@@ -207,9 +207,9 @@
                         <div class="widget widget-links">
                             <h5 class="widget-title">Get to know us</h5>
                             <ul>
-                                <li><a href="#!about-us">About Us</a></li>
-                                <li><a href="#!shop-standard">Contact Us</a></li>
-                                <li><a href="#!faqs">Site Map</a></li>
+                                <li><a href="{{ route('about-us') }}">About Us</a></li>
+                                <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
+                                <li><a href="{{ route('site-map') }}">Site Map</a></li>
                             </ul>
                         </div>
                     </div>
@@ -217,9 +217,9 @@
                         <div class="widget widget-links">
                             <h5 class="widget-title">Let us help you</h5>
                             <ul>
-                                <li><a href="#!privacy">Privacy Policy</a></li>
-                                <li><a href="#!term-condition">Terms & Conditions</a></li>
-                                <li><a href="#!sitemap">FAQ</a></li>
+                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ route('term-condition') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ route('faqs') }}">FAQ</a></li>
                             </ul>
                         </div>
                     </div>
