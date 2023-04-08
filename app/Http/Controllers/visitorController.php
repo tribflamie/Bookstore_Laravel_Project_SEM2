@@ -347,4 +347,28 @@ class visitorController extends Controller
         ]);
         echo "<script>window.close();</script>";
     }
+    public function aboutUs()
+    {
+        return view('about-us');
+    }
+    public function contactUs()
+    {
+        return view('contact-us');
+    }
+    public function faqs()
+    {
+        return view('faqs');
+    }
+    public function term()
+    {
+        return view('term-condition');
+    }
+    public function privacy()
+    {
+        return view('privacy');
+    }
+    public function site()
+    {
+        return view('site-map');
+    }
 }

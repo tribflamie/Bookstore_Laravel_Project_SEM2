@@ -37,6 +37,13 @@ Route::get('orderDetail/{id}', [App\Http\Controllers\visitorController::class, '
 Route::get('orderCancel/{id}/{filter}', [App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
 Route::get('review/{id}', [App\Http\Controllers\visitorController::class, 'reviewProduct'])->name('reviewProduct');
 Route::get('submitReview', [App\Http\Controllers\visitorController::class, 'submitReview'])->name('submitReview');
+Route::get('about-us', [App\Http\Controllers\visitorController::class, 'aboutUs'])->name('about-us');
+Route::get('contact-us', [App\Http\Controllers\visitorController::class, 'contactUs'])->name('contact-us');
+Route::get('faqs', [App\Http\Controllers\visitorController::class, 'faqs'])->name('faqs');
+Route::get('term-condition', [App\Http\Controllers\visitorController::class, 'term'])->name('term-condition');
+Route::get('privacy', [App\Http\Controllers\visitorController::class, 'privacy'])->name('privacy');
+Route::get('site-map', [App\Http\Controllers\visitorController::class, 'site'])->name('site-map');
+
 
 //Routes Admin
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
