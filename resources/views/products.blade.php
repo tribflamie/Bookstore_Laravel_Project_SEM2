@@ -122,9 +122,9 @@
                     </div>
                     <div class="widget sidebar_widget widget_categories">
                         <h4 class="widget-title">Categories</h4>
-                        @foreach ($categories as $cate)
+                        @foreach ($categories as $category)
                             <ul>
-                                <li> <a href="{{ route('product', $cate->id) }}">{{ $cate->categories }}</a> </li>
+                                <li> <a href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a> </li>
                             </ul>
                         @endforeach
                     </div>

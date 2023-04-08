@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table id="datatables" class="table table-striped table-bordered table-sm shop-cart">
+                        <table class="table table-striped table-bordered table-sm shop-cart">
                             <thead>
                                 <tr>
                                     <th class="th-sm">Item</th>
@@ -50,6 +50,7 @@
                                         <td><a href="#">{{ $feedback->created_at }}</a></td>
                                     </tr>
                                 @endforeach
+                                {{ $feedbacks->links() }}
                             </tbody>
                         </table>
                     </div>

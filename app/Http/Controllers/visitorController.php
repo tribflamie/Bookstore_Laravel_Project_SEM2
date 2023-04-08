@@ -152,7 +152,7 @@ class visitorController extends Controller
         $user = Auth::user()->id;
         $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
             ->where('users_id', $user)
-            ->get();
+            ->paginate(5);
         return view('feedbacks', compact('user', 'feedbacks', 'categories'));
     }
     //cart add, update and remove
