@@ -2,105 +2,136 @@
 @section('title', 'Products - The best selling individual books')
 @section('content')
     <!--=== page-title-section start ===-->
-  <section class="title-hero-bg shop-cover-bg" data-stellar-background-ratio="0.2">
-    <div class="container">
-        <div class="slide-img"
-        style="background:url({{ asset('images/background/home-banner10.jpg') }}) center center / cover scroll no-repeat;">
+    <section class="title-hero-bg shop-cover-bg" data-stellar-background-ratio="0.2">
+        <div class="container">
+            <div class="slide-img"
+                style="background:url({{ asset('images/background/home-banner10.jpg') }}) center center / cover scroll no-repeat;">
+            </div>
+            <div class="page-title text-center">
+                <h1>Shop Standard</h1>
+            </div>
         </div>
-      <div class="page-title text-center">
-        <h1>Shop Standard</h1>
-      </div>
-    </div>
-  </section>
-  <!--=== page-title-section end ===-->
-  
-  <!--=== Products Start ======-->
-  <section>
-    <div class="container">
-      <form action="products/{{ $search }}">
-        <div class="toolbar-sorter">
-            <select name="sorter" class="sorter-options" style="width:150px; " data-role="sorter">
-                <option selected="selected" value='date_asc'>Date: Old-New</option>
-                <option value='date_desc'> Date: New-Old</option>
-                <option value='price_asc'> Price: Low-High</option>
-                <option value='price_desc'> Price: High-Low</option>
-            </select>
-        </div>
-        <button type="submit">Filter</button>
-    </form>
-      <div class="row">
-        <div class="col-md-8">
-        @foreach ($products as $product)
-          <div class="col-md-6 col-sm-6">
-            <div class="product">
-              <div class="product-wrap"> <img src="{{ asset($product->photo) }}" class="img-responsive" alt="team-01">
-                <div class="product-caption">
-                  <div class="product-description text-center">
-                    <div class="product-description-wrap">
-                      <div class="product-title"> <a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a> </div>
-                    </div>
-                  </div>
+    </section>
+    <!--=== page-title-section end ===-->
+
+    <!--=== Products Start ======-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <!--=== Form Start ===-->
+                    <form action="" method="GET">
+                        <div class="form-group">
+                            <!--=== Sort ===-->
+                            <select name="sort">
+                                <option value="">Sort</option>
+                                <option value="lastest">Latest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="a-z">Product Name: A to Z</option>
+                                <option value="z-a">Product Name: Z to A</option>
+                                <option value="highest">Price: Highest First</option>
+                                <option value="lowest">Price: Lowest First</option>
+                            </select>
+                            <!--=== Categories ===-->
+                            <select name="categories">
+                                <option value="">Categories</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->categories }}</option>
+                                @endforeach
+                            </select>
+                            <!--=== Countries ===-->
+                            <select name="countries">
+                                <option value="">Countries</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->country }}">{{ $product->country }}</option>
+                                @endforeach
+                            </select>
+                            <!--=== Published ===-->
+                            <select name="published">
+                                <option value="">Years</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->published }}">{{ $product->published }}</option>
+                                @endforeach
+                            </select>
+                            <!--=== Submit ===-->
+                            <button type="submit">Filtered</button>
+                        </div>
+                    </form>
+                    <!--=== End Form. ===-->
+
+                    <!--=== Product Start ===-->
+                    @foreach ($filter as $product)
+                        <div class="col-md-6 col-sm-6">
+                            <div class="product">
+                                <div class="product-wrap"> <img src="{{ asset($product->photo) }}" class="img-responsive"
+                                        alt="team-01">
+                                    <div class="product-caption">
+                                        <div class="product-description text-center">
+                                            <div class="product-description-wrap">
+                                                <div class="product-title"> <a
+                                                        href="{{ route('add.to.cart', $product->id) }}"
+                                                        class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                                class="mdi mdi-cart"></i></span></a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-detail">
+                                    <a href="{{ route('productDetail', $product->id) }}">
+                                        <h4>{{ $product->name }}</h4>
+                                        <h5 class="grey">
+                                            <?php
+                                            $count = 0;
+                                            //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                                            for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
+                                                echo '<span class="fa fa-star checked"></span>';
+                                            endfor;
+                                            //xuất số sao đen còn lại
+                                            for (; $count <= 5; $count++):
+                                                echo '<span class="fa fa-star"></span>';
+                                            endfor;
+                                            ?>
+                                            <!--đếm số lượng feedbacks trong product-->
+                                            ({{ count($product->feedbacks) }})
+                                        </h5>
+                                    </a>
+                                    <p>${{ $product->price - $product->price * $product->discount }} <span
+                                            class="old-price">${{ $product->price }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    {{ $filter->links() }}
                 </div>
-              </div>
-              <div class="product-detail">
-                <a href="{{ route('productDetail', $product->id) }}">
-                    <h4>{{ $product->name }}</h4>
-                    <h5 class="grey">
-                      <?php
-                      $count = 0;
-                      //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
-                      for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
-                          echo '<span class="fa fa-star checked"></span>';
-                      endfor;
-                      //xuất số sao đen còn lại
-                      for (; $count <= 5; $count++):
-                          echo '<span class="fa fa-star"></span>';
-                      endfor;
-                      ?>
-                      <!--đếm số lượng feedbacks trong product-->
-                      ({{ count($product->feedbacks) }})
-                  </h5>
-                </a>
-                <p>${{ $product->price - $product->price * $product->discount }} <span
-                        class="old-price">${{ $product->price }}</span></p>
-              </div>
+                <!--=== Product End ===-->
+
+                <!--=== Left Side End===-->
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="widget widget_about">
+                        <h4 class="widget-title" style="margin-bottom: 10px">About Us</h4>
+                        <p>Papyrus works to connect readers with independent booksellers all over the world. We believe
+                            local bookstores are essential community hubs that foster culture, curiosity, and a love of
+                            reading, and we're committed to helping them thrive.</p>
+                    </div>
+                    <div class="widget sidebar_widget">
+                        <form class="search-form">
+                            <input type="text" name="search" class="form-control search-field"
+                                placeholder="Name and Author">
+                            <button type="submit" class="icofont icofont-search-1 search-submit"></button>
+                        </form>
+                    </div>
+                    <div class="widget sidebar_widget widget_categories">
+                        <h4 class="widget-title">Categories</h4>
+                        @foreach ($categories as $category)
+                            <ul>
+                                <li> <a href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a> </li>
+                            </ul>
+                        @endforeach
+                    </div>
+                </div>
+                <!--=== Right Side End ===-->
             </div>
-          </div>
-          @endforeach
-          <div class="row">
-            <div class="col-md-12">
-              <div class="clearfix">
-                <ul class="pagination">
-                  {{ $products->links() }}
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
-        <!--=== Left Side End===-->
-        <div class="col-md-3 col-md-offset-1">
-          <div class="widget widget_about">
-            <h4 class="widget-title" style="margin-bottom: 10px">About Us</h4>
-            <p>Papyrus works to connect readers with independent booksellers all over the world. We believe local bookstores are essential community hubs that foster culture, curiosity, and a love of reading, and we're committed to helping them thrive.</p>
-          </div>
-          <div class="widget sidebar_widget">
-            <form class="search-form" >
-              <input type="text" name="search" class="form-control search-field" id="search" value="{{ $search }}" placeholder="Type what it's your mind...">
-              <button type="submit" class="icofont icofont-search-1 search-submit"></button>
-            </form>
-          </div>
-          <div class="widget sidebar_widget widget_categories">
-            <h4 class="widget-title">Categories</h4>
-            @foreach($categories as $cate)
-            <ul>
-              <li> <a href="{{ route('product', $cate->id) }}">{{ $cate->categories }}</a> </li>
-            </ul>
-            @endforeach
-          </div>
-        </div>
-        <!--=== Right Side End ===-->
-      </div>
-    </div>
-  </section>
-  <!--=== Products End ======-->
+    </section>
+    <!--=== Products End ======-->
 @endsection

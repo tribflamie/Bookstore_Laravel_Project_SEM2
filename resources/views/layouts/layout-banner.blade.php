@@ -67,7 +67,7 @@
                         </li>
                         <li>
                             <a href="{{ route('products') }}" class="dropdown-toggle"
-                                data-toggle="dropdown">Bookstore</a>
+                                data-toggle="dropdown">Products</a>
                         </li>
                         <li class="dropdown megamenu-fw"> <a href="index.html" class="dropdown-toggle"
                                 data-toggle="dropdown">Categories</a>
@@ -81,7 +81,8 @@
                                                         @if ($category->id == 6)
                                                         @break;
                                                     @else
-                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a>
+                                                        <li><a
+                                                                href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
                                                         </li>
                                                     @endif
                                                 @endforeach
@@ -93,102 +94,119 @@
                                         <div class="content">
                                             <ul class="menu-col">
                                                 @foreach ($categories as $category)
-                                                        @if($category->id >= 6)
-                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a></li>
-                                                        @if($category->id == 10) @break;
-                                                        @endif
-                                                        @endif
-                                                    @endforeach
-                                            </ul>
-                                        </div>
+                                                    @if ($category->id >= 6)
+                                                        <li><a
+                                                                href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
+                                                        </li>
+                                                        @if ($category->id == 10)
+                                                        @break;
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                    <div class="col-menu col-md-3">
-                                        <div class="content">
-                                            <ul class="menu-col">
-                                                @foreach ($categories as $category)
-                                                        @if($category->id > 10)
-                                                        <li><a href="{{ route('product', $category->id) }}">{{ $category->categories }}</a></li>
-                                                        @if($category->id == 14) @break;
-                                                        @endif
-                                                        @endif
-                                                    @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--=== end col-3 ===-->
                                 </div>
-                                <!--=== end row ===-->
-                            </li>
-                        </ul>
+                                <div class="col-menu col-md-3">
+                                    <div class="content">
+                                        <ul class="menu-col">
+                                            @foreach ($categories as $category)
+                                                @if ($category->id > 10)
+                                                    <li><a
+                                                            href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
+                                                    </li>
+                                                    @if ($category->id == 14)
+                                                    @break;
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--=== end col-3 ===-->
+                        </div>
+                        <!--=== end row ===-->
                     </li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle"
-                            data-toggle="dropdown">Country</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">English</a></li>
-                            <li><a href="#">Spanish</a></li>
-                            <li><a href="#">Chinese</a></li>
-                            <li><a href="#">French</a></li>
-                            <li><a href="#">See More</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle"
-                            data-toggle="dropdown">Published</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">1791</a></li>
-                            <li><a href="#">1859</a></li>
-                            <li><a href="#">1937</a></li>
-                            <li><a href="#">1939</a></li>
-                            <li><a href="#">See More</a></li>
-                        </ul>
-                    </li>
-                    <!-- Authentication Links -->
-                    @guest
-                        @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="dropdown">
-                            <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('edit.profile') }}">Edit Profile</a></li>
-                                <?php $filter='a';?>
-                                <li><a href="{{ route('orderHistory',$filter)}}">Order History</a></li>
-                                <li><a href="{{ route('feedbacks') }}">Feedbacks</a></li>
-                                <li><a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a></li>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
-                            </ul>
-                        </li>
-                    @endguest
                 </ul>
-            </div>
-            <!--=== /.navbar-collapse ===-->
-        </div>
-    </nav>
-    <!--=== Header End ======-->
+            </li>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle"
+                    data-toggle="dropdown">Country</a>
+                <ul class="dropdown-menu">
+                    <li><a
+                            href="{{ url('products?sort=&categories=&countries=United+Kingdom&published=') }}">United
+                            Kingdom</a></li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=Australia&published=') }}">Australia</a>
+                    </li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=France&published=') }}">France</a>
+                    </li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=Russia&published=') }}">Russia</a>
+                    </li>
+                    <li><a href="{{ route('products') }}">More</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle"
+                    data-toggle="dropdown">Published</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">1791</a></li>
+                    <li><a href="#">1859</a></li>
+                    <li><a href="#">1937</a></li>
+                    <li><a href="#">1939</a></li>
+                    <li><a href="{{ route('products') }}">More</a></li>
+                </ul>
+            </li>
+            <!-- Authentication Links -->
+            @guest
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                @endif
 
-    <!--=== Section Start ======-->
-    <div>@yield('content')</div>
-    <!--=== Section End ======-->
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="dropdown">
+                    <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('edit.profile') }}">Edit Profile</a></li>
+                        <?php $filter = 'a'; ?>
+                        <li><a href="{{ route('orderHistory', $filter) }}">Order History</a></li>
+                        <li><a href="{{ route('feedbacks') }}">Feedbacks</a></li>
+                        @if (Auth::user()->role == 'admin')
+                            <li><a href="{{ route('admin.overview') }}">Administration</a></li>
+                        @endif
+                        <li><a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a></li>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            class="d-none">
+                            @csrf
+                        </form>
+                    </ul>
+                </li>
+            @endguest
+        </ul>
+    </div>
+    <!--=== /.navbar-collapse ===-->
+</div>
+</nav>
+<!--=== Header End ======-->
+
+<!--=== Section Start ======-->
+<div>@yield('content')</div>
+<!--=== Section End ======-->
 
     <!--=== Footer Start ======-->
     <footer class="footer" id="footer-fixed">
@@ -242,9 +260,9 @@
     </footer>
     <!--=== Footer End ======-->
 
-    <!--=== GO TO TOP  ===-->
-    <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
-    <!--=== GO TO TOP End ===-->
+<!--=== GO TO TOP  ===-->
+<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+<!--=== GO TO TOP End ===-->
 
 </div>
 <!--=== Wrapper End ======-->
