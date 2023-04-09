@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use App\Models\Category;
+use App\Models\Product;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,9 +22,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //Khởi tạo thân trang 
+        Paginator::useBootstrap();
+        //Khởi tạo biến public
         view()->composer('*', function ($view) {
             $categories = Category::all();
-            $view->with('categories', $categories);
+            $products = Product::all();
+            $view->with('categories', $categories)->with('products', $products);
         });
     }
 }

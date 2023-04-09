@@ -27,9 +27,7 @@ Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
 Route::post('reply/{id}', [App\Http\Controllers\visitorController::class, 'storeReplies']);
 Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
-Route::get('product/{id}', [App\Http\Controllers\visitorController::class, 'product'])->name('product');
-Route::get('products/{search}', [App\Http\Controllers\visitorController::class, 'filter'])->name('filter');
-Route::get('/orderControl', [App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
+Route::get('orderControl', [App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon', [App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');
 Route::get('edit-profile', [App\Http\Controllers\VisitorController::class, 'editProfile'])->name('edit.profile');
@@ -39,9 +37,16 @@ Route::get('orderDetail/{id}', [App\Http\Controllers\visitorController::class, '
 Route::get('orderCancel/{id}/{filter}', [App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
 Route::get('review/{id}', [App\Http\Controllers\visitorController::class, 'reviewProduct'])->name('reviewProduct');
 Route::get('submitReview', [App\Http\Controllers\visitorController::class, 'submitReview'])->name('submitReview');
+Route::get('about-us', [App\Http\Controllers\visitorController::class, 'aboutUs'])->name('about-us');
+Route::get('contact-us', [App\Http\Controllers\visitorController::class, 'contactUs'])->name('contact-us');
+Route::get('faqs', [App\Http\Controllers\visitorController::class, 'faqs'])->name('faqs');
+Route::get('term-condition', [App\Http\Controllers\visitorController::class, 'term'])->name('term-condition');
+Route::get('privacy', [App\Http\Controllers\visitorController::class, 'privacy'])->name('privacy');
+Route::get('site-map', [App\Http\Controllers\visitorController::class, 'site'])->name('site-map');
+
 
 //Routes Admin
-Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function(){
+Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('overview', [App\Http\Controllers\adminController::class, 'overview'])->name('admin.overview');
     Route::get('user-tables', [App\Http\Controllers\adminController::class, 'userTables'])->name('admin.user-tables');
     Route::get('product-tables', [App\Http\Controllers\adminController::class, 'productTables'])->name('admin.product-tables');
