@@ -20,62 +20,71 @@
           <div class="col-md-6 mb-20 col-sm-6">
             <h3>Primary Navigation</h3>
             <ul>
-              <li><a href="#/">Home</a></li>
-              <li>
-                <a href="#!/shop-standard">Product</a>
-              <ul>
-                <h4>Category</h4>
-                <li><a href="#!/greetingcard">Greeting Card</a></li>
-                <li><a href="#!/wrappaper">Wrapping Paper</a></li>
-                <li><a href="#!giftbag">Gift Bags</a></li>
-  
-                <h4>Occasion</h4>
-                <li><a href="#!/anniversary">Anniversary</a></li>
-                <li><a href="#!birthday">Birthday</a></li>
-                <li><a href="#!/congratulation">Congratulation</a></li>
-                <li><a href="#!/friendship">Friendship</a></li>
-  
-                <h4>Holiday</h4>
-                <li><a href="#!/mothersday">Mother's Day</a></li>
-                <li><a href="#!/newyear">New Year</a></li>
-  
-                <h4>Shop</h4>
-                <li><a href="#!/shop-standard">Shop General</a></li>
+              <li><a href="{{ route('home') }}">Home</a></li>
+              <li><a href="{{ route('products') }}">Products</a></li>
+                <li><a href="#">Categories</a>
+                <ul class="menu-col">
+                  @foreach ($categories as $category)
+                          <li><a
+                                  href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
+                          </li>
+                  @endforeach
               </ul>
             </li>
+            <li><a href="#">Country</a>
+              <ul class="menu-col">
+                <li><a
+                  href="{{ url('products?sort=&categories=&countries=United+Kingdom&published=') }}">United
+                  Kingdom</a></li>
+          <li><a
+                  href="{{ url('products?=sort=&categories=&countries=Australia&published=') }}">Australia</a>
+          </li>
+          <li><a
+                  href="{{ url('products?=sort=&categories=&countries=France&published=') }}">France</a>
+          </li>
+          <li><a
+                  href="{{ url('products?=sort=&categories=&countries=Russia&published=') }}">Russia</a>
+          </li>
+          <li><a href="{{ route('products') }}">More</a></li>
+            </ul>
+          </li>
             </ul>
           </div>
           <div class="col-md-6 mb-20 col-sm-6">
             <ul>
-              <li><a href="#!/event">Event</a></li>
-              <li><a href="#!/photography">Gallery</a></li>
-              <li style="list-style: none;">
-                <h4>Pages</h4>
-                <ul>
-                  <li><a href="#!/about-us">About us</a></li>
-                  <li><a href="#!/contact-form">Contact</a></li>
-                  <li><a href="#!/sitemap">Sitemap</a></li>
-                  <li><a href="#!/privacy">Privacy policy</a></li>
-                  <li><a href="#!/term-condition">Term & conditions</a></li>
-                  <li><a href="#!/faqs">FAQs</a></li>
-                </ul>
-              </li>
+            <li><a href="#">Published</a>
+              <ul class="menu-col">
+                <li><a href="#">1791</a></li>
+                    <li><a href="#">1859</a></li>
+                    <li><a href="#">1937</a></li>
+                    <li><a href="#">1939</a></li>
+                    <li><a href="{{ route('products') }}">More</a></li>
             </ul>
-            <ul>
-              <li><a href="#!/login">Login</a></li>
-              <li><a href="#!/shop-cart">Cart</a></li>
+          </li>
+          <li><a href="#">User</a>
+            <ul class="menu-col">
+              <li><a href="{{ route('edit.profile') }}">Edit Profile</a></li>
+              <?php $filter = 'a'; ?>
+              <li><a href="{{ route('orderHistory', $filter) }}">Order History</a></li>
+              <li><a href="{{ route('feedbacks') }}">Feedbacks</a></li>
+              <li><a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a></li>
+          </ul>
+        </li>
+          <li><a href="{{ route('cart') }}">Cart</a></li>
             </ul>
             <h3>Footer</h3>
             <ul>
-              <h4>About</h4>
-              <li><a href="#!/about-us">About us</a></li>
-              <li><a href="#!/shop-standard">Our Products</a></li>
-              <li><a href="#!/faqs">FAQ's</a></li>
+              <li><a href="{{ route('about-us') }}">About Us</a></li>
+              <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
+              <li><a href="{{ route('site-map') }}">Site Map</a></li>
 
-              <h4>Site Info</h4>
-              <li><a href="#!/privacy">Privacy Policy</a></li>
-              <li><a href="#!/term-condition">Term & Conditions</a></li>
-              <li><a href="#!/sitemap">Site Map</a></li>
+              <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+              <li><a href="{{ route('term-condition') }}">Terms & Conditions</a></li>
+              <li><a href="{{ route('faqs') }}">FAQ</a></li>
             </ul>
           </div>        
         </div>
