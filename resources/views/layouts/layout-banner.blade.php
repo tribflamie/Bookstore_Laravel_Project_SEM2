@@ -180,7 +180,6 @@
                         <li><a href="{{ route('edit.profile') }}">Edit Profile</a></li>
                         <?php $filter = 'a'; ?>
                         <li><a href="{{ route('orderHistory', $filter) }}">Order History</a></li>
-                        <li><a href="{{ route('feedbacks') }}">Feedbacks</a></li>
                         @if (Auth::user()->role == 'admin')
                             <li><a href="{{ route('admin.overview') }}">Administration</a></li>
                         @endif
