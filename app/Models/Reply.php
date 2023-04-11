@@ -11,6 +11,8 @@ class Reply extends Model
 
     use HasFactory;
 
+    public $table = "replies";
+
     protected $fillable = ['description'];
     
     public function user(): BelongsTo

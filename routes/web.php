@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-//Routes Auth
+//Auth Routes
 Auth::routes();
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 
-//Routes Home Page
+//Home Routes
 Route::get('home', [App\Http\Controllers\visitorController::class, 'index'])->name('home');
 Route::get('cart', [App\Http\Controllers\visitorController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, 'addToCart'])->name('add.to.cart');
@@ -45,11 +45,26 @@ Route::get('privacy', [App\Http\Controllers\visitorController::class, 'privacy']
 Route::get('site-map', [App\Http\Controllers\visitorController::class, 'site'])->name('site-map');
 
 
-//Routes Admin
+//Admin Routes
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('overview', [App\Http\Controllers\adminController::class, 'overview'])->name('admin.overview');
+    //User-tables Routes
     Route::get('user-tables', [App\Http\Controllers\adminController::class, 'userTables'])->name('admin.user-tables');
+    Route::get('update-roles/{id}', [App\Http\Controllers\adminController::class, 'updateRoles']);
+    //Product-tables Routes 
     Route::get('product-tables', [App\Http\Controllers\adminController::class, 'productTables'])->name('admin.product-tables');
+    Route::post('save-categories', [App\Http\Controllers\adminController::class, 'saveCategories']);
+    Route::get('update-categories/{id}', [App\Http\Controllers\adminController::class, 'updateCategoriesId']);
+    Route::post('update-categories', [App\Http\Controllers\adminController::class, 'updateCategories']);
+    Route::post('save-products', [App\Http\Controllers\adminController::class, 'saveProducts']);
+    Route::get('update-products/{id}', [App\Http\Controllers\adminController::class, 'updateProductsId']);
+    Route::post('update-products', [App\Http\Controllers\adminController::class, 'updateProducts']);
+    Route::get('delete-products/{id}', [App\Http\Controllers\adminController::class, 'deleteProducts']);
+    //Order-tables Routes
     Route::get('oder-tables', [App\Http\Controllers\adminController::class, 'oderTables'])->name('admin.oder-tables');
+    Route::get('update-orders/{id}', [App\Http\Controllers\adminController::class, 'updateOrders']);
+    //Feedback-tables Routes
     Route::get('feedback-tables', [App\Http\Controllers\adminController::class, 'feedbackTables'])->name('admin.feedback-tables');
+    Route::get('update-feedbacks/{id}', [App\Http\Controllers\adminController::class, 'updateFeedbacks']);
+    Route::get('update-replies/{id}', [App\Http\Controllers\adminController::class, 'updateReplies']);
 });

@@ -30,6 +30,26 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Custom Style -->
+    <style>
+        .read-more-show {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .read-more-hide {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .hide_content {
+            display: none;
+        }
+
+        .btn-position {
+            margin-bottom: 10px;
+        }
+    </style>
     <!-- Title -->
     <title>@yield('title')</title>
 </head>
