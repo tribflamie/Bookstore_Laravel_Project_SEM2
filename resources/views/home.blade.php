@@ -15,7 +15,7 @@
                             <div class="container">
                                 <h3 class="white-color font-400 cardo-font">Explore The World</h3>
                                 <h2 class="white-color text-uppercase font-700">Flash Sale Of 80%</h1>
-                                    <p class="text-left mt-30"><a class="btn btn-dark btn-circle">Shop Now</a></p>
+                                    <p class="text-left mt-30"><a href="{{ route("products") }}" class="btn btn-dark btn-circle">Shop Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                             <div class="container">
                                 <h3 class="white-color font-400 cardo-font">Birthday Wishes That Shine</h3>
                                 <h2 class="white-color text-uppercase font-700">Flash Sale Of 70%</h2>
-                                <p class="text-left mt-30"><a class="btn btn-outline-white btn-circle">Purchase Now</a></p>
+                                <p class="text-left mt-30"><a href="{{ route("products") }}" class="btn btn-outline-white btn-circle">Purchase Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -317,7 +317,7 @@
     <div class="row">
         <div class="col-md-8 text-center col-md-offset-2 white-color">
             <h1 class="upper-case font-700">Books for every occasion</h1>
-            <h2 class="mt-30"><a href="#!shop-standard" class="btn btn-outline-white btn-square">Shop Now</a>
+            <h2 class="mt-30"><a href="{{ route("products") }}" class="btn btn-outline-white btn-square">Shop Now</a>
             </h2>
         </div>
     </div>
