@@ -42,11 +42,19 @@ class visitorController extends Controller
         //     ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
         //     ->take(10)
         //     ->get();
+        $topSelling = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
+            ->join('order_details', 'products.id', '=', 'order_details.products_id')
+            ->join('orders', 'order_details.orders_id', '=', 'orders.id')
+            ->where('orders.status', '!=', 'cancelled')
+            ->orderByRaw('SUM(order_details.unit_quantity) desc')
+            ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
+            ->take(8)
+            ->get();
         $topRating = Product::join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
             $join->on('products.id', '=', 'r.products_id');
         })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
         $topNewest = product::orderBy('created_at', 'desc')->take(8)->get();
-        return view('home', compact('products', 'feedbacks', 'topDiscount', 'topRating', 'topNewest'));
+        return view('home', compact('products', 'feedbacks', 'topDiscount', 'topRating', 'topNewest','topSelling'));
     }
 
     public function products(Request $request)
@@ -369,6 +377,7 @@ class visitorController extends Controller
     }
     public function site()
     {
-        return view('site-map');
+        $categories = category::all();
+        return view('site-map', compact('categories'));
     }
 }
