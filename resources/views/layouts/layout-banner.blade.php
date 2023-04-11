@@ -132,16 +132,16 @@
                     data-toggle="dropdown">Country</a>
                 <ul class="dropdown-menu">
                     <li><a
-                            href="{{ url('products?sort=&categories=&countries=United+Kingdom&published=') }}">United
+                        href="{{ url('products?sort=&categories=&countries=United+Kingdom&published=') }}">United
                             Kingdom</a></li>
                     <li><a
-                            href="{{ url('products?=sort=&categories=&countries=Australia&published=') }}">Australia</a>
+                        href="{{ url('products?=sort=&categories=&countries=Australia&published=') }}">Australia</a>
                     </li>
                     <li><a
-                            href="{{ url('products?=sort=&categories=&countries=France&published=') }}">France</a>
+                        href="{{ url('products?=sort=&categories=&countries=France&published=') }}">France</a>
                     </li>
                     <li><a
-                            href="{{ url('products?=sort=&categories=&countries=Russia&published=') }}">Russia</a>
+                        href="{{ url('products?=sort=&categories=&countries=Russia&published=') }}">Russia</a>
                     </li>
                     <li><a href="{{ route('products') }}">More</a></li>
                 </ul>

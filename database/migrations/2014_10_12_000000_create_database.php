@@ -8,7 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     * using php artisan migrate:fresh --path=/database/migrations/2014_10_12_000000_create_database.php
+     * php artisan migrate:fresh --path=/database/migrations/2014_10_12_000000_create_database.php --seed
      */
     public function up(): void
     {
@@ -75,7 +75,7 @@ return new class extends Migration
             $table->decimal("discount", 3, 2)->nullable(false)->default(1);
             $table->string("photo", 150)->nullable(false);
             $table->text("description")->nullable(false);
-            $table->integer("in_stock")->nullable(false)->default(99);
+            $table->string("status")->nullable(false)->default('show');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -85,7 +85,9 @@ return new class extends Migration
             $table->foreignId('products_id')->references('id')->on('products');
             $table->integer('rating')->nullable(false);
             $table->text('description')->nullable();
+            $table->string('status')->nullable(false)->default('show');
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -119,6 +121,7 @@ return new class extends Migration
             $table->foreignId('feedbacks_id')->references('id')->on('feedbacks');
             $table->foreignId('users_id')->references('id')->on('users');
             $table->text('description')->nullable(false);
+            $table->string('status')->nullable(false)->default('show');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

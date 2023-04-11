@@ -959,6 +959,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'name'=>'user1',
+            'role'=>'admin',
             'email'=>'user1@gmail.com',
             'password'=>Hash::make('12345678')
         ]);
