@@ -42,15 +42,15 @@
                             <!--=== Countries ===-->
                             <select name="countries">
                                 <option value="">Countries</option>
-                                @foreach ($products as $product)
-                                    <option value="{{ $product->country }}">{{ $product->country }}</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
                                 @endforeach
                             </select>
                             <!--=== Published ===-->
                             <select name="published">
                                 <option value="">Years</option>
-                                @foreach ($products as $product)
-                                    <option value="{{ $product->published }}">{{ $product->published }}</option>
+                                @foreach ($years as $year)
+                                    <option value="{{ $year->published }}">{{ $year->published }}</option>
                                 @endforeach
                             </select>
                             <!--=== Submit ===-->

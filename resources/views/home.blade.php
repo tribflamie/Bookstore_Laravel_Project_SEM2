@@ -352,7 +352,7 @@
                     </div>
                     <div class="product-detail">
                         <a href="{{ route('productDetail', $top->id) }}">
-                            <h4>{{ $top->name }}</h4>
+                            <h6>{{ $top->name }}</h6>
                         </a>
                         <h4 class="grey">
                             <?php
