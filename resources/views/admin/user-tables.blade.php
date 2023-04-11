@@ -29,24 +29,26 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Username</th>
+                                        <th>Actions</th>
                                         <th>Role</th>
+                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>Password</th>
                                         <th>Gender</th>
                                         <th>Yob</th>
                                         <th>Phone</th>
-                                        <th></th>
                                         <th>Location</th>
                                         <th>Bio</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td><a href="/admin/update-roles/{{ $user->id }}" class="btn btn-primary"><i
+                                                        class="fas fa-sync-alt"></i></a></td>
                                             <td>{{ $user->role }}</td>
+                                            <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
                                                 @if (strlen($user->password) > 40)
@@ -64,7 +66,6 @@
                                             <td>{{ is_null($user->gender) ? 'None' : $user->gender }}</td>
                                             <td>{{ is_null($user->yob) ? 'None' : $user->gender }}</td>
                                             <td>{{ is_null($user->phone) ? 'None' : $user->gender }}</td>
-                                            <td><a href="/admin/update-roles/{{$user->id}}" class="btn btn-success"><i class="fas fa-sync-alt"></i></a></td>
                                             <td>{{ is_null($user->location) ? 'None' : $user->gender }}</td>
                                             <td>{{ is_null($user->bio) ? 'None' : $user->gender }}</td>
                                         </tr>

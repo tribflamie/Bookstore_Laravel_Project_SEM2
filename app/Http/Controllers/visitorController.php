@@ -59,7 +59,8 @@ class visitorController extends Controller
 
     public function products(Request $request)
     {
-        $products = Product::all();
+        $countries = Product::select('country')->distinct()->orderBy('country', 'ASC')->get();
+        $years = Product::select('published')->distinct()->orderBy('published', 'DESC')->get();
         $filter = Product::when($request->input('categories') != null, function ($object) use ($request) {
             return $object->where('categories_id', $request->input('categories'));
         })->when($request->input('countries') != null, function ($object) use ($request) {
@@ -77,7 +78,7 @@ class visitorController extends Controller
             if ($request->input('sort') == 'highest') return $object->orderByRaw('discount*price DESC');
             if ($request->input('sort') == 'lowest') return $object->orderByRaw('discount*price ASC');
         })->paginate(8);
-        return view('products', compact('products', 'filter'));
+        return view('products', compact('filter', 'countries', 'years'));
     }
 
     //show product details, feedbacks and replies on product-detail
@@ -151,18 +152,6 @@ class visitorController extends Controller
         }
     }
 
-    //show user-comments history
-
-    //user-feedbacks
-    public function feedbacks()
-    {
-        $categories = category::all();
-        $user = Auth::user()->id;
-        $feedbacks = Product::join('feedbacks', 'products.id', '=', 'feedbacks.products_id')
-            ->where('users_id', $user)
-            ->paginate(5);
-        return view('feedbacks', compact('user', 'feedbacks', 'categories'));
-    }
     //cart add, update and remove
     public function cart()
     {
@@ -262,7 +251,7 @@ class visitorController extends Controller
         $cart = session()->get('cart');
         if ($cart) :
             $id = Auth::id();
-            $query = "insert into orders (users_id,status) values ({$id},'Processing')";
+            $query = "insert into orders (users_id,status) values ({$id},'Pending')";
             DB::insert($query);
 
             unset($details);
