@@ -5,7 +5,7 @@
   <section class="title-hero-bg shop-cover-bg" data-stellar-background-ratio="0.2">
     <div class="container">
       <div class="page-title text-center">
-        <h1>about us</h1>
+        <h1>About Us</h1>
       </div>
     </div>
   </section>
@@ -147,7 +147,7 @@
           
             <!--=== Slide ===-->
             <div class="testimonial-item">
-              <div class="testimonial-content"> <img class="img-responsive img-circle" src="images/team/teacher.jpg" alt="avatar-1"/>
+              <div class="testimonial-content"> <img class="img-responsive" src="images/team/teacher.jpg" alt="avatar-1"/>
                 <h5>Le Thanh Nhan</h5>
                 <p>FPT Aptech's Teacher</p>
                 <h4>Well done!!</h4>

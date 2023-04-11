@@ -53,7 +53,7 @@ class visitorController extends Controller
         $topRating = Product::join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
             $join->on('products.id', '=', 'r.products_id');
         })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
-        $topNewest = product::orderBy('id', 'desc')->take(8)->get();
+        $topNewest = product::orderBy('id', 'desc')->paginate(8);
         return view('home', compact('products', 'feedbacks', 'topDiscount', 'topRating', 'topNewest','topSelling'));
     }
 

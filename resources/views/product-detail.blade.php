@@ -40,17 +40,22 @@
                     <h3>
                         ${{ $product->price * (1 - $product->discount) }}
                     </h3>
-                    <div class="single-product-des">
-                        <h5>Product Desription</h5>
+                    <div class="product-fabric-detail">
+                        <div class="single-product-qty">
+                            <form>
+                                <span class="input-group-btn"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-dark">ADD TO CART <i
+                                            class="icofont icofont-cart"></i></a></span>
+                            </form>
+                        </div>
+                        <div class="product-fabric-detail">
+                        <h5>Author: </h5>
+                        <p>{{ $product->author }}</p>
+                        <h5>Published year:</h5>
+                        <p>{{ $product->published }}</p>
+                        <h5>Country:</h5>
+                        <p>{{ $product->country }}</p>
+                        <h5>Product Description</h5>
                         <p>{{ $product->description }}</p>
-                    </div>
-                    <div class="single-product-qty">
-                        <form>
-                            <input type="number" step="1" min="1" name="quantity" value="1"
-                                title="Qty" class="input-text qty text" size="4">
-                            <span class="input-group-btn"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-dark">ADD TO CART <i
-                                        class="icofont icofont-cart"></i></a></span>
-                        </form>
                     </div>
                 </div>
             </div>

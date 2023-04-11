@@ -147,12 +147,12 @@
                 </ul>
             </li>
             <li class="dropdown"> <a href="#" class="dropdown-toggle"
-                    data-toggle="dropdown">Published</a>
+                    data-toggle="dropdown">Year</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">1791</a></li>
-                    <li><a href="#">1859</a></li>
-                    <li><a href="#">1937</a></li>
-                    <li><a href="#">1939</a></li>
+                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1791') }}">1791</a></li>
+                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1859') }}">1859</a></li>
+                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1937') }}">1937</a></li>
+                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1939') }}">1939</a></li>
                     <li><a href="{{ route('products') }}">More</a></li>
                 </ul>
             </li>
