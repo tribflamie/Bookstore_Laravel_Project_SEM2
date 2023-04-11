@@ -379,7 +379,6 @@
             <div class="col-md-12">
                 <div class="clearfix">
                     <ul class="pagination" style="margin-top: 0px">
-
                         <li class="product-detail" style="font-size: 20px"><a
                                 href="{{ route('products') }}">View All</a></li>
 
