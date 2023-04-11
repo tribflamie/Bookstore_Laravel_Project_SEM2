@@ -60,7 +60,7 @@
                                             <td>{{$order->created_at}}</td>
                                             <td><a href="{{ route('orderDetail',$order->id) }}">Details</a></td>
                                             @if($order->status=='Processing')
-                                            <td><a href="{{ route('orderCancel',[$order->id,$filter]) }}">Cancel</a></td>
+                                            <td><a href="{{ route('orderCancel',[$order->id,$filter]) }}" onclick="return confirm('Cancel this order?')">Cancel</a></td>
                                             @else
                                             <td>Cancel</td>
                                             @endif

@@ -262,7 +262,7 @@ class visitorController extends Controller
         $cart = session()->get('cart');
         if ($cart) :
             $id = Auth::id();
-            $query = "insert into orders (users_id,status) values ({$id},'Processing')";
+            $query = "insert into orders (users_id,status) values ({$id},'Pending')";
             DB::insert($query);
 
             unset($details);

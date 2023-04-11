@@ -229,7 +229,36 @@ class DatabaseSeeder extends Seeder
             'description' => "Modernism is both a philosophical and arts movement that arose from broad transformations in Western society during the late 19th and early 20th centuries. The movement reflected a desire for the creation of new forms of art, philosophy, and social organization which reflected the newly emerging industrial world, including features such as urbanization, architecture, new technologies, and war. Artists attempted to depart from traditional forms of art, which they considered outdated or obsolete. The poet Ezra Pound's 1934 injunction to ".'"Make it New"'." was the touchstone of the movement's approach.",
             'photo'=>'images/categories/Modernism.jpg'
         ]);
-
+        //35.Comedy
+        DB::table('categories')->insert([
+            'categories' => 'Comedy',//35
+            'description' => "Comedy is a genre of dramatic performance having a light or humorous tone that depicts amusing incidents and in which the characters ultimately triumph over adversity.[1] For ancient Greeks and Romans, a comedy was a stage-play with a happy ending. In the Middle Ages, the term expanded to include narrative poems with happy endings and a lighter tone. In this sense Dante used the term in the title of his poem, the Divine Comedy (Italian: Divina Commedia).",
+            'photo'=>'images/categories/Comedy.jpg'
+        ]);
+        //36.Frame story
+        DB::table('categories')->insert([
+            'categories' => 'Frame story',//36
+            'description' => "A frame story (also known as a frame tale, frame narrative, sandwich narrative, or intercalation) is a literary technique that serves as a companion piece to a story within a story, where an introductory or main narrative sets the stage either for a more emphasized second narrative or for a set of shorter stories. The frame story leads readers from a first story into one or more other stories within it. The frame story may also be used to inform readers about aspects of the secondary narrative(s) that may otherwise be hard to understand. This should not be confused with narrative structure.",
+            'photo'=>'images/categories/Frame story.jpg'
+        ]);
+        //37.History
+        DB::table('categories')->insert([
+            'categories' => 'History',//37
+            'description' => "Stories common to a particular culture, but not supported by external sources (such as the tales surrounding King Arthur), are usually classified as cultural heritage or legends. History differs from myth in that it is supported by verifiable evidence. However, ancient cultural influences have helped spawn variant interpretations of the nature of history which have evolved over the centuries and continue to change today. The modern study of history is wide-ranging, and includes the study of specific regions and the study of certain topical or thematic elements of historical investigation. History is often taught as a part of primary and secondary education, and the academic study of history is a major discipline in university studies.",
+            'photo'=>'images/categories/History.jpg'
+        ]);
+        //38.Epistolary novel
+        DB::table('categories')->insert([
+            'categories' => 'Epistolary novel',//38
+            'description' => "An epistolary novel is a novel written as a series of letters. The term is often extended to cover novels that intersperse documents of other kinds with the letters, most commonly diary entries and newspaper clippings, and sometimes considered to include novels composed of documents even if they do not include letters at all.More recently, epistolaries may include electronic documents such as recordings and radio, blog posts, and e-mails. The word epistolary is derived from Latin from the Greek word ἐπιστολή, epistolē, meaning a letter ((see epistle). In German, this type of novel is known as a Briefroman.",
+            'photo'=>'images/categories/Epistolary novel.jpg'
+        ]);
+        //39.Psychological fiction
+        DB::table('categories')->insert([
+            'categories' => 'Psychological fiction',//38
+            'description' => "In literature, psychological fiction (also psychological realism) is a narrative genre that emphasizes interior characterization and motivation to explore the spiritual, emotional, and mental lives of the characters. The mode of narration examines the reasons for the behaviors of the character, which propel the plot and explain the story. Psychological realism is achieved with deep explorations and explanations of the mental states of the character's inner person, usually through narrative modes such as stream of consciousness and flashbacks.",
+            'photo'=>'images/categories/Psychological fiction.jpg'
+        ]);
 
         //insert products table
         DB::table('products')->insert([
@@ -1187,282 +1216,250 @@ class DatabaseSeeder extends Seeder
             'price' => 59,
             'discount' => 0.10,
             'photo' => "images/shop/The Age of Innocence.jpg",
+            'description' => "The Age of Innocence is a 1920 novel by American author Edith Wharton. It was her eighth novel, and was initially serialized in 1920 in four parts, in the magazine Pictorial Review. Later that year, it was released as a book by D. Appleton & Company. It won the 1921 Pulitzer Prize for Fiction, making Wharton the first woman to win the prize. Though the committee had initially agreed to give the award to Sinclair Lewis for Main Street, the judges, in rejecting his book on political grounds, ".'"established Wharton as the American"' ."'First Lady of Letters'"."The story is set in the 1870s, in upper-class, ".'"Gilded Age"'." New York City. Wharton wrote the book in her 50s, after she was already established as a major author in high demand by publishers."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 35,
+            'name' => "A Midsummer Night's Dream",
+            'author' => 'William Shakespeare',
+            'country' => 'United Kingdom',
+            'published' => 1605,
+            'price' => 54,
+            'discount' => 0.10,
+            'photo' => "images/shop/A Midsummer Night's Dream.jpg",
+            'description' => "A Midsummer Night's Dream is a comedy written by William Shakespeare c. 1595 or 1596. The play is set in Athens, and consists of several subplots that revolve around the marriage of Theseus and Hippolyta. One subplot involves a conflict among four Athenian lovers. Another follows a group of six amateur actors rehearsing the play which they are to perform before the wedding. Both groups find themselves in a forest inhabited by fairies who manipulate the humans and are engaged in their own domestic intrigue. The play is one of Shakespeare's most popular and is widely performed."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 16,
+            'name' => "The Prince and the Pauper",
+            'author' => 'Mark Twain',
+            'country' => 'United States',
+            'published' => 1881,
+            'price' => 52,
+            'discount' => 0.10,
+            'photo' => "images/shop/The Prince and the Pauper.jpg",
+            'description' => "The Prince and the Pauper is a novel by American author Mark Twain. It was first published in 1881 in Canada, before its 1882 publication in the United States. The novel represents Twain's first attempt at historical fiction. Set in 1547, it tells the story of two young boys who were born on the same day and are identical in appearance: Tom Canty, a pauper who lives with his abusive, alcoholic father in Offal Court off Pudding Lane in London, and Edward VI of England, son of Henry VIII of England."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 22,
+            'name' => "The Alchemist",
+            'author' => 'Paulo Coelho',
+            'country' => 'Brazil',
+            'published' => 1993,
+            'price' => 59,
+            'discount' => 0.10,
+            'photo' => "images/shop/The Alchemist.jpg",
+            'description' => "The Alchemist (Portuguese: O Alquimista) is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it became a widely translated international bestseller. An allegorical novel, The Alchemist follows a young Andalusian shepherd in his journey to the pyramids of Egypt, after having a recurring dream of finding a treasure there."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 7,
+            'name' => "Little Women",
+            'author' => 'Louisa May Alcott',
+            'country' => 'United States',
+            'published' => 1869,
+            'price' => 45,
+            'discount' => 0.10,
+            'photo' => "images/shop/Little Women.jpg",
+            'description' => "Little Women is a coming-of-age novel written by American novelist Louisa May Alcott, originally published in two volumes in 1868 and 1869 at the request of her publisher.= The story follows the lives of the four March sisters—Meg, Jo, Beth, and Amy—and details their passage from childhood to womanhood. Loosely based on the lives of the author and her three sisters, it is classified as an autobiographical or semi-autobiographical novel."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 36,
+            'name' => "The Decameron",
+            'author' => 'Giovanni Boccaccio',
+            'country' => 'Italy',
+            'published' => 1620,
+            'price' => 58,
+            'discount' => 0.10,
+            'photo' => "images/shop/The Decameron.jpg",
+            'description' => "The Decameron (/di'kæmərən/; Italian: Decameron [de'ka:meron, dekame'rɔn, -'ron] or Decamerone [dekame'ro:ne]), subtitled Prince Galehaut (Old Italian: Prencipe Galeotto ['prentʃipe gale'ɔtto, 'prɛn-]) and sometimes nicknamed l'Umana commedia (".'"the Human comedy"'.", as it was Boccaccio that dubbed Dante Alighieri's Comedy ".'"Divine"'."), is a collection of short stories by the 14th-century Italian author Giovanni Boccaccio (1313-1375). The book is structured as a frame story containing 100 tales told by a group of seven young women and three young men; they shelter in a secluded villa just outside Florence in order to escape the Black Death, which was afflicting the city. Boccaccio probably conceived of the Decameron after the epidemic of 1348, and completed it by 1353. The various tales of love in The Decameron range from the erotic to the tragic. Tales of wit, practical jokes, and life lessons contribute to the mosaic. In addition to its literary value and widespread influence (for example on Chaucer's Canterbury Tales), it provides a document of life at the time. Written in the vernacular of the Florentine language, it is considered a masterpiece of classical early Italian prose."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 25,
+            'name' => "David Copperfield",
+            'author' => 'Charles Dickens',
+            'country' => 'United Kingdom',
+            'published' => 1850,
+            'price' => 61,
+            'discount' => 0.10,
+            'photo' => "images/shop/David Copperfield.jpg",
+            'description' => "David Copperfield is a novel in the bildungsroman genre by Charles Dickens, narrated by the eponymous David Copperfield, detailing his adventures in his journey from infancy to maturity. It was first published as a serial in 1849 and 1850 and as a book in 1850.
+
+            David Copperfield is also an autobiographical novel: ".'"a very complicated weaving of truth and invention"'.", with events following Dickens's own life.Of the books he wrote, it was his favourite. Called ".'"the triumph of the art of Dickens"'.", it marks a turning point in his work, separating the novels of youth and those of maturity."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 20,
+            'name' => "Heidi",
+            'author' => 'Johanna Spyri',
+            'country' => 'Switzerland',
+            'published' => 1880,
+            'price' => 55,
+            'discount' => 0.10,
+            'photo' => "images/shop/Heidi.jpg",
+            'description' => "Heidi (/'haidi/; German: ['haidi]) is a work of children's fiction published between 1880 and 1881 by Swiss author Johanna Spyri, originally published in two parts as Heidi: Her Years of Wandering and Learning (German: Heidis Lehr- und Wanderjahre) and Heidi: How She Used What She Learned (German: Heidi kann brauchen, was es gelernt hat). It is a novel about the events in the life of a 5-year-old girl in her paternal grandfather's care in the Swiss Alps. It was written as a book ".'"for children and those who love children"'." (as quoted from its subtitle)."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 20,
+            'name' => "A Little Princess",
+            'author' => 'Frances Hodgson Burnett',
+            'country' => 'United Kingdom',
+            'published' => 1905,
+            'price' => 54,
+            'discount' => 0.10,
+            'photo' => "images/shop/A Little Princess.jpg",
+            'description' => "A Little Princess is a children's novel by Frances Hodgson Burnett, first published as a book in 1905. It is an expanded version of the short story ".'"Sara Crewe: or, What Happened at Miss Minchins"'.", which was serialized in St. Nicholas Magazine from December 1887, and published in book form in 1888. According to Burnett, after she composed the 1902 play A Little Un-fairy Princess based on that story, her publisher asked that she expand the story as a novel with ".'"the things and people that had been left out before"'.". The novel was published by Charles Scribner's Sons (also publisher of St. Nicholas) with illustrations by Ethel Franklin Betts and the full title A Little Princess: Being the Whole Story of Sara Crewe Now Being Told for the First Time."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 37,
+            'name' => "Twenty Years After",
+            'author' => 'Alexandre Dumas',
+            'country' => 'France',
+            'published' => 1845,
+            'price' => 53,
+            'discount' => 0.10,
+            'photo' => "images/shop/Twenty Years After.jpg",
+            'description' => "Twenty Years After (French: Vingt ans après) is a novel by Alexandre Dumas, first serialized from January to August 1845. A book of The d'Artagnan Romances, it is a sequel to The Three Musketeers (1844) and precedes the 1847-1850 novel The Vicomte de Bragelonne (which includes the sub-plot Man in the Iron Mask)."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 26,
+            'name' => "The Tenant of Wildfell Hall",
+            'author' => 'Anne Brontë',
+            'country' => 'United Kingdom',
+            'published' => 1848,
+            'price' => 40,
+            'discount' => 0.10,
+            'photo' => "images/shop/The Tenant of Wildfell Hall.jpg",
+            'description' => "The Tenant of Wildfell Hall is the second and final novel written by English author Anne Brontë. It was first published in 1848 under the pseudonym Acton Bell. Probably the most shocking of the Brontës' novels, it had an instant and phenomenal success, but after Anne's death her sister Charlotte prevented its re-publication in England until 1854."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 20,
+            'name' => "Jo's Boys",
+            'author' => 'Louisa May Alcott',
+            'country' => 'United States',
+            'published' => 1886,
+            'price' => 52,
+            'discount' => 0.10,
+            'photo' => "images/shop/Jo's Boys.jpg",
+            'description' => "Jo's Boys, and How They Turned Out: A Sequel to ".'"Little Men"'." is a novel by American author Louisa May Alcott, first published in 1886. The novel is the final book in the unofficial Little Women series. In it, Jo's children, now grown, are caught up in real world troubles."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 20,
+            'name' => "Little Men",
+            'author' => 'Louisa May Alcott',
+            'country' => 'United Statse',
+            'published' => 1871,
+            'price' => 51,
+            'discount' => 0.10,
+            'photo' => "images/shop/Little Men.jpg",
+            'description' => "Little Men, or Life at Plumfield with Jo's Boys, is a children's novel by American author Louisa May Alcott (1832-1888), which was first published in 1871 by Roberts Brothers. The book reprises characters from her 1868-69 two-volume novel Little Women, and acts as a sequel, or as the second book in an unofficial Little Women trilogy. The trilogy ends with Alcott's 1886 novel Jo's Boys, and How They Turned Out: A Sequel to Little Men. Alcott's story recounts the life of Jo Bhaer, her husband, and the various children at Plumfield Estate School. Alcott's classic novel has been adapted to a 1934 film, a 1940 film, a 1998 film, a television series, and a Japanese animated television series."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 33,
+            'name' => "The Giver",
+            'author' => 'Lois Lowry',
+            'country' => 'United States',
+            'published' => 1993,
+            'price' => 56,
+            'discount' => 0.10,
+            'photo' => "images/shop/The Giver.jpg",
+            'description' => "The Giver is a 1993 American young adult dystopian novel written by Lois Lowry, set in a society which at first appears to be utopian but is revealed to be dystopian as the story progresses. In the novel, the society has taken away pain and strife by converting to ".'"Sameness"'.", a plan that has also eradicated emotional depth from their lives. In an effort to preserve order, the society also lacks any color, climate, terrain, and a true sense of equality. The protagonist of the story, a 12-year-old boy named Jonas, is selected to inherit the position of Receiver of Memory, the person who stores all the past memories of the time before Sameness. Jonas struggles with concepts of the new emotions and things introduced to him, and whether they are inherently good, evil, or in between, and whether it is possible to have one without the other."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 20,
+            'name' => "Under Wildwood",
+            'author' => 'Colin Meloy',
+            'country' => 'United States',
+            'published' => 2012,
+            'price' => 63,
+            'discount' => 0.10,
+            'photo' => "images/shop/Under Wildwood.jpg",
+            'description' => "Under Wildwood: The Wildwood Chronicles, Book Two is a 2012 children's fantasy novel by The Decemberists' singer-songwriter Colin Meloy, illustrated by his wife Carson Ellis. The 576-page novel, the sequel to Wildwood: The Wildwood Chronicles, Book One, continues the tale of Prue McKeel and her adventures in the ".'"Impassable Wilderness,"'." a fantastical version of Portland, Oregon's Forest Park.[1] The natural beauty and local color of the city figure prominently. Ellis contributed 80 illustrations to the novel."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 3,
+            'name' => "Farm Boy",
+            'author' => 'Michael Morpurgo',
+            'country' => 'United Kingdom',
+            'published' => 1997,
+            'price' => 49,
+            'discount' => 0.10,
+            'photo' => "images/shop/Farm Boy.jpg",
+            'description' => "Farm Boy is a novel by Michael Morpurgo, best known as being the sequel to the popular novel War Horse. The book was first published in the United Kingdom in 1997 by Pavilion Books Limited and is illustrated by Michael Foreman. It was not initially planned for Morpurgo to write a sequel to War Horse, but the story was inspired after receiving many enquiries about what happens to Joey, a horse in service of the Army (the main character from War Horse) after the Great War. In an article in ChronicleLive Michael Morpurgo also stated that his favourite of his own works was Farm Boy. The book captures modern life on a farm in rural Devon, where Michael Morpurgo lives, while having retrospective flashbacks to the lives of Albert and Joey (characters from War Horse)"
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 3,
+            'name' => "Boy In The Striped Pajamas",
+            'author' => 'John Boyne',
+            'country' => 'United Kingdom',
+            'published' => 2006,
+            'price' => 65,
+            'discount' => 0.10,
+            'photo' => "images/shop/Boy In The Striped Pajamas.jpg",
+            'description' => "The Boy in the Striped Pyjamas is a 2006 Holocaust novel by Irish novelist John Boyne. The plot concerns a German boy named Bruno whose father is the commandant of Auschwitz and Bruno's friendship with a Jewish detainee named Shmuel.
+
+            Boyne wrote the entire first draft in two and a half days, without sleeping much; but also said that he was quite a serious student of Holocaust-related literature for years before the idea for the novel even came to him."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 1,
+            'name' => "Women in Love",
+            'author' => 'D. H. Lawrence',
+            'country' => 'United Kingdom',
+            'published' => 1920,
+            'price' => 66,
+            'discount' => 0.10,
+            'photo' => "images/shop/Women in Love.jpg",
+            'description' => "Women in Love (1920) is a novel by English author D. H. Lawrence. It is a sequel to his earlier novel The Rainbow (1915) and follows the continuing loves and lives of the Brangwen sisters, Gudrun and Ursula. Gudrun Brangwen, an artist, pursues a destructive relationship with Gerald Crich, an industrialist. Lawrence contrasts this pair with the love that develops between Ursula Brangwen and Rupert Birkin, an alienated intellectual who articulates many opinions associated with the author. The emotional relationships thus established are given further depth and tension by an intense psychological and physical attraction between Gerald and Rupert."
+        ]);
+        DB::table('products')->insert([
+            'categories_id' => 2,
+            'name' => "Alice's Adventures in Wonderland",
+            'author' => 'Lewis Carroll',
+            'country' => 'United Kingdom',
+            'published' => 1865,
+            'price' => 66,
+            'discount' => 0.10,
+            'photo' => "images/shop/Alice's Adventures in Wonderland.jpg",
             'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
             
             Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
         ]);
         DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
+            'categories_id' => 39,
+            'name' => "The Mill on the Floss",
+            'author' => 'George Eliot',
             'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
+            'published' => 1860,
+            'price' => 39,
             'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
+            'photo' => "images/shop/The Mill on the Floss.jpg",
+            'description' => "The Mill on the Floss is a novel by George Eliot, first published in three volumes in 1860 by William Blackwood. The first American edition was published by Harper & Brothers, Publishers, New York.
             
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
+            Spanning a period of 10 to 15 years, the novel details the lives of Tom and Maggie Tulliver, siblings who grow up at Dorlcote Mill on the River Floss. The mill is at the junction of the River Floss and the more minor River Ripple, near the village of St Ogg's in Lincolnshire, England. Both the rivers and the village are fictional."
         ]);
         DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
+            'categories_id' => 3,
+            'name' => "The Last Of The Mohicans",
+            'author' => 'James Fenimore Cooper',
+            'country' => 'United States',
+            'published' => 1826,
+            'price' => 27,
             'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
+            'photo' => "images/shop/The Last Of The Mohicans.jpg",
+            'description' => "The Last of the Mohicans: A Narrative of 1757 is an historical romance novel written by James Fenimore Cooper in 1826.
+
+            It is the second book of the Leatherstocking Tales pentalogy and the best known to contemporary audiences. The Pathfinder, published 14 years later in 1840, is its sequel. The Last of the Mohicans is set in 1757, during the French and Indian War (the North American theater of the Seven Years' War), when France and Great Britain battled for control of North America. During this war, both the French and the British used Native American allies, but the French were particularly dependent, as they were outnumbered in the Northeast frontier areas by the British. Specifically, the events of the novel are set immediately before, during, and after the Siege of Fort William Henry."
         ]);
         DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
+            'categories_id' => 1,
+            'name' => "The Mayor of Casterbridge",
+            'author' => 'Thomas Hardy',
             'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
+            'published' => 1886,
+            'price' => 39,
             'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 26,
-            'name' => "The Mirror Crack'd from Side to Side",
-            'author' => 'Agatha Christie',
-            'country' => 'United Kingdom',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Mirror Crack'd from Side to Side.jpg",
-            'description' => "The Mirror Crack'd from Side to Side, a novel by Agatha Christie, was published in the UK in 1962 and a year later in the US under the title The Mirror Crack'd. The story features amateur detective Miss Marple solving a mystery in St. Mary Mead.
-            
-            Jane Marple falls while walking in St. Mary Mead. She is helped by Heather Badcock, who brings her into her own home to rest. Over a cup of tea, Heather tells Miss Marple how she met the American actress Marina Gregg, who recently moved into the area and bought Gossington Hall from Miss Marple's friend Dolly Bantry."
+            'photo' => "images/shop/The Mayor of Casterbridge.jpg",
+            'description' => "The Mayor of Casterbridge: The Life and Death of a Man of Character is an 1886 novel by the English author Thomas Hardy. One of Hardy's Wessex novels, it is set in a fictional rural England with Casterbridge standing in for Dorchester in Dorset where the author spent his youth. It was first published as a weekly serialisation from January 1886.
+
+            The novel is considered to be one of Hardy's masterpieces, although it has been criticised for incorporating too many incidents, a consequence of the author trying to include something in every weekly published instalment."
         ]); 
         DB::table('users')->insert([
             'name'=>'user1',
