@@ -73,16 +73,19 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Actions</th>
                                         <th>Categories</th>
                                         <th>Description</th>
                                         <th>Photo</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($categories as $category)
                                         <tr>
                                             <td>{{ $category->id }}</td>
+                                            <td><button type="button" value={{ $category->id }}
+                                                    class="btn btn-primary updatebtn"><i
+                                                        class="fas fa-sync-alt"></i></button></td>
                                             <td>{{ $category->categories }}</td>
                                             <td>
                                                 @if (strlen($category->description) > 100)
@@ -98,9 +101,6 @@
                                                 @endif
                                             </td>
                                             <td>{{ $category->photo }}</td>
-                                            <td><button type="button" value={{ $category->id }}
-                                                    class="btn btn-primary updatebtn"><i
-                                                        class="fas fa-sync-alt"></i></button></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -256,6 +256,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Actions</th>
+                                        <th>Status</th>
                                         <th>Categories</th>
                                         <th>Name</th>
                                         <th>Author</th>
@@ -263,17 +265,23 @@
                                         <th>Discount</th>
                                         <th>Published</th>
                                         <th>Description</th>
-                                        <th>Status</th>
-                                        <th></th>
                                         <th>Country</th>
                                         <th>Photo</th>
                                         <th>Created_at</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($products as $product)
                                         <tr>
                                             <td>{{ $product->id }}</td>
+                                            <td><button type="button" value={{ $product->id }}
+                                                    class="btn btn-primary btn-position updatebtn2"><i
+                                                        class="fas fa-sync-alt"></i></button>
+                                                <a href="/admin/delete-products/{{ $product->id }}"
+                                                    class="btn btn-danger btn-position"><i
+                                                        class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <td>{{ $product->status }}</td>
                                             <td>{{ $product->categories->categories }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->author }}</td>
@@ -281,25 +289,17 @@
                                             <td>{{ $product->discount }}</td>
                                             <td>{{ $product->published }}</td>
                                             <td>
-                                                @if (strlen($product->description) > 100)
-                                                    {{ substr($product->description, 0, 100) }}
+                                                @if (strlen($product->description) > 50)
+                                                    {{ substr($product->description, 0, 50) }}
                                                     <span class="read-more-show hide_content">More <i
                                                             class="fa fa-angle-down"></i></span>
                                                     <span class="read-more-content">
-                                                        {{ substr($product->description, 100, strlen($product->description)) }}
+                                                        {{ substr($product->description, 50, strlen($product->description)) }}
                                                         <span class="read-more-hide hide_content">Less <i
                                                                 class="fa fa-angle-up"></i></span> </span>
                                                 @else
                                                     {{ $product->description }}
                                                 @endif
-                                            </td>
-                                            <td>{{ $product->status }}</td>
-                                            <td><button type="button" value={{ $product->id }}
-                                                    class="btn btn-primary btn-position updatebtn2"><i
-                                                        class="fas fa-sync-alt"></i></button>
-                                                <a href="/admin/delete-products/{{ $product->id }}"
-                                                    class="btn btn-danger btn-position"><i
-                                                        class="fas fa-trash-alt"></i></a>
                                             </td>
                                             <td>{{ $product->country }}</td>
                                             <th>{{ $product->photo }}</th>

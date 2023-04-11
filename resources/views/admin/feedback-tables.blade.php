@@ -29,27 +29,27 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Actions</th>
+                                        <th>Status</th>
                                         <th>Username</th>
                                         <th>Product</th>
                                         <th>Rating</th>
                                         <th>Description</th>
                                         <th>Created_at</th>
-                                        <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($feedbacks as $feedback)
                                         <tr>
                                             <td>{{ $feedback->id }}</td>
+                                            <td><a href="/admin/update-feedbacks/{{ $feedback->id }}"
+                                                    class="btn btn-primary"><i class="fas fa-sync-alt"></i></a></td>
+                                            <td>{{ $feedback->status }}</td>
                                             <td>{{ $feedback->user->name }}</td>
                                             <td>{{ $feedback->products->name }}</td>
                                             <td>{{ $feedback->rating }}</td>
                                             <td>{{ $feedback->description }}</td>
                                             <td>{{ $feedback->created_at }}</td>
-                                            <td>{{ $feedback->status }}</td>
-                                            <td><a href="/admin/update-feedbacks/{{ $feedback->id }}"
-                                                    class="btn btn-success"><i class="fas fa-sync-alt"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -93,25 +93,25 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Actions</th>
+                                        <th>Status</th>
                                         <th>Feedback</th>
                                         <th>Username</th>
                                         <th>Description</th>
                                         <th>Created_at</th>
-                                        <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($replies as $reply)
                                         <tr>
                                             <td>{{ $reply->id }}</td>
+                                            <td><a href="/admin/update-replies/{{ $reply->id }}"
+                                                    class="btn btn-primary"><i class="fas fa-sync-alt"></i></a></td>
+                                            <td>{{ $reply->status }}</td>
                                             <td>{{ $reply->feedbacks->description }}</td>
                                             <td>{{ $reply->user->name }}</td>
                                             <td>{{ $reply->description }}</td>
                                             <td>{{ $reply->created_at }}</td>
-                                            <td>{{$reply->status}}</td>
-                                            <td><a href="/admin/update-replies/{{ $reply->id }}"
-                                                    class="btn btn-success"><i class="fas fa-sync-alt"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

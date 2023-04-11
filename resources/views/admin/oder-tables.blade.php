@@ -28,21 +28,22 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Actions</th>
                                         <th>Username</th>
                                         <th>Status</th>
                                         <th>Created_at</th>
-                                        <th></th>
+
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
+                                            <td><a href="/admin/update-orders/{{ $order->id }}"
+                                                    class="btn btn-success"><i class="fas fa-sync-alt"></i></a></td>
                                             <td>{{ $order->users->name }}</td>
                                             <td>{{ $order->status }}</td>
                                             <td>{{ $order->created_at }}</td>
-                                            <td><a href="/admin/update-orders/{{ $order->id }}"
-                                                    class="btn btn-success"><i class="fas fa-sync-alt"></i></a></td>
                                         </tr>
                                     @endforeach
                             </table>
@@ -89,7 +90,7 @@
                                         <th>Unit Price</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($orderDetails as $orderDetail)
                                         <tr>
                                             <td>{{ $orderDetail->id }}</td>
