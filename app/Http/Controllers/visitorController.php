@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Hash;
 
 class visitorController extends Controller
 {
+    /*Global variables
+    $products = Product::all();
+    $category = Category::all();
+    */
+    
     /**
      * Create a new controller instance.
      *
@@ -31,8 +36,7 @@ class visitorController extends Controller
      */
     public function index()
     {
-        $topDiscount = Product::orderBy('discount', 'desc')->get();
-        $products = Product::all();
+        $topDiscount = Product::where('status', '=', 'show')->orderBy('discount', 'desc')->get();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
@@ -54,7 +58,7 @@ class visitorController extends Controller
             $join->on('products.id', '=', 'r.products_id');
         })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
         $topNewest = product::orderBy('id', 'desc')->paginate(8);
-        return view('home', compact('products', 'feedbacks', 'topDiscount', 'topRating', 'topNewest','topSelling'));
+        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest','topSelling'));
     }
 
     public function products(Request $request)

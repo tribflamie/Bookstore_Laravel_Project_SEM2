@@ -242,7 +242,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="widget widget-text widget-links">
-                        <h5 class="widget-title">Here we are</h5>
+                        <h5 class="widget-title">Where we are</h5>
                         <ul>
                             <li> <i class="icofont icofont-google-map"></i> <a>275 Nguyen Van Dau, Binh
                                     Thanh
