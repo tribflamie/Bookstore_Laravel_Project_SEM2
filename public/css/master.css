@@ -4558,7 +4558,7 @@ ul.footer-gallery li img {
 
 .login-cover-bg {
 	background-image: url(../images/title-bg/title-hero-7.jpg);
-	height:auto;
+	height:100%;
 }
 
 .coming-cover-bg {

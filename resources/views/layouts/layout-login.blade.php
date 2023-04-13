@@ -12,10 +12,12 @@
 </head>
 
 <body>
-    <!--=== Section Start ======-->
-    <div>@yield('content')</div>
-    <!--=== Section End ======-->
-
+    <!--=== Wrapper Start ======-->
+    <div class="wrapper">
+        <!--=== Section Start ======-->
+        <div>@yield('content')</div>
+        <!--=== Section End ======-->
+    </div>
     <!--=== Javascript Plugins ======-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/validator.js') }}"></script>
