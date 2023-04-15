@@ -81,6 +81,8 @@ class visitorController extends Controller
             if ($request->input('sort') == 'z-a') return $object->orderBy('created_at', 'DESC');
             if ($request->input('sort') == 'highest') return $object->orderByRaw('discount*price DESC');
             if ($request->input('sort') == 'lowest') return $object->orderByRaw('discount*price ASC');
+        })->when($request->input('rating') != null, function($object) use ($request){
+            if($request->input('rating') == '5') return $object->join('feedbacks','feedbacks.products_id', '=', 'products.id')->where('rating','=','5');
         })->paginate(8);
         return view('products', compact('filter', 'countries', 'years'));
     }

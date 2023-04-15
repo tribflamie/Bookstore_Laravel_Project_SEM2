@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <!--=== Form Start ===-->
-                    <form action="" method="GET">
+                    <form id="test" method="GET">
                         <div class="form-group">
                             <!--=== Sort ===-->
                             <select name="sort">
@@ -114,19 +114,25 @@
                             reading, and we're committed to helping them thrive.</p>
                     </div>
                     <div class="widget sidebar_widget">
-                        <form class="search-form">
+                        <form class="search-form" method="GET">
                             <input type="text" name="search" class="form-control search-field"
                                 placeholder="Name and Author">
                             <button type="submit" class="icofont icofont-search-1 search-submit"></button>
                         </form>
                     </div>
                     <div class="widget sidebar_widget widget_categories">
-                        <h4 class="widget-title">Categories</h4>
-                        @foreach ($categories as $category)
-                            <ul>
-                                <li> <a href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a> </li>
-                            </ul>
-                        @endforeach
+                        <h4 class="widget-title">Rating</h4>
+                        <ul>
+                            <li>
+                                <a href="products?rating=5">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <!--=== Right Side End ===-->
