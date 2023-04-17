@@ -41,33 +41,20 @@
                                         <th>Bio</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
+                                <tbody>
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td><a href="/admin/update-roles/{{ $user->id }}" class="btn btn-primary"><i
-                                                        class="fas fa-sync-alt"></i></a></td>
+                                            <td><a href="/admin/update-roles/{{ $user->id }}" class="btn btn-primary btn-position"><i class="fas fa-user-cog"></i></a></td>
                                             <td>{{ $user->role }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>
-                                                @if (strlen($user->password) > 40)
-                                                    {{ substr($user->password, 0, 40) }}
-                                                    <span class="read-more-show hide_content">More <i
-                                                            class="fa fa-angle-down"></i></span>
-                                                    <span class="read-more-content">
-                                                        {{ substr($user->password, 40, strlen($user->password)) }}
-                                                        <span class="read-more-hide hide_content">Less <i
-                                                                class="fa fa-angle-up"></i></span> </span>
-                                                @else
-                                                    {{ $user->password }}
-                                                @endif
-                                            </td>
+                                            <td>{{$user->password}}</td>
                                             <td>{{ is_null($user->gender) ? 'None' : $user->gender }}</td>
-                                            <td>{{ is_null($user->yob) ? 'None' : $user->gender }}</td>
-                                            <td>{{ is_null($user->phone) ? 'None' : $user->gender }}</td>
-                                            <td>{{ is_null($user->location) ? 'None' : $user->gender }}</td>
-                                            <td>{{ is_null($user->bio) ? 'None' : $user->gender }}</td>
+                                            <td>{{ is_null($user->yob) ? 'None' : $user->yob }}</td>
+                                            <td>{{ is_null($user->phone) ? 'None' : $user->phone }}</td>
+                                            <td>{{ is_null($user->location) ? 'None' : $user->location }}</td>
+                                            <td>{{ is_null($user->bio) ? 'None' : $user->bio }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

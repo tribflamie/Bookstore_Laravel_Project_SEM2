@@ -31,25 +31,27 @@
         <div class="col-about-left col-md-6 text-left">
           <h2>Contact Us</h2>
           <h4 class="text-uppercase">Give us your opinion</h4>
-          <form class="mt-50" name="contactForm" ng-submit="sendMess()" novalidate>
+          <form class="mt-50" action="/send-contact" method="POST">
+            @csrf
+
             <!--=== Your Name ===-->
             <div class="form-group">
-              <input type="text" id="yourname" name="yourname" ng-required="true" ng-model="contact.name" class="form-control mb-20" placeholder="Your Name">
+              <input type="text" name="name" value="{{$user->name}}" class="form-control mb-20" placeholder="Your Name" readonly>
             </div>
             <!--=== Your Email ===-->
             <div class="form-group">
-              <input type="email" id="email" name="email" ng-required="true" ng-model="contact.email" class="form-control mb-20" placeholder="Your Email">
+              <input type="email" name="email" value="{{$user->email}}" class="form-control mb-20" placeholder="Your Email" readonly>
             </div>
             <!--=== Your Phone ===-->
             <div class="form-group">
-              <input type="phone" id="phone" name="phone" ng-required="true" ng-model="contact.phone" class="form-control mb-20" placeholder="Your Phone">
+              <input type="phone" name="phone" value="{{$user->phone}}" class="form-control mb-20" placeholder="Your Phone" required>
             </div>
             <!--=== Your Message ===-->
             <div class="form-group">
-              <textarea id="message" name="message" ng-required="true" ng-model="contact.message" class="form-control" rows="7" placeholder="Please, Leave us a message"></textarea>
+              <textarea name="message" class="form-control" rows="7" placeholder="Please, Leave us a message" required></textarea>
             </div>
             <!--=== Submit ===-->
-            <button type="submit" name="submit" ng-disabled="contactForm.$invalid" class="btn btn-color btn-circle">Send Message</button>
+            <button type="submit" class="btn btn-color btn-circle">Send Message</button>
           </form>
         </div>
       </div>

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Order Tables</h1>
+                    <h1>Order Table</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -35,12 +35,15 @@
 
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
+                                <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td><a href="/admin/update-orders/{{ $order->id }}"
-                                                    class="btn btn-success"><i class="fas fa-sync-alt"></i></a></td>
+                                            <td><a href="/admin/approve-order/{{ $order->id }}"
+                                                    class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
+                                                <a href="/admin/cancel-order/{{ $order->id }}"
+                                                    class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
+                                                </td>
                                             <td>{{ $order->users->name }}</td>
                                             <td>{{ $order->status }}</td>
                                             <td>{{ $order->created_at }}</td>
@@ -64,7 +67,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>OrderDetails Tables</h1>
+                    <h1>Order Detail</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -90,7 +93,7 @@
                                         <th>Unit Price</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
+                                <tbody>
                                     @foreach ($orderDetails as $orderDetail)
                                         <tr>
                                             <td>{{ $orderDetail->id }}</td>

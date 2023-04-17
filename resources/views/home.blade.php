@@ -15,7 +15,8 @@
                             <div class="container">
                                 <h3 class="white-color font-400 cardo-font">Explore The World</h3>
                                 <h2 class="white-color text-uppercase font-700">Flash Sale Of 80%</h1>
-                                    <p class="text-left mt-30"><a href="{{ route("products") }}" class="btn btn-dark btn-circle">Shop Now</a></p>
+                                    <p class="text-left mt-30"><a href="{{ route('products') }}"
+                                            class="btn btn-dark btn-circle">Shop Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -30,7 +31,8 @@
                             <div class="container">
                                 <h3 class="white-color font-400 cardo-font">Birthday Wishes That Shine</h3>
                                 <h2 class="white-color text-uppercase font-700">Flash Sale Of 70%</h2>
-                                <p class="text-left mt-30"><a href="{{ route("products") }}" class="btn btn-outline-white btn-circle">Purchase Now</a></p>
+                                <p class="text-left mt-30"><a href="{{ route('products') }}"
+                                        class="btn btn-outline-white btn-circle">Purchase Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -77,8 +79,8 @@
                                     <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
                                     <h4 class="cardo-font">Free Delivery on order over $100</h4>
                                     <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy Now <i
-                                                class="icofont icofont-simple-right"></i></span></a>
+                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
+                                            Now <i class="icofont icofont-simple-right"></i></span></a>
                                 </div>
                             </div>
                         @endif
@@ -103,8 +105,8 @@
                                     <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
                                     <h4 class="cardo-font">Free Delivery on order over $100</h4>
                                     <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy Now <i
-                                                class="icofont icofont-simple-right"></i></span></a>
+                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
+                                            Now <i class="icofont icofont-simple-right"></i></span></a>
                                 </div>
                             </div>
                         @endif
@@ -123,8 +125,8 @@
                                     <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
                                     <h4 class="cardo-font">Free Delivery on order over $100</h4>
                                     <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy Now <i
-                                                class="icofont icofont-simple-right"></i></span></a>
+                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
+                                            Now <i class="icofont icofont-simple-right"></i></span></a>
                                 </div>
                             </div>
                         @endif
@@ -248,8 +250,8 @@
                         @endforeach
                     </div>
                 </div>
-                  <!-- Top Selling -->
-                  <div class="tab-pane" id="multiCollapse3">
+                <!-- Top Selling -->
+                <div class="tab-pane" id="multiCollapse3">
                     <div class="owl-carousel blog-slider">
                         <?php $cnt = 0; ?>
                         @foreach ($topSelling as $top)
@@ -299,9 +301,9 @@
                     @endforeach
                 </div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 </div>
 </section>
 <!--=== Blogs End ======-->
@@ -309,74 +311,77 @@
 <!--=== Proposal Banner Start ======-->
 <section class="parallax-bg-10 fixed-bg fashion-section" data-stellar-background-ratio="0.2">
 <div class="overlay-bg">
-    <div class="slide-img"
-        style="background:url({{ asset('images/background/home-banner7.jpg') }}) center center / cover scroll no-repeat;">
-    </div>
+<div class="slide-img"
+    style="background:url({{ asset('images/background/home-banner7.jpg') }}) center center / cover scroll no-repeat;">
+</div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 text-center col-md-offset-2 white-color">
-            <h1 class="upper-case font-700">Books for every occasion</h1>
-            <h2 class="mt-30"><a href="{{ route("products") }}" class="btn btn-outline-white btn-square">Shop Now</a>
-            </h2>
-        </div>
+<div class="row">
+    <div class="col-md-8 text-center col-md-offset-2 white-color">
+        <h1 class="upper-case font-700">Books for every occasion</h1>
+        <h2 class="mt-30"><a href="{{ route('products') }}" class="btn btn-outline-white btn-square">Shop
+                Now</a>
+        </h2>
     </div>
+</div>
 </div>
 </section>
 <!--=== Proposal Banner End ======-->
 <!--=== New Books Start ======-->
 <section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-8 section-heading">
-                <h2 class="text-uppercase">New Books</h2>
-                <h3 class="mt-10 cardo-font">Update Everyday</h3>
-            </div>
-            @foreach ($topNewest as $product)
-                <div class="col-md-3 col-sm-6">
-                    <div class="product">
-                        <div class="product-wrap"> <img height="400px" width="500px"
-                                src="{{ asset($product->photo) }}" class="img-responsive" alt="team-01">
-                            <div class="product-caption">
-                                <div class="product-description text-center">
-                                    <div class="product-description-wrap">
-                                        <div class="product-title"> <a
-                                                href="{{ route('add.to.cart', $product->id) }}"
-                                                class="btn btn-color btn-circle">ADD
-                                                TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                        </div>
-                                    </div>
+<div class="container">
+<div class="row">
+    <div class="col-sm-8 section-heading">
+        <h2 class="text-uppercase">New Books</h2>
+        <h3 class="mt-10 cardo-font">Update Everyday</h3>
+    </div>
+    @foreach ($topNewest as $product)
+        <div class="col-md-3 col-sm-6">
+            <div class="product">
+                <div class="product-wrap"> <img height="400px" width="500px"
+                        src="{{ asset($product->photo) }}" class="img-responsive" alt="team-01">
+                    <div class="product-caption">
+                        <div class="product-description text-center">
+                            <div class="product-description-wrap">
+                                <div class="product-title"> <a
+                                        href="{{ route('add.to.cart', $product->id) }}"
+                                        class="btn btn-color btn-circle">ADD
+                                        TO CART <span class="icon"><i class="mdi mdi-cart"></i></span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="product-detail">
-                            <a href="{{ route('productDetail', $product->id) }}">
-                                <h4>{{ $product->name }}</h4>
-                            </a>
-                            <h4 class="grey">
-                                <?php
-                                $count = 0;
-                                //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
-                                for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
-                                    echo '<span class="fa fa-star checked"></span>';
-                                endfor;
-                                //xuất số sao đen còn lại
-                                for (; $count <= 5; $count++):
-                                    echo '<span class="fa fa-star"></span>';
-                                endfor;
-                                ?>
-                                <!--đếm số lượng feedbacks trong product-->
-                                ({{ count($product->feedbacks) }})
-                            </h4>
-                            <p>${{ $product->price - $product->price * $product->discount }} <span
-                                    class="old-price">${{ $product->price }}</span></p>
-                        </div>
                     </div>
                 </div>
-            @endforeach
-            {{ $topNewest->links() }}
+                <div class="product-detail">
+                    <a href="{{ route('productDetail', $product->id) }}">
+                        <h4>{{ $product->name }}</h4>
+                    </a>
+                    <h4 class="grey">
+                        <?php
+                        $count = 0;
+                        //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                        for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
+                            echo '<span class="fa fa-star checked"></span>';
+                        endfor;
+                        //xuất số sao đen còn lại
+                        for (; $count <= 5; $count++):
+                            echo '<span class="fa fa-star"></span>';
+                        endfor;
+                        ?>
+                        <!--đếm số lượng feedbacks trong product-->
+                        ({{ count($product->feedbacks) }})
+                    </h4>
+                    <p>${{ $product->price - $product->price * $product->discount }} <span
+                            class="old-price">${{ $product->price }}</span></p>
+                </div>
+            </div>
         </div>
+    @endforeach
+    <div class="row mt-100">
+        <p class="text-center"><a href="{{route('products')}}" class="btn btn-color btn-circle">Shop Now</a></p>
     </div>
+</div>
+</div>
 </section>
 <!--=== New Books End ======-->
 @endsection

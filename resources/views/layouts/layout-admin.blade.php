@@ -47,7 +47,9 @@
         }
 
         .btn-position {
-            margin-bottom: 10px;
+            width: 50px;
+            margin-bottom: 5px;
+            display: block;
         }
     </style>
     <!-- Title -->
@@ -65,7 +67,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ Route('home') }}" class="nav-link">Papyrus Home</a>
+                    <a href="{{ Route('home') }}" class="nav-link">Home</a>
                 </li>
             </ul>
             <!-- Right navbar links -->
@@ -82,10 +84,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Papyrus Admin</span>
+            <a href="{{ route('admin.user-tables') }}" class="brand-link">
+                <img src="{{ asset('images/white-logo.png') }}" alt="AdminLTE Logo" class="brand-image"
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light">Admin</span>
             </a>
 
             <!-- Sidebar -->
@@ -105,76 +107,68 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="{{ Route('admin.overview') }}"
-                                class="nav-link {{ Route::currentRouteNamed('admin.overview') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Overview</p>
-                            </a>
-                        </li>
-                        <li class="nav-header">TABLES</li>
+                        <li class="nav-header">MANAGEMENT</li>
                         <li class="nav-item">
                             <a href="{{ Route('admin.user-tables') }}"
                                 class="nav-link {{ Route::currentRouteNamed('admin.user-tables') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>User Tables</p>
+                                <p>User Table</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ Route('admin.product-tables') }}"
-                                class="nav-link {{ Route::currentRouteNamed('admin.product-tables') ? 'active' : '' }}">
+                            <a href="{{ Route('admin.category-table') }}"
+                                class="nav-link {{ Route::currentRouteNamed('admin.category-table') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>Product Tables</p>
+                                <p>Category Table</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('admin.product-table') }}"
+                                class="nav-link {{ Route::currentRouteNamed('admin.product-table') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Product Table</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('admin.coupon-table') }}"
+                                class="nav-link {{ Route::currentRouteNamed('admin.coupon-table') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Coupon Table</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ Route('admin.oder-tables') }}"
                                 class="nav-link {{ Route::currentRouteNamed('admin.oder-tables') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>Order Tables</p>
+                                <p>Order Table</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ Route('admin.feedback-tables') }}"
                                 class="nav-link {{ Route::currentRouteNamed('admin.feedback-tables') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>Feedback Tables</p>
+                                <p>Feedback Table</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('admin.contact-table') }}"
+                                class="nav-link {{ Route::currentRouteNamed('admin.contact-table') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Contact Table</p>
                             </a>
                         </li>
                         <li class="nav-header">SETTINGS</li>
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">
-                                        <i class="nav-icon fas fa-sign-in-alt"></i>
-                                        <p>Login</p>
-                                    </a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">
-                                        <i class="nav-icon fas fa-registered"></i>
-                                        <p>Register</p>
-                                    </a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                        <!-- Logout -->
+                        <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
-                                    <i class="nav-icon fas fa-power-off"></i>
-                                    <p>Logout</p>
-                                </a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
+                                <i class="nav-icon fas fa-power-off"></i>
+                                <p>Logout</p>
+                            </a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
 
-                            </form>
-                        @endguest
+                        </form>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
