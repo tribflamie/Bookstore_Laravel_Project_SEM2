@@ -26,7 +26,7 @@
     <div class="modal fade" id="cateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/admin/save-coupon" method="POST" enctype="multipart/form-data" novalidate>
+            <form action="/admin/save-coupon" method="POST" enctype="multipart/form-data" onsubmit="return validateSaveCoupon()" novalidate>
                 @csrf
 
                 <div class="modal-content">
@@ -167,18 +167,18 @@
 
 @section('scripts')
     <script type="text/javascript">
-        //validate save coupon
-        // function validateSaveCoupon(){
-        //     var code = $('#code').val();
-        //     var value = $('#value').val();
-        //     var description = $('#description').val();
-        //     var exp_date = $('#exp_date').val();
-        //     if(code.trim()==''){
-        //         alert('Code is required');
-        //         $('#code').focus();
-        //         return false; 
-        //     } 
-        // }
+        function validateSaveCoupon() {
+            var code = $('#code').val();
+            var value = $('#value').val();
+            var description = $('#description').val();
+            var exp_date = $('#exp_date').val();
+            if (code.trim() == '') {
+                alert('Code is required');
+                $('#code').focus();
+                return false;
+            }
+            return true;
+        }
         //add updatebtn
         $(document).on('click', '.updatebtn', function() {
             var coupons_id = $(this).val();

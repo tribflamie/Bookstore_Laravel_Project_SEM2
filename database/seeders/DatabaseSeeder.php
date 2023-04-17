@@ -606,17 +606,6 @@ class DatabaseSeeder extends Seeder
             'description' => "To Kill a Mockingbird is a novel by the American author Harper Lee. It was published in 1960 and was instantly successful. In the United States, it is widely read in high schools and middle schools. To Kill a Mockingbird has become a classic of modern American literature, winning the Pulitzer Prize. The plot and characters are loosely based on Lee's observations of her family, her neighbors and an event that occurred near her hometown of Monroeville, Alabama, in 1936, when she was ten."
         ]);
         DB::table('products')->insert([
-            'categories_id' => 20,
-            'name' => 'The Secret Garden',
-            'author' => 'Frances Hodgson Burnett',
-            'country' => 'United States',
-            'published' => 1911,
-            'price' => 29,
-            'discount' => 0.0,
-            'photo' => 'images/shop/The Secret Garden.jpg',
-            'description' => "The Secret Garden is a novel by Frances Hodgson Burnett first published in book form in 1911, after serialisation in The American Magazine (November 1910 - August 1911). Set in England, it is one of Burnett's most popular novels and seen as a classic of English children's literature. Several stage and film adaptations have been made. The American edition was published by the Frederick A. Stokes Company with illustrations by Maria Louise Kirk (signed as M. L. Kirk) and the British edition by Heinemann with illustrations by Charles Heath Robinson."
-        ]);
-        DB::table('products')->insert([
             'categories_id' => 18,
             'name' => 'Jane Eyre',
             'author' => 'Charlotte Brontë',
@@ -1208,17 +1197,6 @@ class DatabaseSeeder extends Seeder
             'description' => "The Wonderful Wizard of Oz is a 1900 children's novel written by author L. Frank Baum and illustrated by W. W. Denslow. It is the first novel in the Oz series of books. A Kansas farm girl named Dorothy ends up in the magical Land of Oz after she and her pet dog Toto are swept away from their home by a tornado. Upon her arrival in the magical world of Oz, she learns she cannot return home until she has destroyed the Wicked Witch of the West."
         ]);
         DB::table('products')->insert([
-            'categories_id' => 17,
-            'name' => "The Age of Innocence",
-            'author' => 'Edith Wharton',
-            'country' => 'United States',
-            'published' => 1962,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Age of Innocence.jpg",
-            'description' => "The Age of Innocence is a 1920 novel by American author Edith Wharton. It was her eighth novel, and was initially serialized in 1920 in four parts, in the magazine Pictorial Review. Later that year, it was released as a book by D. Appleton & Company. It won the 1921 Pulitzer Prize for Fiction, making Wharton the first woman to win the prize. Though the committee had initially agreed to give the award to Sinclair Lewis for Main Street, the judges, in rejecting his book on political grounds, ".'"established Wharton as the American"' ."'First Lady of Letters'"."The story is set in the 1870s, in upper-class, ".'"Gilded Age"'." New York City. Wharton wrote the book in her 50s, after she was already established as a major author in high demand by publishers."
-        ]);
-        DB::table('products')->insert([
             'categories_id' => 35,
             'name' => "A Midsummer Night's Dream",
             'author' => 'William Shakespeare',
@@ -1230,28 +1208,6 @@ class DatabaseSeeder extends Seeder
             'description' => "A Midsummer Night's Dream is a comedy written by William Shakespeare c. 1595 or 1596. The play is set in Athens, and consists of several subplots that revolve around the marriage of Theseus and Hippolyta. One subplot involves a conflict among four Athenian lovers. Another follows a group of six amateur actors rehearsing the play which they are to perform before the wedding. Both groups find themselves in a forest inhabited by fairies who manipulate the humans and are engaged in their own domestic intrigue. The play is one of Shakespeare's most popular and is widely performed."
         ]);
         DB::table('products')->insert([
-            'categories_id' => 16,
-            'name' => "The Prince and the Pauper",
-            'author' => 'Mark Twain',
-            'country' => 'United States',
-            'published' => 1881,
-            'price' => 52,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Prince and the Pauper.jpg",
-            'description' => "The Prince and the Pauper is a novel by American author Mark Twain. It was first published in 1881 in Canada, before its 1882 publication in the United States. The novel represents Twain's first attempt at historical fiction. Set in 1547, it tells the story of two young boys who were born on the same day and are identical in appearance: Tom Canty, a pauper who lives with his abusive, alcoholic father in Offal Court off Pudding Lane in London, and Edward VI of England, son of Henry VIII of England."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 22,
-            'name' => "The Alchemist",
-            'author' => 'Paulo Coelho',
-            'country' => 'Brazil',
-            'published' => 1993,
-            'price' => 59,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Alchemist.jpg",
-            'description' => "The Alchemist (Portuguese: O Alquimista) is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it became a widely translated international bestseller. An allegorical novel, The Alchemist follows a young Andalusian shepherd in his journey to the pyramids of Egypt, after having a recurring dream of finding a treasure there."
-        ]);
-        DB::table('products')->insert([
             'categories_id' => 7,
             'name' => "Little Women",
             'author' => 'Louisa May Alcott',
@@ -1261,17 +1217,6 @@ class DatabaseSeeder extends Seeder
             'discount' => 0.10,
             'photo' => "images/shop/Little Women.jpg",
             'description' => "Little Women is a coming-of-age novel written by American novelist Louisa May Alcott, originally published in two volumes in 1868 and 1869 at the request of her publisher.= The story follows the lives of the four March sisters—Meg, Jo, Beth, and Amy—and details their passage from childhood to womanhood. Loosely based on the lives of the author and her three sisters, it is classified as an autobiographical or semi-autobiographical novel."
-        ]);
-        DB::table('products')->insert([
-            'categories_id' => 36,
-            'name' => "The Decameron",
-            'author' => 'Giovanni Boccaccio',
-            'country' => 'Italy',
-            'published' => 1620,
-            'price' => 58,
-            'discount' => 0.10,
-            'photo' => "images/shop/The Decameron.jpg",
-            'description' => "The Decameron (/di'kæmərən/; Italian: Decameron [de'ka:meron, dekame'rɔn, -'ron] or Decamerone [dekame'ro:ne]), subtitled Prince Galehaut (Old Italian: Prencipe Galeotto ['prentʃipe gale'ɔtto, 'prɛn-]) and sometimes nicknamed l'Umana commedia (".'"the Human comedy"'.", as it was Boccaccio that dubbed Dante Alighieri's Comedy ".'"Divine"'."), is a collection of short stories by the 14th-century Italian author Giovanni Boccaccio (1313-1375). The book is structured as a frame story containing 100 tales told by a group of seven young women and three young men; they shelter in a secluded villa just outside Florence in order to escape the Black Death, which was afflicting the city. Boccaccio probably conceived of the Decameron after the epidemic of 1348, and completed it by 1353. The various tales of love in The Decameron range from the erotic to the tragic. Tales of wit, practical jokes, and life lessons contribute to the mosaic. In addition to its literary value and widespread influence (for example on Chaucer's Canterbury Tales), it provides a document of life at the time. Written in the vernacular of the Florentine language, it is considered a masterpiece of classical early Italian prose."
         ]);
         DB::table('products')->insert([
             'categories_id' => 25,

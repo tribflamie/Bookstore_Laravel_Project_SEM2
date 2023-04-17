@@ -741,8 +741,13 @@ input.search-bar-top:-moz-placeholder { color: #fff!important; }
 .mt-40 {
 	margin-top: 40px;
 }
-.mt-50 {
+.mt-50{
+  margin-top: 50px;
+}
+.mt-51 {
 	margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }
 .mt-60 {
 	margin-top: 60px;

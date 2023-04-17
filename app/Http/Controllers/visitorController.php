@@ -393,7 +393,10 @@ class visitorController extends Controller
         $contacts->phone = $request->input('phone');
         $contacts->message = $request->input('message');
         $contacts->save();
-        return redirect()->back();
+        $user = User::find(Auth::user()->id);
+        $user->phone = $request->input('phone');
+        $user->update();
+        return redirect('home');
     }
     public function faqs()
     {

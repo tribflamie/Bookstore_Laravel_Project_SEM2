@@ -101,10 +101,11 @@
                             </div>
                         </div>
                     @endforeach
-                    {{ $filter->links() }}
+                    <div style="margin-top:550px">
+                        {{ $filter->links() }}
+                    </div>
                 </div>
                 <!--=== Product End ===-->
-
                 <!--=== Left Side End===-->
                 <div class="col-md-3 col-md-offset-1">
                     <div class="widget widget_about">

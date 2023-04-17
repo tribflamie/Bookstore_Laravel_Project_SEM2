@@ -31,6 +31,10 @@
                                     @endforeach
                                 </ul>
                             </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 mb-20 col-sm-6">
+                        <ul>
                             <li><a href="#">Country</a>
                                 <ul class="menu-col">
                                     <li><a
@@ -48,10 +52,6 @@
                                     <li><a href="{{ route('products') }}">More</a></li>
                                 </ul>
                             </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 mb-20 col-sm-6">
-                        <ul>
                             <li><a href="#">Published</a>
                                 <ul class="menu-col">
                                     <li><a href="#">1791</a></li>
