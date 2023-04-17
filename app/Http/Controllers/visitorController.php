@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Feedback;
 use App\Models\Reply;
+use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ class visitorController extends Controller
     $products = Product::all();
     $category = Category::all();
     */
-    
+
     /**
      * Create a new controller instance.
      *
@@ -36,7 +37,6 @@ class visitorController extends Controller
      */
     public function index()
     {
-        $topDiscount = Product::where('status', '=', 'show')->orderBy('discount', 'desc')->get();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
@@ -46,26 +46,38 @@ class visitorController extends Controller
         //     ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
         //     ->take(10)
         //     ->get();
-        $topSelling = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
+        $topDiscount = Product::where('status', '=', 'show')->orderBy('discount', 'desc')->get();
+        $topSelling = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
             ->join('order_details', 'products.id', '=', 'order_details.products_id')
             ->join('orders', 'order_details.orders_id', '=', 'orders.id')
             ->where('orders.status', '!=', 'cancelled')
+            ->where('products.status', '=', 'show')
             ->orderByRaw('SUM(order_details.unit_quantity) desc')
-            ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price','products.discount')
+            ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
             ->take(8)
             ->get();
         $topRating = Product::join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
             $join->on('products.id', '=', 'r.products_id');
         })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
-        $topNewest = product::orderBy('id', 'desc')->paginate(8);
-        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest','topSelling'));
+        $topNewest = product::where('status', '=', 'show')->orderBy('id', 'desc')->take(8)->get();
+        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest', 'topSelling'));
     }
 
     public function products(Request $request)
     {
         $countries = Product::select('country')->distinct()->orderBy('country', 'ASC')->get();
         $years = Product::select('published')->distinct()->orderBy('published', 'DESC')->get();
-        $filter = Product::when($request->input('categories') != null, function ($object) use ($request) {
+        $topDiscount = Product::where('status', '=', 'show')->orderBy('discount', 'desc')->take(5)->get();
+        $topSelling = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
+            ->join('order_details', 'products.id', '=', 'order_details.products_id')
+            ->join('orders', 'order_details.orders_id', '=', 'orders.id')
+            ->where('orders.status', '!=', 'cancelled')
+            ->where('products.status', '=', 'show')
+            ->orderByRaw('SUM(order_details.unit_quantity) desc')
+            ->groupBy('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
+            ->take(5)
+            ->get();
+        $filter = Product::where('status', '=', 'show')->when($request->input('categories') != null, function ($object) use ($request) {
             return $object->where('categories_id', $request->input('categories'));
         })->when($request->input('countries') != null, function ($object) use ($request) {
             return $object->where('country', $request->input('countries'));
@@ -81,10 +93,24 @@ class visitorController extends Controller
             if ($request->input('sort') == 'z-a') return $object->orderBy('created_at', 'DESC');
             if ($request->input('sort') == 'highest') return $object->orderByRaw('discount*price DESC');
             if ($request->input('sort') == 'lowest') return $object->orderByRaw('discount*price ASC');
-        })->when($request->input('rating') != null, function($object) use ($request){
-            if($request->input('rating') == '5') return $object->join('feedbacks','feedbacks.products_id', '=', 'products.id')->where('rating','=','5');
-        })->paginate(8);
-        return view('products', compact('filter', 'countries', 'years'));
+        })->when($request->input('rating') != null, function ($object) use ($request) {
+            if ($request->input('rating') == '5') return $object->join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
+                $join->on('products.id', '=', 'r.products_id');
+            })->whereRaw('r.avg_rating > 4 AND r.avg_rating <= 5');
+            if ($request->input('rating') == '4') return $object->join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
+                $join->on('products.id', '=', 'r.products_id');
+            })->whereRaw('r.avg_rating > 3 AND r.avg_rating <= 4');
+            if ($request->input('rating') == '3') return $object->join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
+                $join->on('products.id', '=', 'r.products_id');
+            })->whereRaw('r.avg_rating > 2 AND r.avg_rating <= 3');
+            if ($request->input('rating') == '2') return $object->join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
+                $join->on('products.id', '=', 'r.products_id');
+            })->whereRaw('r.avg_rating > 1 AND r.avg_rating <= 2');
+            if ($request->input('rating') == '1') return $object->join(DB::raw('(SELECT products_id, AVG(rating) avg_rating FROM `feedbacks` GROUP BY products_id) r'), function ($join) {
+                $join->on('products.id', '=', 'r.products_id');
+            })->whereRaw('r.avg_rating > 0 AND r.avg_rating <= 1');
+        })->paginate(6);
+        return view('products', compact('filter', 'countries', 'years', 'topDiscount', 'topSelling'));
     }
 
     //show product details, feedbacks and replies on product-detail
@@ -356,7 +382,17 @@ class visitorController extends Controller
     }
     public function contactUs()
     {
-        return view('contact-us');
+        $user = User::find(Auth::user()->id);
+        return view('contact-us', compact('user'));
+    }
+    public function sendContact(Request $request){
+        $contacts = new Contact;
+        $contacts->name = $request->input('name');
+        $contacts->email = $request->input('email');
+        $contacts->phone = $request->input('phone');
+        $contacts->message = $request->input('message');
+        $contacts->save();
+        return redirect()->back();
     }
     public function faqs()
     {

@@ -377,7 +377,9 @@
             </div>
         </div>
     @endforeach
-    {{ $topNewest->links() }}
+    <div class="row mt-100">
+        <p class="text-center"><a href="{{route('products')}}" class="btn btn-color btn-circle">Shop Now</a></p>
+    </div>
 </div>
 </div>
 </section>

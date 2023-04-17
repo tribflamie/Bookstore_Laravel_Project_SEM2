@@ -132,27 +132,34 @@
                     data-toggle="dropdown">Country</a>
                 <ul class="dropdown-menu">
                     <li><a
-                        href="{{ url('products?sort=&categories=&countries=United+Kingdom&published=') }}">United
+                            href="{{ url('products?sort=&categories=&countries=United+Kingdom&published=') }}">United
                             Kingdom</a></li>
                     <li><a
-                        href="{{ url('products?=sort=&categories=&countries=Australia&published=') }}">Australia</a>
+                            href="{{ url('products?=sort=&categories=&countries=Australia&published=') }}">Australia</a>
                     </li>
                     <li><a
-                        href="{{ url('products?=sort=&categories=&countries=France&published=') }}">France</a>
+                            href="{{ url('products?=sort=&categories=&countries=France&published=') }}">France</a>
                     </li>
                     <li><a
-                        href="{{ url('products?=sort=&categories=&countries=Russia&published=') }}">Russia</a>
+                            href="{{ url('products?=sort=&categories=&countries=Russia&published=') }}">Russia</a>
                     </li>
                     <li><a href="{{ route('products') }}">More</a></li>
                 </ul>
             </li>
-            <li class="dropdown"> <a href="#" class="dropdown-toggle"
-                    data-toggle="dropdown">Year</a>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Year</a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1791') }}">1791</a></li>
-                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1859') }}">1859</a></li>
-                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1937') }}">1937</a></li>
-                    <li><a href="{{ url('products?=sort=&categories=&countries=&published=1939') }}">1939</a></li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=&published=1859') }}">1859</a>
+                    </li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=&published=1886') }}">1886</a>
+                    </li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=&published=1937') }}">1937</a>
+                    </li>
+                    <li><a
+                            href="{{ url('products?=sort=&categories=&countries=&published=1939') }}">1939</a>
+                    </li>
                     <li><a href="{{ route('products') }}">More</a></li>
                 </ul>
             </li>
@@ -181,7 +188,7 @@
                         <?php $filter = 'a'; ?>
                         <li><a href="{{ route('orderHistory', $filter) }}">Order History</a></li>
                         @if (Auth::user()->role == 'admin')
-                            <li><a href="{{ route('admin.overview') }}">Administration</a></li>
+                            <li><a href="{{ route('admin.user-tables') }}">Management</a></li>
                         @endif
                         <li><a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -207,57 +214,59 @@
 <div>@yield('content')</div>
 <!--=== Section End ======-->
 
-    <!--=== Footer Start ======-->
-    <footer class="footer" id="footer-fixed">
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="widget widget-text">
-                            <div class="logo logo-footer"><a href="index.html"> <img class="logo logo-display"
-                                        src="{{ asset('images/white-logo.png') }}" alt=""></a> </div>
-                            <p>Papyrus works to connect readers with independent booksellers all over the world. We believe local bookstores are essential community hubs that foster culture, curiosity, and a love of reading, and we're committed to helping them thrive.</p>
-                            <p>© All rights reserved.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-2">
-                        <div class="widget widget-links">
-                            <h5 class="widget-title">Get to know us</h5>
-                            <ul>
-                                <li><a href="{{ route('about-us') }}">About Us</a></li>
-                                <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
-                                <li><a href="{{ route('site-map') }}">Site Map</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-2">
-                        <div class="widget widget-links">
-                            <h5 class="widget-title">Let us help you</h5>
-                            <ul>
-                                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-                                <li><a href="{{ route('term-condition') }}">Terms & Conditions</a></li>
-                                <li><a href="{{ route('faqs') }}">FAQ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="widget widget-text widget-links">
-                            <h5 class="widget-title">Where we are</h5>
-                            <ul>
-                                <li> <i class="icofont icofont-google-map"></i> <a>275 Nguyen Van Dau, Binh
-                                        Thanh
-                                        District, Ho Chi Minh City, Viet Nam</a> </li>
-                                <li> <i class="icofont icofont-iphone"></i> <a>+44 1632 960290</a> </li>
-                                <li> <i class="icofont icofont-mail"></i> <a>papyrus@gmail.com</a> </li>
-                                <li> <i class="icofont icofont-globe"></i> <a>www.papyrus.com</a> </li>
-                            </ul>
-                        </div>
-                    </div>
+<!--=== Footer Start ======-->
+<footer class="footer" id="footer-fixed">
+<div class="footer-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="widget widget-text">
+                    <div class="logo logo-footer"><a href="index.html"> <img class="logo logo-display"
+                                src="{{ asset('images/white-logo.png') }}" alt=""></a> </div>
+                    <p>Papyrus works to connect readers with independent booksellers all over the world. We
+                        believe local bookstores are essential community hubs that foster culture,
+                        curiosity, and a love of reading, and we're committed to helping them thrive.</p>
+                    <p>© All rights reserved.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-2">
+                <div class="widget widget-links">
+                    <h5 class="widget-title">Get to know us</h5>
+                    <ul>
+                        <li><a href="{{ route('about-us') }}">About Us</a></li>
+                        <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
+                        <li><a href="{{ route('site-map') }}">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-2">
+                <div class="widget widget-links">
+                    <h5 class="widget-title">Let us help you</h5>
+                    <ul>
+                        <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('term-condition') }}">Terms & Conditions</a></li>
+                        <li><a href="{{ route('faqs') }}">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="widget widget-text widget-links">
+                    <h5 class="widget-title">Where we are</h5>
+                    <ul>
+                        <li> <i class="icofont icofont-google-map"></i> <a>275 Nguyen Van Dau, Binh
+                                Thanh
+                                District, Ho Chi Minh City, Viet Nam</a> </li>
+                        <li> <i class="icofont icofont-iphone"></i> <a>+44 1632 960290</a> </li>
+                        <li> <i class="icofont icofont-mail"></i> <a>papyrus@gmail.com</a> </li>
+                        <li> <i class="icofont icofont-globe"></i> <a>www.papyrus.com</a> </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </footer>
-    <!--=== Footer End ======-->
+    </div>
+</div>
+</footer>
+<!--=== Footer End ======-->
 
 <!--=== GO TO TOP  ===-->
 <a href="#" id="back-to-top" title="Back to top">&uarr;</a>

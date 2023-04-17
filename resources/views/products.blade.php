@@ -132,6 +132,58 @@
                                     <span class="fa fa-star checked"></span>
                                 </a>
                             </li>
+                            <li>
+                                <a class="nohover" href="products?rating=4">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="products?rating=3">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="products?rating=2">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="products?rating=1">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget sidebar_widget widget_categories">
+                        <h4 class="widget-title">Top 5 Selling</h4>
+                        <ul>
+                            @foreach ($topSelling as $top)
+                                <li><a href="product-detail/{{ $top->id }}">{{ $top->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="widget sidebar_widget widget_categories">
+                        <h4 class="widget-title">Top 5 Discounts</h4>
+                        <ul>
+                            @foreach ($topDiscount as $top)
+                                <li><a href="product-detail/{{ $top->id }}">{{ $top->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

@@ -10,15 +10,11 @@ use App\Models\Feedback;
 use App\Models\Reply;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Contact;
+use App\Models\Coupon; 
 
 class adminController extends Controller
 {
-    //return view overview
-    public function overview()
-    {
-        return view('admin.overview');
-    }
-
     //return view user-tables
     public function userTables()
     {
@@ -39,13 +35,11 @@ class adminController extends Controller
         return redirect()->back()->with('message', 'Role updated successfully');
     }
 
-    //return view product-tables
-    public function productTables()
+    //return view category-table
+    public function categoryTable()
     {
-        $total_price = Product::sum('price');
-        return view('admin.product-tables', compact('total_price'));
+        return view('admin.category-table');
     }
-
     //create category
     public function saveCategories(Request $request)
     {
@@ -64,7 +58,7 @@ class adminController extends Controller
         return redirect()->back()->with('message', 'New category created successfully!');
     }
 
-    //update category from id
+    //get category id
     public function updateCategoriesId($id)
     {
         $data = Category::find($id);
@@ -91,6 +85,12 @@ class adminController extends Controller
         return redirect()->back()->with('message', 'New category updated successfully!');
     }
 
+    //return view product-tables
+    public function productTable()
+    {
+        return view('admin.product-table');
+    }
+
     //create product
     public function saveProducts(Request $request)
     {
@@ -115,7 +115,7 @@ class adminController extends Controller
         return redirect()->back()->with('message', 'New product created successfully!');
     }
 
-    //update product from id
+    //get update product id
     public function updateProductsId($id)
     {
         $data = Product::find($id);
@@ -149,17 +149,60 @@ class adminController extends Controller
         return redirect()->back()->with('message', 'New product created successfully!');
     }
 
-    //delete product
-    public function deleteProducts($id)
+    //show product
+    public function showProduct($id)
     {
         $data = Product::find($id);
-        if ($data->status == 'show') {
-            $data->status = 'hide';
-        } else {
-            $data->status = 'show';
-        }
+        $data->status = 'show';
         $data->update();
-        return redirect()->back()->with('message', 'Product deleted successfully!');
+        return redirect()->back()->with('message', 'Product updated successfully!');
+    }
+
+    //hide product
+    public function hideProduct($id)
+    {
+        $data = Product::find($id);
+        $data->status = 'hide';
+        $data->update();
+        return redirect()->back()->with('message', 'Product updated successfully!');
+    }
+
+    //return view coupon-table
+    public function couponTable(){
+        $coupons = Coupon::all();
+        return view('admin.coupon-table', compact('coupons'));
+    }
+
+    //find coupon id
+    public function findCouponId($id)
+    {
+        $data = Coupon::find($id);
+        return response()->json([
+            'coupons' => $data
+        ]);
+    }
+
+    //update coupon 
+    public function updateCoupon(Request $request){
+        $coupons_id = $request->input('id');
+        $data = Coupon::find($coupons_id);
+        $data->code = $request->input('codeUpdate');
+        $data->value = $request->input('valueUpdate');
+        $data->description = $request->input('descriptionUpdate');
+        $data->exp_date = $request->input('exp_dateUpdate');
+        $data->update();
+        return redirect()->back();
+    }
+
+    //save coupon
+    public function saveCoupon(Request $request){
+        $data = new Coupon;
+        $data->code = $request->input('code');
+        $data->value = $request->input('value');
+        $data->description = $request->input('description');
+        $data->exp_date = $request->input('exp_date');
+        $data->save();
+        return redirect()->back();
     }
 
     //return view oder-tables
@@ -170,15 +213,20 @@ class adminController extends Controller
         return view('admin.oder-tables', compact('orders', 'orderDetails'));
     }
 
-    //update Orders
-    public function updateOrders($id)
+    //approve orders
+    public function approveOrder($id)
     {
         $data = Order::find($id);
-        if ($data->status == 'Pending') {
-            $data->status = 'Accepted';
-        } else {
-            $data->status = 'Pending';
-        }
+        $data->status = 'Approved';
+        $data->update();
+        return redirect()->back()->with('message', 'Order updated successfully!');
+    }
+
+    //cancle orders
+    public function cancleOrder($id)
+    {
+        $data = Order::find($id);
+        $data->status = 'Cancelled';
         $data->update();
         return redirect()->back()->with('message', 'Order updated successfully!');
     }
@@ -215,5 +263,11 @@ class adminController extends Controller
         }
         $data->update();
         return redirect()->back()->with('message', 'Feedback updated successfully');
+    }
+
+    //return view contact-table
+    public function contactTable(){
+        $contacts = Contact::all();
+        return view('admin.contact-table', compact('contacts'));
     }
 }

@@ -89,6 +89,15 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->nullable(false);
+            $table->string('email')->nullable(false);
+            $table->string('phone')->nullable(false);
+            $table->text('message')->nullable(false);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+        });
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('users_id')->references('id')->on('users');
@@ -135,6 +144,7 @@ return new class extends Migration
         Schema::dropIfExists('replies');
         Schema::dropIfExists('feedbacks');
         Schema::dropIfExists('coupons');
+        Schema::dropIfExists('contacts');
         Schema::dropIfExists('order_details');
         Schema::dropIfExists('orders');
         Schema::dropIfExists('products');

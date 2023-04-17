@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 
-//Home Routes
+//Home Product Routes
 Route::get('home', [App\Http\Controllers\visitorController::class, 'index'])->name('home');
 Route::get('cart', [App\Http\Controllers\visitorController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, 'addToCart'])->name('add.to.cart');
@@ -39,6 +39,7 @@ Route::get('review/{id}', [App\Http\Controllers\visitorController::class, 'revie
 Route::get('submitReview', [App\Http\Controllers\visitorController::class, 'submitReview'])->name('submitReview');
 Route::get('about-us', [App\Http\Controllers\visitorController::class, 'aboutUs'])->name('about-us');
 Route::get('contact-us', [App\Http\Controllers\visitorController::class, 'contactUs'])->name('contact-us');
+Route::post('send-contact', [App\Http\Controllers\visitorController::class, 'sendContact']);
 Route::get('faqs', [App\Http\Controllers\visitorController::class, 'faqs'])->name('faqs');
 Route::get('term-condition', [App\Http\Controllers\visitorController::class, 'term'])->name('term-condition');
 Route::get('privacy', [App\Http\Controllers\visitorController::class, 'privacy'])->name('privacy');
@@ -47,24 +48,34 @@ Route::get('site-map', [App\Http\Controllers\visitorController::class, 'site'])-
 
 //Admin Routes
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
-    Route::get('overview', [App\Http\Controllers\adminController::class, 'overview'])->name('admin.overview');
-    //User-tables Routes
+    //User Management Routes
     Route::get('user-tables', [App\Http\Controllers\adminController::class, 'userTables'])->name('admin.user-tables');
     Route::get('update-roles/{id}', [App\Http\Controllers\adminController::class, 'updateRoles']);
-    //Product-tables Routes 
-    Route::get('product-tables', [App\Http\Controllers\adminController::class, 'productTables'])->name('admin.product-tables');
+    //Category Management Routes
+    Route::get('category-table', [App\Http\Controllers\adminController::class, 'categoryTable'])->name('admin.category-table');
     Route::post('save-categories', [App\Http\Controllers\adminController::class, 'saveCategories']);
     Route::get('update-categories/{id}', [App\Http\Controllers\adminController::class, 'updateCategoriesId']);
     Route::post('update-categories', [App\Http\Controllers\adminController::class, 'updateCategories']);
+    //Product Management Routes
+    Route::get('product-table', [App\Http\Controllers\adminController::class, 'productTable'])->name('admin.product-table');
     Route::post('save-products', [App\Http\Controllers\adminController::class, 'saveProducts']);
     Route::get('update-products/{id}', [App\Http\Controllers\adminController::class, 'updateProductsId']);
     Route::post('update-products', [App\Http\Controllers\adminController::class, 'updateProducts']);
-    Route::get('delete-products/{id}', [App\Http\Controllers\adminController::class, 'deleteProducts']);
-    //Order-tables Routes
+    Route::get('show-product/{id}', [App\Http\Controllers\adminController::class, 'showProduct']);
+    Route::get('hide-product/{id}', [App\Http\Controllers\adminController::class, 'hideProduct']);
+    //Coupon Management Routes 
+    Route::get('coupon-table', [App\Http\Controllers\adminController::class, 'couponTable'])->name('admin.coupon-table');
+    Route::post('save-coupon', [App\Http\Controllers\adminController::class, 'saveCoupon']);
+    Route::get('find-coupon/{id}', [App\Http\Controllers\adminController::class, 'findCouponId']);
+    Route::post('update-coupon', [App\Http\Controllers\adminController::class, 'updateCoupon']);
+    //Order Management Routes
     Route::get('oder-tables', [App\Http\Controllers\adminController::class, 'oderTables'])->name('admin.oder-tables');
-    Route::get('update-orders/{id}', [App\Http\Controllers\adminController::class, 'updateOrders']);
-    //Feedback-tables Routes
+    Route::get('approve-order/{id}', [App\Http\Controllers\adminController::class, 'approveOrder']);
+    Route::get('cancel-order/{id}', [App\Http\Controllers\adminController::class, 'cancleOrder']);
+    //Feedback Management Routes 
     Route::get('feedback-tables', [App\Http\Controllers\adminController::class, 'feedbackTables'])->name('admin.feedback-tables');
     Route::get('update-feedbacks/{id}', [App\Http\Controllers\adminController::class, 'updateFeedbacks']);
     Route::get('update-replies/{id}', [App\Http\Controllers\adminController::class, 'updateReplies']);
+    //Contact Management Routes
+    Route::get('contact-table', [App\Http\Controllers\adminController::class, 'contactTable'])->name('admin.contact-table');
 });

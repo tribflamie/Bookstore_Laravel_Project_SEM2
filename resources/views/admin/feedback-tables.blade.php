@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Feedback Tables</h1>
+                    <h1>Feedback Table</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -38,12 +38,12 @@
                                         <th>Created_at</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
+                                <tbody>
                                     @foreach ($feedbacks as $feedback)
                                         <tr>
                                             <td>{{ $feedback->id }}</td>
                                             <td><a href="/admin/update-feedbacks/{{ $feedback->id }}"
-                                                    class="btn btn-primary"><i class="fas fa-sync-alt"></i></a></td>
+                                                    class="btn btn-primary btn-position"><i class="fas fa-sync-alt"></i></a></td>
                                             <td>{{ $feedback->status }}</td>
                                             <td>{{ $feedback->user->name }}</td>
                                             <td>{{ $feedback->products->name }}</td>
@@ -72,7 +72,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Reply Tables</h1>
+                    <h1>Reply Table</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -101,12 +101,12 @@
                                         <th>Created_at</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
+                                <tbody>
                                     @foreach ($replies as $reply)
                                         <tr>
                                             <td>{{ $reply->id }}</td>
                                             <td><a href="/admin/update-replies/{{ $reply->id }}"
-                                                    class="btn btn-primary"><i class="fas fa-sync-alt"></i></a></td>
+                                                    class="btn btn-primary btn-position"><i class="fas fa-sync-alt"></i></a></td>
                                             <td>{{ $reply->status }}</td>
                                             <td>{{ $reply->feedbacks->description }}</td>
                                             <td>{{ $reply->user->name }}</td>
