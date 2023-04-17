@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <select name="filter" id="filter">
                         <?php $sortValue=array("created_at+asc","created_at+desc") ;
-                              $sortName=array("Date ascending","Date descending");
+                              $sortName=array("Order time ascending","Order time descending");
                               $count=0;
                         ?>
                         @foreach ($sortValue as $val)
@@ -59,7 +59,7 @@
                                             </td>
                                             <td>{{$order->created_at}}</td>
                                             <td><a href="{{ route('orderDetail',$order->id) }}">Details</a></td>
-                                            @if($order->status=='Processing')
+                                            @if($order->status=='Pending')
                                             <td><a href="{{ route('orderCancel',[$order->id,$filter]) }}" onclick="return confirm('Cancel this order?')">Cancel</a></td>
                                             @else
                                             <td>Cancel</td>
@@ -69,6 +69,7 @@
                                 @endif
                             </tbody>
                         </table>
+                        {!! $orders->links() !!}
                     </div>
                 </div>
             </div>

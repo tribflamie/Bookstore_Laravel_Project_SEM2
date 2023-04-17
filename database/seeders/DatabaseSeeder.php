@@ -279,7 +279,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1997,
             'price' => 15.00,
-            'discount' => 0.10,
+            'discount' => 0.15,
             'photo' => "images/shop/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg",
             'description' => "Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, Ron Weasley and Hermione Granger, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old.",
         ]);
@@ -290,7 +290,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1859,
             'price' => 23,
-            'discount' => 0.10,
+            'discount' => 0.12,
             'photo' => 'images/shop/A-Tale-of-Two-Cities.jpg',
             'description' => 'A Tale of Two Cities is a historical novel published in 1859 by Charles Dickens, set in London and Paris before and during the French Revolution. The novel tells the story of the French Doctor Manette, his 18-year-long imprisonment in the Bastille in Paris, and his release to live in London with his daughter Lucie whom he had never met. The story is set against the conditions that led up to the French Revolution and the Reign of Terror. In the Introduction to the Encyclopedia of Adventure Fiction, critic Don DAmmassa argues that it is an adventure novel because the protagonists are in constant danger of being imprisoned or killed.'
         ]);
@@ -301,7 +301,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1937,
             'price' => 22,
-            'discount' => 0.10,
+            'discount' => 0.16,
             'photo' => 'images/shop/The-Hobbit.jpg',
             'description' => "The Hobbit, or There and Back Again is a children's fantasy novel by English author J. R. R. Tolkien. It was published in 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction. The book is recognized as a classic in children's literature, and is one of the best-selling books of all time with over 100 million copies sold."
         ]);
@@ -312,7 +312,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 2003,
             'price' => 23,
-            'discount' => 0.10,
+            'discount' => 0.20,
             'photo' => 'images/shop/The-Da-Vinci-Code.jpg',
             'description' => "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown. It is Brown's second novel to include the character Robert Langdon: the first was his 2000 novel Angels & Demons. The Da Vinci Code follows symbologist Robert Langdon and cryptologist Sophie Neveu after a murder in the Louvre Museum in Paris causes them to become involved in a battle between the Priory of Sion and Opus Dei over the possibility of Jesus Christ and Mary Magdalene having had a child together."
         ]);
@@ -323,7 +323,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 1951,
             'price' => 33,
-            'discount' => 0.10,
+            'discount' => 0.30,
             'photo' => 'images/shop/The-Catcher-in-the-Rye.jpg',
             'description' => "The Catcher in the Rye is an American novel by J. D. Salinger that was partially published in serial form 1945 to 1946 before being novelized in 1951. Originally intended for adults, it is often read by adolescents for its themes of angst and alienation, and as a critique of superficiality in society. The novel also deals with complex issues of innocence, identity, belonging, loss, connection, sex, and depression. The main character, Holden Caulfield, has become an icon for teenage rebellion. Caulfield, nearly of age, gives his opinion on a wide variety of topics as he narrates his recent life events."
         ]);
@@ -334,7 +334,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'Colombia',
             'published' => 1970,
             'price' => 27,
-            'discount' => 0.10,
+            'discount' => 0.25,
             'photo' => 'images/shop/One-Hundred-Years-of-Solitude.jpg',
             'description' => "One Hundred Years of Solitude (Spanish: Cien años de soledad, American Spanish: [sjen 'aɲoz ðe sole'ðað]) is a 1967 novel by Colombian author Gabriel García Márquez that tells the multi-generational story of the Buendía family, whose patriarch, José Arcadio Buendía, founded the fictitious town of Macondo. The novel is often cited as one of the supreme achievements in world literature."
         ]);
@@ -345,7 +345,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'France',
             'published' => 1833,
             'price' => 29,
-            'discount' => 0.10,
+            'discount' => 0.22,
             'photo' => 'images/shop/The Hunchback of Notre-Dame.jpg',
             'description' => "The Hunchback of Notre-Dame (French: Notre-Dame de Paris, lit.'Our Lady of Paris', originally titled Notre-Dame de Paris. 1482) is a French Gothic novel by Victor Hugo, published in 1831. It focuses on the unfortunate story of Quasimodo, the Romani street dancer Esmeralda and Quasimodo's guardian the Archdeacon Claude Frollo in 15th-century Paris. All its elements—Renaissance setting, impossible love affairs, marginalized characters—make the work a model of the literary themes of Romanticism."
         ]);
@@ -356,7 +356,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1816,
             'price' => 40,
-            'discount' => 0.10,
+            'discount' => 0.23,
             'photo' => 'images/shop/Emma.jpg',
             'description' => "Emma is a novel written by Jane Austen. It is set in the fictional country village of Highbury and the surrounding estates of Hartfield, Randalls and Donwell Abbey, and involves the relationships among people from a small number of families. The novel was first published in December 1815, with its title page listing a publication date of 1816. As in her other novels, Austen explores the concerns and difficulties of genteel women living in Georgian-Regency England. Emma is a comedy of manners."
         ]);
@@ -367,7 +367,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1813,
             'price' => 25,
-            'discount' => 0.10,
+            'discount' => 0.16,
             'photo' => 'images/shop/Pride-and-Prejudice.jpg',
             'description' => "Pride and Prejudice is an 1813 novel of manners by Jane Austen. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness."
         ]);
@@ -378,7 +378,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 2015,
             'price' => 55,
-            'discount' => 0.10,
+            'discount' => 0.18,
             'photo' => 'images/shop/Excellent-Sheep.jpg',
             'description' => "Excellent Sheep: The Miseducation of the American Elite and the Way to a Meaningful Life is a 2015 book of social criticism on the role of elite colleges in American society written by William Deresiewicz and published by Free Press.Deresiewicz addresses the pressure of succeeding under which students are put by their parents and by society, considering more particularly the ones that are planning to attend Ivy League universities."
         ]);
@@ -389,7 +389,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1994,
             'price' => 33,
-            'discount' => 0.10,
+            'discount' => 0.29,
             'photo' => 'images/shop/The-War-of-the-Jewels.jpg',
             'description' => "The War of the Jewels (1994) is the 11th volume of Christopher Tolkien's series The History of Middle-earth, analysing the unpublished manuscripts of his father J. R. R. Tolkien. It is the second of two volumes—Morgoth's Ring being the first—to explore the later 1951 Silmarillion drafts (those written after the completion of The Lord of the Rings)."
         ]);
@@ -400,7 +400,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'France',
             'published' => 1945,
             'price' => 39,
-            'discount' => 0.10,
+            'discount' => 0.35,
             'photo' => 'images/shop/The-Little-Prince.jpg',
             'description' => "The Little Prince (French: Le Petit Prince, pronounced [lə p(ə)ti pʁɛ̃s]) is a novella written and illustrated by French aristocrat, writer, and military pilot Antoine de Saint-Exupéry. It was first published in English and French in the United States by Reynal & Hitchcock in April 1943 and was published posthumously in France following liberation; Saint-Exupéry's works had been banned by the Vichy Regime. The story follows a young prince who visits various planets in space, including Earth, and addresses themes of loneliness, friendship, love, and loss. Despite its style as a children's book, The Little Prince makes observations about life, adults, and human nature."
         ]);
@@ -411,7 +411,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 2019,
             'price' => 19,
-            'discount' => 0.10,
+            'discount' => 0.50,
             'photo' => 'images/shop/The-Priory-of-the-Orange-Tree.jpg',
             'description' => "The Priory of the Orange Tree is a 2019 fantasy novel by writer Samantha Shannon. The novel was published on 26 February 2019 by Bloomsbury Publishing. Shannon describes the novel as a 'feminist retelling of Saint George and the Dragon.'
 
@@ -424,7 +424,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 1925,
             'price' => 36,
-            'discount' => 0.10,
+            'discount' => 0.45,
             'photo' => 'images/shop/The-Great-Gatsby.jpg',
             'description' => "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.
 
@@ -437,7 +437,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1996,
             'price' => 29,
-            'discount' => 0.10,
+            'discount' => 0.40,
             'photo' => 'images/shop/The-Peoples-of-Middle-earth.jpg',
             'description' => "The Peoples of Middle-earth (1996) is the 12th and final volume of The History of Middle-earth, edited by Christopher Tolkien from the unpublished manuscripts of his father J. R. R. Tolkien. Some characters (including Anairë, the wife of Fingolfin) only appear here, as do a few other works that did not fit anywhere else."
         ]);
@@ -448,7 +448,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1996,
             'price' => 29,
-            'discount' => 0.10,
+            'discount' => 0.35,
             'photo' => 'images/shop/The-Future-of-the-Mind.jpg',
             'description' => "The Future of the Mind: The Scientific Quest to Understand, Enhance, and Empower the Mind is a popular science book by the futurist and physicist Michio Kaku. The book was initially published on February 25, 2014 by Doubleday.
 
@@ -461,7 +461,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 2018,
             'price' => 35,
-            'discount' => 0.10,
+            'discount' => 0.30,
             'photo' => 'images/shop/The-Fall-Of-Gondolin.jpg',
             'description' => "J. R. R. Tolkien's The Fall of Gondolin is one of the stories which formed the basis for a section in his posthumously-published work, The Silmarillion, with a version later appearing in The Book of Lost Tales. In the narrative, Gondolin was founded by King Turgon in the First Age; the city was carefully hidden, enduring for centuries before being betrayed and destroyed.
 
@@ -474,7 +474,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1902,
             'price' => 45,
-            'discount' => 0.10,
+            'discount' => 0.25,
             'photo' => 'images/shop/The-Hound-of-the-Baskervilles.jpg',
             'description' => "The Hound of the Baskervilles is the third of the four crime novels by British writer Arthur Conan Doyle featuring the detective Sherlock Holmes. Originally serialised in The Strand Magazine from August 1901 to April 1902, it is set in 1889 largely on Dartmoor in Devon in England's West Country and tells the story of an attempted murder inspired by the legend of a fearsome, diabolical hound of supernatural origin. Holmes and Watson investigate the case. This was the first appearance of Holmes since his apparent death in 'The Final Problem', and the success of The Hound of the Baskervilles led to the character's eventual revival."
         ]);
@@ -485,7 +485,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 2010,
             'price' => 57,
-            'discount' => 0.10,
+            'discount' => 0.20,
             'photo' => 'images/shop/The-Heroes-of-Olympus.jpg',
             'description' => "The Heroes of Olympus is a pentalogy of fantasy-adventure novels written by American author Rick Riordan. The novels detail a conflict between Greek demigods, Roman demigods, and Gaia (Roman name Terra). In the fourth book of the series, there is also a semi-large fight against Tartarus, which, in Greek mythology, was the darkest and deepest point of the Underworld."
         ]);
@@ -496,7 +496,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'Poland',
             'published' => 1896,
             'price' => 26,
-            'discount' => 0.10,
+            'discount' => 0.15,
             'photo' => 'images/shop/Quo Vadis.jpg',
             'description' => "Quo Vadis: A Narrative of the Time of Nero is a historical novel written by Henryk Sienkiewicz in Polish.
 
@@ -511,7 +511,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'France',
             'published' => 1846,
             'price' => 37,
-            'discount' => 0.10,
+            'discount' => 0.05,
             'photo' => 'images/shop/The Count Of Monte Cristo.jpg',
             'description' => "The Count of Monte Cristo (French: Le Comte de Monte-Cristo) is an adventure novel written by French author Alexandre Dumas (père) completed in 1844. It is one of the author's most popular works, along with The Three Musketeers. Like many of his novels, it was expanded from plot outlines suggested by his collaborating ghostwriter Auguste Maquet."
         ]);
@@ -522,7 +522,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1811,
             'price' => 31,
-            'discount' => 0.10,
+            'discount' => 0.00,
             'photo' => 'images/shop/Sense and Sensibility.jpg',
             'description' => "Sense and Sensibility is a novel by Jane Austen, published in 1811. It was published anonymously; By A Lady appears on the title page where the author's name might have been. It tells the story of the Dashwood sisters, Elinor (age 19) and Marianne (age 16½) as they come of age. They have an older half-brother, John, and a younger sister, Margaret (age 13)."
         ]);
@@ -533,7 +533,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'Russia',
             'published' => 1878,
             'price' => 16,
-            'discount' => 0.10,
+            'discount' => 0.1,
             'photo' => 'images/shop/Anna Karenina.jpg',
             'description' => "Anna Karenina (Russian: «Анна Каренина», IPA: ['an:ə kɐ'rʲenʲinə]) is a novel by the Russian author Leo Tolstoy, first published in book form in 1878. Widely considered to be one of the greatest works of literature ever written, Tolstoy himself called it his first true novel. It was initially released in serial installments from 1875 to 1877, all but the last part appearing in the periodical The Russian Messenger."
         ]);
@@ -544,7 +544,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1814,
             'price' => 22,
-            'discount' => 0.10,
+            'discount' => 0.4,
             'photo' => 'images/shop/Mansfield Park.jpg',
             'description' => "Mansfield Park is the third published novel by Jane Austen, first published in 1814 by Thomas Egerton. A second edition was published in 1816 by John Murray, still within Austen's lifetime. The novel did not receive any public reviews until 1821.
 
@@ -557,7 +557,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1849,
             'price' => 25,
-            'discount' => 0.10,
+            'discount' => 0.6,
             'photo' => 'images/shop/Shirley.jpg',
             'description' => "Shirley, A Tale is a social novel by the English novelist Charlotte Brontë, first published in 1849. It was Brontë's second published novel after Jane Eyre (originally published under Brontë's pseudonym Currer Bell). The novel is set in Yorkshire in 1811-12, during the industrial depression resulting from the Napoleonic Wars and the War of 1812. The novel is set against the backdrop of the Luddite uprisings in the Yorkshire textile industry."
         ]);
@@ -568,7 +568,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1818,
             'price' => 39,
-            'discount' => 0.10,
+            'discount' => 0.55,
             'photo' => 'images/shop/Frankenstein.jpg',
             'description' => "Frankenstein; or, The Modern Prometheus is an 1818 novel written by English author Mary Shelley. Frankenstein tells the story of Victor Frankenstein, a young scientist who creates a sapient creature in an unorthodox scientific experiment. Shelley started writing the story when she was 18, and the first edition was published anonymously in London on 1 January 1818, when she was 20. Her name first appeared in the second edition, which was published in Paris in 1821."
         ]);
@@ -579,7 +579,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1838,
             'price' => 40,
-            'discount' => 0.10,
+            'discount' => 0.3,
             'photo' => 'images/shop/Oliver Twist.jpg',
             'description' => "Oliver Twist; or, The Parish Boy's Progress, is the second novel by English author Charles Dickens. It was originally published as a serial from 1837 to 1839, and as a three-volume book in 1838.[1] The story follows the titular orphan, who, after being raised in a workhouse, escapes to London, where he meets a gang of juvenile pickpockets led by the elderly criminal Fagin, discovers the secrets of his parentage, and reconnects with his remaining family."
         ]);
@@ -590,7 +590,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 1861,
             'price' => 51,
-            'discount' => 0.10,
+            'discount' => 0.1,
             'photo' => 'images/shop/Incidents in the Life of a Slave Girl.jpg',
             'description' => "Incidents in the Life of a Slave Girl, written by herself is an autobiography by Harriet Jacobs, a mother and fugitive slave, published in 1861 by L. Maria Child, who edited the book for its author. Jacobs used the pseudonym Linda Brent. The book documents Jacobs's life as a slave and how she gained freedom for herself and for her children. Jacobs contributed to the genre of slave narrative by using the techniques of sentimental novels 'to address race and gender issues.' She explores the struggles and sexual abuse that female slaves faced as well as their efforts to practice motherhood and protect their children when their children might be sold away."
         ]);
@@ -601,7 +601,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 1960,
             'price' => 52,
-            'discount' => 0.10,
+            'discount' => 0.0,
             'photo' => 'images/shop/To Kill a Mockingbird.jpg',
             'description' => "To Kill a Mockingbird is a novel by the American author Harper Lee. It was published in 1960 and was instantly successful. In the United States, it is widely read in high schools and middle schools. To Kill a Mockingbird has become a classic of modern American literature, winning the Pulitzer Prize. The plot and characters are loosely based on Lee's observations of her family, her neighbors and an event that occurred near her hometown of Monroeville, Alabama, in 1936, when she was ten."
         ]);
@@ -612,7 +612,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 1911,
             'price' => 29,
-            'discount' => 0.10,
+            'discount' => 0.0,
             'photo' => 'images/shop/The Secret Garden.jpg',
             'description' => "The Secret Garden is a novel by Frances Hodgson Burnett first published in book form in 1911, after serialisation in The American Magazine (November 1910 - August 1911). Set in England, it is one of Burnett's most popular novels and seen as a classic of English children's literature. Several stage and film adaptations have been made. The American edition was published by the Frederick A. Stokes Company with illustrations by Maria Louise Kirk (signed as M. L. Kirk) and the British edition by Heinemann with illustrations by Charles Heath Robinson."
         ]);
@@ -623,7 +623,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1847,
             'price' => 54,
-            'discount' => 0.10,
+            'discount' => 0.0,
             'photo' => 'images/shop/Jane Eyre.jpg',
             'description' => "Jane Eyre (/ɛər/ AIR; originally published as Jane Eyre: An Autobiography) is a novel by the English writer Charlotte Brontë. It was published under her pen name 'Currer Bell' on 19 October 1847 by Smith, Elder & Co. of London. The first American edition was published the following year by Harper & Brothers of New York.[2] Jane Eyre is a Bildungsroman which follows the experiences of its eponymous heroine, including her growth to adulthood and her love for Mr Rochester, the brooding master of Thornfield Hall."
         ]);
@@ -1442,7 +1442,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'United States',
             'published' => 1826,
             'price' => 27,
-            'discount' => 0.10,
+            'discount' => 0.20,
             'photo' => "images/shop/The Last Of The Mohicans.jpg",
             'description' => "The Last of the Mohicans: A Narrative of 1757 is an historical romance novel written by James Fenimore Cooper in 1826.
 
@@ -1455,33 +1455,47 @@ class DatabaseSeeder extends Seeder
             'country' => 'United Kingdom',
             'published' => 1886,
             'price' => 39,
-            'discount' => 0.10,
+            'discount' => 0.15,
             'photo' => "images/shop/The Mayor of Casterbridge.jpg",
             'description' => "The Mayor of Casterbridge: The Life and Death of a Man of Character is an 1886 novel by the English author Thomas Hardy. One of Hardy's Wessex novels, it is set in a fictional rural England with Casterbridge standing in for Dorchester in Dorset where the author spent his youth. It was first published as a weekly serialisation from January 1886.
 
             The novel is considered to be one of Hardy's masterpieces, although it has been criticised for incorporating too many incidents, a consequence of the author trying to include something in every weekly published instalment."
         ]); 
         DB::table('users')->insert([
-            'name'=>'user1',
-            'role'=>'admin',
-            'email'=>'user1@gmail.com',
-            'password'=>Hash::make('12345678')
-        ]);
-        DB::table('users')->insert([
-            'name'=>'user2',
-            'email'=>'user2@gmail.com',
-            'password'=>Hash::make('12345678')
-        ]);
-        DB::table('users')->insert([
             'name'=>'admin1',
             'role'=>'admin',
             'email'=>'admin1@gmail.com',
             'password'=>Hash::make('12345678')
         ]);
+        DB::table('users')->insert([
+            'name'=>'user1',
+            'role'=>'user',
+            'email'=>'user1@gmail.com',
+            'password'=>Hash::make('12345678')
+        ]);
+        DB::table('users')->insert([
+            'name'=>'user2',
+            'role'=>'user',
+            'email'=>'user2@gmail.com',
+            'password'=>Hash::make('12345678')
+        ]);
+        DB::table('users')->insert([
+            'name'=>'user3',
+            'role'=>'user',
+            'email'=>'user3@gmail.com',
+            'password'=>Hash::make('12345678')
+        ]);
+        DB::table('users')->insert([
+            'name'=>'user4',
+            'role'=>'user',
+            'email'=>'user4@gmail.com',
+            'password'=>Hash::make('12345678')
+        ]);
+        
         //insert feedbacks table
         DB::table('feedbacks')->insert([
-            'users_id' => 1,
-            'products_id' => 1,
+            'users_id' => 2,
+            'products_id' => 4,
             'rating' => 5,
             'description' => 'This is so cool! i love it'
         ]);
@@ -1489,7 +1503,150 @@ class DatabaseSeeder extends Seeder
             'users_id' => 2,
             'products_id' => 1,
             'rating' => 4,
-            'description' => 'This is not good in my expectations'
+            'description' => 'This is quite good'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 3,
+            'products_id' => 2,
+            'rating' => 3,
+            'description' => 'This is acceptable'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 4,
+            'products_id' => 3,
+            'rating' => 2,
+            'description' => 'Kinda bad imo'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 2,
+            'products_id' => 1,
+            'rating' => 1,
+            'description' => 'This is the worst!'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 5,
+            'products_id' => 3,
+            'rating' => 4,
+            'description' => 'Nice'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 2,
+            'products_id' => 2,
+            'rating' => 5,
+            'description' => "Just what I'm expecting"
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 4,
+            'products_id' => 4,
+            'rating' => 2,
+            'description' => 'Meh'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 3,
+            'products_id' => 3,
+            'rating' => 4,
+            'description' => 'Good enough'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 3,
+            'products_id' => 2,
+            'rating' => 4,
+            'description' => 'daoksdmaoksdaoksdmaokcmscohsdguifdsgvjfdnbjfdsiobsdnb'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 5,
+            'products_id' => 1,
+            'rating' => 4,
+            'description' => 'This is quite good'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 4,
+            'products_id' => 5,
+            'rating' => 1,
+            'description' => 'Meh'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 3,
+            'products_id' => 5,
+            'rating' => 4,
+            'description' => 'Easy to understand'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 2,
+            'products_id' => 6,
+            'rating' => 5,
+            'description' => 'Perfect'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 5,
+            'products_id' => 6,
+            'rating' => 3,
+            'description' => 'Whatever'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 3,
+            'products_id' => 7,
+            'rating' => 4,
+            'description' => 'Nice'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 2,
+            'products_id' => 7,
+            'rating' => 2,
+            'description' => 'This is not good'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 5,
+            'products_id' => 8,
+            'rating' => 3,
+            'description' => 'Normal'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 4,
+            'products_id' => 5,
+            'rating' => 4,
+            'description' => 'Interesting story'
+        ]);
+        DB::table('feedbacks')->insert([
+            'users_id' => 3,
+            'products_id' => 8,
+            'rating' => 2,
+            'description' => 'Bleh'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 1,
+            'users_id' => 3,
+            'description' => 'It is not that good'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 1,
+            'users_id' => 2,
+            'description' => 'Agreed'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 2,
+            'users_id' => 5,
+            'description' => 'Heh'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 2,
+            'users_id' => 4,
+            'description' => 'Hi'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 3,
+            'users_id' => 3,
+            'description' => 'Pls read more be4 comment'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 3,
+            'users_id' => 2,
+            'description' => 'bruh'
+        ]);
+        DB::table('replies')->insert([
+            'feedbacks_id' => 4,
+            'users_id' => 5,
+            'description' => 'Yes'
         ]);
         DB::table('coupons')->insert([
             'code'=>'newyear2023',

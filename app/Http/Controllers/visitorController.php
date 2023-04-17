@@ -258,7 +258,7 @@ class visitorController extends Controller
             $rs = DB::select('select id from orders where id=(select max(id) from orders)');
             //insert into orderDetails
             foreach ($cart as $id => $details) :
-                $query2 = "insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']})";
+                $query2 = "insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']}*(1-{$details['discount']}))";
                 DB::insert($query2);
             endforeach;
             session()->put('cart', null);
@@ -298,16 +298,17 @@ class visitorController extends Controller
         $sort = array("a", "a");
         if ($filter != "a") {
             $sort = explode('+', $filter, 2);
-            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
-        } else $orders = DB::table('orders')->where('users_id', $userID)->get();
+            $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->simplePaginate(15);
+        } else $orders = DB::table('orders')->where('users_id', $userID)->simplePaginate(15);
         return view('orderHistory')->with('filter', $filter)->with('orders', $orders);
     }
     public function orderDetail(Request $request, $id)
     {
         session()->put('orderDetails', null);
+        $status=DB::table('orders')->select('status')->where('id', $id)->get();
         $orderDetail = DB::table('order_details')->where('orders_id', $id)->get();
         if ($orderDetail) session()->put('orderDetails', $orderDetail);
-        return view('orderDetail');
+        return view('orderDetail')->with('status',$status);
     }
     public function orderCancel(Request $request, $id, $filter)
     {

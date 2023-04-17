@@ -49,7 +49,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3">Your comment<br>
-                                    <textarea rows="7" cols="100" name="reviewContent"></textarea>
+                                    <textarea rows="7" cols="100" id="content" name="reviewContent"></textarea>
                                 </td>
                                 </tr>
                                 <tr><td colspan="3"><button type="submit">Post your review</button></td></tr>
@@ -79,10 +79,15 @@
             $(".ratingTxt").text(result);
             });
         });
+        function trimfield(str) 
+        { 
+            return str.replace(/^\s+|\s+$/g,''); 
+        }
         function validateForm() {
         let textRating="";
         let x=0;
         x = document.forms["rating"]["reviewRating"].value;
+        var review = document.getElementById('content');
         if (x == 0) {
             textRating="Please rate the product!";
             document.getElementById("ratingCheck").innerHTML = textRating;

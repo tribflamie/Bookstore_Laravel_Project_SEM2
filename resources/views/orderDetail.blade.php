@@ -35,9 +35,15 @@
                                             <td>{{$product->author}}</td>
                                             <td>${{ $product->price }}</td>
                                             <td>{{ $order->unit_quantity }}</td>
-                                            <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');">Review</a></td>
-                                                            </tr>
+                                            <?php if($status[0]->status=='Cancelled'):?>
+                                                <td>Review</td>
+                                            <?php else:?>
+                                                <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');">Review</a></td>
+                                            <?php endif;?>
+                                        </tr>
                                     @endforeach
+                                @else
+                                <h3 style="color:red; font-weight:10px">How did you even get here?</h3>
                                 @endif
                             </tbody>
                         </table>

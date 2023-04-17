@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h3>Phone (Required)</h3><p id="textP"></p>
+                                <h3>Phone (Required)</h3><p style="color:red" id="textP"></p>
                                 <?php if($user->phone!=null):?>
                                 <input class="form-control" type="text" value="{{ $user->phone }}" name="getPhone" readonly />
                                 <div class="help-block with-errors mt-20"></div>
@@ -162,7 +162,7 @@
                                 <?php endif;?>
                             </div>
                             <div class="form-group">
-                                <h3>Address (Required)</h3><p id="textA"></p>
+                                <h3>Address (Required)</h3><p style="color:red" id="textA"></p>
                                 <?php if($user->location!=null):?>
                                 <input class="form-control" type="text" value="{{ $user->location }}" name="getAddress" readonly />
                                 <div class="help-block with-errors mt-20"></div>
