@@ -1583,15 +1583,125 @@ class DatabaseSeeder extends Seeder
             'users_id' => 3,
             'description' => 'Pls read more be4 comment'
         ]);
-        DB::table('replies')->insert([
-            'feedbacks_id' => 3,
-            'users_id' => 2,
-            'description' => 'bruh'
+        DB::table('orders')->insert([
+            'users_id' => 3,
         ]);
-        DB::table('replies')->insert([
-            'feedbacks_id' => 4,
+        DB::table('orders')->insert([
+            'users_id' => 2,
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 4,
+        ]);
+        DB::table('orders')->insert([
             'users_id' => 5,
-            'description' => 'Yes'
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 3,
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 3,
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 5,
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 2,
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 5,
+        ]);
+        DB::table('orders')->insert([
+            'users_id' => 5,
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 1,
+            'products_id'=>3,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>23*0.88
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 1,
+            'products_id'=>5,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>23*0.8
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 2,
+            'products_id'=>1,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>17*0.9
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 2,
+            'products_id'=>9,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>40*0.77
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 3,
+            'products_id'=>6,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>33*0.7
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 4,
+            'products_id'=>8,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>29*0.78
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 5,
+            'products_id'=>11,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>55*0.82
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 6,
+            'products_id'=>16,
+            'unit_quantity'=>3,
+            'unit_sold_price'=>29*0.6
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 7,
+            'products_id'=>1,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>17*0.9
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 7,
+            'products_id'=>10,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>25*0.84
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 7,
+            'products_id'=>7,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>27*0.75
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 8,
+            'products_id'=>13,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>39*0.65
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 9,
+            'products_id'=>3,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>23*0.88
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 10,
+            'products_id'=>17,
+            'unit_quantity'=>1,
+            'unit_sold_price'=>29*0.65
+        ]);
+        DB::table('order_details')->insert([
+            'orders_id' => 10,
+            'products_id'=>15,
+            'unit_quantity'=>2,
+            'unit_sold_price'=>36*0.55
         ]);
         DB::table('coupons')->insert([
             'code'=>'newyear2023',
@@ -1616,6 +1726,24 @@ class DatabaseSeeder extends Seeder
             'value'=>0.24,
             'description'=>'test code 2',
             'exp_date'=>'2023/4/30',
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'celeb2023',
+            'value'=>0.2,
+            'description'=>'30/4-1/5',
+            'exp_date'=>'2023/5/5',
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'AXKQWX',
+            'value'=>0.22,
+            'description'=>'test code 2',
+            'exp_date'=>'2023/5/30',
+        ]);
+        DB::table('coupons')->insert([
+            'code'=>'dsadw',
+            'value'=>0.24,
+            'description'=>'test code 2',
+            'exp_date'=>'2023/6/30',
         ]);
     }
 }

@@ -35,10 +35,10 @@
                                             <td>{{$product->author}}</td>
                                             <td>${{ $product->price }}</td>
                                             <td>{{ $order->unit_quantity }}</td>
-                                            <?php if($status[0]->status=='Cancelled'):?>
-                                                <td>Review</td>
-                                            <?php else:?>
+                                            <?php if($status[0]->status=='Approved'):?>
                                                 <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');">Review</a></td>
+                                            <?php else:?>
+                                                <td>Review</td>
                                             <?php endif;?>
                                         </tr>
                                     @endforeach

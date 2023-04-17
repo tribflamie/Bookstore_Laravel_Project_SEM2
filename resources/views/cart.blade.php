@@ -81,7 +81,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Current discount</th>
-                                                        <td><span>{{ $discount * 100 }}% ({{ $code }})</span> </td>
+                                                        <td><span>{{ $discount * 100 }}%</span> </td>
                                                     </tr>
 
                                                     <tr>
@@ -108,8 +108,9 @@
                                             <div class="form-coupon">
                                                 <h6 class="upper-case">Have a Coupon?</h6>
                                                 <div class="input-group">
-                                                    <input class="form-control" type="text" placeholder="Coupon code"
-                                                        name='checkCoupon' autocomplete="off">
+                                                    <?php $coupon=session()->get('coupon')?>
+                                                    <input class="form-control" type="text" placeholder="Your coupon here"
+                                                        name='checkCoupon' value="{{$coupon}}" autocomplete="off">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-color btn-animate" type="submit"><span>Apply
                                                                 Coupon <i class="icofont icofont-check"></i></span></button>
@@ -144,6 +145,7 @@
                             $user = session('user');
                             $cart = session('cart');
                             ?>
+                            <input style="display:none" type="text" name="coupon" value="{{$coupon}}">
                             <div class="form-group">
                                 <a class="close">&times;</a>
                                 <h2>Confirm your purchase</h2>

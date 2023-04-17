@@ -189,7 +189,7 @@ class visitorController extends Controller
     {
         //$user=User::find($id)
         //session()->put('user',$user)
-        return view('cart');
+        return view('cart')->with('coupon',"");
     }
 
     /**
@@ -281,13 +281,13 @@ class visitorController extends Controller
                 ->update(array('location' => $user->location, 'updated_at' => now()));  // update the record in the DB. 
         }
         $cart = session()->get('cart');
+        
         if ($cart) :
             $id = Auth::id();
             $query = "insert into orders (users_id,status) values ({$id},'Pending')";
             DB::insert($query);
-
-            unset($details);
             $rs = DB::select('select id from orders where id=(select max(id) from orders)');
+            unset($details);
             //insert into orderDetails
             foreach ($cart as $id => $details) :
                 $query2 = "insert into order_details (orders_id,products_id,unit_quantity,unit_sold_price) values ({$rs[0]->id},{$id},{$details['quantity']},{$details['price']}*(1-{$details['discount']}))";
@@ -295,13 +295,11 @@ class visitorController extends Controller
             endforeach;
             session()->put('cart', null);
         endif;
-        if ($request->session()->get('couponValue') > 0) :
-            $coupon = $request->session()->get('coupon');
-            DB::table('coupons')
-                ->where('code', $coupon)  // find coupon code
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('status' => 'used', 'orders_id' => $rs[0]->id, 'updated_at' => now()));  // update the record in the DB. 
-        endif;
+        $coupon = $request->input('coupon');
+        DB::table('coupons')
+            ->where('code', $coupon)  // find coupon code
+            ->limit(1)  // optional - to ensure only one record is updated.
+            ->update(array('status' => 'used', 'orders_id' => $rs[0]->id, 'updated_at' => now()));  // update the record in the DB. 
         return redirect('/home')->with('orderSuccess', 'Order confirmed, Please wait for us to check.');
     }
     public function checkCoupon(Request $request)
@@ -319,8 +317,7 @@ class visitorController extends Controller
             return redirect('/cart')->with('msgFail', 'Coupon is expired!');
         endif;
         if ($rs) :
-            session()->put('couponValue', $rs[0]->value);
-            return redirect('/cart')->with('msgSuccess', 'Coupon is usable!');
+            return redirect('/cart')->with('msgSuccess', 'Coupon is usable!')->with('coupon',$coupon);
         endif;
     }
     public function orderHistory(Request $request, $filter)

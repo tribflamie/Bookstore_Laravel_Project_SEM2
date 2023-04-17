@@ -33,7 +33,7 @@
                                     <td>Your rating:
                                     </td>
                                     <td name="rating">
-                                    <p id="ratingCheck"></p>
+                                    <p style="color:red" id="ratingCheck"></p>
                                     <input class="star star-5" id="star-5" type="radio" name="reviewRating" value="5"/>
                                     <label class="star star-5" for="star-5"></label>
                                     <input class="star star-4" id="star-4" type="radio" name="reviewRating" value="4"/>
@@ -49,7 +49,8 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3">Your comment<br>
-                                    <textarea rows="7" cols="100" id="content" name="reviewContent"></textarea>
+                                    <p style="color:red" id="reviewCheck"></p>
+                                    <textarea rows="7" cols="100" name="reviewContent"></textarea>
                                 </td>
                                 </tr>
                                 <tr><td colspan="3"><button type="submit">Post your review</button></td></tr>
@@ -81,16 +82,23 @@
         });
         function trimfield(str) 
         { 
-            return str.replace(/^\s+|\s+$/g,''); 
+            return str.replace(/[^A-Z0-9]/ig,"");
         }
         function validateForm() {
-        let textRating="";
+        let textRating="",textReview="";
         let x=0;
         x = document.forms["rating"]["reviewRating"].value;
-        var review = document.getElementById('content');
+        var review =document.forms["rating"]["reviewContent"].value;;
         if (x == 0) {
             textRating="Please rate the product!";
             document.getElementById("ratingCheck").innerHTML = textRating;
+            return false;
+        }
+        let regex=/^fuck|cunt|nude|shit|ass|die|death|fck|fuk$/i;
+        if(trimfield(review).match(regex))
+        {
+            textReview="Commennt cannot have explict words!";
+            document.getElementById("reviewCheck").innerHTML = textReview;
             return false;
         }
         return true;
