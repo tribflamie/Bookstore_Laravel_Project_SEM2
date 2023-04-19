@@ -55,12 +55,11 @@
                                             <?php if($order->status=='Cancelled'||$order->status=='Accepted')
                                                 echo '<br>At: '.$order->updated_at;
                                             ?>
-                                            
                                             </td>
                                             <td>{{$order->created_at}}</td>
-                                            <td><a href="{{ route('orderDetail',$order->id) }}">Details</a></td>
+                                            <td><a href="{{ route('orderDetail',$order->id) }}" class="btn btn-primary btn-position"><i class="fas fa-solid fa-info"></i></a></td>
                                             @if($order->status=='Pending')
-                                            <td><a href="{{ route('orderCancel',[$order->id,$filter]) }}" onclick="return confirm('Cancel this order?')">Cancel</a></td>
+                                            <td><a href="{{ route('orderCancel',[$order->id,$filter]) }}" onclick="return confirm('Cancel this order?')" class="btn btn-danger btn-position"><i class="fas fa-solid fa-ban" style="color: #000000;"></i></a></td>
                                             @else
                                             <td>Cancel</td>
                                             @endif

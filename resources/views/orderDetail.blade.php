@@ -35,10 +35,11 @@
                                             <td>{{$product->author}}</td>
                                             <td>${{ $product->price }}</td>
                                             <td>{{ $order->unit_quantity }}</td>
+                                            <input type="hidden" value="{!! $status[0]->status !!}" name="sta">
                                             <?php if($status[0]->status=='Approved'):?>
-                                                <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');">Review</a></td>
+                                                <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');" class="btn btn-success btn-position"><i class="fas fa-solid fa-pen"></i></a></td>
                                             <?php else:?>
-                                                <td>Review</td>
+                                                <td><a href="#" onclick="notAvail()" class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a></td>
                                             <?php endif;?>
                                         </tr>
                                     @endforeach
@@ -59,6 +60,9 @@
 
 @section('scripts')
     <script type="text/javascript">
+        function notAvail() {
+        alert("This order has not been approved, so you cannot review its products!");
+        }
     </script>
 @endsection
 

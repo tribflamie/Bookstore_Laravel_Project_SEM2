@@ -8,6 +8,7 @@
     <title>Scoda. - Multipurpose One Page HTML5 Template</title>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 </head>
 
