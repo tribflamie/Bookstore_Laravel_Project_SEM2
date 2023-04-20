@@ -310,13 +310,14 @@ class visitorController extends Controller
         if (!$rs) :
             return redirect('/cart')->with('msgFail', 'Coupon does not exists!');
         endif;
-        if ($rs[0]->status == 'used') :
+        if ($rs[0]->status == 'used'):
             return redirect('/cart')->with('msgFail', 'Coupon is used!');
         endif;
         if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
             return redirect('/cart')->with('msgFail', 'Coupon is expired!');
         endif;
         if ($rs) :
+            session()->put('couponValue',$rs[0]->value);
             return redirect('/cart')->with('msgSuccess', 'Coupon is usable!')->with('coupon',$coupon);
         endif;
     }
