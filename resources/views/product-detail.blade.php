@@ -1,7 +1,7 @@
 @extends('layouts.layout-no-banner')
 @section('title', 'Product Detail - The best-selling individual books')
 @section('links')
-    <link rel="stylesheet" href="{{ asset('css/comment-section.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/comment-section.css') }}">
 @endsection
 @section('content')
     <!--=== Products Start ======-->
@@ -12,8 +12,9 @@
                 <div class="col-md-6">
                     <div class="product-slider flexslider">
                         <ul class="slides">
-                            <li data-thumb="{{ asset($product->photo) }}"> <img src="{{ asset($product->photo) }}"
-                                    class="img-responsive" alt="single-product" /> </li>
+                            <li data-thumb="{{ asset('/images/shop/' . $product->photo) }}"> <img
+                                    src="{{ asset('/images/shop/' . $product->photo) }}" class="img-responsive"
+                                    alt="single-product" /> </li>
                         </ul>
                     </div>
                 </div>
@@ -75,26 +76,6 @@
                                 <li><a href="#lastest" role="tab" data-toggle="tab">
                                         <h4 class="reviews text-capitalize">({{ count($product->feedbacks) }}) Lastest</h4>
                                     </a></li>
-                                <li><a href="#5" role="tab" data-toggle="tab">
-                                        <h4 class="reviews text-capitalize">
-                                            ({{ count($product->feedbacks->where('rating', 5)) }}) 5 Stars</h4>
-                                    </a></li>
-                                <li><a href="#4" role="tab" data-toggle="tab">
-                                        <h4 class="reviews text-capitalize">
-                                            ({{ count($product->feedbacks->where('rating', 4)) }}) 4 Stars</h4>
-                                    </a></li>
-                                <li><a href="#3" role="tab" data-toggle="tab">
-                                        <h4 class="reviews text-capitalize">
-                                            ({{ count($product->feedbacks->where('rating', 3)) }}) 3 Stars</h4>
-                                    </a></li>
-                                <li><a href="#2" role="tab" data-toggle="tab">
-                                        <h4 class="reviews text-capitalize">
-                                            ({{ count($product->feedbacks->where('rating', 2)) }}) 2 Stars</h4>
-                                    </a></li>
-                                <li><a href="#1" role="tab" data-toggle="tab">
-                                        <h4 class="reviews text-capitalize">
-                                            ({{ count($product->feedbacks->where('rating', 1)) }}) 1 Stars</h4>
-                                    </a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="comments">
@@ -115,25 +96,34 @@
                                                             <p class="media-date text-uppercase reviews list-inline">
                                                                 {{ $feedback->created_at }}
                                                             </p>
+                                                            <p class="grey">
+                                                                <?php
+                                                                $count = 0;
+                                                                //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                                                                for ($count = 1; $count <= $feedback->rating; $count++):
+                                                                    echo '<span class="fa fa-star checked"></span>';
+                                                                endfor;
+                                                                //xuất số sao đen còn lại
+                                                                for (; $count <= 5; $count++):
+                                                                    echo '<span class="fa fa-star"></span>';
+                                                                endfor;
+                                                                ?>
+                                                            </p>
                                                             <p class="media-comment">
                                                                 {{ $feedback->description }}
                                                             </p>
-
                                                             <a class="btn btn-info btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
+                                                                data-toggle="collapse" href="#reply{{ $feedback->id }}">
                                                                 Reply</a>
                                                             <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
+                                                                data-toggle="collapse" href="#{{ $feedback->id }}">
                                                                 {{ count($feedback->replies) }} comments</a>
                                                         </div>
                                                     </div>
-                                                    <div class="collapse" id="reply">
+                                                    <div class="collapse" id="reply{{ $feedback->id }}">
                                                         <ul class="media-list">
                                                             <li class="media media-replied">
                                                                 <a class="pull-left" href="#">
-
                                                                     @if (Auth::user()->photo == null)
                                                                         <img class="profile img-circle"
                                                                             src="{{ asset('images/team/avatar-1.jpg') }}"
@@ -172,8 +162,6 @@
                                                                             <div class="well well-lg">
                                                                                 <h4
                                                                                     class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
                                                                                     {{ $reply->user->name }}
                                                                                 </h4>
                                                                                 <p
@@ -202,7 +190,8 @@
                                                 <li class="media">
                                                     <a class="pull-left" href="#">
                                                         <img class="profile img-circle"
-                                                            src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
+                                                            src="{{ asset('images/team/' . $feedback->user->photo) }}"
+                                                            alt="profile">
                                                     </a>
                                                     <div class="media-body">
                                                         <div class="well well-lg">
@@ -212,376 +201,73 @@
                                                             <p class="media-date text-uppercase reviews list-inline">
                                                                 {{ $feedback->created_at }}
                                                             </p>
+                                                            <p class="grey">
+                                                                <?php
+                                                                $count = 0;
+                                                                //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                                                                for ($count = 1; $count <= $feedback->rating; $count++):
+                                                                    echo '<span class="fa fa-star checked"></span>';
+                                                                endfor;
+                                                                //xuất số sao đen còn lại
+                                                                for (; $count <= 5; $count++):
+                                                                    echo '<span class="fa fa-star"></span>';
+                                                                endfor;
+                                                                ?>
+                                                            </p>
                                                             <p class="media-comment">
                                                                 {{ $feedback->description }}
                                                             </p>
-
                                                             <a class="btn btn-info btn-circle text-uppercase"
-                                                                href="#" id="reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
+                                                                data-toggle="collapse" href="#rep{{ $feedback->id }}">
                                                                 Reply</a>
                                                             <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
+                                                                data-toggle="collapse" href="#com{{ $feedback->id }}">
                                                                 {{ count($feedback->replies) }} comments</a>
                                                         </div>
                                                     </div>
-                                                    <div class="collapse" id="{{ $feedback->id }}">
+                                                    <div class="collapse" id="rep{{ $feedback->id }}">
                                                         <ul class="media-list">
-                                                            @foreach ($replies as $reply)
-                                                                @if ($reply->feedbacks_id == $feedback->id)
-                                                                    <li class="media media-replied">
-                                                                        <a class="pull-left" href="#">
-                                                                            <img class="profile img-circle"
-                                                                                src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                                alt="profile">
-                                                                        </a>
-                                                                        <div class="media-body">
-                                                                            <div class="well well-lg">
-                                                                                <h4
-                                                                                    class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
-                                                                                    {{ $reply->user->name }}
-                                                                                </h4>
-                                                                                <p
-                                                                                    class="media-date text-uppercase reviews list-inline">
-                                                                                    {{ $reply->created_at }}
-                                                                                </p>
-                                                                                <p class="media-comment">
-                                                                                    {{ $reply->description }}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
+                                                            <li class="media media-replied">
+                                                                <a class="pull-left" href="#">
+                                                                    @if (Auth::user()->photo == null)
+                                                                        <img class="profile img-circle"
+                                                                            src="{{ asset('images/team/avatar-1.jpg') }}"
+                                                                            alt="profile">
+                                                                    @else
+                                                                        <img class="profile img-circle"
+                                                                            src="{{ asset('images/team/' . Auth::user()->photo) }}"
+                                                                            alt="profile">
+                                                                    @endif
+                                                                </a>
+                                                                <div class="media-body">
+                                                                    <form action="/reply/{{ $feedback->id }}"
+                                                                        method="POST">
+                                                                        @csrf
+
+                                                                        <input type="text"
+                                                                            class="well well-lg full-width"
+                                                                            name="reply">
+                                                                        <button
+                                                                            class="btn btn-warning btn-circle text-uppercase">Send</button>
+                                                                    </form>
+                                                                </div>
+                                                            </li>
                                                         </ul>
                                                     </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" id="5">
-                                    <ul class="media-list">
-                                        @foreach ($stars5 as $feedback)
-                                            @if ($feedback->products_id == $product->id)
-                                                <li class="media">
-                                                    <a class="pull-left" href="#">
-                                                        <img class="profile img-circle"
-                                                            src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <div class="well well-lg">
-                                                            <h4 class="media-heading text-uppercase reviews">
-                                                                {{ $feedback->user->name }}
-                                                            </h4>
-                                                            <p class="media-date text-uppercase reviews list-inline">
-                                                                {{ $feedback->created_at }}
-                                                            </p>
-                                                            <p class="media-comment">
-                                                                {{ $feedback->description }}
-                                                            </p>
-
-                                                            <a class="btn btn-info btn-circle text-uppercase"
-                                                                href="#" id="reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
-                                                                Reply</a>
-                                                            <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
-                                                                {{ count($feedback->replies) }} comments</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse" id="{{ $feedback->id }}">
+                                                    <div class="collapse" id="com{{ $feedback->id }}">
                                                         <ul class="media-list">
                                                             @foreach ($replies as $reply)
                                                                 @if ($reply->feedbacks_id == $feedback->id)
                                                                     <li class="media media-replied">
                                                                         <a class="pull-left" href="#">
                                                                             <img class="profile img-circle"
-                                                                                src="{{ asset('images/team/avatar-1.jpg') }}"
+                                                                                src="{{ asset('images/team/' . $reply->user->photo) }}"
                                                                                 alt="profile">
                                                                         </a>
                                                                         <div class="media-body">
                                                                             <div class="well well-lg">
                                                                                 <h4
                                                                                     class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
-                                                                                    {{ $reply->user->name }}
-                                                                                </h4>
-                                                                                <p
-                                                                                    class="media-date text-uppercase reviews list-inline">
-                                                                                    {{ $reply->created_at }}
-                                                                                </p>
-                                                                                <p class="media-comment">
-                                                                                    {{ $reply->description }}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" id="4">
-                                    <ul class="media-list">
-                                        @foreach ($stars4 as $feedback)
-                                            @if ($feedback->products_id == $product->id)
-                                                <li class="media">
-                                                    <a class="pull-left" href="#">
-                                                        <img class="profile img-circle"
-                                                            src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <div class="well well-lg">
-                                                            <h4 class="media-heading text-uppercase reviews">
-                                                                {{ $feedback->user->name }}
-                                                            </h4>
-                                                            <p class="media-date text-uppercase reviews list-inline">
-                                                                {{ $feedback->created_at }}
-                                                            </p>
-                                                            <p class="media-comment">
-                                                                {{ $feedback->description }}
-                                                            </p>
-
-                                                            <a class="btn btn-info btn-circle text-uppercase"
-                                                                href="#" id="reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
-                                                                Reply</a>
-                                                            <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
-                                                                {{ count($feedback->replies) }} comments</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse" id="{{ $feedback->id }}">
-                                                        <ul class="media-list">
-                                                            @foreach ($replies as $reply)
-                                                                @if ($reply->feedbacks_id == $feedback->id)
-                                                                    <li class="media media-replied">
-                                                                        <a class="pull-left" href="#">
-                                                                            <img class="profile img-circle"
-                                                                                src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                                alt="profile">
-                                                                        </a>
-                                                                        <div class="media-body">
-                                                                            <div class="well well-lg">
-                                                                                <h4
-                                                                                    class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
-                                                                                    {{ $reply->user->name }}
-                                                                                </h4>
-                                                                                <p
-                                                                                    class="media-date text-uppercase reviews list-inline">
-                                                                                    {{ $reply->created_at }}
-                                                                                </p>
-                                                                                <p class="media-comment">
-                                                                                    {{ $reply->description }}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" id="3">
-                                    <ul class="media-list">
-                                        @foreach ($stars3 as $feedback)
-                                            @if ($feedback->products_id == $product->id)
-                                                <li class="media">
-                                                    <a class="pull-left" href="#">
-                                                        <img class="profile img-circle"
-                                                            src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <div class="well well-lg">
-                                                            <h4 class="media-heading text-uppercase reviews">
-                                                                {{ $feedback->user->name }}
-                                                            </h4>
-                                                            <p class="media-date text-uppercase reviews list-inline">
-                                                                {{ $feedback->created_at }}
-                                                            </p>
-                                                            <p class="media-comment">
-                                                                {{ $feedback->description }}
-                                                            </p>
-
-                                                            <a class="btn btn-info btn-circle text-uppercase"
-                                                                href="#" id="reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
-                                                                Reply</a>
-                                                            <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
-                                                                {{ count($feedback->replies) }} comments</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse" id="{{ $feedback->id }}">
-                                                        <ul class="media-list">
-                                                            @foreach ($replies as $reply)
-                                                                @if ($reply->feedbacks_id == $feedback->id)
-                                                                    <li class="media media-replied">
-                                                                        <a class="pull-left" href="#">
-                                                                            <img class="profile img-circle"
-                                                                                src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                                alt="profile">
-                                                                        </a>
-                                                                        <div class="media-body">
-                                                                            <div class="well well-lg">
-                                                                                <h4
-                                                                                    class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
-                                                                                    {{ $reply->user->name }}
-                                                                                </h4>
-                                                                                <p
-                                                                                    class="media-date text-uppercase reviews list-inline">
-                                                                                    {{ $reply->created_at }}
-                                                                                </p>
-                                                                                <p class="media-comment">
-                                                                                    {{ $reply->description }}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" id="2">
-                                    <ul class="media-list">
-                                        @foreach ($stars2 as $feedback)
-                                            @if ($feedback->products_id == $product->id)
-                                                <li class="media">
-                                                    <a class="pull-left" href="#">
-                                                        <img class="profile img-circle"
-                                                            src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <div class="well well-lg">
-                                                            <h4 class="media-heading text-uppercase reviews">
-                                                                {{ $feedback->user->name }}
-                                                            </h4>
-                                                            <p class="media-date text-uppercase reviews list-inline">
-                                                                {{ $feedback->created_at }}
-                                                            </p>
-                                                            <p class="media-comment">
-                                                                {{ $feedback->description }}
-                                                            </p>
-
-                                                            <a class="btn btn-info btn-circle text-uppercase"
-                                                                href="#" id="reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
-                                                                Reply</a>
-                                                            <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
-                                                                {{ count($feedback->replies) }} comments</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse" id="{{ $feedback->id }}">
-                                                        <ul class="media-list">
-                                                            @foreach ($replies as $reply)
-                                                                @if ($reply->feedbacks_id == $feedback->id)
-                                                                    <li class="media media-replied">
-                                                                        <a class="pull-left" href="#">
-                                                                            <img class="profile img-circle"
-                                                                                src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                                alt="profile">
-                                                                        </a>
-                                                                        <div class="media-body">
-                                                                            <div class="well well-lg">
-                                                                                <h4
-                                                                                    class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
-                                                                                    {{ $reply->user->name }}
-                                                                                </h4>
-                                                                                <p
-                                                                                    class="media-date text-uppercase reviews list-inline">
-                                                                                    {{ $reply->created_at }}
-                                                                                </p>
-                                                                                <p class="media-comment">
-                                                                                    {{ $reply->description }}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" id="1">
-                                    <ul class="media-list">
-                                        @foreach ($stars1 as $feedback)
-                                            @if ($feedback->products_id == $product->id)
-                                                <li class="media">
-                                                    <a class="pull-left" href="#">
-                                                        <img class="profile img-circle"
-                                                            src="{{ asset('images/team/avatar-1.jpg') }}" alt="profile">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <div class="well well-lg">
-                                                            <h4 class="media-heading text-uppercase reviews">
-                                                                {{ $feedback->user->name }}
-                                                            </h4>
-                                                            <p class="media-date text-uppercase reviews list-inline">
-                                                                {{ $feedback->created_at }}
-                                                            </p>
-                                                            <p class="media-comment">
-                                                                {{ $feedback->description }}
-                                                            </p>
-
-                                                            <a class="btn btn-info btn-circle text-uppercase"
-                                                                href="#" id="reply"><span
-                                                                    class="glyphicon glyphicon-share-alt"></span>
-                                                                Reply</a>
-                                                            <a class="btn btn-warning btn-circle text-uppercase"
-                                                                data-toggle="collapse" href="#{{ $feedback->id }}"><span
-                                                                    class="glyphicon glyphicon-comment"></span>
-                                                                {{ count($feedback->replies) }} comments</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse" id="{{ $feedback->id }}">
-                                                        <ul class="media-list">
-                                                            @foreach ($replies as $reply)
-                                                                @if ($reply->feedbacks_id == $feedback->id)
-                                                                    <li class="media media-replied">
-                                                                        <a class="pull-left" href="#">
-                                                                            <img class="profile img-circle"
-                                                                                src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                                alt="profile">
-                                                                        </a>
-                                                                        <div class="media-body">
-                                                                            <div class="well well-lg">
-                                                                                <h4
-                                                                                    class="media-heading text-uppercase reviews">
-                                                                                    <span
-                                                                                        class="glyphicon glyphicon-share-alt"></span>
                                                                                     {{ $reply->user->name }}
                                                                                 </h4>
                                                                                 <p
@@ -611,8 +297,8 @@
                     @foreach ($topNewest as $top)
                         <div class="col-md-3 col-sm-6">
                             <div class="product">
-                                <div class="product-wrap"> <img src="{{ asset($top->photo) }}" class="img-responsive"
-                                        alt="team-01">
+                                <div class="product-wrap"> <img src="{{ asset('/images/shop/' . $top->photo) }}"
+                                        class="img-responsive" alt="team-01">
                                     <div class="product-caption">
                                         <div class="product-description text-center">
                                             <div class="product-description-wrap">
