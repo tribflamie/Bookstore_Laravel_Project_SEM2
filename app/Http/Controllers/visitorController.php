@@ -12,6 +12,7 @@ use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class visitorController extends Controller
 {
@@ -167,21 +168,34 @@ class visitorController extends Controller
             $data->photo = $filename;
         }
         $data->save();
+        return redirect()->back()->with('message', 'Profile updated successfully!');
+    }
 
-        $request->validate([
-            'current_password' => ['required', 'string', 'min:8'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
-        ]);
-
-        $currentPasswordStatus = Hash::check($request->current_password, auth()->user()->password);
-        if ($currentPasswordStatus) {
-            User::findOrFail(Auth::user()->id)->update([
-                'password' => Hash::make($request->password),
-            ]);
-            return redirect()->back()->with('message', 'Password updated successfully');
-        } else {
-            return redirect()->back()->with('message', 'Current password does not match with old password');
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'current_password' => 'required',
+                'new_password' => 'required|string|min:6|same:confirm_password',
+                'confirm_password' => 'required'
+            ]
+        );
+        if ($validator->fails()) {
+            return back()->with('message', 'Change password failed! Please try again.')->withInput()->withErrors($validator);
         }
+
+        $user = User::find(Auth::user()->id);
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->with('message', 'Current password does not match!');
+        }
+
+        $user->password = Hash::make($request->new_password);
+
+        $user->save();
+
+        return redirect()->back()->with('message', 'Password successfully changed!');
     }
 
     //cart add, update and remove
@@ -189,7 +203,7 @@ class visitorController extends Controller
     {
         //$user=User::find($id)
         //session()->put('user',$user)
-        return view('cart')->with('coupon',"");
+        return view('cart')->with('coupon', "");
     }
 
     /**
@@ -281,7 +295,7 @@ class visitorController extends Controller
                 ->update(array('location' => $user->location, 'updated_at' => now()));  // update the record in the DB. 
         }
         $cart = session()->get('cart');
-        
+
         if ($cart) :
             $id = Auth::id();
             $query = "insert into orders (users_id,status) values ({$id},'Pending')";
@@ -335,10 +349,10 @@ class visitorController extends Controller
     public function orderDetail(Request $request, $id)
     {
         session()->put('orderDetails', null);
-        $status=DB::table('orders')->select('status')->where('id', $id)->get();
+        $status = DB::table('orders')->select('status')->where('id', $id)->get();
         $orderDetail = DB::table('order_details')->where('orders_id', $id)->get();
         if ($orderDetail) session()->put('orderDetails', $orderDetail);
-        return view('orderDetail')->with('status',$status);
+        return view('orderDetail')->with('status', $status);
     }
     public function orderCancel(Request $request, $id, $filter)
     {
@@ -384,7 +398,8 @@ class visitorController extends Controller
         $user = User::find(Auth::user()->id);
         return view('contact-us', compact('user'));
     }
-    public function sendContact(Request $request){
+    public function sendContact(Request $request)
+    {
         $contacts = new Contact;
         $contacts->name = $request->input('name');
         $contacts->email = $request->input('email');

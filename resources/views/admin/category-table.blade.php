@@ -26,7 +26,8 @@
     <div class="modal fade" id="cateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/admin/save-categories" method="POST" enctype="multipart/form-data">
+            <form action="/admin/save-categories" method="POST" onsubmit="return createCategoryValidation()"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -47,7 +48,8 @@
                         </div>
                         <div class="form-group">
                             <label for="inputPho">Photo</label>
-                            <input type="file" id="inputPho" name="photo" class="form-control">
+                            <input type="file" id="inputPho" name="photo" onchange="return fileValidation1()"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -90,12 +92,12 @@
                                                         class="fas fa-sync-alt"></i></button></td>
                                             <td>{{ $category->categories }}</td>
                                             <td>
-                                                @if (strlen($category->description) > 100)
-                                                    {{ substr($category->description, 0, 100) }}
+                                                @if (strlen($category->description) > 20)
+                                                    {{ substr($category->description, 0, 20) }}
                                                     <span class="read-more-show hide_content">More <i
                                                             class="fa fa-angle-down"></i></span>
                                                     <span class="read-more-content">
-                                                        {{ substr($category->description, 100, strlen($category->description)) }}
+                                                        {{ substr($category->description, 20, strlen($category->description)) }}
                                                         <span class="read-more-hide hide_content">Less <i
                                                                 class="fa fa-angle-up"></i></span> </span>
                                                 @else
@@ -124,7 +126,8 @@
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ url('admin/update-categories') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-categories') }}" method="POST" onsubmit="return updateCategoryValidation()"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -149,7 +152,8 @@
                         </div>
                         <div class="form-group">
                             <label for="photo">Photo</label>
-                            <input type="file" id="photo" name="photo" class="form-control">
+                            <input type="file" id="photo" name="photo" onchange="return fileValidation2()"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -165,7 +169,73 @@
 
 @section('scripts')
     <script type="text/javascript">
-        //add updatebtn
+        //create category validation
+        function createCategoryValidation() {
+            //check string
+            var category = $('#inputCat').val();
+            if (category.trim() == '') {
+                alert('Category is required!');
+                return false;
+            }
+            //check string
+            var description = $('#inputDes').val();
+            if (description.trim() == '') {
+                alert('Description is required!');
+                return false;
+            }
+            //check file
+            var photo = $('#inputPho').val();
+            if (photo == '') {
+                alert("Empty input file");
+                return false;
+            }
+            return true;
+        }
+
+        //public update category validation
+        function updateCategoryValidation() {
+            //check string
+            var category = $('#categories').val();
+            if (category.trim() == '') {
+                alert('Category is required!');
+                return false;
+            }
+            //check string
+            var description = $('#description').val();
+            if (description.trim() == '') {
+                alert('description is required!');
+                return false;
+            }
+            return true;
+        }
+
+        //file validation 1
+        function fileValidation1() {
+            var fileInput = document.getElementById('inputPho');
+            var filePath = fileInput.value;
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            }
+        }
+
+        //file validation 2
+        function fileValidation2() {
+            var fileInput = document.getElementById('photo');
+            var filePath = fileInput.value;
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            }
+        }
+
+        //find button id on click then get value from database table
         $(document).on('click', '.updatebtn', function() {
             var categories_id = $(this).val();
             //alert(categories_id);
@@ -174,7 +244,7 @@
                 type: "GET",
                 url: "update-categories/" + categories_id,
                 success: function(response) {
-                    console.log(response);
+                    //console.log(response);
                     $('#categories_id').val(response.categories.id);
                     $('#categories').val(response.categories.categories);
                     $('#description').val(response.categories.description);
@@ -182,7 +252,7 @@
             })
         });
 
-        //DataTable
+        //datatable bootstrap
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,

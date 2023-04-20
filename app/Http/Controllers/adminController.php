@@ -239,28 +239,38 @@ class adminController extends Controller
         return view('admin.feedback-tables', compact('feedbacks', 'replies'));
     }
 
-    //update Feedbacks
-    public function updateFeedbacks($id)
+    //update Feedback
+    public function showFeedback($id)
     {
         $data = Feedback::find($id);
-        if ($data->status == 'show') {
-            $data->status = 'hide';
-        } else {
-            $data->status = 'show';
-        }
+        $data->status = 'show';
         $data->update();
         return redirect()->back()->with('message', 'Feedback updated successfully');
     }
 
-    //update Replies
-    public function updateReplies($id)
+    //update Feedback
+    public function hideFeedback($id)
+    {
+        $data = Feedback::find($id);
+        $data->status = 'hide';
+        $data->update();
+        return redirect()->back()->with('message', 'Feedback updated successfully');
+    }
+
+    //update Reply
+    public function showReply($id)
     {
         $data = Reply::find($id);
-        if ($data->status == 'show') {
-            $data->status = 'hide';
-        } else {
-            $data->status = 'show';
-        }
+        $data->status = 'show';
+        $data->update();
+        return redirect()->back()->with('message', 'Feedback updated successfully');
+    }
+
+    //update Reply
+    public function hideReply($id)
+    {
+        $data = Reply::find($id);
+        $data->status = 'hide';
         $data->update();
         return redirect()->back()->with('message', 'Feedback updated successfully');
     }

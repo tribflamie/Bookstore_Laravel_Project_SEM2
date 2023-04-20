@@ -26,7 +26,8 @@
     <div class="modal fade" id="cateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/admin/save-coupon" method="POST" enctype="multipart/form-data" onsubmit="return validateSaveCoupon()" novalidate>
+            <form action="/admin/save-coupon" method="POST" enctype="multipart/form-data"
+                onsubmit="return createCouponValidation()" novalidate>
                 @csrf
 
                 <div class="modal-content">
@@ -122,7 +123,7 @@
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ url('admin/update-coupon') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-coupon') }}" method="POST" onsubmit="return updateCouponValidation()" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -167,14 +168,71 @@
 
 @section('scripts')
     <script type="text/javascript">
-        function validateSaveCoupon() {
+        function createCouponValidation() {
+            //check string
             var code = $('#code').val();
-            var value = $('#value').val();
-            var description = $('#description').val();
-            var exp_date = $('#exp_date').val();
             if (code.trim() == '') {
                 alert('Code is required');
-                $('#code').focus();
+                return false;
+            }
+            var value = $('#value').val();
+            if (value.trim() == '') {
+                alert('Value is required!');
+                return false;
+            }
+            if ((!value.match(/^\d*\.?\d+$/)) || value > 1) {
+                alert('Value must be decimal and less than or equal 1!');
+                return false;
+            }
+            //check string
+            var description = $('#description').val();
+            if (description.trim() == '') {
+                alert('Description is required');
+                return false;
+            }
+            //check date
+            var exp_date = $('#exp_date').val();
+            if (exp_date == '') {
+                alert('Expiration date is required');
+                return false;
+            }
+            if (new Date(Date.parse(exp_date)) > new Date()) {
+                alert('Expiration date is less than or equal current date');
+                return false;
+            }
+            return true;
+        }
+
+        function updateCouponValidation() {
+            //check string
+            var code = $('#codeUpdate').val();
+            if (code.trim() == '') {
+                alert('Code is required');
+                return false;
+            }
+            var value = $('#valueUpdate').val();
+            if (value.trim() == '') {
+                alert('Value is required!');
+                return false;
+            }
+            if ((!value.match(/^\d*\.?\d+$/)) || value > 1) {
+                alert('Value must be decimal and less than or equal 1!');
+                return false;
+            }
+            //check string
+            var description = $('#descriptionUpdate').val();
+            if (description.trim() == '') {
+                alert('Description is required');
+                return false;
+            }
+            //check date
+            var exp_date = $('#exp_dateUpdate').val();
+            if (exp_date == '') {
+                alert('Expiration date is required');
+                return false;
+            }
+            if (new Date(Date.parse(exp_date)) > new Date()) {
+                alert('Expiration date is less than or equal current date');
                 return false;
             }
             return true;

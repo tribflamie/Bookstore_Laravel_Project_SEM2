@@ -25,7 +25,8 @@
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/admin/save-products" method="POST" enctype="multipart/form-data">
+            <form action="/admin/save-products" method="POST" onsubmit="return createProductValidation()"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -65,8 +66,8 @@
                             <input type="text" id="price" name="price"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="discount">Discount</label>
-                            <input type="text" id="discount" name="discount"class="form-control">
+                            <label for="discount">Discount (< 1)</label>
+                                    <input type="text" id="discount" name="discount"class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -74,7 +75,8 @@
                         </div>
                         <div class="form-group">
                             <label for="photo">Photo</label>
-                            <input type="file" id="photo" name="photo" class="form-control">
+                            <input type="file" id="photo" name="photo" onchange="return fileValidation1()"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -135,12 +137,12 @@
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->discount }}</td>
                                             <td>
-                                                @if (strlen($product->description) > 50)
-                                                    {{ substr($product->description, 0, 50) }}
+                                                @if (strlen($product->description) > 20)
+                                                    {{ substr($product->description, 0, 20) }}
                                                     <span class="read-more-show hide_content">More <i
                                                             class="fa fa-angle-down"></i></span>
                                                     <span class="read-more-content">
-                                                        {{ substr($product->description, 50, strlen($product->description)) }}
+                                                        {{ substr($product->description, 20, strlen($product->description)) }}
                                                         <span class="read-more-hide hide_content">Less <i
                                                                 class="fa fa-angle-up"></i></span> </span>
                                                 @else
@@ -171,7 +173,7 @@
     <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ url('admin/update-products') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-products') }}" method="POST" onsubmit="return updateProductValidation()" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -224,7 +226,7 @@
                         </div>
                         <div class="form-group">
                             <label for="photo">Photo</label>
-                            <input type="file" id="product_photo" name="product_photo" class="form-control">
+                            <input type="file" id="product_photo" name="product_photo" onchange="return fileValidation2()" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -240,7 +242,155 @@
 
 @section('scripts')
     <script type="text/javascript">
-        //add updatebtn2
+        function createProductValidation() {
+            //check string 
+            var name = $('#name').val();
+            if (name.trim() == '') {
+                alert('Name is required');
+                return false;
+            }
+            //check string 
+            var author = $('#author').val();
+            if (author.trim() == '') {
+                alert('Author is required');
+                return false;
+            }
+            //check string 
+            var country = $('#country').val();
+            if (country.trim() == '') {
+                alert('Country is required');
+                return false;
+            }
+            //check year
+            var published = $('#published').val();
+            var currYear = new Date().getFullYear();
+            if (published.trim() == '') {
+                alert('Published is required!');
+                return false;
+            }
+            if ((!published.match(/^\d{4}$/)) || published > currYear) {
+                alert('Published must be a year and less than or equal current year!');
+                return false;
+            }
+            //check number
+            var price = $('#price').val();
+            if (price.trim() == '') {
+                alert('Price is required!');
+                return false;
+            }
+            if ((!price.match(/^\d*\.?\d+$/))|| price >= 100) {
+                alert('Price must be decimal and less than 100!');
+                return false;
+            }
+            //check number
+            var discount = $('#discount').val();
+            if (discount.trim() == '') {
+                alert('Discount is required!');
+                return false;
+            }
+            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1) {
+                alert('Discount must be decimal and less than or equal 1!');
+                return false;
+            }
+            //check string
+            var description = $('#description').val();
+            if (description.trim() == '') {
+                alert('Description is required');
+                return false;
+            }
+            //check file
+            if (!$('#photo').val()) {
+                alert('Empty input file!');
+                return false;
+            }
+            return true;
+        }
+
+        function updateProductValidation() {
+            //check string 
+            var name = $('#product_name').val();
+            if (name.trim() == '') {
+                alert('Name is required');
+                return false;
+            }
+            //check string 
+            var author = $('#product_author').val();
+            if (author.trim() == '') {
+                alert('Author is required');
+                return false;
+            }
+            //check string 
+            var country = $('#product_country').val();
+            if (country.trim() == '') {
+                alert('Country is required');
+                return false;
+            }
+            //check year
+            var published = $('#product_published').val();
+            var currYear = new Date().getFullYear();
+            if (published.trim() == '') {
+                alert('Published is required!');
+                return false;
+            }
+            if ((!published.match(/^\d{4}$/)) || published > currYear) {
+                alert('Published must be a year and less than or equal current year!');
+                return false;
+            }
+            //check number
+            var price = $('#product_price').val();
+            if (price.trim() == '') {
+                alert('Price is required!');
+                return false;
+            }
+            if ((!price.match(/^\d*\.?\d+$/))|| price >= 100) {
+                alert('Price must be integer and less than 100!');
+                return false;
+            }
+            //check number
+            var discount = $('#product_discount').val();
+            if (discount.trim() == '') {
+                alert('Discount is required!');
+                return false;
+            }
+            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1) {
+                alert('Discount must be integer and less than or equal 1!');
+                return false;
+            }
+            //check string
+            var description = $('#product_description').val();
+            if (description.trim() == '') {
+                alert('Description is required');
+                return false;
+            }
+            return true;
+        }
+
+        //file validation 1
+        function fileValidation1() {
+            var fileInput = document.getElementById('photo');
+            var filePath = fileInput.value;
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            }
+        }
+
+        //file validation 2
+        function fileValidation2() {
+            var fileInput = document.getElementById('product_photo');
+            var filePath = fileInput.value;
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            }
+        }
+
         $(document).on('click', '.updatebtn2', function() {
             var products_id = $(this).val();
             //alert(products_id);
@@ -249,7 +399,7 @@
                 type: "GET",
                 url: "update-products/" + products_id,
                 success: function(response) {
-                    console.log(response);
+                    //console.log(response);
                     $('#product_id').val(response.products.id);
                     $('#product_categories_id').val(response.products.categories_id);
                     $('#product_name').val(response.products.name);
@@ -263,7 +413,7 @@
             })
         });
 
-        //DataTable 
+        //datatable 
         $(function() {
             //Table 2
             $("#example2").DataTable({

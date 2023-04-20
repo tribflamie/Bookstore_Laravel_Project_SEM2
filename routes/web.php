@@ -31,7 +31,8 @@ Route::get('orderControl', [App\Http\Controllers\visitorController::class, 'orde
 Route::get('checkCoupon', [App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');
 Route::get('edit-profile', [App\Http\Controllers\VisitorController::class, 'editProfile'])->name('edit.profile');
-Route::post('edit-profile', [App\Http\Controllers\VisitorController::class, 'updateProfile']);
+Route::post('update-profile', [App\Http\Controllers\VisitorController::class, 'updateProfile']);
+Route::post('change-password', [App\Http\Controllers\VisitorController::class, 'changePassword']);
 Route::get('orderHistory/{filter}', [App\Http\Controllers\visitorController::class, 'orderHistory'])->name('orderHistory');
 Route::get('orderDetail/{id}', [App\Http\Controllers\visitorController::class, 'orderDetail'])->name('orderDetail');
 Route::get('orderCancel/{id}/{filter}', [App\Http\Controllers\visitorController::class, 'orderCancel'])->name('orderCancel');
@@ -74,8 +75,10 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('cancel-order/{id}', [App\Http\Controllers\adminController::class, 'cancleOrder']);
     //Feedback Management Routes 
     Route::get('feedback-tables', [App\Http\Controllers\adminController::class, 'feedbackTables'])->name('admin.feedback-tables');
-    Route::get('update-feedbacks/{id}', [App\Http\Controllers\adminController::class, 'updateFeedbacks']);
-    Route::get('update-replies/{id}', [App\Http\Controllers\adminController::class, 'updateReplies']);
+    Route::get('show-feedback/{id}', [App\Http\Controllers\adminController::class, 'showFeedback']);
+    Route::get('hide-feedback/{id}', [App\Http\Controllers\adminController::class, 'hideFeedback']);
+    Route::get('show-reply/{id}', [App\Http\Controllers\adminController::class, 'showReply']);
+    Route::get('hide-reply/{id}', [App\Http\Controllers\adminController::class, 'hideReply']);
     //Contact Management Routes
     Route::get('contact-table', [App\Http\Controllers\adminController::class, 'contactTable'])->name('admin.contact-table');
 });
