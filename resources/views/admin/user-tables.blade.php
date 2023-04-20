@@ -45,7 +45,7 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td><a href="/admin/update-roles/{{ $user->id }}" class="btn btn-primary btn-position"><i class="fas fa-user-cog"></i></a></td>
+                                            <td><a href="/admin/update-roles/{{ $user->id }}" onclick="return alertBtn()" class="btn btn-primary btn-position"><i class="fas fa-user-cog"></i></a></td>
                                             <td>{{ $user->role }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
@@ -75,6 +75,11 @@
 
 @section('scripts')
     <script type="text/javascript">
+        function alertBtn(){
+            alert('Do you want to change your role?');
+            return true;
+        }
+
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,

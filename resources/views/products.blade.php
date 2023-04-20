@@ -102,7 +102,7 @@
                         </div>
                     @endforeach
                     <div style="margin-top:550px">
-                        {{ $filter->links() }}
+                        {{ $filter->withQueryString()->links() }}
                     </div>
                 </div>
                 <!--=== Product End ===-->
@@ -172,7 +172,7 @@
                         </ul>
                     </div>
                     <div class="widget sidebar_widget widget_categories">
-                        <h4 class="widget-title">Top 5 Selling</h4>
+                        <h4 class="widget-title">Top 5 Best Sellers</h4>
                         <ul>
                             @foreach ($topSelling as $top)
                                 <li><a href="product-detail/{{ $top->id }}">{{ $top->name }}</a></li>
