@@ -288,8 +288,8 @@
                 alert('Discount is required!');
                 return false;
             }
-            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1) {
-                alert('Discount must be decimal and less than or equal 1!');
+            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1||discount<0) {
+                alert('Discount must be decimal and less than or equal 1/more than 0!');
                 return false;
             }
             //check string
@@ -343,7 +343,7 @@
                 return false;
             }
             if ((!price.match(/^\d*\.?\d+$/))|| price >= 100) {
-                alert('Price must be integer and less than 100!');
+                alert('Price must be decimal and less than 100!');
                 return false;
             }
             //check number
@@ -352,8 +352,8 @@
                 alert('Discount is required!');
                 return false;
             }
-            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1) {
-                alert('Discount must be integer and less than or equal 1!');
+            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1||discount<0) {
+                alert('Discount must be decimal and less than or equal 1/more than 0!');
                 return false;
             }
             //check string

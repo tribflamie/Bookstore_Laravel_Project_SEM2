@@ -217,9 +217,12 @@ class adminController extends Controller
     public function approveOrder($id)
     {
         $data = Order::find($id);
+        if($data->status=='Pending'):
         $data->status = 'Approved';
         $data->update();
         return redirect()->back()->with('message', 'Order updated successfully!');
+        endif;
+        return redirect()->back()->with('message', 'Cannot update order!');
     }
 
     //cancle orders

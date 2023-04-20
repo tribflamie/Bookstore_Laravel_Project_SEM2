@@ -31,14 +31,14 @@
                                                     class="cart-thumb" alt="" /></a>
                                             <h6><a href="#">{{ $details['name'] }}</a></h6>
                                             <p>{{ $details['quantity'] }}x - <span
-                                                    class="price">${{ $details['price'] }}</span></p>
+                                                    class="price">${{ $details['price']*(1-$details['discount']) }}</span></p>
                                             </span></p>
                                         </li>
                                     @endforeach
                                 @endif
                                 <?php $total = 0; ?>
                                 @foreach ((array) session('cart') as $id => $details)
-                                    <?php $total += $details['price'] * $details['quantity']; ?>
+                                    <?php $total += $details['price']*(1-$details['discount']) * $details['quantity']; ?>
                                 @endforeach
                                 <li class="total"> <span class="pull-right"><strong>Total</strong>:
                                         ${{ $total }}</span> <a href="{{ route('cart') }}"

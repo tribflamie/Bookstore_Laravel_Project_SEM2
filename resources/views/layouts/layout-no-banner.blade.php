@@ -31,7 +31,7 @@
                                                     class="cart-thumb" alt="" /></a>
                                             <h6><a href="#">{{ $details['name'] }}</a></h6>
                                             <p>{{ $details['quantity'] }}x - <span
-                                                    class="price">${{ $details['price'] }}</span></p>
+                                                    class="price">${{ $details['price']*(1-$details['discount']) }}</span></p>
                                             </span></p>
                                         </li>
                                     @endforeach

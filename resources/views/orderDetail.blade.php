@@ -1,5 +1,5 @@
 @extends('layouts.layout-no-banner')
-@section('title', 'Cart - The best-selling individual books')
+@section('title', 'Order details')
 @section('content')
     <!--=== Products Start ======-->
     <section>
@@ -39,7 +39,7 @@
                                             <?php if($status[0]->status=='Approved'):?>
                                                 <td><a href="#" onclick="window.open('http://localhost:8000/review/{{$product->id}}', 'newwindow','width=1000,height=1000,left=500,top=300');" class="btn btn-success btn-position"><i class="fas fa-solid fa-pen"></i></a></td>
                                             <?php else:?>
-                                                <td><a href="#" onclick="notAvail()" class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a></td>
+                                                <td><a href="#" disabled title="This order has not been approved!" class="btn btn-warning"><i class="fas fa-solid fa-pen"></i></a></td>
                                             <?php endif;?>
                                         </tr>
                                     @endforeach
@@ -60,9 +60,7 @@
 
 @section('scripts')
     <script type="text/javascript">
-        function notAvail() {
-        alert("This order has not been approved, so you cannot review its products!");
-        }
+        
     </script>
 @endsection
 

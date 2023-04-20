@@ -39,8 +39,15 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td><a href="/admin/approve-order/{{ $order->id }}"
+                                            
+                                            <td>
+                                            <?php if ($order->status=='Pending'):?>
+                                            <a href="/admin/approve-order/{{ $order->id }}"
                                                     class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
+                                            <?php else:?>
+                                                <a href="#"
+                                                    class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
+                                            <?php endif;?>
                                                 <a href="/admin/cancel-order/{{ $order->id }}"
                                                     class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
                                                 </td>

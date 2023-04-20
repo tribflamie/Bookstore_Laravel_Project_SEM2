@@ -358,15 +358,15 @@ class visitorController extends Controller
     {
         $userID = Auth::id();
         DB::table('orders')
-            ->where('id', $id)  // find coupon code
+            ->where('id', $id)  // find order
             ->limit(1)  // optional - to ensure only one record is updated.
-            ->update(array('status' => 'Cancelled', 'updated_at' => now()));  // update the record in the DB. 
+            ->update(array('status' => 'Cancelled', 'updated_at' =>now()));  // update the record in the DB. 
         session()->put('orders', null);
         if ($filter != "a") {
             $sort = explode('+', $filter, 2);
             $orders = DB::table('orders')->where('users_id', $userID)->orderBy($sort[0], $sort[1])->get();
         } else $orders = DB::table('orders')->where('users_id', $userID)->get();
-        return redirect("/orderHistory/$filter")->with('filter', $filter)->with('orders', $orders);
+        return redirect("/orderHistory/$filter")->with('filter', $filter)->with('orders', $orders)->with('cancelSuccess',"Your order has been cancelled!");
     }
     public function reviewProduct(Request $request, $id)
     {

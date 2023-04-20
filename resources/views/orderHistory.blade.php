@@ -1,8 +1,16 @@
 @extends('layouts.layout-no-banner')
-@section('title', 'Cart - The best-selling individual books')
+@section('title', 'Your orders')
 @section('content')
     <!--=== Products Start ======-->
     <section>
+        @if(session('cancelSuccess'))
+        <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>{{session('cancelSuccess')}}</strong>
+        </div>
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -52,7 +60,7 @@
                                             <td>{{$quantity}} </td>
                                             <td><span>${{ $sum }}</span> </td>
                                             <td>{{$order->status}}
-                                            <?php if($order->status=='Cancelled'||$order->status=='Accepted')
+                                            <?php if($order->status=='Cancelled'||$order->status=='Approved')
                                                 echo '<br>At: '.$order->updated_at;
                                             ?>
                                             </td>
@@ -61,7 +69,7 @@
                                             @if($order->status=='Pending')
                                             <td><a href="{{ route('orderCancel',[$order->id,$filter]) }}" onclick="return confirm('Cancel this order?')" class="btn btn-danger btn-position"><i class="fas fa-solid fa-ban" style="color: #000000;"></i></a></td>
                                             @else
-                                            <td>Cancel</td>
+                                            <td><a href="#" disabled title="This order has already been approved/cancelled!" class="btn btn-danger btn-position"><i class="fas fa-solid fa-ban" style="color: #000000;"></i></a></td>
                                             @endif
                                         </tr>
                                     @endforeach

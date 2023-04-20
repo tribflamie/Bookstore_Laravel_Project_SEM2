@@ -1,20 +1,9 @@
 @extends('layouts.layout-no-banner')
-@section('title', 'Cart - The best-selling individual books')
+@section('title', 'Review your product')
 @section('content')
     <!--=== Products Start ======-->
     <section>
         <div class="container">
-        @if(count($errors))
-            <div class="form-group">
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
         <h1 style="text-align:center">Product review</h1>
             <div class="row">
                 <div class="col-md-12">
@@ -101,6 +90,7 @@
             document.getElementById("reviewCheck").innerHTML = textReview;
             return false;
         }
+        alert("Thank you for your review!");
         return true;
         }
     </script>
