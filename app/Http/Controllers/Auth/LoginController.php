@@ -45,6 +45,6 @@ class LoginController extends Controller
         //logout and destroy session
         Auth::logout();
         $request->session()->flush();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }

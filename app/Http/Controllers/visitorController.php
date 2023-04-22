@@ -28,7 +28,7 @@ class visitorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index', 'cart', 'products', 'addToCart', 'update', 'remove', 'productDetail', 'aboutUs', 'faqs', 'term', 'privacy', 'site']]);
     }
 
     /**

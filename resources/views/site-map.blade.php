@@ -28,7 +28,11 @@
                                         <li><a
                                                 href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
                                         </li>
+                                        @if ($category->id ==20)
+                                            @break;
+                                        @endif
                                     @endforeach
+                                    <li><a href="{{ route('products') }}">More</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -66,9 +70,6 @@
                                     <li><a href="{{ route('edit.profile') }}">Edit Profile</a></li>
                                     <?php $filter = 'a'; ?>
                                     <li><a href="{{ route('orderHistory', $filter) }}">Order History</a></li>
-                                    @if (Auth::user()->role == 'admin')
-                                        <li><a href="{{ route('admin.user-tables') }}">Management</a></li>
-                                    @endif
                                     <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

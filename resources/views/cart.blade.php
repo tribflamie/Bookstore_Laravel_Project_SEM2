@@ -27,7 +27,9 @@
                                         <tr data-id="{{ $id }}" class="cart_item">
                                             <td><a class="remove-from-cart"><i class="icofont-close-circled"></i></a>
                                             </td>
-                                            <td><a href="#"> <img src="{{ asset('/images/shop/' . $details['photo']) }}" alt="">
+                                            <td><a href="#"> <img
+                                                        src="{{ asset('/images/shop/' . $details['photo']) }}"
+                                                        alt="">
                                                 </a> </td>
                                             <td><a href="#">{{ $details['name'] }}</a> </td>
                                             <td><a href="#">{{ $details['author'] }}</a> </td>
@@ -97,9 +99,10 @@
                                             <div class="form-coupon">
                                                 <h6 class="upper-case">Have a Coupon?</h6>
                                                 <div class="input-group">
-                                                    <?php $coupon=session()->get('coupon')?>
-                                                    <input class="form-control" type="text" placeholder="Your coupon here"
-                                                        name='checkCoupon' value="{{$coupon}}" autocomplete="off">
+                                                    <?php $coupon = session()->get('coupon'); ?>
+                                                    <input class="form-control" type="text"
+                                                        placeholder="Your coupon here" name='checkCoupon'
+                                                        value="{{ $coupon }}" autocomplete="off">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-color btn-animate" type="submit"><span>Apply
                                                                 Coupon <i class="icofont icofont-check"></i></span></button>
@@ -129,12 +132,13 @@
             <div id="modalOne" class="modal form-login">
                 <div class="row">
                     <div class="col-sm-12 col-md-offset-2 col-md-8" style="padding-top: 20px">
-                        <form name="checkout" class="contact-me" action="/orderControl" onsubmit="return validateForm()" method="GET">
+                        <form name="checkout" class="contact-me" action="/orderControl" onsubmit="return validateForm()"
+                            method="GET">
                             <?php
                             $user = session('user');
                             $cart = session('cart');
                             ?>
-                            <input style="display:none" type="text" name="coupon" value="{{$coupon}}">
+                            <input style="display:none" type="text" name="coupon" value="{{ $coupon }}">
                             <div class="form-group">
                                 <a class="close">&times;</a>
                                 <h2>Confirm your purchase</h2>
@@ -144,18 +148,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h3>Phone (Required)</h3><p style="color:red" id="textP"></p>
+                                <h3>Phone (Required)</h3>
+                                <p style="color:red" id="textP"></p>
                                 <?php if($user->phone!=null):?>
-                                <input class="form-control" type="text" value="{{ $user->phone }}" name="getPhone" readonly />
+                                <input class="form-control" type="text" value="{{ $user->phone }}" name="getPhone"
+                                    readonly />
                                 <div class="help-block with-errors mt-20"></div>
                                 <?php else:?>
                                 <input class="form-control" type="text" name="getPhone" />
                                 <?php endif;?>
                             </div>
                             <div class="form-group">
-                                <h3>Address (Required)</h3><p style="color:red" id="textA"></p>
+                                <h3>Address (Required)</h3>
+                                <p style="color:red" id="textA"></p>
                                 <?php if($user->location!=null):?>
-                                <input class="form-control" type="text" value="{{ $user->location }}" name="getAddress" readonly />
+                                <input class="form-control" type="text" value="{{ $user->location }}" name="getAddress"
+                                    readonly />
                                 <div class="help-block with-errors mt-20"></div>
                                 <?php else:?>
                             </div>
@@ -168,8 +176,8 @@
                             <table class="table table-bordered shop-cart">
                                 @foreach ($cart as $item)
                                     <tr>
-                                        <td rowspan="2"><img src="{{ asset('/images/shop/' . $item['photo']) }}" class="cart-thumb"
-                                                alt="" /></td>
+                                        <td rowspan="2"><img src="{{ asset('/images/shop/' . $item['photo']) }}"
+                                                class="cart-thumb" alt="" /></td>
                                         <td>Name: {{ $item['name'] }} </td>
                                         <td rowspan="2">Quantity: {{ $item['quantity'] }}</td>
                                         <td rowspan="2">Unit price: {{ $item['price'] }}</td>
@@ -224,24 +232,26 @@
                 event.target.style.display = "none";
             }
         };
+
         function validateForm() {
-        let textPhone="";textAddress="";
-        let x = document.forms["checkout"]["getPhone"].value;
-        let y = document.forms["checkout"]["getAddress"].value;
-        let filter = /^(84|0[3|5|7|8|9])+([0-9]{8})$/;
-        if (!x.match(filter)) {
-            textPhone="Invalid phone number";
-        }
-        if (x == "") {
-            textPhone="Phone must be filled out";
-        }
-        if (y == "") {
-           textAddress ="Address must be filled out";
-        }
-        if(textPhone==""&&textAddress=="") return true;
-        document.getElementById("textP").innerHTML = textPhone;
-        document.getElementById("textA").innerHTML = textAddress;
-        return false;
+            let textPhone = "";
+            textAddress = "";
+            let x = document.forms["checkout"]["getPhone"].value;
+            let y = document.forms["checkout"]["getAddress"].value;
+            let filter = /^(84|0[3|5|7|8|9])+([0-9]{8})$/;
+            if (!x.match(filter)) {
+                textPhone = "Invalid phone number";
+            }
+            if (x == "") {
+                textPhone = "Phone must be filled out";
+            }
+            if (y == "") {
+                textAddress = "Address must be filled out";
+            }
+            if (textPhone == "" && textAddress == "") return true;
+            document.getElementById("textP").innerHTML = textPhone;
+            document.getElementById("textA").innerHTML = textAddress;
+            return false;
         }
         $(".update-cart").change(function(e) {
             e.preventDefault();
