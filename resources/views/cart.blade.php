@@ -27,7 +27,7 @@
                                         <tr data-id="{{ $id }}" class="cart_item">
                                             <td><a class="remove-from-cart"><i class="icofont-close-circled"></i></a>
                                             </td>
-                                            <td><a href="#"> <img src="{{ asset($details['photo']) }}" alt="">
+                                            <td><a href="#"> <img src="{{ asset('/images/shop/' . $details['photo']) }}" alt="">
                                                 </a> </td>
                                             <td><a href="#">{{ $details['name'] }}</a> </td>
                                             <td><a href="#">{{ $details['author'] }}</a> </td>
@@ -166,10 +166,9 @@
                             </div>
                             <h3 class="upper-case">Order summary:</h3>
                             <table class="table table-bordered shop-cart">
-
                                 @foreach ($cart as $item)
                                     <tr>
-                                        <td rowspan="2"><img src="{{ asset($item['photo']) }}" class="cart-thumb"
+                                        <td rowspan="2"><img src="{{ asset('/images/shop/' . $item['photo']) }}" class="cart-thumb"
                                                 alt="" /></td>
                                         <td>Name: {{ $item['name'] }} </td>
                                         <td rowspan="2">Quantity: {{ $item['quantity'] }}</td>

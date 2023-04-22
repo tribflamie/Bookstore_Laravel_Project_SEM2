@@ -118,16 +118,11 @@ class visitorController extends Controller
     public function productDetail($id)
     {
         $product = Product::find($id);
-        $feedbacks = Feedback::all();
-        $replies = Reply::all();
-        $lastest = Feedback::orderBy('created_at', 'DESC')->get();
+        $feedbacks = Feedback::where('status', '=', 'show')->get();
+        $replies = Reply::where('status', '=', 'show')->get();
+        $lastest = Feedback::where('status', '=', 'show')->orderBy('created_at', 'DESC')->get();
         $topNewest = Product::where('products.categories_id', $product->categories_id)->take(4)->get();
-        $stars5 = Feedback::where('rating', 5)->get();
-        $stars4 = Feedback::where('rating', 4)->get();
-        $stars3 = Feedback::where('rating', 3)->get();
-        $stars2 = Feedback::where('rating', 2)->get();
-        $stars1 = Feedback::where('rating', 1)->get();
-        return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest', 'topNewest', 'stars5', 'stars4', 'stars3', 'stars2', 'stars1'));
+        return view('product-detail', compact('product', 'feedbacks', 'replies', 'lastest', 'topNewest'));
     }
     //insert and store in DATABASE
     public function storeReplies($id, Request $request)

@@ -52,7 +52,7 @@
                             <div class="banner-box man-bg">
                                 <div class="overlay-bg-dark">
                                     <div class="slide-img"
-                                        style="background:url({{ asset($category->photo) }}) center center / cover scroll no-repeat;">
+                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
                                     </div>
                                 </div>
                                 <div class="relative white-color">
@@ -72,7 +72,7 @@
                             <div class="banner-box woman-bg">
                                 <div class="overlay-bg-dark">
                                     <div class="slide-img"
-                                        style="background:url({{ asset($category->photo) }}) center center / cover scroll no-repeat;">
+                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
                                     </div>
                                 </div>
                                 <div class="relative white-color">
@@ -98,7 +98,7 @@
                             <div class="banner-box man-bg">
                                 <div class="overlay-bg-dark">
                                     <div class="slide-img"
-                                        style="background:url({{ asset($category->photo) }}) center center / cover scroll no-repeat;">
+                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
                                     </div>
                                 </div>
                                 <div class="relative white-color">
@@ -118,7 +118,7 @@
                             <div class="banner-box woman-bg">
                                 <div class="overlay-bg-dark">
                                     <div class="slide-img"
-                                        style="background:url({{ asset($category->photo) }}) center center / cover scroll no-repeat;">
+                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
                                     </div>
                                 </div>
                                 <div class="relative white-color">
@@ -155,7 +155,7 @@
                                 @foreach ($topDiscount as $top)
                                     <div class="post">
                                         <div class="product-wrap"> <img height="400px" width="500px"
-                                                src="{{ asset($top->photo) }}" class="img-responsive" alt="team-01">
+                                                src="{{ asset('/images/shop/' .$top->photo) }}" class="img-responsive" alt="team-01">
                                             <div class="product-caption">
                                                 <div class="product-description text-center">
                                                     <div class="product-description-wrap">
@@ -206,7 +206,7 @@
                             @foreach ($topRating as $top)
                                 <div class="post">
                                     <div class="product-wrap"> <img height="400px" width="500px"
-                                            src="{{ asset($top->photo) }}" class="img-responsive" alt="team-01">
+                                            src="{{ asset('/images/shop/' .$top->photo) }}" class="img-responsive" alt="team-01">
                                         <div class="product-caption">
                                             <div class="product-description text-center">
                                                 <div class="product-description-wrap">
@@ -257,7 +257,7 @@
                         @foreach ($topSelling as $top)
                             <div class="post">
                                 <div class="product-wrap"> <img height="400px" width="500px"
-                                        src="{{ asset($top->photo) }}" class="img-responsive" alt="team-01">
+                                        src="{{ asset('/images/shop/' .$top->photo) }}" class="img-responsive" alt="team-01">
                                     <div class="product-caption">
                                         <div class="product-description text-center">
                                             <div class="product-description-wrap">
@@ -339,7 +339,8 @@
         <div class="col-md-3 col-sm-6">
             <div class="product">
                 <div class="product-wrap"> <img height="400px" width="500px"
-                        src="{{ asset($product->photo) }}" class="img-responsive" alt="team-01">
+                        src="{{ asset('/images/shop/' . $product->photo) }}" class="img-responsive"
+                        alt="team-01">
                     <div class="product-caption">
                         <div class="product-description text-center">
                             <div class="product-description-wrap">
@@ -378,7 +379,8 @@
         </div>
     @endforeach
     <div class="row mt-100">
-        <p class="text-center"><a href="{{route('products')}}" class="btn btn-color btn-circle">Shop Now</a></p>
+        <p class="text-center"><a href="{{ route('products') }}" class="btn btn-color btn-circle">Shop
+                Now</a></p>
     </div>
 </div>
 </div>
