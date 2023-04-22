@@ -13,13 +13,11 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-//Auth Routes
 Auth::routes();
-Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 
-//Home Product Routes
+//Home Routes
 Route::get('home', [App\Http\Controllers\visitorController::class, 'index'])->name('home');
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 Route::get('cart', [App\Http\Controllers\visitorController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [App\Http\Controllers\visitorController::class, 'update'])->name('update.cart');

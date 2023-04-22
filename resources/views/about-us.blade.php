@@ -150,7 +150,6 @@
               <div class="testimonial-content"> <img class="img-responsive" src="images/team/teacher.jpg" alt="avatar-1"/>
                 <h5>Le Thanh Nhan</h5>
                 <p>FPT Aptech's Teacher</p>
-                <h4>Well done!!</h4>
               </div>
             </div>
           
