@@ -197,8 +197,8 @@
                 alert('Expiration date is required');
                 return false;
             }
-            if (new Date(Date.parse(exp_date)) > new Date()) {
-                alert('Expiration date is less than or equal current date');
+            if (new Date(Date.parse(exp_date)) <= new Date()) {
+                alert('Expiration date is greater than current date');
                 return false;
             }
             return true;
