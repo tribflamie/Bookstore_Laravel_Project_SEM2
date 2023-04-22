@@ -44,12 +44,14 @@
                                             <?php if ($order->status=='Pending'):?>
                                             <a href="/admin/approve-order/{{ $order->id }}"
                                                     class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
-                                            <?php else:?>
-                                                <a href="#"
-                                                    class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
-                                            <?php endif;?>
-                                                <a href="/admin/cancel-order/{{ $order->id }}"
+                                            <a href="/admin/cancel-order/{{ $order->id }}"
                                                     class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
+                                            <?php else:?>
+                                                <a href="#" disabled title="Cannot approve this order!"
+                                                    class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
+                                                <a href="#" disabled title="Cannot cancel this order!"
+                                                    class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
+                                            <?php endif;?>
                                                 </td>
                                             <td>{{ $order->users->name }}</td>
                                             <td>{{ $order->status }}</td>

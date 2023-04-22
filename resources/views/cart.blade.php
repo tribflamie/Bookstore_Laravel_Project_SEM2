@@ -33,7 +33,7 @@
                                             <td><a href="#">{{ $details['author'] }}</a> </td>
                                             <td><span>${{ $details['price'] * (1 - $details['discount']) }}</span> </td>
                                             <td data-th="Quantity"><input class="form-control quantity update-cart"
-                                                    type="number" step="1" min="0"
+                                                    type="number" step="1" min="0" max="100"
                                                     value="{{ $details['quantity'] }}" title="Qty" placeholder="Qty">
                                             </td>
                                             <td data-th="Subtotal" class="product-subtotal">
@@ -125,7 +125,7 @@
                 </div>
             </div>
         </div>
-        @if (session('cart'))
+        @if (session('cart')&&session('user'))
             <div id="modalOne" class="modal form-login">
                 <div class="row">
                     <div class="col-sm-12 col-md-offset-2 col-md-8" style="padding-top: 20px">

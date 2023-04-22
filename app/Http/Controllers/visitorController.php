@@ -254,7 +254,11 @@ class visitorController extends Controller
     {
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
+            if($request->quantity>=100) 
+            {
+                $cart[$request->id]["quantity"]=99;
+            }
+            else $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
             session()->flash('success', 'Cart updated successfully');
         }
