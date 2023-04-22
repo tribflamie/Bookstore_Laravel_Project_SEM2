@@ -28,7 +28,11 @@
                                         <li><a
                                                 href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
                                         </li>
+                                        @if ($category->id ==20)
+                                            @break;
+                                        @endif
                                     @endforeach
+                                    <li><a href="{{ route('products') }}">More</a></li>
                                 </ul>
                             </li>
                         </ul>

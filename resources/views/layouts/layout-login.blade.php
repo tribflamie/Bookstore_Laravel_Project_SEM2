@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Scoda. - Multipurpose One Page HTML5 Template</title>
+    <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
