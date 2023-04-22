@@ -28,7 +28,7 @@ class visitorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'cart', 'products', 'addToCart', 'update', 'remove', 'productDetail', 'aboutUs', 'faqs', 'term', 'privacy', 'site']]);
+        $this->middleware('auth', ['except' => ['index', 'cart', 'products', 'addToCart', 'update', 'remove', 'productDetail', 'aboutUs', 'faqs', 'term', 'privacy', 'site','reviewProduct']]);
     }
 
     /**
@@ -196,9 +196,16 @@ class visitorController extends Controller
     //cart add, update and remove
     public function cart()
     {
-        //$user=User::find($id)
-        //session()->put('user',$user)
+        $user = Auth::getUser();
+        session()->put('user', $user);
         return view('cart')->with('coupon', "");
+    }
+    public function checkout(Request $request)
+    {
+        $user = Auth::getUser();
+        session()->put('user', $user);
+        $couponValue=$request->session()->get('couponValue');
+        return view('checkout')->with('user',$user)->with('couponValue',$couponValue);
     }
 
     /**
@@ -320,14 +327,16 @@ class visitorController extends Controller
         $coupon = $request->input('checkCoupon');
         $query = "select * from coupons where code='{$coupon}'";
         $rs = DB::select($query);
+        session()->put('msgSuccess',null);
+        session()->put('couponValue',0);
         if (!$rs) :
-            return redirect('/cart')->with('msgFail', 'Coupon does not exists!');
+            return redirect('/cart')->with('msgFail', 'Coupon does not exists!')->with('coupon',$coupon);
         endif;
         if ($rs[0]->status == 'used'):
-            return redirect('/cart')->with('msgFail', 'Coupon is used!');
+            return redirect('/cart')->with('msgFail', 'Coupon is used!')->with('coupon',$coupon);
         endif;
         if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
-            return redirect('/cart')->with('msgFail', 'Coupon is expired!');
+            return redirect('/cart')->with('msgFail', 'Coupon is expired!')->with('coupon',$coupon);
         endif;
         if ($rs) :
             session()->put('couponValue',$rs[0]->value);

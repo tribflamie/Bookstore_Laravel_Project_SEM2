@@ -20,7 +20,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $subTotal = 0; ?>
+                                <?php $subTotal = 0;?>
                                 @if (session('cart'))
                                     @foreach (session('cart') as $id => $details)
                                         <?php $subTotal += $details['price'] * (1 - $details['discount']) * $details['quantity']; ?>
@@ -31,7 +31,7 @@
                                                         src="{{ asset('/images/shop/' . $details['photo']) }}"
                                                         alt="">
                                                 </a> </td>
-                                            <td><a href="#">{{ $details['name'] }}</a> </td>
+                                            <td><a href="#">{{ $details['name']}}</a> </td>
                                             <td><a href="#">{{ $details['author'] }}</a> </td>
                                             <td><span>${{ $details['price'] * (1 - $details['discount']) }}</span> </td>
                                             <td data-th="Quantity"><input class="form-control quantity update-cart"
@@ -88,9 +88,9 @@
                                                         type="button"><span>Continue
                                                             Shopping
                                                             <i class="icofont icofont-refresh"></i></span></button></a>
-                                                <button class="btn btn-color btn-animate button"
+                                                <a href="{{route('checkout')}}"><button class="btn btn-color btn-animate button"
                                                     data-modal="modalOne"><span>
-                                                        Checkout <i class="icofont icofont-check"></i></span></button>
+                                                        Checkout <i class="icofont icofont-check"></i></span></button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -128,83 +128,6 @@
                 </div>
             </div>
         </div>
-        @if (session('cart')&&session('user'))
-            <div id="modalOne" class="modal form-login">
-                <div class="row">
-                    <div class="col-sm-12 col-md-offset-2 col-md-8" style="padding-top: 20px">
-                        <form name="checkout" class="contact-me" action="/orderControl" onsubmit="return validateForm()"
-                            method="GET">
-                            <?php
-                            $user = session('user');
-                            $cart = session('cart');
-                            ?>
-                            <input style="display:none" type="text" name="coupon" value="{{ $coupon }}">
-                            <div class="form-group">
-                                <a class="close">&times;</a>
-                                <h2>Confirm your purchase</h2>
-                                <h3>Name</h3>
-                                <input type="text" class="form-control" value="{{ $user->name }}" readonly />
-                                <div class="help-block with-errors mt-20">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h3>Phone (Required)</h3>
-                                <p style="color:red" id="textP"></p>
-                                <?php if($user->phone!=null):?>
-                                <input class="form-control" type="text" value="{{ $user->phone }}" name="getPhone"
-                                    readonly />
-                                <div class="help-block with-errors mt-20"></div>
-                                <?php else:?>
-                                <input class="form-control" type="text" name="getPhone" />
-                                <?php endif;?>
-                            </div>
-                            <div class="form-group">
-                                <h3>Address (Required)</h3>
-                                <p style="color:red" id="textA"></p>
-                                <?php if($user->location!=null):?>
-                                <input class="form-control" type="text" value="{{ $user->location }}" name="getAddress"
-                                    readonly />
-                                <div class="help-block with-errors mt-20"></div>
-                                <?php else:?>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="getAddress" />
-                                <div class="help-block with-errors mt-20"></div>
-                                <?php endif;?>
-                            </div>
-                            <h3 class="upper-case">Order summary:</h3>
-                            <table class="table table-bordered shop-cart">
-                                @foreach ($cart as $item)
-                                    <tr>
-                                        <td rowspan="2"><img src="{{ asset('/images/shop/' . $item['photo']) }}"
-                                                class="cart-thumb" alt="" /></td>
-                                        <td>Name: {{ $item['name'] }} </td>
-                                        <td rowspan="2">Quantity: {{ $item['quantity'] }}</td>
-                                        <td rowspan="2">Unit price: {{ $item['price'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Author: {{ $item['author'] }}</td>
-                                    </tr>
-                                @endforeach
-                                <table class="table shop-cart" style="border=0px">
-                                    <tr>
-                                        <td>
-                                            <h3>Total:</h3>
-                                        </td>
-                                        <td colspan="3"><span
-                                                style="text-decoration: line-through;">${{ $subTotal }}</span>
-                                            ({{ $discount * 100 }}% discount)<br><br><span
-                                                style="color:red; font-weight:bold">
-                                                ${{ $total }}</span></td>
-                                    </tr>
-                                </table>
-                            </table>
-                            <button type="submit" class="btn btn-color btn-block btn-animate">Order</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        @endif
         </div>
     </section>
 
@@ -213,26 +136,6 @@
 
 @section('scripts')
     <script type="text/javascript">
-        let modalBtns = [...document.querySelectorAll(".button")];
-        modalBtns.forEach(function(btn) {
-            btn.onclick = function() {
-                let modal = btn.getAttribute("data-modal");
-                document.getElementById(modal).style.display = "block";
-            };
-        });
-        let closeBtns = [...document.querySelectorAll(".close")];
-        closeBtns.forEach(function(btn) {
-            btn.onclick = function() {
-                let modal = btn.closest(".modal");
-                modal.style.display = "none";
-            };
-        });
-        window.onclick = function(event) {
-            if (event.target.className === "modal") {
-                event.target.style.display = "none";
-            }
-        };
-
         function validateForm() {
             let textPhone = "";
             textAddress = "";
