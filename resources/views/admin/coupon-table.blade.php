@@ -123,7 +123,8 @@
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ url('admin/update-coupon') }}" method="POST" onsubmit="return updateCouponValidation()" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-coupon') }}" method="POST" onsubmit="return updateCouponValidation()"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -231,8 +232,8 @@
                 alert('Expiration date is required');
                 return false;
             }
-            if (new Date(Date.parse(exp_date)) > new Date()) {
-                alert('Expiration date is less than or equal current date');
+            if (new Date(Date.parse(exp_date)) <= new Date()) {
+                alert('Expiration date is greater than current date');
                 return false;
             }
             return true;
