@@ -3,14 +3,6 @@
 @section('content')
     <!--=== Flex Slider Start ======-->
     <section class="pt-0 pb-0">
-        @if(session('orderSuccess'))
-        <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        <strong>{{session('orderSuccess')}}</strong>
-        </div>
-        @endif
         <div class="slider-bg flexslider">
             <ul class="slides">
                 <!--=== SLIDE 1 ===-->
