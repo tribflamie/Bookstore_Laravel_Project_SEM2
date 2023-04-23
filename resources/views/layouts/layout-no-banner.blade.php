@@ -27,7 +27,7 @@
                             <ul class="dropdown-menu cart-list">
                                 @if (session('cart'))
                                     @foreach (session('cart') as $id => $details)
-                                        <li> <a href="#" class="photo"><img src="{{ asset('/images/shop/' .$details['photo']) }}"
+                                        <li> <a href="#" class="photo"><img src="{{ asset($details['photo']) }}"
                                                     class="cart-thumb" alt="" /></a>
                                             <h6><a href="#">{{ $details['name'] }}</a></h6>
                                             <p>{{ $details['quantity'] }}x - <span

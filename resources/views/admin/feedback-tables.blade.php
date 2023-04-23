@@ -6,6 +6,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Feedback Table</h1>
@@ -31,7 +38,7 @@
                                         <th>ID</th>
                                         <th>Actions</th>
                                         <th>Status</th>
-                                        <th>Username</th>
+                                        <th>Email</th>
                                         <th>Product</th>
                                         <th>Rating</th>
                                         <th>Description</th>
@@ -49,7 +56,7 @@
                                                     class="btn btn-danger btn-position"><i class="fas fa-eye-slash"></i></a>
                                             </td>
                                             <td>{{ $feedback->status }}</td>
-                                            <td>{{ $feedback->user->name }}</td>
+                                            <td>{{ $feedback->user->email }}</td>
                                             <td>{{ $feedback->products->name }}</td>
                                             <td>{{ $feedback->rating }}</td>
                                             <td>
@@ -112,8 +119,8 @@
                                         <th>Actions</th>
                                         <th>Status</th>
                                         <th>Feedback</th>
-                                        <th>Username</th>
-                                        <th>Description</th>
+                                        <th>Email</th>
+                                        <th>Reply</th>
                                         <th>Created_at</th>
                                     </tr>
                                 </thead>
@@ -129,7 +136,7 @@
                                             </td>
                                             <td>{{ $reply->status }}</td>
                                             <td>{{ $reply->feedbacks->description }}</td>
-                                            <td>{{ $reply->user->name }}</td>
+                                            <td>{{ $reply->user->email }}</td>
                                             <td>{{ $reply->description }}</td>
                                             <td>{{ $reply->created_at }}</td>
                                         </tr>

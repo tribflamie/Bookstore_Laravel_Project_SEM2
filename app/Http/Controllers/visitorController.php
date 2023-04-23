@@ -28,7 +28,7 @@ class visitorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index', 'cart', 'products', 'addToCart', 'update', 'remove', 'productDetail', 'aboutUs', 'faqs', 'term', 'privacy', 'site','reviewProduct']]);
     }
 
     /**
@@ -66,7 +66,6 @@ class visitorController extends Controller
 
     public function products(Request $request)
     {
-        $countries = Product::select('country')->distinct()->orderBy('country', 'ASC')->get();
         $years = Product::select('published')->distinct()->orderBy('published', 'DESC')->get();
         $topDiscount = Product::where('status', '=', 'show')->orderBy('discount', 'desc')->take(5)->get();
         $topSelling = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
@@ -111,7 +110,7 @@ class visitorController extends Controller
                 $join->on('products.id', '=', 'r.products_id');
             })->whereRaw('r.avg_rating > 0 AND r.avg_rating <= 1');
         })->paginate(6);
-        return view('products', compact('filter', 'countries', 'years', 'topDiscount', 'topSelling'));
+        return view('products', compact('filter', 'years', 'topDiscount', 'topSelling'));
     }
 
     //show product details, feedbacks and replies on product-detail
@@ -196,9 +195,16 @@ class visitorController extends Controller
     //cart add, update and remove
     public function cart()
     {
-        //$user=User::find($id)
-        //session()->put('user',$user)
+        $user = Auth::getUser();
+        session()->put('user', $user);
         return view('cart')->with('coupon', "");
+    }
+    public function checkout(Request $request)
+    {
+        $user = Auth::getUser();
+        session()->put('user', $user);
+        $couponValue=$request->session()->get('couponValue');
+        return view('checkout')->with('user',$user)->with('couponValue',$couponValue);
     }
 
     /**
@@ -254,7 +260,11 @@ class visitorController extends Controller
     {
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
+            if($request->quantity>=100) 
+            {
+                $cart[$request->id]["quantity"]=99;
+            }
+            else $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
             session()->flash('success', 'Cart updated successfully');
         }
@@ -316,14 +326,16 @@ class visitorController extends Controller
         $coupon = $request->input('checkCoupon');
         $query = "select * from coupons where code='{$coupon}'";
         $rs = DB::select($query);
+        session()->put('msgSuccess',null);
+        session()->put('couponValue',0);
         if (!$rs) :
-            return redirect('/cart')->with('msgFail', 'Coupon does not exists!');
+            return redirect('/cart')->with('msgFail', 'Coupon does not exists!')->with('coupon',$coupon);
         endif;
         if ($rs[0]->status == 'used'):
-            return redirect('/cart')->with('msgFail', 'Coupon is used!');
+            return redirect('/cart')->with('msgFail', 'Coupon is used!')->with('coupon',$coupon);
         endif;
         if (strtotime(date("Y/m/d")) > strtotime($rs[0]->exp_date)) :
-            return redirect('/cart')->with('msgFail', 'Coupon is expired!');
+            return redirect('/cart')->with('msgFail', 'Coupon is expired!')->with('coupon',$coupon);
         endif;
         if ($rs) :
             session()->put('couponValue',$rs[0]->value);

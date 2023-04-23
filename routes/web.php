@@ -13,13 +13,11 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-//Auth Routes
 Auth::routes();
-Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 
-//Home Product Routes
+//Home Routes
 Route::get('home', [App\Http\Controllers\visitorController::class, 'index'])->name('home');
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class], 'logout');
 Route::get('cart', [App\Http\Controllers\visitorController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [App\Http\Controllers\visitorController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [App\Http\Controllers\visitorController::class, 'update'])->name('update.cart');
@@ -27,6 +25,7 @@ Route::delete('remove-from-cart', [App\Http\Controllers\visitorController::class
 Route::get('product-detail/{id}', [App\Http\Controllers\visitorController::class, 'productDetail'])->name('productDetail');
 Route::post('reply/{id}', [App\Http\Controllers\visitorController::class, 'storeReplies']);
 Route::get('products', [App\Http\Controllers\visitorController::class, 'products'])->name('products');
+Route::get('checkout', [App\Http\Controllers\visitorController::class, 'checkout'])->name('checkout');
 Route::get('orderControl', [App\Http\Controllers\visitorController::class, 'orderControl'])->name('orderControl');
 Route::get('checkCoupon', [App\Http\Controllers\visitorController::class, 'checkCoupon'])->name('checkCoupon');
 Route::get('feedbacks', [App\Http\Controllers\VisitorController::class, 'feedbacks'])->name('feedbacks');
@@ -70,6 +69,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('find-coupon/{id}', [App\Http\Controllers\adminController::class, 'findCouponId']);
     Route::post('update-coupon', [App\Http\Controllers\adminController::class, 'updateCoupon']);
     //Order Management Routes
+    Route::get('find-order/{id}', [App\Http\Controllers\adminController::class, 'findOrderId']);
     Route::get('oder-tables', [App\Http\Controllers\adminController::class, 'oderTables'])->name('admin.oder-tables');
     Route::get('approve-order/{id}', [App\Http\Controllers\adminController::class, 'approveOrder']);
     Route::get('cancel-order/{id}', [App\Http\Controllers\adminController::class, 'cancleOrder']);

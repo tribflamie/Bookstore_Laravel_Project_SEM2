@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
@@ -82,7 +83,7 @@ class adminController extends Controller
             $data->photo = $filename;
         }
         $data->update();
-        return redirect()->back()->with('message', 'New category updated successfully!');
+        return redirect()->back()->with('message', 'Category updated successfully!');
     }
 
     //return view product-tables
@@ -146,7 +147,7 @@ class adminController extends Controller
             $data->photo = $filename;
         }
         $data->update();
-        return redirect()->back()->with('message', 'New product created successfully!');
+        return redirect()->back()->with('message', 'Product updated successfully!');
     }
 
     //show product
@@ -155,7 +156,7 @@ class adminController extends Controller
         $data = Product::find($id);
         $data->status = 'show';
         $data->update();
-        return redirect()->back()->with('message', 'Product updated successfully!');
+        return redirect()->back()->with('message', 'Product changed status to show!');
     }
 
     //hide product
@@ -164,7 +165,7 @@ class adminController extends Controller
         $data = Product::find($id);
         $data->status = 'hide';
         $data->update();
-        return redirect()->back()->with('message', 'Product updated successfully!');
+        return redirect()->back()->with('message', 'Product changed status to hide!');
     }
 
     //return view coupon-table
@@ -191,7 +192,7 @@ class adminController extends Controller
         $data->description = $request->input('descriptionUpdate');
         $data->exp_date = $request->input('exp_dateUpdate');
         $data->update();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Coupon updated successfully');
     }
 
     //save coupon
@@ -202,7 +203,7 @@ class adminController extends Controller
         $data->description = $request->input('description');
         $data->exp_date = $request->input('exp_date');
         $data->save();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Coupon created successfully');
     }
 
     //return view oder-tables
@@ -212,7 +213,20 @@ class adminController extends Controller
         $orderDetails = OrderDetail::all();
         return view('admin.oder-tables', compact('orders', 'orderDetails'));
     }
-
+    public function findOrderId($id)
+    {
+        $order = DB::table('order_details')->where('orders_id', $id)->get();
+        
+        $orderDetail=array();
+        foreach ($order as $id=>$detail)
+        {
+            $product =  DB::table('products')->where('id', $detail->id)->first();
+            $orderDetail[]=array("name"=>$product->name,"photo"=>asset('/images/shop/' . $product->photo),"Quantity"=>$detail->unit_quantity,"soldPrice"=>$detail->unit_sold_price);
+        }
+        return response()->json(
+            ['orderDetail' => $orderDetail]
+        );
+    }
     //approve orders
     public function approveOrder($id)
     {
@@ -248,7 +262,7 @@ class adminController extends Controller
         $data = Feedback::find($id);
         $data->status = 'show';
         $data->update();
-        return redirect()->back()->with('message', 'Feedback updated successfully');
+        return redirect()->back()->with('message', 'Feedback changed status to show successfully!');
     }
 
     //update Feedback
@@ -257,7 +271,7 @@ class adminController extends Controller
         $data = Feedback::find($id);
         $data->status = 'hide';
         $data->update();
-        return redirect()->back()->with('message', 'Feedback updated successfully');
+        return redirect()->back()->with('message', 'Feedback changed status to hide successfully!');
     }
 
     //update Reply
@@ -266,7 +280,7 @@ class adminController extends Controller
         $data = Reply::find($id);
         $data->status = 'show';
         $data->update();
-        return redirect()->back()->with('message', 'Feedback updated successfully');
+        return redirect()->back()->with('message', 'Reply changed status to show successfully!');
     }
 
     //update Reply
@@ -275,7 +289,7 @@ class adminController extends Controller
         $data = Reply::find($id);
         $data->status = 'hide';
         $data->update();
-        return redirect()->back()->with('message', 'Feedback updated successfully');
+        return redirect()->back()->with('message', 'Reply changed status to hide successfully!');
     }
 
     //return view contact-table

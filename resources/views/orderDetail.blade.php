@@ -34,7 +34,7 @@
                                             <td><img src="{{ asset('/images/shop/' . $product->photo) }}"></td>
                                             <td>{{ $product->name }} </td>
                                             <td>{{ $product->author }}</td>
-                                            <td>${{ $product->price }}</td>
+                                            <td>${{ $order->unit_sold_price }}</td>
                                             <td>{{ $order->unit_quantity }}</td>
                                             <input type="hidden" value="{!! $status[0]->status !!}" name="sta">
                                             <?php if($status[0]->status=='Approved'):?>
