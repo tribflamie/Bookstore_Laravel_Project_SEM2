@@ -22,7 +22,7 @@
                             ?>
                             <div class="form-group">
                                 <a class="close">&times;</a>
-                                <h2>Confirm your purchase</h2>
+                                <h2 class="text-center">Confirm your purchase</h2>
                                 <h3>Name</h3>
                                 <input type="text" class="form-control" value="{{ $user->name }}" readonly />
                                 <div class="help-block with-errors mt-20">

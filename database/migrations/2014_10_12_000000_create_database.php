@@ -125,6 +125,12 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
+        Schema::create('authors', function (Blueprint $table) {
+            $table->string('author')->nullable(false)->primary();
+        });
+        Schema::create('countries', function (Blueprint $table) {
+            $table->string('country')->nullable(false)->primary();
+        });
         Schema::create('replies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('feedbacks_id')->references('id')->on('feedbacks');
@@ -144,6 +150,8 @@ return new class extends Migration
         Schema::dropIfExists('replies');
         Schema::dropIfExists('feedbacks');
         Schema::dropIfExists('coupons');
+        Schema::dropIfExists('authors');
+        Schema::dropIfExists('countries');
         Schema::dropIfExists('contacts');
         Schema::dropIfExists('order_details');
         Schema::dropIfExists('orders');

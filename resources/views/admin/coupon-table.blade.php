@@ -6,6 +6,13 @@
     <!-- First Content Header -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Coupon Table</h1>
@@ -39,20 +46,25 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="code">Code</label>
+                            <label for="code">Code *</label>
                             <input type="text" id="code" name="code"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="value">Value</label>
-                            <input type="text" id="value" name="value" class="form-control">
+                            <label for="value">Value * (< 1)</label>
+                                    <input type="text" id="value" name="value" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description *</label>
                             <textarea id="description" name="description" rows="5" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exp_date">Expiration Date</label>
+                            <label for="exp_date">Expiration Date * (> current date)</label>
                             <input type="date" id="exp_date" name="exp_date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <ol style="margin:15px;padding:0;">
+                                <li><strong>(*) is required</strong></li>
+                            </ol>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -140,20 +152,25 @@
                             <input type="text" id="id" name="id"class="form-control" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="codeUpdate">Code</label>
+                            <label for="codeUpdate">Code *</label>
                             <input type="text" id="codeUpdate" name="codeUpdate"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="valueUpdate">Value</label>
+                            <label for="valueUpdate">Value * (< 1)</label>
                             <input type="text" id="valueUpdate" name="valueUpdate" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="descriptionUpdate">Description</label>
+                            <label for="descriptionUpdate">Description *</label>
                             <textarea id="descriptionUpdate" name="descriptionUpdate" rows="5" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exp_dateUpdate">Expiration Date</label>
+                            <label for="exp_dateUpdate">Expiration Date * (> current date)</label>
                             <input type="date" id="exp_dateUpdate" name="exp_dateUpdate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <ol style="margin:15px;padding:0;">
+                                <li><strong>(*) is required</strong></li>
+                            </ol>
                         </div>
                     </div>
                     <div class="modal-footer">

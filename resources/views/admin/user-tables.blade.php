@@ -6,6 +6,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>User Tables</h1>
@@ -45,11 +52,13 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td><a href="/admin/update-roles/{{ $user->id }}" onclick="return alertBtn()" class="btn btn-primary btn-position"><i class="fas fa-user-cog"></i></a></td>
+                                            <td><a href="/admin/update-roles/{{ $user->id }}"
+                                                    onclick="return alertBtn()" class="btn btn-primary btn-position"><i
+                                                        class="fas fa-user-cog"></i></a></td>
                                             <td>{{ $user->role }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{$user->password}}</td>
+                                            <td>{{ $user->password }}</td>
                                             <td>{{ is_null($user->gender) ? 'None' : $user->gender }}</td>
                                             <td>{{ is_null($user->yob) ? 'None' : $user->yob }}</td>
                                             <td>{{ is_null($user->phone) ? 'None' : $user->phone }}</td>
@@ -75,7 +84,7 @@
 
 @section('scripts')
     <script type="text/javascript">
-        function alertBtn(){
+        function alertBtn() {
             alert('Do you want to change your role?');
             return true;
         }

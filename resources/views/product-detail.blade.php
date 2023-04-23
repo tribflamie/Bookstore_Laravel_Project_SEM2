@@ -123,24 +123,12 @@
                                                     <div class="collapse" id="reply{{ $feedback->id }}">
                                                         <ul class="media-list">
                                                             <li class="media media-replied">
-                                                                <a class="pull-left" href="#">
-                                                                    @if (Auth::user()->photo == null)
-                                                                        <img class="profile img-circle"
-                                                                            src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                            alt="profile">
-                                                                    @else
-                                                                        <img class="profile img-circle"
-                                                                            src="{{ asset('images/team/' . Auth::user()->photo) }}"
-                                                                            alt="profile">
-                                                                    @endif
-                                                                </a>
                                                                 <div class="media-body">
                                                                     <form action="/reply/{{ $feedback->id }}"
                                                                         method="POST">
                                                                         @csrf
 
-                                                                        <input type="text"
-                                                                            class="well well-lg full-width" name="reply">
+                                                                        <textarea name="reply" class="well well-lg full-width" rows="2" placeholder="Leave us your reply..."></textarea>
                                                                         <button
                                                                             class="btn btn-warning btn-circle text-uppercase">Send</button>
                                                                     </form>
@@ -228,25 +216,12 @@
                                                     <div class="collapse" id="rep{{ $feedback->id }}">
                                                         <ul class="media-list">
                                                             <li class="media media-replied">
-                                                                <a class="pull-left" href="#">
-                                                                    @if (Auth::user()->photo == null)
-                                                                        <img class="profile img-circle"
-                                                                            src="{{ asset('images/team/avatar-1.jpg') }}"
-                                                                            alt="profile">
-                                                                    @else
-                                                                        <img class="profile img-circle"
-                                                                            src="{{ asset('images/team/' . Auth::user()->photo) }}"
-                                                                            alt="profile">
-                                                                    @endif
-                                                                </a>
                                                                 <div class="media-body">
                                                                     <form action="/reply/{{ $feedback->id }}"
                                                                         method="POST">
                                                                         @csrf
 
-                                                                        <input type="text"
-                                                                            class="well well-lg full-width"
-                                                                            name="reply">
+                                                                        <textarea class="well well-lg full-width" rows="2" placeholder="Leave us your reply..." name="reply"></textarea>
                                                                         <button
                                                                             class="btn btn-warning btn-circle text-uppercase">Send</button>
                                                                     </form>

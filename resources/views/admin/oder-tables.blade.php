@@ -6,6 +6,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Order Table</h1>
@@ -29,7 +36,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Actions</th>
-                                        <th>Username</th>
+                                        <th>Email</th>
                                         <th>Status</th>
                                         <th>Created_at</th>
 
@@ -39,21 +46,21 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            
+
                                             <td>
-                                            <?php if ($order->status=='Pending'):?>
-                                            <a href="/admin/approve-order/{{ $order->id }}"
+                                                <?php if ($order->status=='Pending'):?>
+                                                <a href="/admin/approve-order/{{ $order->id }}"
                                                     class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
-                                            <a href="/admin/cancel-order/{{ $order->id }}"
+                                                <a href="/admin/cancel-order/{{ $order->id }}"
                                                     class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
-                                            <?php else:?>
+                                                <?php else:?>
                                                 <a href="#" disabled title="Cannot approve this order!"
                                                     class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
                                                 <a href="#" disabled title="Cannot cancel this order!"
                                                     class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
-                                            <?php endif;?>
-                                                </td>
-                                            <td>{{ $order->users->name }}</td>
+                                                <?php endif;?>
+                                            </td>
+                                            <td>{{ $order->users->email }}</td>
                                             <td>{{ $order->status }}</td>
                                             <td>{{ $order->created_at }}</td>
                                         </tr>

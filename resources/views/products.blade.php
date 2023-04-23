@@ -60,48 +60,48 @@
                     <!--=== End Form. ===-->
 
                     <!--=== Product Start ===-->
-                        @foreach ($filter as $product)
-                            <div class="col-md-6 col-sm-6">
-                                <div class="product">
-                                    <div class="product-wrap"> <img src="{{ asset('/images/shop/' . $product->photo) }}"
-                                            class="img-responsive" alt="team-01">
-                                        <div class="product-caption">
-                                            <div class="product-description text-center">
-                                                <div class="product-description-wrap">
-                                                    <div class="product-title"> <a
-                                                            href="{{ route('add.to.cart', $product->id) }}"
-                                                            class="btn btn-color btn-circle">ADD TO CART <span
-                                                                class="icon"><i class="mdi mdi-cart"></i></span></a>
-                                                    </div>
+                    @foreach ($filter as $product)
+                        <div class="col-md-6 col-sm-6">
+                            <div class="product">
+                                <div class="product-wrap"> <img src="{{ asset('/images/shop/' . $product->photo) }}"
+                                        class="img-responsive" alt="team-01">
+                                    <div class="product-caption">
+                                        <div class="product-description text-center">
+                                            <div class="product-description-wrap">
+                                                <div class="product-title"> <a
+                                                        href="{{ route('add.to.cart', $product->id) }}"
+                                                        class="btn btn-color btn-circle">ADD TO CART <span class="icon"><i
+                                                                class="mdi mdi-cart"></i></span></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-detail">
-                                        <a href="{{ route('productDetail', $product->id) }}">
-                                            <h4>{{ $product->name }}</h4>
-                                            <h5 class="grey">
-                                                <?php
-                                                $count = 0;
-                                                //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
-                                                for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
-                                                    echo '<span class="fa fa-star checked"></span>';
-                                                endfor;
-                                                //xuất số sao đen còn lại
-                                                for (; $count <= 5; $count++):
-                                                    echo '<span class="fa fa-star"></span>';
-                                                endfor;
-                                                ?>
-                                                <!--đếm số lượng feedbacks trong product-->
-                                                ({{ count($product->feedbacks) }})
-                                            </h5>
-                                        </a>
-                                        <p>${{ $product->price - $product->price * $product->discount }} <span
-                                                class="old-price">${{ $product->price }}</span></p>
-                                    </div>
+                                </div>
+                                <div class="product-detail">
+                                    <a href="{{ route('productDetail', $product->id) }}">
+                                        <h4>{{ $product->name }}</h4>
+                                        <h5 class="grey">
+                                            <?php
+                                            $count = 0;
+                                            //xuất số sao vàng làm tròn trung bình rating trong bảng feedback
+                                            for ($count = 1; $count <= round($product->feedbacks->avg('rating')); $count++):
+                                                echo '<span class="fa fa-star checked"></span>';
+                                            endfor;
+                                            //xuất số sao đen còn lại
+                                            for (; $count <= 5; $count++):
+                                                echo '<span class="fa fa-star"></span>';
+                                            endfor;
+                                            ?>
+                                            <!--đếm số lượng feedbacks trong product-->
+                                            ({{ count($product->feedbacks) }})
+                                        </h5>
+                                    </a>
+                                    <p>${{ $product->price - $product->price * $product->discount }} <span
+                                            class="old-price">${{ $product->price }}</span></p>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
                     <div style="width:100%;clear:both;">
                         {{ $filter->withQueryString()->links() }}
                     </div>
@@ -127,47 +127,57 @@
                         <ul>
                             <li>
                                 <a href="products?rating=5">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
+                                    <h4>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </h4>
                                 </a>
                             </li>
                             <li>
                                 <a class="nohover" href="products?rating=4">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
+                                    <h4 class="grey">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </h4>
                                 </a>
                             </li>
                             <li>
                                 <a href="products?rating=3">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                    <h4 class="grey">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </h4>
                                 </a>
                             </li>
                             <li>
                                 <a href="products?rating=2">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                    <h4 class="grey">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </h4>
                                 </a>
                             </li>
                             <li>
                                 <a href="products?rating=1">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                    <h4 class="grey">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </h4>
                                 </a>
                             </li>
                         </ul>

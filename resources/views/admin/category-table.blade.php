@@ -1,11 +1,18 @@
 @extends('layouts.layout-admin')
 
-@section('title', 'User Tables')
+@section('title', 'Category Table')
 
 @section('content')
     <!-- First Content Header -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Category Table</h1>
@@ -39,17 +46,23 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputCat">Categories</label>
+                            <label for="inputCat">Categories *</label>
                             <input type="text" id="inputCat" name="categories"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="inputDes">Description</label>
+                            <label for="inputDes">Description *</label>
                             <textarea type="text" id="inputDes" name="description" rows="5" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="inputPho">Photo</label>
+                            <label for="inputPho">Photo *</label>
                             <input type="file" id="inputPho" name="photo" onchange="return fileValidation1()"
                                 class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <ol style="margin:15px;padding:0;">
+                                <li><strong>(*) is required</strong></li>
+                                <li><strong>photo (.jpg|.jpeg|.png|.gif)</strong></li>
+                            </ol>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -143,17 +156,23 @@
                             <input type="text" id="categories_id" name="categories_id" class="form-control" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="categories">Categories</label>
+                            <label for="categories">Categories *</label>
                             <input type="text" id="categories" name="categories" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description *</label>
                             <textarea type="text" id="description" name="description" rows="5" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="photo">Photo</label>
                             <input type="file" id="photo" name="photo" onchange="return fileValidation2()"
                                 class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <ol style="margin:15px;padding:0;">
+                                <li><strong>(*) is required</strong></li>
+                                <li><strong>photo (.jpg|.jpeg|.png|.gif)</strong></li>
+                            </ol>
                         </div>
                     </div>
                     <div class="modal-footer">

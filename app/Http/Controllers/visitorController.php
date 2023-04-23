@@ -66,7 +66,6 @@ class visitorController extends Controller
 
     public function products(Request $request)
     {
-        $countries = Product::select('country')->distinct()->orderBy('country', 'ASC')->get();
         $years = Product::select('published')->distinct()->orderBy('published', 'DESC')->get();
         $topDiscount = Product::where('status', '=', 'show')->orderBy('discount', 'desc')->take(5)->get();
         $topSelling = Product::select('products.id', 'products.name', 'products.author', 'products.photo', 'products.price', 'products.discount')
@@ -111,7 +110,7 @@ class visitorController extends Controller
                 $join->on('products.id', '=', 'r.products_id');
             })->whereRaw('r.avg_rating > 0 AND r.avg_rating <= 1');
         })->paginate(6);
-        return view('products', compact('filter', 'countries', 'years', 'topDiscount', 'topSelling'));
+        return view('products', compact('filter', 'years', 'topDiscount', 'topSelling'));
     }
 
     //show product details, feedbacks and replies on product-detail

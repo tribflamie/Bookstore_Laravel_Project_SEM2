@@ -6,6 +6,13 @@
     <!-- Second Content Header -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Product Table</h1>
@@ -46,37 +53,51 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Name *</label>
                             <input type="text" id="name" name="name"class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="author">Author</label>
-                            <input type="text" id="author" name="author"class="form-control">
+                            <select id="author" name="author" class="form-control">
+                                @foreach ($authors as $author)
+                                    <option value="{{ $author->author }}">{{ $author->author }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="country">Country</label>
-                            <input type="text" id="country" name="country"class="form-control">
+                            <select id="country" name="country" class="form-control">
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="published">Published</label>
-                            <input type="text" id="published" name="published"class="form-control">
+                            <label for="published">Published * (<= current year)</label>
+                                    <input type="text" id="published" name="published"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="price">Price</label>
-                            <input type="text" id="price" name="price"class="form-control">
+                            <label for="price">Price * (< 100)</label>
+                                    <input type="text" id="price" name="price"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="discount">Discount (< 1)</label>
+                            <label for="discount">Discount * (<= 1)</label>
                                     <input type="text" id="discount" name="discount"class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description *</label>
                             <textarea id="description" name="description"class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="photo">Photo</label>
+                            <label for="photo">Photo *</label>
                             <input type="file" id="photo" name="photo" onchange="return fileValidation1()"
                                 class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <ol style="margin:15px;padding:0;">
+                                <li><strong>(*) is required</strong></li>
+                                <li><strong>photo (.jpg|.jpeg|.png|.gif)</strong></li>
+                            </ol>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -173,7 +194,8 @@
     <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ url('admin/update-products') }}" method="POST" onsubmit="return updateProductValidation()" enctype="multipart/form-data">
+            <form action="{{ url('admin/update-products') }}" method="POST" onsubmit="return updateProductValidation()"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -197,36 +219,53 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="products_name">Name</label>
+                            <label for="products_name">Name *</label>
                             <input type="text" id="product_name" name="product_name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="product_author">Author</label>
-                            <input type="text" id="product_author" name="product_author" class="form-control">
+                            <select id="product_author" name="product_author" class="form-control">
+                                @foreach ($authors as $author)
+                                    <option value="{{ $author->author }}">{{ $author->author }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="product_country">Country</label>
-                            <input type="text" id="product_country" name="product_country" class="form-control">
+                            <select id="product_country" name="product_country" class="form-control">
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="product_published">Published</label>
-                            <input type="text" id="product_published" name="product_published" class="form-control">
+                            <label for="product_published">Published * (<= current year)</label>
+                                    <input type="text" id="product_published" name="product_published"
+                                        class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="product_price">Price</label>
-                            <input type="text" id="product_price" name="product_price" class="form-control">
+                            <label for="product_price">Price * (< 100)</label>
+                                    <input type="text" id="product_price" name="product_price" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="product_discount">Discount</label>
-                            <input type="text" id="product_discount" name="product_discount" class="form-control">
+                            <label for="product_discount">Discount * (<= 1)</label>
+                                    <input type="text" id="product_discount" name="product_discount"
+                                        class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description *</label>
                             <textarea id="product_description" name="product_description" rows="5" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="photo">Photo</label>
-                            <input type="file" id="product_photo" name="product_photo" onchange="return fileValidation2()" class="form-control">
+                            <input type="file" id="product_photo" name="product_photo"
+                                onchange="return fileValidation2()" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <ol style="margin:15px;padding:0;">
+                                <li><strong>(*) is required</strong></li>
+                                <li><strong>photo (.jpg|.jpeg|.png|.gif)</strong></li>
+                            </ol>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -249,18 +288,6 @@
                 alert('Name is required');
                 return false;
             }
-            //check string 
-            var author = $('#author').val();
-            if (author.trim() == '') {
-                alert('Author is required');
-                return false;
-            }
-            //check string 
-            var country = $('#country').val();
-            if (country.trim() == '') {
-                alert('Country is required');
-                return false;
-            }
             //check year
             var published = $('#published').val();
             var currYear = new Date().getFullYear();
@@ -278,7 +305,7 @@
                 alert('Price is required!');
                 return false;
             }
-            if ((!price.match(/^\d*\.?\d+$/))|| price >= 100) {
+            if ((!price.match(/^\d*\.?\d+$/)) || price >= 100) {
                 alert('Price must be decimal and less than 100!');
                 return false;
             }
@@ -288,8 +315,8 @@
                 alert('Discount is required!');
                 return false;
             }
-            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1||discount<0) {
-                alert('Discount must be decimal and less than or equal 1/more than 0!');
+            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1 || discount < 0) {
+                alert('Discount must be decimal and less than or equal 1');
                 return false;
             }
             //check string
@@ -313,18 +340,6 @@
                 alert('Name is required');
                 return false;
             }
-            //check string 
-            var author = $('#product_author').val();
-            if (author.trim() == '') {
-                alert('Author is required');
-                return false;
-            }
-            //check string 
-            var country = $('#product_country').val();
-            if (country.trim() == '') {
-                alert('Country is required');
-                return false;
-            }
             //check year
             var published = $('#product_published').val();
             var currYear = new Date().getFullYear();
@@ -342,7 +357,7 @@
                 alert('Price is required!');
                 return false;
             }
-            if ((!price.match(/^\d*\.?\d+$/))|| price >= 100) {
+            if ((!price.match(/^\d*\.?\d+$/)) || price >= 100) {
                 alert('Price must be decimal and less than 100!');
                 return false;
             }
@@ -352,8 +367,8 @@
                 alert('Discount is required!');
                 return false;
             }
-            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1||discount<0) {
-                alert('Discount must be decimal and less than or equal 1/more than 0!');
+            if ((!discount.match(/^\d*\.?\d+$/)) || discount > 1) {
+                alert('Discount must be decimal and less than or equal 1 / more than 0!');
                 return false;
             }
             //check string

@@ -259,13 +259,248 @@ class DatabaseSeeder extends Seeder
             'description' => "In literature, psychological fiction (also psychological realism) is a narrative genre that emphasizes interior characterization and motivation to explore the spiritual, emotional, and mental lives of the characters. The mode of narration examines the reasons for the behaviors of the character, which propel the plot and explain the story. Psychological realism is achieved with deep explorations and explanations of the mental states of the character's inner person, usually through narrative modes such as stream of consciousness and flashbacks.",
             'photo'=>'Psychological fiction.jpg'
         ]);
-
+        //insert authors table
+        DB::table('authors')->insert([
+            'author' => 'Miguel de Cervantes'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'J. K. Rowling'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Charles Dickens'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'J. R. R. Tolkien'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Dan Brown'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'J. D. Salinger'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Gabriel García Márquez'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Victor Hugo'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Jane Austen'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'William Deresiewicz'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Antoine de Saint-Exupéry'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Samantha Shannon'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'F. Scott Fitzgerald'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Arthur Conan Doyle'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Rick Riordan'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Henryk Sienkiewicz'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Alexandre Dumas'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Leo Tolstoy'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Charlotte Brontë'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Mary Shelley'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Harriet Jacobs'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Harper Lee'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'R. J. Palacio'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Henry James'
+        ]);
+        DB::table('authors')->insert([
+            'author' => 'Elizabeth Gaskell'
+        ]);
+        //insert countries table
+        DB::table('countries')->insert([
+            'country' => 'China'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'India'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'United States'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Indonesia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Pakistan'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Nigeria'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Brazil'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Bangladesh'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Russia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Mexico'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Japan'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Philippines'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Ethiopia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Egypt'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Congo'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Vietnam'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Iran'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Turkey'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Germany'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Thailand'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'France'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'United Kingdom'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Italy'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Tanzania'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Burma'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'South Africa'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Kenya'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'South Korea'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Spain'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Colombia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Sudan'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Argentina'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Ukraine'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Uganda'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Algeria'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Iraq'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Poland'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Canada'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Afghanistan'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Morocco'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Saudi Arabia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Malaysia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Angola'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Peru'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Uzbekistan'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Nepal'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Mozambique'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Yemen'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Ghana'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Venezuela'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Australia'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Guernsey'
+        ]);
+        DB::table('countries')->insert([
+            'country' => 'Scotland'
+        ]);
         //insert products table
         DB::table('products')->insert([
             'categories_id' => 1,
             'name' => 'Don Quixote',
             'author' => 'Miguel de Cervantes',
-            'country' => 'Habsburg Spain',
+            'country' => 'Spain',
             'published' => 1605,
             'price' => 17,
             'discount' => 0.10,
