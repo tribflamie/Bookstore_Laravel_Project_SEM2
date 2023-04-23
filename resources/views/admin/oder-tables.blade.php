@@ -26,37 +26,35 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                        @foreach ($orders as $order)
-                            <div class="center {{$order->id}}" style="display:none">
-                            <button onclick="hideDetail('{{$order->id}}');">X</button>
-                                    <table class="table table-bordered shop-cart">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Picture</th>
-                                            <th>Name</th>
-                                            <th>Sold Price</th>
-                                            <th>Quantity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                <?php   
-                                    $orderDetail = DB::table('order_details')->where('orders_id', $order->id)->get();
-                                    $count=  DB::table('order_details')->where('orders_id', $order->id)->count();
-                                    foreach ($orderDetail as $id =>$details):
-                                        $product = Product::find($details->products_id);?>
-                                <tr class="order">
-                                    <td>{{$id+1}}</td>
-                                    <td><img src="{{ asset('/images/shop/' . $product->photo) }}" width="100px" height="100px"></td>
-                                    <td>{{ $product->name }} </td>
-                                    <td>${{ $details->unit_sold_price }}</td>
-                                    <td>{{ $details->unit_quantity }}</td>
-                                </tr>
-                                    <?php endforeach;?>
-                                    </tbody>
-                                    </table>
-                            </div>
-                        @endforeach
+                        <div class="modal fade" id="orderDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="detail">Details:</label>
+                                            <table id="orderTable" name="orderTable" class="table table-bordered shop-cart orderTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Picture</th>
+                                                        <th>Name</th>
+                                                        <th>Sold Price</th>
+                                                        <th>Quantity</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    </div>      
+                                </div>
+                        </div>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -74,7 +72,7 @@
                                             <td>{{ $order->id }}</td>
                                             <td>
                                             <?php if ($order->status=='Pending'):?>
-                                            <a href="/admin/approve-order/{{ $order->id }}"
+                                            <a onclick="return confirm('Approve this order?')" href="/admin/approve-order/{{ $order->id }}"
                                                     class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
                                             <a onclick="return confirm('Cancel this order?')" href="/admin/cancel-order/{{ $order->id }}"
                                                     class="btn btn-danger btn-position" ><i class="fas fa-ban"></i></a>
@@ -84,7 +82,7 @@
                                                 <a href="#" disabled title="Cannot cancel this order!"
                                                     class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
                                             <?php endif;?>
-                                                <button class="btn btn-primary btn-position" onclick="showDetail('{{$order->id}}');"> <i class="fas fa-solid fa-info"></i></button>
+                                                <button class="showDetail btn btn-primary btn-position" value='{{$order->id}}'> <i class="fas fa-solid fa-info"></i></button>
                                                 </td>
                                             <td>{{ $order->users->name }}</td>
                                             <td>{{ $order->status }}</td>
@@ -124,19 +122,36 @@
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
         });
-        function showDetail(row) {
-            const elements = document.getElementsByClassName(row);
-            for (const e of elements) {
-                e.style.display = e.style.display === 'none' ? '' : 'none';
+        $(document).on('click', '.showDetail', function(e) {
+            //alert(categories_id);
+            e.preventDefault();
+            var orderID = $(this).val();
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                type: 'get',
+                url: "find-order/" + orderID,
+                success: function(response) {
+                    //console.log(response);
+                    
+                    var event_data='';
+                    $.each(response.orderDetail, function(index, value){
+                    var idx=index+1;
+                    event_data += '<tr>';
+                    event_data += '<td>'+idx+'</td>';
+                    event_data += '<td><img width="100" height="100" src="'+value.photo+'"></td>';
+                    event_data += '<td>'+value.name+'</td>';
+                    event_data += '<td>'+value.Quantity+'</td>';
+                    event_data += '<td>'+value.soldPrice+'</td>';
+                    event_data += '</tr>';
+                    console.log(event_data);
+                });
+            $("#orderTable").find("tr:gt(0)").remove();
+            $('#orderTable').append(event_data);
+            $('#orderDetail').modal('show');
             }
-
-        }
-        function hideDetail(row) {
-            const elements = document.getElementsByClassName(row);
-            for (const e of elements) {
-                e.style.display = 'none';
-            }
-
-        }
+            });
+            
+        });
     </script>
 @endsection

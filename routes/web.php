@@ -69,6 +69,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('find-coupon/{id}', [App\Http\Controllers\adminController::class, 'findCouponId']);
     Route::post('update-coupon', [App\Http\Controllers\adminController::class, 'updateCoupon']);
     //Order Management Routes
+    Route::get('find-order/{id}', [App\Http\Controllers\adminController::class, 'findOrderId']);
     Route::get('oder-tables', [App\Http\Controllers\adminController::class, 'oderTables'])->name('admin.oder-tables');
     Route::get('approve-order/{id}', [App\Http\Controllers\adminController::class, 'approveOrder']);
     Route::get('cancel-order/{id}', [App\Http\Controllers\adminController::class, 'cancleOrder']);

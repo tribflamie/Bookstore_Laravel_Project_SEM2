@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
@@ -212,7 +213,20 @@ class adminController extends Controller
         $orderDetails = OrderDetail::all();
         return view('admin.oder-tables', compact('orders', 'orderDetails'));
     }
-
+    public function findOrderId($id)
+    {
+        $order = DB::table('order_details')->where('orders_id', $id)->get();
+        
+        $orderDetail=array();
+        foreach ($order as $id=>$detail)
+        {
+            $product =  DB::table('products')->where('id', $detail->id)->first();
+            $orderDetail[]=array("name"=>$product->name,"photo"=>asset('/images/shop/' . $product->photo),"Quantity"=>$detail->unit_quantity,"soldPrice"=>$detail->unit_sold_price);
+        }
+        return response()->json(
+            ['orderDetail' => $orderDetail]
+        );
+    }
     //approve orders
     public function approveOrder($id)
     {
