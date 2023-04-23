@@ -85,9 +85,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('admin.user-tables') }}" class="brand-link">
-                <img src="{{ asset('images/white-logo.png') }}" alt="AdminLTE Logo" class="brand-image"
-                    style="opacity: .8">
-                <span class="brand-text font-weight-light">Admin</span>
+                <img src="{{ asset('images/white-logo.png') }}" alt="AdminLTE Logo" class="brand-text font-weight-light"
+                    style="opacity: .8; width:180px; height:auto; margin-left:10px">
             </a>
 
             <!-- Sidebar -->

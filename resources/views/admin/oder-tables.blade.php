@@ -8,6 +8,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
+            @if (session()->has('message'))
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Order Table</h1>
@@ -60,7 +67,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Actions</th>
-                                        <th>Username</th>
+                                        <th>Email</th>
                                         <th>Status</th>
                                         <th>Created_at</th>
 
