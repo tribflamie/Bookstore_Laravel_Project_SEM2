@@ -4,6 +4,7 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
+    
     <section class="content-header">
         <div class="container-fluid">
             @if (session()->has('message'))
@@ -129,9 +130,9 @@
                                         <tr>
                                             <td>{{ $reply->id }}</td>
                                             <td>
-                                                <a href="/admin/show-reply/{{ $reply->id }}"
+                                                <a onclick="return confirm('show this review?')"href="/admin/show-reply/{{ $reply->id }}"
                                                     class="btn btn-primary btn-position"><i class="fas fa-eye"></i></a>
-                                                <a href="/admin/hide-reply/{{ $reply->id }}"
+                                                <a onclick="return confirm('hide this review?')" href="/admin/hide-reply/{{ $reply->id }}"
                                                     class="btn btn-danger btn-position"><i class="fas fa-eye-slash"></i></a>
                                             </td>
                                             <td>{{ $reply->status }}</td>

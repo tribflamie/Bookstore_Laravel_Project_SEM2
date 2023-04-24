@@ -116,13 +116,29 @@
                                                     <li><a
                                                             href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
                                                     </li>
-                                                    @if ($category->id == 14)
+                                                    @if ($category->id == 15)
                                                     @break;
                                                 @endif
                                             @endif
                                         @endforeach
                                     </ul>
                                 </div>
+                            </div>
+                            <div class="col-menu col-md-3">
+                                <div class="content">
+                                    <ul class="menu-col">
+                                        @foreach ($categories as $category)
+                                            @if ($category->id > 15)
+                                                <li><a
+                                                        href="{{ url('products?=sort=&categories=' . $category->id . '&countries=&published=') }}">{{ $category->categories }}</a>
+                                                </li>
+                                                @if ($category->id == 20)
+                                                @break;
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
                             </div>
                             <!--=== end col-3 ===-->
                         </div>

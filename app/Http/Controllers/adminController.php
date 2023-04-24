@@ -215,16 +215,35 @@ class adminController extends Controller
     }
     public function findOrderId($id)
     {
+        $orderID=$id;
         $order = DB::table('order_details')->where('orders_id', $id)->get();
-        
+        $orders = DB::table('orders')->where('id', $id)->get();
+        $user=DB::table('users')->where('id',$orders[0]->users_id)->get();
+        $coupon = DB::table('coupons')->where('orders_id', $id)->get();
         $orderDetail=array();
         foreach ($order as $id=>$detail)
         {
             $product =  DB::table('products')->where('id', $detail->id)->first();
             $orderDetail[]=array("name"=>$product->name,"photo"=>asset('/images/shop/' . $product->photo),"Quantity"=>$detail->unit_quantity,"soldPrice"=>$detail->unit_sold_price);
         }
-        return response()->json(
-            ['orderDetail' => $orderDetail]
+        if($coupon->isEmpty()) 
+        return response()->json([
+            'hasCoupon'=>0,
+            'id'=>$orderID,
+            'username'=>$user[0]->name,
+            'status'=>$orders[0]->status,
+            'orderDate'=>$orders[0]->created_at,
+            'orderDetail' => $orderDetail]
+        );
+        else return response()->json([
+            'hasCoupon'=>1,
+            'id'=>$orderID,
+            'username'=>$user[0]->name,
+            'status'=>$orders[0]->status,
+            'orderDate'=>$orders[0]->created_at,
+            'coupon'=>$coupon[0]->code,
+            'couponVal'=>$coupon[0]->value,
+            'orderDetail' => $orderDetail]
         );
     }
     //approve orders

@@ -3,6 +3,7 @@
 @section('title', 'User Tables')
 
 @section('content')
+<?php use Illuminate\Support\Facades\Auth;?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -52,9 +53,15 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
+                                            <?php $userID=Auth::id();
+                                                    if($user->id!=$userID):?>
                                             <td><a href="/admin/update-roles/{{ $user->id }}"
                                                     onclick="return alertBtn()" class="btn btn-primary btn-position"><i
                                                         class="fas fa-user-cog"></i></a></td>
+                                                    <?php else:?>
+                                            <td><a herf="#" onclick="alert('Cannot update YOUR role!')" class="btn btn-primary btn-position"><i
+                                                        class="fas fa-user-cog"></i></a></td>
+                                                    <?php endif;?>
                                             <td>{{ $user->role }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
@@ -85,8 +92,7 @@
 @section('scripts')
     <script type="text/javascript">
         function alertBtn() {
-            alert('Do you want to change your role?');
-            return true;
+            return confirm('Do you want to change this role?');
         }
 
         $(function() {

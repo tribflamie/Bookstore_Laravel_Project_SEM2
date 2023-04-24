@@ -314,11 +314,13 @@ class visitorController extends Controller
             endforeach;
             session()->put('cart', null);
         endif;
-        $coupon = $request->input('coupon');
+        if($request->session()->get('msgSuccess')!=null):
+        $coupon = $request->session()->get('coupon');
         DB::table('coupons')
             ->where('code', $coupon)  // find coupon code
             ->limit(1)  // optional - to ensure only one record is updated.
             ->update(array('status' => 'used', 'orders_id' => $rs[0]->id, 'updated_at' => now()));  // update the record in the DB. 
+        endif;
         return redirect('/home')->with('orderSuccess', 'Order confirmed, Please wait for us to check.');
     }
     public function checkCoupon(Request $request)
@@ -328,6 +330,7 @@ class visitorController extends Controller
         $rs = DB::select($query);
         session()->put('msgSuccess',null);
         session()->put('couponValue',0);
+        session()->put('coupon',null);
         if (!$rs) :
             return redirect('/cart')->with('msgFail', 'Coupon does not exists!')->with('coupon',$coupon);
         endif;
@@ -339,7 +342,9 @@ class visitorController extends Controller
         endif;
         if ($rs) :
             session()->put('couponValue',$rs[0]->value);
-            return redirect('/cart')->with('msgSuccess', 'Coupon is usable!')->with('coupon',$coupon);
+            session()->put('coupon',$coupon);
+            session()->put('msgSuccess','Coupon is usable!');
+            return redirect('/cart');
         endif;
     }
     public function orderHistory(Request $request, $filter)

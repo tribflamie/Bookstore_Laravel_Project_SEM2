@@ -1642,31 +1642,31 @@ class DatabaseSeeder extends Seeder
             The novel is considered to be one of Hardy's masterpieces, although it has been criticised for incorporating too many incidents, a consequence of the author trying to include something in every weekly published instalment."
         ]); 
         DB::table('users')->insert([
-            'name'=>'admin1',
+            'name'=>'admin',
             'role'=>'admin',
             'email'=>'admin1@gmail.com',
             'password'=>Hash::make('12345678')
         ]);
         DB::table('users')->insert([
-            'name'=>'user1',
+            'name'=>'Sang',
             'role'=>'user',
             'email'=>'user1@gmail.com',
             'password'=>Hash::make('12345678')
         ]);
         DB::table('users')->insert([
-            'name'=>'user2',
+            'name'=>'Duy',
             'role'=>'user',
             'email'=>'user2@gmail.com',
             'password'=>Hash::make('12345678')
         ]);
         DB::table('users')->insert([
-            'name'=>'user3',
+            'name'=>'Tri',
             'role'=>'user',
             'email'=>'user3@gmail.com',
             'password'=>Hash::make('12345678')
         ]);
         DB::table('users')->insert([
-            'name'=>'user4',
+            'name'=>'Someone',
             'role'=>'user',
             'email'=>'user4@gmail.com',
             'password'=>Hash::make('12345678')

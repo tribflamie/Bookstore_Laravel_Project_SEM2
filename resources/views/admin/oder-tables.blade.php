@@ -44,20 +44,48 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="detail">Details:</label>
-                                            <table id="orderTable" name="orderTable" class="table table-bordered shop-cart orderTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Picture</th>
-                                                        <th>Name</th>
-                                                        <th>Sold Price</th>
-                                                        <th>Quantity</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="id">ID</label>
+                                                <input type="text" id="orderID" name="orderID"class="form-control" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="id">Name</label>
+                                                <input type="text" id="name" name="name"class="form-control" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="status">Status</label>
+                                                <input type="text" id="status" name="status"class="form-control" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="date">Order At</label>
+                                                <input type="text" id="date" name="status"class="form-control" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="id">Details:</label>
+                                                <table id="orderTable" name="orderTable" class="table table-bordered shop-cart orderTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Picture</th>
+                                                            <th>Name</th>
+                                                            <th>Sold Price</th>
+                                                            <th>Quantity</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="id">Coupon used</label>
+                                                <input type="text" id="coupon" name="id"class="form-control" readonly>
+                                            </div>  
+                                            <div class="form-group">
+                                                <label for="id">Total</label>
+                                                <input type="text" id="total" name="id"class="form-control" readonly>
+                                            </div>   
+                                            <div class="form-group">
+                                            <a class="approveOrder btn btn-success"><i class="fas fa-check"></i></a>
+                                            <a class="cancelOrder btn btn-danger" ><i class="fas fa-ban"></i></a>
+                                            </div>
                                         </div>
                                     </div>      
                                 </div>
@@ -66,7 +94,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Actions</th>
+                                        <th>Detail</th>
                                         <th>Email</th>
                                         <th>Status</th>
                                         <th>Created_at</th>
@@ -78,17 +106,6 @@
                                         <tr>
                                             <td>{{ $order->id }}</td>
                                             <td>
-                                            <?php if ($order->status=='Pending'):?>
-                                            <a onclick="return confirm('Approve this order?')" href="/admin/approve-order/{{ $order->id }}"
-                                                    class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
-                                            <a onclick="return confirm('Cancel this order?')" href="/admin/cancel-order/{{ $order->id }}"
-                                                    class="btn btn-danger btn-position" ><i class="fas fa-ban"></i></a>
-                                            <?php else:?>
-                                                <a href="#" disabled title="Cannot approve this order!"
-                                                    class="btn btn-success btn-position"><i class="fas fa-check"></i></a>
-                                                <a href="#" disabled title="Cannot cancel this order!"
-                                                    class="btn btn-danger btn-position"><i class="fas fa-ban"></i></a>
-                                            <?php endif;?>
                                                 <button class="showDetail btn btn-primary btn-position" value='{{$order->id}}'> <i class="fas fa-solid fa-info"></i></button>
                                                 </td>
                                             <td>{{ $order->users->name }}</td>
@@ -136,11 +153,10 @@
             $.ajax({
                 type: "GET",
                 dataType: 'json',
-                type: 'get',
                 url: "find-order/" + orderID,
                 success: function(response) {
                     //console.log(response);
-                    
+                    var total=0;
                     var event_data='';
                     $.each(response.orderDetail, function(index, value){
                     var idx=index+1;
@@ -148,14 +164,79 @@
                     event_data += '<td>'+idx+'</td>';
                     event_data += '<td><img width="100" height="100" src="'+value.photo+'"></td>';
                     event_data += '<td>'+value.name+'</td>';
+                    event_data += '<td>$'+value.soldPrice+'</td>';
                     event_data += '<td>'+value.Quantity+'</td>';
-                    event_data += '<td>'+value.soldPrice+'</td>';
                     event_data += '</tr>';
+                    total+=value.soldPrice*value.Quantity;
                     console.log(event_data);
                 });
             $("#orderTable").find("tr:gt(0)").remove();
             $('#orderTable').append(event_data);
+            $('#orderID').val(response.id);
+            $('#name').val(response.username);
+            $('#status').val(response.status);
+            $('#date').val(response.orderDate);
+            var check=response.hasCoupon;
+            if(check==1)
+            {
+                $('#coupon').val(response.coupon);
+                var cVal=response.couponVal;
+                $('#total').val(((1-cVal)*total).toFixed(2));
+            }
+            else{
+                $('#total').val('$'+total.toFixed(2));
+            }
             $('#orderDetail').modal('show');
+            }
+            });
+            
+        });
+        $(document).on('click', '.approveOrder', function(e) {
+            //alert(categories_id);
+            
+            var orderID = document.getElementById("orderID").value;
+            var status = document.getElementById("status").value;
+            if(status=="Approved")
+            {
+                alert('Order has already been approved!');
+                return false;
+            }
+            if(status=="Cancelled")
+            {
+                alert('Order has already been cancelled!');
+                return false;
+            }
+            if(!confirm('Approve this order?')) return false;
+            $.ajax({
+                type: "get",
+                url: "approve-order/" + orderID,
+                success: function(response) {
+                    window.location.reload();
+            }
+            });
+            
+        });
+        $(document).on('click', '.cancelOrder', function(e) {
+            //alert(categories_id);
+            
+            var orderID = document.getElementById("orderID").value;
+            var status = document.getElementById("status").value;
+            if(status=="Approved")
+            {
+                alert('Order has already been approved!');
+                return false;
+            }
+            if(status=="Cancelled")
+            {
+                alert('Order has already been cancelled!');
+                return false;
+            }
+            if(!confirm('Cancel this order?')) return false;
+            $.ajax({
+                type: "get",
+                url: "cancel-order/" + orderID,
+                success: function(response) {
+                    window.location.reload();
             }
             });
             
