@@ -46,92 +46,24 @@
     <section class="pb-0">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    @foreach ($categories as $category)
-                        @if ($category->id == 1)
-                            <div class="banner-box man-bg">
-                                <div class="overlay-bg-dark">
-                                    <div class="slide-img"
-                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
-                                    </div>
-                                </div>
-                                <div class="relative white-color">
-                                    <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
-                                    <h4 class="cardo-font">Free Delivery on order over $100</h4>
-                                    <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
-                                            Now <i class="icofont icofont-simple-right"></i></span></a>
+                @foreach ($newCate as $category)
+                    <div class="col-md-6 col-sm-6" style="margin-bottom: 30px;">
+                        <div class="banner-box">
+                            <div class="overlay-bg-dark">
+                                <div class="slide-img"
+                                    style="background:url({{ asset('/images/categories/' . $category->photo) }}) center center / cover scroll no-repeat;opacity:0.4;">
                                 </div>
                             </div>
-                        @endif
-                    @endforeach
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    @foreach ($categories as $category)
-                        @if ($category->id == 2)
-                            <div class="banner-box woman-bg">
-                                <div class="overlay-bg-dark">
-                                    <div class="slide-img"
-                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
-                                    </div>
-                                </div>
-                                <div class="relative white-color">
-                                    <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
-                                    <h4 class="cardo-font">Free Delivery on order over $100</h4>
-                                    <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
-                                            Now <i class="icofont icofont-simple-right"></i></span></a>
-                                </div>
+                            <div class="relative white-color">
+                                <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
+                                <h4 class="cardo-font">Free Delivery on order over $100</h4>
+                                <a class="btn btn-white btn-square btn-animate mt-20"
+                                    href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
+                                        Now <i class="icofont icofont-simple-right"></i></span></a>
                             </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="pb-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    @foreach ($categories as $category)
-                        @if ($category->id == 3)
-                            <div class="banner-box man-bg">
-                                <div class="overlay-bg-dark">
-                                    <div class="slide-img"
-                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
-                                    </div>
-                                </div>
-                                <div class="relative white-color">
-                                    <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
-                                    <h4 class="cardo-font">Free Delivery on order over $100</h4>
-                                    <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
-                                            Now <i class="icofont icofont-simple-right"></i></span></a>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    @foreach ($categories as $category)
-                        @if ($category->id == 13)
-                            <div class="banner-box woman-bg">
-                                <div class="overlay-bg-dark">
-                                    <div class="slide-img"
-                                        style="background:url({{ asset('/images/categories/' .$category->photo) }}) center center / cover scroll no-repeat;">
-                                    </div>
-                                </div>
-                                <div class="relative white-color">
-                                    <h2 class="text-uppercase font-700">{{ $category->categories }}</h2>
-                                    <h4 class="cardo-font">Free Delivery on order over $100</h4>
-                                    <a class="btn btn-white btn-square btn-animate mt-20"
-                                        href="{{ url('products?sort=&categories=' . $category->id . '&countries=&published=') }}"><span>Buy
-                                            Now <i class="icofont icofont-simple-right"></i></span></a>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -155,7 +87,8 @@
                                 @foreach ($topDiscount as $top)
                                     <div class="post">
                                         <div class="product-wrap"> <img height="400px" width="500px"
-                                                src="{{ asset('/images/shop/' .$top->photo) }}" class="img-responsive" alt="team-01">
+                                                src="{{ asset('/images/shop/' . $top->photo) }}" class="img-responsive"
+                                                alt="team-01">
                                             <div class="product-caption">
                                                 <div class="product-description text-center">
                                                     <div class="product-description-wrap">
@@ -206,7 +139,8 @@
                             @foreach ($topRating as $top)
                                 <div class="post">
                                     <div class="product-wrap"> <img height="400px" width="500px"
-                                            src="{{ asset('/images/shop/' .$top->photo) }}" class="img-responsive" alt="team-01">
+                                            src="{{ asset('/images/shop/' . $top->photo) }}" class="img-responsive"
+                                            alt="team-01">
                                         <div class="product-caption">
                                             <div class="product-description text-center">
                                                 <div class="product-description-wrap">
@@ -257,7 +191,8 @@
                         @foreach ($topSelling as $top)
                             <div class="post">
                                 <div class="product-wrap"> <img height="400px" width="500px"
-                                        src="{{ asset('/images/shop/' .$top->photo) }}" class="img-responsive" alt="team-01">
+                                        src="{{ asset('/images/shop/' . $top->photo) }}" class="img-responsive"
+                                        alt="team-01">
                                     <div class="product-caption">
                                         <div class="product-description text-center">
                                             <div class="product-description-wrap">

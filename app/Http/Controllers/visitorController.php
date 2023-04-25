@@ -38,6 +38,7 @@ class visitorController extends Controller
      */
     public function index()
     {
+        $newCate = Category::orderBy('id', 'DESC')->take(4)->get();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
@@ -61,7 +62,7 @@ class visitorController extends Controller
             $join->on('products.id', '=', 'r.products_id');
         })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
         $topNewest = product::where('status', '=', 'show')->orderBy('id', 'desc')->take(8)->get();
-        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest', 'topSelling'));
+        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest', 'topSelling', 'newCate'));
     }
 
     public function products(Request $request)
