@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Speculative fiction',//4
             'description' => 'Speculative fiction is a category of fiction that, in its broadest sense, encompasses the genres that depart from reality,[1] such as in the context of supernatural, futuristic, and other imaginative realms.[2] This umbrella category includes, but is not limited to, science fiction, fantasy, horror, superhero fiction, alternate history, utopian and dystopian fiction, and supernatural fiction, as well as combinations thereof (for example, science fantasy).[3] The term has been used with a variety of meanings for works of literature.',
-            'photo'=>'Speculative fiction.jpg'
+            'photo'=>'Speculative_fiction.jpg'
         ]);
         //5.Tragedy
         DB::table('categories')->insert([
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Philosophy of education',//9
             'description' => 'The philosophy of education is the branch of applied philosophy that investigates the nature of education as well as its aims and problems. It includes the examination of educational theories, the presuppositions present in them, and the arguments for and against them. It is an interdisciplinary field that draws inspiration from various disciplines both within and outside philosophy, like ethics, political philosophy, psychology, and sociology. These connections are also reflected in the significant and wide-ranging influence the philosophy of education has had on other disciplines. Many of its theories focus specifically on education in schools but it also encompasses other forms of education. Its theories are often divided into descriptive and normative theories. Descriptive theories provide a value-neutral account of what education is and how to understand its fundamental concepts, in contrast to normative theories, which investigate how education should be practiced or what is the right form of education.',
-            'photo'=>'Philosophy of education.jpg'
+            'photo'=>'Philosophy_of_education.jpg'
         ]);
         //10.Magic Realism
         DB::table('categories')->insert([
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Southern Gothic',//11
             'description' => 'Southern Gothic is an artistic subgenre of fiction, country music, film and television that are heavily influenced by Gothic elements and the American South. Common themes of Southern Gothic include storytelling of deeply flawed, disturbing or eccentric characters who may be involved in hoodoo,decayed or derelict settings, grotesque situations, and other sinister events relating to or stemming from poverty, alienation, crime, or violence.',
-            'photo'=>'Southern Gothic.jpg'
+            'photo'=>'Southern_Gothic.jpg'
         ]);
         //12.Novel of manner
         DB::table('categories')->insert([
@@ -111,13 +111,13 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Literary realism',//16
             'description' => 'Literary realism is a literary genre, part of the broader realism in arts, that attempts to represent subject-matter truthfully, avoiding speculative fiction and supernatural elements. It originated with the realist art movement that began with mid-nineteenth-century French literature (Stendhal) and Russian literature (Alexander Pushkin). Literary realism attempts to represent familiar things as they are. Realist authors chose to depict everyday and banal activities and experiences.',
-            'photo'=>'Literary realism.jpg'
+            'photo'=>'Literary_realism.jpg'
         ]);
         //17.Social novel
         DB::table('categories')->insert([
             'categories' => 'Social novel',//17
             'description' => 'The social novel, also known as the social problem (or social protest) novel, is a "work of fiction in which a prevailing social problem, such as gender, race, or class prejudice, is dramatized through its effect on the characters of a novel". More specific examples of social problems that are addressed in such works include poverty, conditions in factories and mines, the plight of child labor, violence against women, rising criminality, and epidemics because of over-crowding and poor sanitation in cities.',
-            'photo'=>'Social novel.jpg'
+            'photo'=>'Social_novel.jpg'
         ]);
         //18.Gothic fiction
         DB::table('categories')->insert([
@@ -125,13 +125,13 @@ class DatabaseSeeder extends Seeder
             'description' => 'Gothic fiction, sometimes called Gothic horror in the 20th century, is a loose literary aesthetic of fear and haunting. The name is a reference to Gothic architecture of the European Middle Ages, which was characteristic of the settings of early Gothic novels.
 
             The first work to call itself Gothic was Horace Walpoles 1764 novel The Castle of Otranto, later subtitled "A Gothic Story". Subsequent 18th century contributors included Clara Reeve, Ann Radcliffe, William Thomas Beckford, and Matthew Lewis. The Gothic influence continued into the early 19th century, works by the Romantic poets, and novelists such as Mary Shelley, Charles Maturin, Walter Scott and E. T. A. Hoffmann frequently drew upon gothic motifs in their works.',
-            'photo'=>'Gothic fiction.jpg'
+            'photo'=>'Gothic_fiction.jpg'
         ]);
         //19.Slave narrative
         DB::table('categories')->insert([
             'categories' => 'Slave narrative',//19
             'description' => 'The slave narrative is a type of literary genre involving the (written) autobiographical accounts of enslaved Africans, particularly in the Americas. Over six thousand such narratives are estimated to exist; about 150 narratives were published as separate books or pamphlets. In the United States during the Great Depression (1930s), more than 2,300 additional oral histories on life during slavery were collected by writers sponsored and published by the Works Progress Administration, a New Deal program. Most of the 26 audio-recorded interviews are held by the Library of Congress.',
-            'photo'=>'Slave narrative.jpg'
+            'photo'=>'Slave_narrative.jpg'
         ]);
         //20.Childrens literature
         DB::table('categories')->insert([
@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
             'description' => "Children's literature or juvenile literature includes stories, books, magazines, and poems that are created for children. Modern children's literature is classified in two different ways: genre or the intended age of the reader.
 
             Children's literature can be traced to traditional stories like fairy tales, that have only been identified as children's literature in the eighteenth century, and songs, part of a wider oral tradition, that adults shared with children before publishing existed. The development of early children's literature, before printing was invented, is difficult to trace. Even after printing became widespread, many classic children's tales were originally created for adults and later adapted for a younger audience. Since the fifteenth century much literature has been aimed specifically at children, often with a moral or religious message. Children's literature has been shaped by religious sources, like Puritan traditions, or by more philosophical and scientific standpoints with the influences of Charles Darwin and John Locke.[2] The late nineteenth and early twentieth centuries are known as the Golden Age of Children's Literature because many classic children's books were published then.",
-            'photo'=>'Childrens literature.jpg'
+            'photo'=>'Childrens_literature.jpg'
         ]);
         //21.Romanticism
         DB::table('categories')->insert([
@@ -151,7 +151,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Adventure fiction',//22
             'description' => "Adventure fiction is a type of fiction that usually presents danger, or gives the reader a sense of excitement. Some adventure fiction also satisfies the literary definition of romance fiction.",
-            'photo'=>'Adventure fiction.jpg'
+            'photo'=>'Adventure_fiction.jpg'
         ]);
         //23.Satire
         DB::table('categories')->insert([
@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Philosophical fiction',//24
             'description' => "Philosophical fiction refers to the class of works of fiction which devote a significant portion of their content to the sort of questions normally addressed in philosophy. These might explore any facet of the human condition, including the function and role of society, the nature and motivation of human acts, the purpose of life, ethics or morals, the role of art in human lives, the role of experience or reason in the development of knowledge, whether there exists free will, or any other topic of philosophical interest. Philosophical fiction works would include the so-called novel of ideas, including some science fiction, utopian and dystopian fiction, and the Bildungsroman.",
-            'photo'=>'Philosophical fiction.jpg'
+            'photo'=>'Philosophical_fiction.jpg'
         ]);
         //25.Bildungsroman
         DB::table('categories')->insert([
@@ -175,13 +175,13 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Crime fiction',//26
             'description' => "Crime fiction, detective story, murder mystery, mystery novel, and police novel are terms used to describe narratives that centre on criminal acts and especially on the investigation, either by an amateur or a professional detective, of a crime, often a murder. It is usually distinguished from mainstream fiction and other genres such as historical fiction or science fiction, but the boundaries are indistinct. Crime fiction has multiple subgenres, including detective fiction (such as the whodunit), courtroom drama, hard-boiled fiction, and legal thrillers. Most crime drama focuses on crime investigation and does not feature the courtroom. Suspense and mystery are key elements that are nearly ubiquitous to the genre.",
-            'photo'=>'Crime fiction.jpg'
+            'photo'=>'Crime_fiction.jpg'
         ]);
         //27.Science fiction
         DB::table('categories')->insert([
             'categories' => 'Science fiction',//27
             'description' => "Science fiction (sometimes shortened to sf or sci-fi) is a genre of speculative fiction, which typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life. Science fiction can trace its roots to ancient mythology. It is related to fantasy, horror, and superhero fiction and contains many subgenres. Its exact definition has long been disputed among authors, critics, scholars, and readers.",
-            'photo'=>'Science fiction.jpg'
+            'photo'=>'Science_fiction.jpg'
         ]);
         //28.Literary fiction
         DB::table('categories')->insert([
@@ -189,7 +189,7 @@ class DatabaseSeeder extends Seeder
             'description' => "Literary fiction, mainstream fiction, non-genre fiction or serious fiction is a label that, in the book trade, refers to market novels that do not fit neatly into an established genre; or, otherwise, refers to novels that are character-driven rather than plot-driven, examine the human condition, use language in an experimental or poetic fashion, or are simply considered serious art.
 
             Literary fiction is often used as a synonym for literature, in the exclusive sense of writings specifically considered to have considerable artistic merit. While literary fiction is commonly regarded as artistically superior to genre fiction, the two are not mutually exclusive, and major literary figures have employed the genres of science fiction, crime fiction, romance, etc., to create works of literature. Furthermore, the study of genre fiction has developed within academia in recent decades.",
-            'photo'=>'Literary fiction.jpg'
+            'photo'=>'Literary_fiction.jpg'
         ]);
         //29.Allegory
         DB::table('categories')->insert([
@@ -209,19 +209,19 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Horror fiction',//31
             'description' => "Horror is a genre of fiction that is intended to disturb, frighten or scare. Horror is often divided into the sub-genres of psychological horror and supernatural horror, which are in the realm of speculative fiction. Literary historian J. A. Cuddon, in 1984, defined the horror story as 'a piece of fiction in prose of variable length... which shocks, or even frightens the reader, or perhaps induces a feeling of repulsion or loathing'. Horror intends to create an eerie and frightening atmosphere for the reader. Often the central menace of a work of horror fiction can be interpreted as a metaphor for larger fears of a society.",
-            'photo'=>'Horror fiction.jpg'
+            'photo'=>'Horror_fiction.jpg'
         ]);
         //32.Victorian literature
         DB::table('categories')->insert([
             'categories' => 'Victorian literature',//32
             'description' => "Victorian literature refers to English literature during the reign of Queen Victoria (1837-1901). The 19th century is considered by some to be the Golden Age of English Literature, especially for British novels. It was in the Victorian era that the novel became the leading literary genre in English. English writing from this era reflects the major transformations in most aspects of English life, from scientific, economic, and technological advances to changes in class structures and the role of religion in society. Famous novelists from this period include Charles Dickens, William Makepeace Thackeray, the three Brontë sisters, George Eliot, Thomas Hardy and Rudyard Kipling.",
-            'photo'=>'Victorian literature.jpg'
+            'photo'=>'Victorian_literature.jpg'
         ]);
         //33.Utopian and dystopian fiction
         DB::table('categories')->insert([
             'categories' => 'Utopian and dystopian fiction',//33
             'description' => "Utopian and dystopian fiction are genres of speculative fiction that explore social and political structures. Utopian fiction portrays a setting that agrees with the author's ethos, having various attributes of another reality intended to appeal to readers. Dystopian fiction offers the opposite: the portrayal of a setting that completely disagrees with the author's ethos. Some novels combine both genres, often as a metaphor for the different directions humanity can take depending on its choices, ending up with one of two possible futures. Both utopias and dystopias are commonly found in science fiction and other types of speculative fiction.",
-            'photo'=>'Utopian and dystopian fiction.jpg'
+            'photo'=>'Utopian_and_dystopian_fiction.jpg'
         ]);
         //34.Modernism
         DB::table('categories')->insert([
@@ -239,7 +239,7 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Frame story',//36
             'description' => "A frame story (also known as a frame tale, frame narrative, sandwich narrative, or intercalation) is a literary technique that serves as a companion piece to a story within a story, where an introductory or main narrative sets the stage either for a more emphasized second narrative or for a set of shorter stories. The frame story leads readers from a first story into one or more other stories within it. The frame story may also be used to inform readers about aspects of the secondary narrative(s) that may otherwise be hard to understand. This should not be confused with narrative structure.",
-            'photo'=>'Frame story.jpg'
+            'photo'=>'Frame_story.jpg'
         ]);
         //37.History
         DB::table('categories')->insert([
@@ -251,13 +251,13 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'categories' => 'Epistolary novel',//38
             'description' => "An epistolary novel is a novel written as a series of letters. The term is often extended to cover novels that intersperse documents of other kinds with the letters, most commonly diary entries and newspaper clippings, and sometimes considered to include novels composed of documents even if they do not include letters at all.More recently, epistolaries may include electronic documents such as recordings and radio, blog posts, and e-mails. The word epistolary is derived from Latin from the Greek word ἐπιστολή, epistolē, meaning a letter ((see epistle). In German, this type of novel is known as a Briefroman.",
-            'photo'=>'Epistolary novel.jpg'
+            'photo'=>'Epistolary_novel.jpg'
         ]);
         //39.Psychological fiction
         DB::table('categories')->insert([
             'categories' => 'Psychological fiction',//38
             'description' => "In literature, psychological fiction (also psychological realism) is a narrative genre that emphasizes interior characterization and motivation to explore the spiritual, emotional, and mental lives of the characters. The mode of narration examines the reasons for the behaviors of the character, which propel the plot and explain the story. Psychological realism is achieved with deep explorations and explanations of the mental states of the character's inner person, usually through narrative modes such as stream of consciousness and flashbacks.",
-            'photo'=>'Psychological fiction.jpg'
+            'photo'=>'Psychological_fiction.jpg'
         ]);
         //insert authors table
         DB::table('authors')->insert([

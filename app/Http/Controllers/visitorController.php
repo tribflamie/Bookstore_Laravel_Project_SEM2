@@ -38,7 +38,16 @@ class visitorController extends Controller
      */
     public function index()
     {
-        $newCate = Category::orderBy('id', 'DESC')->take(4)->get();
+        $cate = Category::select('categories.id','categories.categories', 'categories.description', 'categories.photo')
+        ->join('products','categories.id','=','products.categories_id')
+        ->join('order_details', 'products.id', '=', 'order_details.products_id')
+        ->join('orders', 'order_details.orders_id', '=', 'orders.id')
+        ->where('orders.status', '!=', 'cancelled')
+        ->where('products.status', '=', 'show')
+        ->orderByRaw('SUM(order_details.unit_quantity) desc')
+        ->groupBy('categories.id','categories.categories', 'categories.description', 'categories.photo')
+        ->take(4)
+        ->get();
         $feedbacks = Feedback::all();
         $user = Auth::getUser();
         session()->put('user', $user);
@@ -62,7 +71,7 @@ class visitorController extends Controller
             $join->on('products.id', '=', 'r.products_id');
         })->orderBy('r.avg_rating', 'DESC')->take(9)->get();
         $topNewest = product::where('status', '=', 'show')->orderBy('id', 'desc')->take(8)->get();
-        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest', 'topSelling', 'newCate'));
+        return view('home', compact('feedbacks', 'topDiscount', 'topRating', 'topNewest', 'topSelling', 'newCate','cate'));
     }
 
     public function products(Request $request)

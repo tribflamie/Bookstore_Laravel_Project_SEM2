@@ -46,7 +46,7 @@
     <section class="pb-0">
         <div class="container">
             <div class="row">
-                @foreach ($newCate as $category)
+                @foreach ($cate as $category)
                     <div class="col-md-6 col-sm-6" style="margin-bottom: 30px;">
                         <div class="banner-box">
                             <div class="overlay-bg-dark">
